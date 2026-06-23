@@ -1,0 +1,143 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.mainImageWrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-gray-light);
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnailRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.thumbnailList {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.thumbnailList::-webkit-scrollbar {
+  display: none;
+}
+
+.thumbnailButton {
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  border: 1px solid #e2e2e2;
+  overflow: hidden;
+  opacity: 0.6;
+  position: relative;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.thumbnailButton img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* border-trace overlay — drawn via background gradients over the image */
+.thumbnailButton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--color-text), var(--color-text)) left top / 0% 2px no-repeat,
+    linear-gradient(var(--color-text), var(--color-text)) right top / 2px 0% no-repeat,
+    linear-gradient(var(--color-text), var(--color-text)) right bottom / 0% 2px no-repeat,
+    linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
+}
+
+.thumbnailButton:hover:not(.thumbnailActive) {
+  opacity: 0.9;
+}
+
+.thumbnailButton:hover:not(.thumbnailActive)::after {
+  animation: thumbnailBorderTrace 0.4s linear forwards;
+}
+
+.thumbnailActive {
+  opacity: 1;
+  border-color: var(--color-text);
+}
+
+.thumbnailActive::after {
+  background:
+    linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
+    linear-gradient(var(--color-text), var(--color-text)) right top / 2px 100% no-repeat,
+    linear-gradient(var(--color-text), var(--color-text)) right bottom / 100% 2px no-repeat,
+    linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 100% no-repeat;
+}
+
+@keyframes thumbnailBorderTrace {
+  0% {
+    background:
+      linear-gradient(var(--color-text), var(--color-text)) left top / 0% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 0% no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right bottom / 0% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
+  }
+  25% {
+    background:
+      linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 0% no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right bottom / 0% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
+  }
+  50% {
+    background:
+      linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 100% no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right bottom / 0% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
+  }
+  75% {
+    background:
+      linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 100% no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right bottom / 100% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
+  }
+  100% {
+    background:
+      linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 100% no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) right bottom / 100% 2px no-repeat,
+      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 100% no-repeat;
+  }
+}
+
+.arrowLeft,
+.arrowRight {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+}
+
+.arrowDisabled {
+  color: var(--color-gray-light);
+  cursor: default;
+}

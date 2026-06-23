@@ -1,0 +1,11 @@
+.breadcrumb {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 20px 40px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.separator {
+  margin: 0 6px;
+}

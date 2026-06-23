@@ -1,0 +1,103 @@
+.wrapper {
+  margin-top: 40px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.scrollWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.arrowBtn {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: color 0.2s ease;
+}
+
+.arrowBtn:hover:not(.arrowDisabled) {
+  color: var(--color-text);
+}
+
+.arrowDisabled {
+  color: var(--color-gray-light);
+  cursor: default;
+  pointer-events: none;
+}
+
+.arrowHidden {
+  visibility: hidden;
+}
+
+.list {
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex: 0 0 160px;
+  border: 1px solid #e2e2e2;
+  padding: 12px;
+  text-align: left;
+  transition: border-color 0.25s;
+}
+
+.card:hover {
+  border-color: var(--color-text-muted);
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: var(--color-gray-light);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.label {
+  font-size: 13px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.priceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.discount {
+  color: var(--color-sale);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.price {
+  font-weight: 700;
+  font-size: 14px;
+}

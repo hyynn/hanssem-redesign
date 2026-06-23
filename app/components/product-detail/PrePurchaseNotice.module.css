@@ -1,0 +1,31 @@
+.wrapper {
+  max-width: var(--detail-content-width);
+  margin: 40px auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  border: 1px solid #e2e2e2;
+  padding: 16px;
+}
+
+.summary {
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+.content {
+  margin-top: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}

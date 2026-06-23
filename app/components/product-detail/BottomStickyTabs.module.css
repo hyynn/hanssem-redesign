@@ -1,0 +1,27 @@
+.nav {
+  display: flex;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  border-bottom: 2px solid #121212;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 10;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 16px 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tab:hover {
+  color: var(--color-text-body);
+  border-bottom-color: var(--color-text);
+}

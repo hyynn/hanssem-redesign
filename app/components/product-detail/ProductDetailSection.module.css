@@ -1,0 +1,40 @@
+.section {
+  max-width: var(--detail-content-width);
+  margin: 0 auto;
+  padding: 60px 40px;
+  border-top: 1px solid #efefef;
+}
+
+.textBlock {
+  margin-bottom: 24px;
+}
+
+.textBlock h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.textBlock p {
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.videoBlock {
+  margin-bottom: 24px;
+}
+
+.video {
+  width: 100%;
+  display: block;
+}
+
+.imageBlock {
+  margin-bottom: 24px;
+}
+
+.imageBlock img {
+  width: 100%;
+  display: block;
+}

@@ -1,65 +1,58 @@
-import Image from "next/image";
+import Hero, { HeroBanner } from "./components/Hero";
+import SpaceCuration from "./components/SpaceCuration";
+import BestSellerMarquee from "./components/BestSellerMarquee";
+import { getByCategory, getBestSellers } from "./lib/catalog";
+import styles from "./page.module.css";
 
-export default function Home() {
+const banners: HeroBanner[] = [
+  { id: "b1", image: "/images/hero/hero-1.webp", title: "한눈에 보이는\n테이블의 모든 것", subTitle: "2026.06.28 - 07.16\n용산 아이파크몰 리빙파크 5F 이벤트홀" },
+  { id: "b2", image: "/images/hero/hero-2.webp", title: "인테리어 특가\n상반기 결산 이벤트", subTitle: "즉시할인 -23%\n최대 40만원 추가 할인" },
+  { id: "b3", image: "/images/hero/hero-3.webp", title: "거실의 완성\n소파 라인업" },
+  { id: "b4", image: "/images/hero/hero-4.webp", title: "한샘 수납가구\n이달의 혜택", subTitle: "매주 바뀌는 타임특가\n붙박이장 포토리뷰 사은품 증정" },
+  { id: "b5", image: "/images/hero/hero-5.webp", title: "프리미엄 키친\n컬렉션", subTitle: "공식몰 신제품 단독 공개" },
+  { id: "b6", image: "/images/hero/hero-6.webp", title: "스타일 플래너로\n내 공간 미리보기" },
+];
+
+const spaceCurations = [
+  {
+    title: "침실 공간",
+    description: "인테리어의 차원은 곧 완벽한 공간에서 시작됩니다.",
+    image: "/images/space-curation/bedroom-main.jpg",
+    products: getByCategory("침실"),
+  },
+  {
+    title: "거실 공간",
+    description: "가족이 모이는 가장 따뜻한 순간.",
+    image: "/images/space-curation/living-main.jpg",
+    products: getByCategory("거실"),
+  },
+  {
+    title: "다이닝 공간",
+    description: "함께 식사하는 시간이 특별해지는 공간.",
+    image: "/images/space-curation/dining-main.jpg",
+    products: getByCategory("다이닝"),
+  },
+];
+
+export default function Page() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <Hero banners={banners} />
+
+      <div className={styles.sectionHeader}>
+        <h3 className={styles.sectionTitle}>SPACE CURATION</h3>
+        <button className={styles.moreBtn}>전체보기 &gt;</button>
+      </div>
+
+      {spaceCurations.map((curation, index) => (
+        <SpaceCuration
+          key={curation.title}
+          {...curation}
+          reverse={index % 2 === 1}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      ))}
+
+      <BestSellerMarquee products={getBestSellers(8)} />
+    </>
   );
 }

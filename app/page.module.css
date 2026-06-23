@@ -1,0 +1,303 @@
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  color: #1a1a1a;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background-color: #fff;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.brandLogo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+}
+
+.divider {
+  color: #ccc;
+  font-size: 18px;
+}
+
+.partnerLogo {
+  font-size: 18px;
+  font-weight: 500;
+  color: #666;
+}
+
+.nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav li {
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.nav li:hover {
+  color: #999;
+}
+
+/* Hero Section */
+.heroSection {
+  display: flex;
+  height: 600px;
+  margin: 40px 0;
+  background-color: #f8f8f8;
+  overflow: hidden;
+}
+
+.heroContent {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+}
+
+.heroTag {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.heroTitle {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 30px;
+}
+
+.heroDesc {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.heroImageWrapper {
+  flex: 1;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Section Common */
+.section {
+  margin: 80px 0;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  max-width: var(--max-width);
+  margin: 100px auto 30px;
+  padding: 0 40px;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.moreBtn {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  max-width: var(--max-width);
+  margin: 100px auto 30px;
+  padding: 0 40px;
+}
+
+.sectionTitle { font-size: 28px; font-weight: 700; }
+.moreBtn { font-size: 14px; color: var(--color-text-muted); }
+
+/* Editorial Grid */
+.editorialGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 40px;
+}
+
+.editorialMainImage {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+}
+
+.editorialMainImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.floatingText {
+  position: absolute;
+  bottom: 40px;
+  left: 40px;
+  color: #fff;
+}
+
+.floatingText h4 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.productSideList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.productCard {
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  border: 1px solid #f0f0f0;
+  transition: transform 0.2s;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.imgPlaceholder {
+  width: 120px;
+  height: 120px;
+  background-color: #f5f5f5;
+}
+
+.imgPlaceholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.productBrand {
+  font-size: 12px;
+  color: #aaa;
+}
+
+.productName {
+  font-size: 15px;
+  margin: 5px 0 10px;
+}
+
+.priceGroup {
+  display: flex;
+  gap: 10px;
+}
+
+.discount {
+  color: #ff4d4f;
+  font-weight: 700;
+}
+
+.price {
+  font-weight: 700;
+}
+
+/* Horizontal Scroll */
+.horizontalScroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+  scrollbar-width: none; /* Firefox */
+}
+
+.horizontalScroll::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.scrollItem {
+  flex: 0 0 280px;
+}
+
+.scrollImgWrapper {
+  position: relative;
+  aspect-ratio: 1/1;
+  background-color: #f9f9f9;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+
+.scrollImgWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.hoverOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.scrollImgWrapper:hover .hoverOverlay {
+  opacity: 1;
+}
+
+.quickView {
+  padding: 10px 20px;
+  background: #fff;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.scrollInfo {
+  text-align: center;
+}
+
+.scrollName {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.scrollPrice {
+  font-weight: 700;
+}

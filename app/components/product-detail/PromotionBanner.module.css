@@ -1,0 +1,30 @@
+.wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px 40px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--color-text-muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.item {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-gray-light);
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

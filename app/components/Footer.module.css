@@ -1,0 +1,198 @@
+.footer {
+  background-color: var(--color-bg-secondary);
+  border-top: 1px solid #eee;
+}
+
+.topBar {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 24px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.topLinks {
+  display: flex;
+  gap: 24px;
+  font-size: 14px;
+}
+
+.topLinks a {
+  font-weight: 400;
+  color: var(--color-text-muted);
+}
+
+.emphasized {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.familySite {
+  position: relative;
+}
+
+.familySiteTrigger {
+  display: flex;
+  align-items: center;
+  gap:12px;
+  font-size: 13px;
+  border: 1px solid #ddd;
+  padding: 6px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.familySiteTrigger::-webkit-details-marker {
+  display: none;
+}
+
+.familySiteTrigger svg {
+  transition: transform 0.05s ease;
+}
+
+.familySite[open] .familySiteTrigger svg {
+  transform: rotate(180deg);
+}
+
+.familySiteMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.familySiteMenu li {
+  border-bottom: 1px solid #eee;
+}
+
+.familySiteMenu li:last-child {
+  border-bottom: none;
+}
+
+.familySiteMenu a {
+  display: block;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.familySiteMenu a:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.mainSection {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 40px 40px 30px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr 0.8fr;
+  gap: 30px;
+}
+
+.logoWrap {
+  margin-bottom: 16px;
+}
+
+.csTitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.csTime {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.contactTitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.contactDesc {
+  display: flex;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-bottom: 16px;
+}
+
+.contactBtn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(18, 18, 18);
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(226, 226, 226);
+  padding: 10px 16px;
+  gap: 4px;
+}
+
+.qrBlock {
+  text-align: center;
+}
+
+.qrBlock img {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 8px;
+}
+
+.qrBlock p {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.legalSection {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px 30px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+}
+
+.legalRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.divider {
+  width: 1px;
+  height: 12px;
+  background-color: #e2e2e2;
+}
+
+.legalLink {
+  text-decoration: underline;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-left: 4px;
+}
+
+.copyright {
+  margin-top: 16px;
+}
+
+.disclaimerBar {
+  background-color: #f0f0f0;
+  padding: 16px 40px;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+}

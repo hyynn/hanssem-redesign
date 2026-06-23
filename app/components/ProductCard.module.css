@@ -1,0 +1,105 @@
+.card { display: flex; flex-direction: column; }
+
+.imageWrapper {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--color-gray-light);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.card:hover .image { transform: scale(1.06); }
+
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255,255,255,0.9);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.heart {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  padding: 12px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart svg {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.heartOutline {
+  fill: #999;
+  opacity: 1;
+}
+
+.heartFilled {
+  fill: var(--color-sale);
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.heartActive .heartOutline { opacity: 0; }
+.heartActive .heartFilled {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+
+.info { padding-top: 14px; }
+.brand { font-size: 12px; color: var(--color-text-muted); margin-bottom: 4px; }
+
+.name {
+  font-size: 15px;
+  margin-bottom: 8px;
+  position: relative;
+  display: inline-block;
+}
+
+/* .name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.4;
+  min-height: calc(1.4em * 2); 
+} */
+
+.name::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 1px;
+  background: var(--color-text);
+  transition: width 0.4s ease;
+}
+.card:hover .name::after { width: 100%; }
+
+.priceRow { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+.discount { color: var(--color-sale); font-weight: 700; font-size: 14px; }
+.price { font-weight: 700; font-size: 15px; }
+
+.colorChips { display: flex; gap: 6px; }
+.colorChip { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }

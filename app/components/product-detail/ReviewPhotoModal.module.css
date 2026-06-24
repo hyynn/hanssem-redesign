@@ -1,0 +1,189 @@
+.backdrop {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - var(--header-height));
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: 90%;
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--color-text-muted);
+  line-height: 1;
+}
+
+.closeBtn:hover {
+  color: var(--color-text);
+}
+
+/* Image area with prev/next nav */
+.imageArea {
+  display: flex;
+  flex-direction: column;
+  padding-top: 36px;
+}
+
+.imageRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.imageWrapper {
+  flex: 1;
+  height: 380px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.navArrow {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  transition: color 0.15s ease;
+}
+
+.navArrow:hover:not(.navArrowDisabled) {
+  color: var(--color-text);
+}
+
+.navArrowDisabled {
+  color: var(--color-gray-light);
+  cursor: default;
+}
+
+/* Thumbnail strip — always rendered, inside imageArea */
+.thumbStrip {
+  display: flex;
+  gap: 6px;
+  /* 36px = navArrow width, 4px = imageRow gap → aligns thumbs with image */
+  padding: 10px calc(36px + 4px);
+  background: var(--color-bg-secondary);
+}
+
+.thumb {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbActive {
+  border-color: var(--color-text-heading);
+}
+
+/* Review info */
+.reviewInfo {
+  padding: 20px 24px 28px;
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.stars {
+  display: inline-flex;
+  gap: 1px;
+}
+
+.starFilled {
+  color: #f5a623;
+  font-size: 14px;
+}
+
+.starEmpty {
+  color: #ddd;
+  font-size: 14px;
+}
+
+.date {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.variant {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  padding: 2px 8px;
+  background: var(--color-bg-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+}
+
+.userName {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--color-text-heading);
+}
+
+.content {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-text-body);
+  min-height: calc(15px * 1.7 * 2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

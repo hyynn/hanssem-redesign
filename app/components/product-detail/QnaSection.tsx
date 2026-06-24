@@ -55,8 +55,16 @@ export default function QnaSection({ items }: { items: QnaItem[] }) {
                   <span>{item.date}</span>
                 </div>
               </div>
-              <span className={`${styles.arrow} ${expandedId === item.id ? styles.arrowOpen : ""}`}>
-                ›
+              <span className={styles.arrow}>
+                {expandedId === item.id ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                    <path d="M480-537 296-354l-56-56 240-240 240 240-56 56-184-184Z" />
+                  </svg>
+                ) : (
+                  <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor">
+                    <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z" />
+                  </svg>
+                )}
               </span>
             </button>
 

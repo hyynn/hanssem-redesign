@@ -24,14 +24,11 @@ export default function ProductTabLayout({ product }: { product: ProductDetail }
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const handleTabChange = (tabId: TabId) => {
+    if (wrapperRef.current) {
+      const absTop = wrapperRef.current.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({ top: absTop - 80, behavior: "instant" });
+    }
     setActiveTab(tabId);
-
-    // 탭 전환 시 항상 탭 nav 상단이 헤더 바로 아래 오도록 스크롤
-    if (!wrapperRef.current) return;
-    const rect = wrapperRef.current.getBoundingClientRect();
-    const absTop = rect.top + window.scrollY;
-    const headerHeight = 80; // --header-height
-    window.scrollTo({ top: absTop - headerHeight, behavior: "smooth" });
   };
 
   return (

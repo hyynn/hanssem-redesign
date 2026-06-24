@@ -121,23 +121,47 @@
   margin-bottom: 14px;
 }
 
+.photoListWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.photoArrow {
+  flex: 0 0 28px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.photoArrowHidden {
+  visibility: hidden;
+}
+
+.photoArrowDisabled {
+  color: var(--color-gray-light);
+  cursor: default;
+}
+
 .photoList {
+  flex: 1;
   display: flex;
   gap: 8px;
   overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
   padding-bottom: 4px;
 }
 
 .photoList::-webkit-scrollbar {
-  height: 3px;
-}
-
-.photoList::-webkit-scrollbar-track {
-  background: #f0f0f0;
-}
-
-.photoList::-webkit-scrollbar-thumb {
-  background: #ccc;
+  display: none;
 }
 
 .photoThumb {
@@ -146,6 +170,10 @@
   flex-shrink: 0;
   overflow: hidden;
   background: var(--color-gray-light);
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  display: block;
 }
 
 .photoThumb img {
@@ -155,9 +183,7 @@
   transition: transform 0.3s ease;
 }
 
-.photoThumb:hover img {
-  transform: scale(1.05);
-}
+
 
 /* Sort */
 .sortRow {
@@ -166,22 +192,6 @@
   margin-bottom: 4px;
 }
 
-.sortSelect {
-  font-family: inherit;
-  font-size: 13px;
-  color: var(--color-text);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--color-text-muted);
-  padding: 4px 18px 4px 0;
-  appearance: none;
-  -webkit-appearance: none;
-  cursor: pointer;
-  outline: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23888'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 2px center;
-}
 
 /* Review List */
 .list {
@@ -190,7 +200,7 @@
 }
 
 .item {
-  padding: 28px 0;
+  padding: 28px 10px;
   border-bottom: 1px solid #efefef;
 }
 
@@ -235,4 +245,5 @@
   height: 88px;
   object-fit: cover;
   background: var(--color-gray-light);
+  cursor: pointer;
 }

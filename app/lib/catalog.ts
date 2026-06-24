@@ -1,65 +1,9 @@
 import { ProductSummary } from "./types";
+import { summaries as monoBedSummaries } from "./products/families/mono-bed";
 
 export const catalog: ProductSummary[] = [
-  // ─── 호텔침대 모노 라인 (mono-bed family, 가격 오름차순 = 옵션번호 순) ────
-  {
-    id: "1010120010",
-    familyId: "mono-bed",
-    name: "호텔침대 모노침대 Q/K (색상2종, 하부서랍 선택)",
-    variantLabel: "Q/K 단품",
-    thumbnail: "/images/products/bed-mono-bed/1010120010/1010120010-main-01.webp",
-    brand: "한샘",
-    price: 588870,
-    originalPrice: 727000,
-    discountRate: 19,
-    rating: 4.7,
-    reviewCount: 12,
-    category: ["침실", "침대", "호텔침대"],
-  },
-  {
-    id: "1010120011",
-    familyId: "mono-bed",
-    name: "호텔침대 모노침대 KK (색상2종, 하부서랍 선택)",
-    variantLabel: "KK 단품",
-    thumbnail: "/images/products/bed-mono-bed/1010120011/1010120011-main-01.webp",
-    brand: "한샘",
-    price: 660150,
-    originalPrice: 815000,
-    discountRate: 19,
-    rating: 4.7,
-    reviewCount: 15,
-    category: ["침실", "침대", "호텔침대"],
-  },
-  {
-    id: "1010120012",
-    familyId: "mono-bed",
-    name: "호텔침대 모노침대 Q/K (색상2종, 하부서랍 선택) + 밸런스 볼륨탑 매트리스",
-    variantLabel: "Q/K + 밸런스매트리스",
-    thumbnail: "/images/products/bed-mono-bed/1010120012/1010120012-main-01.webp",
-    brand: "한샘",
-    price: 1008040,
-    originalPrice: 1270000,
-    discountRate: 21,
-    rating: 4.8,
-    reviewCount: 28,
-    badge: { text: "호텔침대 판매 2위", bgColor: "#FE5A5D" },
-    category: ["침실", "침대", "호텔침대"],
-  },
-  {
-    id: "1010120013",
-    familyId: "mono-bed",
-    name: "호텔침대 모노침대 KK (색상2종, 하부서랍 선택) + 밸런스 볼륨탑 매트리스",
-    variantLabel: "KK + 밸런스매트리스",
-    thumbnail: "/images/products/bed-mono-bed/1010120013/1010120013-main-01.webp",
-    brand: "한샘",
-    price: 1280840,
-    originalPrice: 1804000,
-    discountRate: 29,
-    rating: 4.9,
-    reviewCount: 40,
-    badge: { text: "호텔침대 판매 3위", bgColor: "#FE5A5D" },
-    category: ["침실", "침대", "호텔침대"],
-  },
+  // ─── 패밀리 상품 (각 패밀리 파일이 summaries 관리) ───────────────────────
+  ...monoBedSummaries,
 
   // ─── 거실 ──────────────────────────────────────────────────────────────────
   {
@@ -241,6 +185,13 @@ export function getSiblings(familyId: string): ProductSummary[] {
 export function getByCategory(cat: string, limit?: number): ProductSummary[] {
   const result = catalog.filter((p) => p.category.includes(cat));
   return limit ? result.slice(0, limit) : result;
+}
+
+// ID로 단건 조회
+export function getProductById(id: string): ProductSummary {
+  const p = catalog.find((p) => p.id === id);
+  if (!p) throw new Error(`Product not found: ${id}`);
+  return p;
 }
 
 // 베스트셀러 (reviewCount 내림차순)

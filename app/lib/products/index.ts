@@ -1,10 +1,14 @@
-import { ProductDetail } from "../types";
+import type { ProductDetail } from "../types";
+import { summaries as monoBedSummaries, getDetail as getMonoBedDetail } from "./families/mono-bed";
 
-export const productMap = {
-  "1010120010": () => import("./1010120010"),
-  "1010120011": () => import("./1010120011"),
-  "1010120012": () => import("./1010120012"),
-  "1010120013": () => import("./1010120013"),
-} satisfies Record<string, () => Promise<{ default: ProductDetail }>>;
+type Getter = (id: string) => ProductDetail;
 
-export type ProductId = keyof typeof productMap;
+// 새 패밀리 추가 시: summaries import + Object.fromEntries 라인 한 줄씩 추가
+const registry: Record<string, Getter> = {
+  ...Object.fromEntries(monoBedSummaries.map((s) => [s.id, getMonoBedDetail])),
+};
+
+export function getProductDetail(id: string): ProductDetail | null {
+  const getter = registry[id];
+  return getter ? getter(id) : null;
+}

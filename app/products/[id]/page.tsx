@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import ProductOverview from "../../components/product-detail/ProductOverview";
 import PromotionBanner from "../../components/product-detail/PromotionBanner";
 import ProductTabLayout from "../../components/product-detail/ProductTabLayout";
-import { productMap } from "./data";
+import { getProductDetail } from "../../lib/products";
 import styles from "./page.module.css";
 
 export default async function ProductDetailPage({
@@ -12,10 +12,8 @@ export default async function ProductDetailPage({
 }) {
   const { id } = await params;
 
-  const loader = productMap[id as keyof typeof productMap];
-  if (!loader) notFound();
-
-  const { default: product } = await loader();
+  const product = getProductDetail(id);
+  if (!product) notFound();
 
   return (
     <main>

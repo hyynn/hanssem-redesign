@@ -1,0 +1,105 @@
+.section {
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 48px 80px 24px;
+  flex-shrink: 0;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--color-text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.viewAll {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-text-muted);
+  padding-bottom: 2px;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.viewAll:hover {
+  color: var(--color-text-heading);
+  border-bottom-color: var(--color-text-heading);
+}
+
+/* Image area fills remaining height */
+.imageArea {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.48) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ── Hotspot pin ── */
+.pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.pinBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-text-heading);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.pinBtnActive {
+  background: var(--color-text-heading);
+  color: #fff;
+}
+
+/* ── Card wrapper (positioning only — appearance is in HotspotMiniCard.module.css) ── */
+.cardWrapper {
+  position: absolute;
+  z-index: 20;
+}
+
+/* ── Space tagline (bottom overlay) ── */
+.tagline {
+  position: absolute;
+  bottom: 52px;
+  left: 80px;
+  font-size: 38px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  pointer-events: none;
+}

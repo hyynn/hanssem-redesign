@@ -1,8 +1,10 @@
 import Hero, { HeroBanner } from "./components/Hero";
-import SpaceCuration from "./components/SpaceCuration";
-import BestSellerMarquee from "./components/BestSellerMarquee";
-import { getByCategory, getBestSellers } from "./lib/catalog";
-import styles from "./page.module.css";
+// Legacy (backup): import SpaceCuration from "./components/SpaceCuration";
+// Legacy (backup): import BestSellerMarquee from "./components/BestSellerMarquee";
+import SpaceCurationHotspot, { HotspotData } from "./components/SpaceCurationHotspot";
+import BestSellerGrid from "./components/BestSellerGrid";
+import RenovationSection from "./components/RenovationSection";
+import { getBestSellers } from "./lib/catalog";
 
 const banners: HeroBanner[] = [
   { id: "b1", image: "/images/hero/hero-1.webp", title: "한눈에 보이는\n테이블의 모든 것", subTitle: "2026.06.28 - 07.16\n용산 아이파크몰 리빙파크 5F 이벤트홀" },
@@ -13,25 +15,17 @@ const banners: HeroBanner[] = [
   { id: "b6", image: "/images/hero/hero-6.webp", title: "스타일 플래너로\n내 공간 미리보기" },
 ];
 
-const spaceCurations = [
-  {
-    title: "침실 공간",
-    description: "인테리어의 차원은 곧 완벽한 공간에서 시작됩니다.",
-    image: "/images/space-curation/bedroom-main.jpg",
-    products: getByCategory("침실"),
-  },
-  {
-    title: "거실 공간",
-    description: "가족이 모이는 가장 따뜻한 순간.",
-    image: "/images/space-curation/living-main.jpg",
-    products: getByCategory("거실"),
-  },
-  {
-    title: "다이닝 공간",
-    description: "함께 식사하는 시간이 특별해지는 공간.",
-    image: "/images/space-curation/dining-main.jpg",
-    products: getByCategory("다이닝"),
-  },
+// x/y 좌표는 실제 이미지 배치 후 조정 필요 (0~100 %)
+const livingHotspots: HotspotData[] = [
+  { id: "lr1", x: 34, y: 64, productId: "p2005" },
+  { id: "lr2", x: 52, y: 76, productId: "p2001" },
+  { id: "lr3", x: 80, y: 68, productId: "p2002" },
+];
+
+const bedroomHotspots: HotspotData[] = [
+  { id: "br1", x: 14, y: 59, productId: "p2006" },
+  { id: "br2", x: 54, y: 66, productId: "1010120010" },
+  { id: "br3", x: 88, y: 75, productId: "1010120013" },
 ];
 
 export default function Page() {
@@ -39,20 +33,23 @@ export default function Page() {
     <>
       <Hero banners={banners} />
 
-      <div className={styles.sectionHeader}>
-        <h3 className={styles.sectionTitle}>SPACE CURATION</h3>
-        <button className={styles.moreBtn}>전체보기 &gt;</button>
-      </div>
+      <SpaceCurationHotspot
+        spaceLabel="거실 · Living Room"
+        tagline="편안함의 기준을 높이다"
+        image="/images/space-curation/livingroom-main.webp"
+        hotspots={livingHotspots}
+      />
 
-      {spaceCurations.map((curation, index) => (
-        <SpaceCuration
-          key={curation.title}
-          {...curation}
-          reverse={index % 2 === 1}
-        />
-      ))}
+      <SpaceCurationHotspot
+        spaceLabel="침실 · Bedroom"
+        tagline="잠드는 순간도, 깨는 순간도"
+        image="/images/space-curation/bedroom-main.webp"
+        hotspots={bedroomHotspots}
+      />
 
-      <BestSellerMarquee products={getBestSellers(8)} />
+      <BestSellerGrid products={getBestSellers(8)} />
+
+      <RenovationSection />
     </>
   );
 }

@@ -1,5 +1,5 @@
 import type { ProductDetail } from "../types";
-import { summaries as monoBedSummaries, getDetail as getMonoBedDetail } from "./families/mono-bed";
+import { summaries as monoBedSummaries, getDetail as getMonoBedDetail } from "./families/bedroom/bed/101012001";
 
 type Getter = (id: string) => ProductDetail;
 

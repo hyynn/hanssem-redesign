@@ -1,5 +1,5 @@
 import { ProductSummary } from "./types";
-import { summaries as monoBedSummaries } from "./products/families/mono-bed";
+import { summaries as monoBedSummaries } from "./products/families/bedroom/bed/101012001";
 
 export const catalog: ProductSummary[] = [
   // ─── 패밀리 상품 (각 패밀리 파일이 summaries 관리) ───────────────────────
@@ -181,9 +181,11 @@ export function getSiblings(familyId: string): ProductSummary[] {
   return catalog.filter((p) => p.familyId === familyId);
 }
 
-// 카테고리 필터
+// 카테고리 필터 (categoryTags도 포함해 검색)
 export function getByCategory(cat: string, limit?: number): ProductSummary[] {
-  const result = catalog.filter((p) => p.category.includes(cat));
+  const result = catalog.filter(
+    (p) => p.category.includes(cat) || p.categoryTags?.includes(cat)
+  );
   return limit ? result.slice(0, limit) : result;
 }
 

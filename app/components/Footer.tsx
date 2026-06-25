@@ -1,14 +1,14 @@
 import styles from "./Footer.module.css";
 
 const TOP_LINKS = [
-    { label: "회사소개", href: "https://company.hanssem.com/main.do" },
-    { label: "이용약관", href: "https://mall.hanssem.com/customer/customerAgreement.do" },
-    { label: "위치정보이용약관", href: "https://mall.hanssem.com/customer/locationAgreement.do", emphasized: true },
-    { label: "개인정보처리방침", href: "https://mall.hanssem.com/customer/customerPrivacy.do", emphasized: true },
+    { label: "회사소개", href: "#" },
+    { label: "이용약관", href: "#" },
+    { label: "위치정보이용약관", href: "#", emphasized: true },
+    { label: "개인정보처리방침", href: "#", emphasized: true },
     { label: "이메일무단수집거부", href: "#" },
-    { label: "사이버감사실", href: "https://company.hanssem.com/company_info/management_policy/cyber_inspection.do" },
-    { label: "공지사항", href: "https://mall.hanssem.com/csCenter/csNotice.do" },
-    { label: "고객센터", href: "https://mall.hanssem.com/csCenter/csMain.do" },
+    { label: "사이버감사실", href: "#" },
+    { label: "공지사항", href: "#" },
+    { label: "고객센터", href: "#" },
 ];
 
 const CONTACT_BOXES = [
@@ -73,10 +73,10 @@ function ChevronRightIcon() {
 }
 
 const FAMILY_SITES = [
-    { label: "(주)한샘", href: "https://www.hanssem.com" },
-    { label: "한샘서비스센터", href: "https://www.hanssemservice.com" },
-    { label: "한샘오피스", href: "https://www.hanssemoffice.com" },
-    { label: "도무스", href: "https://www.domus.co.kr" },
+    { label: "(주)한샘", href: "#" },
+    { label: "한샘서비스센터", href: "#" },
+    { label: "한샘오피스", href: "#" },
+    { label: "도무스", href: "#" },
 ];
 
 function RequestIcon() {

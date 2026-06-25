@@ -67,15 +67,18 @@
 - 홈&데코 카테고리는 현재 범위 제외(보류), 추가 시 17번부터 이어붙임
 
 ## 카테고리 다중 소속 처리
-- 소분류 중 일부는 서로 다른 분류 축(스타일/사이즈 등)이 겹쳐서 한 상품이 여러
-  소분류에 동시 해당될 수 있음 (예: 호텔침대이면서 퀸·킹침대인 경우)
-- 상품코드의 소분류 슬롯은 대표/주 분류 1개만 담당
-- 스타일 축(예: 호텔침대, 수납침대)은 상품코드 소분류에서 파생 — ProductDetail에 별도 저장하지 않음
-- 코드에 담을 수 없는 나머지 축(사이즈·구성·기능)은 ProductDetail.filterAttributes에 저장
+- 한 상품이 여러 소분류에 동시 소속될 수 있음 (예: 호텔침대이면서 Q/K침대이면서 수납침대)
+- `category[]` (ProductSummary): 상품의 주 분류 경로. 마지막 항목이 primary 소분류
+  - **primary 소분류 선택 원칙**: 스타일/타입 축(호텔침대, 저상형·패밀리침대 등)을 우선.
+    사이즈(Q/K, KK)·수납 여부 같은 서브 옵션 축은 categoryTags에 넣을 것
+- `categoryTags?: string[]` (ProductSummary): 추가 소분류 소속 (다중 허용)
+  - 예: `categoryTags: ["수납침대", "Q/K침대"]`
+  - `getByCategory(cat)`는 `category[]`와 `categoryTags[]` 모두 검색함
+- 상품코드의 소분류 슬롯은 코드로 표현 가능한 primary 분류 1개만 담당
+- 필터 UI용 속성(사이즈·구성·기능)은 `filterAttributes`에 별도 저장
   `filterAttributes?: { size?: string[]; config?: string[]; feature?: string[] }`
 - 카테고리별 필터 칩 노출 정의(옵션 목록·라벨)는 lib/filter-dimensions.ts의
   FILTER_DIMENSIONS_BY_CATEGORY에서 관리
-- 샘키즈/베스트셀러를 코드에서 제외한 것과 동일한 원칙의 연장
 
 ## 상품 카드 노출 방식
 - 같은 패밀리(형제 SKU)를 하나로 묶어 대표 카드 하나로 보여주지 않음
@@ -88,16 +91,35 @@
 - 리뷰 정렬: 평점순 정렬 시 동점이면 최신순으로 2차 정렬
 - 문의(QnA): 카테고리 필터([전체]/[상품]/[배송]/[기타]) + 정렬은 항상 최신순 고정
 
-## 폴더 네이밍
-- 패밀리(형제 SKU 공유 이미지) 폴더: {카테고리슬러그}-{패밀리명} (예: bed-mono-bed)
-- SKU별 폴더: 10자리 상품코드 그대로, 패밀리 폴더 안에 nesting
-  (예: bed-mono-bed/1010120010/)
-- 패밀리 코드(상품코드 앞 9자리)↔슬러그 매핑은 app/lib/products/families/index.ts의
-  FAMILY_REGISTRY에서 자동 집계, 수기로 별도 관리하지 않음
+## 패밀리 데이터 폴더 구조
+- 코드 경로: `app/lib/products/families/{대분류slug}/{중분류slug}/{FAMILY_CODE}/`
+  - 대분류/중분류는 영문 slug (bedroom/bed, living/sofa 등)
+  - {FAMILY_CODE}는 상품코드 앞 9자리 (불변, 예: 101012001)
+  - 예: `app/lib/products/families/bedroom/bed/101012001/`
+- 각 패밀리 폴더는 3개 파일로 구성:
+  - `index.ts` — summaries[], variantDetails, monoBedFamily, getDetail() 등 핵심
+  - `sections.ts` — FAMILY_FOLDER, FAMILY_CODE, deliveryGuides, createSections()
+  - `reviews.ts` — sharedReviews, sharedQnaItems
+- 새 패밀리 추가 시 수정 파일:
+  1. 새 폴더 생성 후 index.ts / sections.ts / reviews.ts 작성
+  2. `app/lib/products/families/index.ts`의 FAMILY_REGISTRY에 import 1줄 + 항목 1줄
+  3. `app/lib/products/index.ts`에 registry 항목 추가
+  4. `app/lib/catalog.ts`에 summaries spread 추가
+
+## 폴더 네이밍 (이미지)
+- 이미지 경로: `public/images/products/{대분류slug}/{중분류slug}/{FAMILY_CODE}/`
+  - 코드 데이터 경로(`app/lib/products/families/...`)와 대분류/중분류/FAMILY_CODE 구조 동일
+  - 예: `public/images/products/bedroom/bed/101012001/`
+- 패밀리 공유 파일(섹션·갤러리): `{FAMILY_CODE}-{종류}-{번호}.{ext}` 형식
+  - 예: `101012001-shared-01.webp`, `101012001-basic-01.mp4`
+- SKU별 서브폴더: 10자리 상품코드 그대로 패밀리 폴더 안에 nesting
+  - 예: `bedroom/bed/101012001/1010120010/1010120010-main-01.webp`
+- 코드에서 경로 상수: `FAMILY_PATH = "{대분류slug}/{중분류slug}/{FAMILY_CODE}"` (sections.ts에 정의)
+  - 파일명 prefix로는 `FAMILY_CODE`를 직접 사용
+- 패밀리 코드 ↔ 경로 매핑은 `app/lib/products/families/index.ts`의 FAMILY_REGISTRY에서 관리
 
 ## 상세페이지 섹션 카탈로그
-- section id/label은 별도 중앙 파일 없이 각 패밀리 파일의 createSections() 안에서
-  직접 정의 (예: mono-bed.ts의 createSections())
+- section id/label은 각 패밀리 폴더의 sections.ts의 createSections() 안에서 직접 정의
 - 현재 사용 중인 section id: "basic" / "function" / "material" / "size" / "warranty"
 - 새 패밀리 추가 시 위 id를 우선 재사용하고, 카테고리 고유 섹션만 새 id 부여
 

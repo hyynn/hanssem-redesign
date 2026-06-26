@@ -5,7 +5,7 @@ const reviewItems: Review[] = [
   // ── KK + 밸런스매트리스 ──
   {
     id: "r-a01",
-    userName: "홍*희",
+    userName: "ho*****",
     rating: 5,
     date: "2026.04.12",
     variant: "KK + 밸런스매트리스",
@@ -14,7 +14,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a02",
-    userName: "김*수",
+    userName: "ks*****",
     rating: 5,
     date: "2026.03.28",
     variant: "KK + 밸런스매트리스",
@@ -22,7 +22,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a03",
-    userName: "이*진",
+    userName: "lj*****",
     rating: 5,
     date: "2026.03.15",
     variant: "KK + 밸런스매트리스",
@@ -31,7 +31,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a04",
-    userName: "박*현",
+    userName: "ph*****",
     rating: 4,
     date: "2026.02.20",
     variant: "KK + 밸런스매트리스",
@@ -39,7 +39,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a05",
-    userName: "최*은",
+    userName: "ce*****",
     rating: 5,
     date: "2026.02.05",
     variant: "KK + 밸런스매트리스",
@@ -51,7 +51,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a06",
-    userName: "이*혜",
+    userName: "lh*****",
     rating: 5,
     date: "2026.06.10",
     variant: "KK + 밸런스매트리스",
@@ -59,7 +59,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a07",
-    userName: "박*준",
+    userName: "pj*****",
     rating: 5,
     date: "2026.06.07",
     variant: "KK + 밸런스매트리스",
@@ -68,7 +68,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a08",
-    userName: "최*민",
+    userName: "cm*****",
     rating: 4,
     date: "2026.06.02",
     variant: "KK + 밸런스매트리스",
@@ -76,7 +76,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a09",
-    userName: "강*영",
+    userName: "ky*****",
     rating: 5,
     date: "2026.05.28",
     variant: "KK + 밸런스매트리스",
@@ -85,7 +85,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a10",
-    userName: "정*아",
+    userName: "ja*****",
     rating: 5,
     date: "2026.05.22",
     variant: "KK + 밸런스매트리스",
@@ -93,7 +93,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a11",
-    userName: "손*우",
+    userName: "su*****",
     rating: 3,
     date: "2026.05.16",
     variant: "KK + 밸런스매트리스",
@@ -101,7 +101,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a12",
-    userName: "안*진",
+    userName: "aj*****",
     rating: 5,
     date: "2026.05.12",
     variant: "KK + 밸런스매트리스",
@@ -110,7 +110,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a13",
-    userName: "홍*수",
+    userName: "hs*****",
     rating: 5,
     date: "2026.05.08",
     variant: "KK + 밸런스매트리스",
@@ -118,7 +118,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a14",
-    userName: "오*현",
+    userName: "ox*****",
     rating: 5,
     date: "2026.05.04",
     variant: "KK + 밸런스매트리스",
@@ -127,7 +127,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a15",
-    userName: "윤*결",
+    userName: "yk*****",
     rating: 5,
     date: "2026.04.30",
     variant: "KK + 밸런스매트리스",
@@ -135,7 +135,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a16",
-    userName: "나*솔",
+    userName: "na*****",
     rating: 5,
     date: "2026.04.25",
     variant: "KK + 밸런스매트리스",
@@ -144,7 +144,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a17",
-    userName: "임*후",
+    userName: "im*****",
     rating: 5,
     date: "2026.04.20",
     variant: "KK + 밸런스매트리스",
@@ -152,7 +152,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a18",
-    userName: "서*연",
+    userName: "sy*****",
     rating: 5,
     date: "2026.04.15",
     variant: "KK + 밸런스매트리스",
@@ -161,7 +161,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a19",
-    userName: "배*희",
+    userName: "bh*****",
     rating: 5,
     date: "2026.04.10",
     variant: "KK + 밸런스매트리스",
@@ -169,7 +169,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-a20",
-    userName: "황*준",
+    userName: "hw*****",
     rating: 5,
     date: "2026.04.06",
     variant: "KK + 밸런스매트리스",
@@ -179,7 +179,7 @@ const reviewItems: Review[] = [
   // ── Q/K + 밸런스매트리스 ──
   {
     id: "r-b01",
-    userName: "송*연",
+    userName: "so*****",
     rating: 5,
     date: "2026.04.18",
     variant: "Q/K + 밸런스매트리스",
@@ -188,7 +188,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b02",
-    userName: "류*현",
+    userName: "ry*****",
     rating: 5,
     date: "2026.04.02",
     variant: "Q/K + 밸런스매트리스",
@@ -196,7 +196,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b03",
-    userName: "장*민",
+    userName: "jm*****",
     rating: 5,
     date: "2026.03.22",
     variant: "Q/K + 밸런스매트리스",
@@ -205,7 +205,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b04",
-    userName: "윤*서",
+    userName: "ys*****",
     rating: 4,
     date: "2026.03.05",
     variant: "Q/K + 밸런스매트리스",
@@ -213,7 +213,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b05",
-    userName: "오*진",
+    userName: "oj*****",
     rating: 5,
     date: "2026.02.18",
     variant: "Q/K + 밸런스매트리스",
@@ -222,7 +222,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b06",
-    userName: "정*현",
+    userName: "jx*****",
     rating: 5,
     date: "2026.06.08",
     variant: "Q/K + 밸런스매트리스",
@@ -230,7 +230,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b07",
-    userName: "강*호",
+    userName: "gh*****",
     rating: 5,
     date: "2026.06.04",
     variant: "Q/K + 밸런스매트리스",
@@ -239,7 +239,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b08",
-    userName: "이*민",
+    userName: "lm*****",
     rating: 5,
     date: "2026.05.29",
     variant: "Q/K + 밸런스매트리스",
@@ -247,7 +247,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b09",
-    userName: "박*영",
+    userName: "py*****",
     rating: 4,
     date: "2026.05.24",
     variant: "Q/K + 밸런스매트리스",
@@ -255,7 +255,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b10",
-    userName: "최*선",
+    userName: "cs*****",
     rating: 5,
     date: "2026.05.19",
     variant: "Q/K + 밸런스매트리스",
@@ -264,7 +264,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b11",
-    userName: "조*환",
+    userName: "jw*****",
     rating: 5,
     date: "2026.05.15",
     variant: "Q/K + 밸런스매트리스",
@@ -272,7 +272,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b12",
-    userName: "신*혁",
+    userName: "sh*****",
     rating: 3,
     date: "2026.05.10",
     variant: "Q/K + 밸런스매트리스",
@@ -280,7 +280,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b13",
-    userName: "권*영",
+    userName: "kq*****",
     rating: 5,
     date: "2026.05.05",
     variant: "Q/K + 밸런스매트리스",
@@ -289,7 +289,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b14",
-    userName: "한*은",
+    userName: "hn*****",
     rating: 5,
     date: "2026.04.30",
     variant: "Q/K + 밸런스매트리스",
@@ -297,7 +297,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b15",
-    userName: "류*성",
+    userName: "rs*****",
     rating: 5,
     date: "2026.04.24",
     variant: "Q/K + 밸런스매트리스",
@@ -306,7 +306,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b16",
-    userName: "임*지",
+    userName: "lz*****",
     rating: 5,
     date: "2026.04.18",
     variant: "Q/K + 밸런스매트리스",
@@ -314,7 +314,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b17",
-    userName: "오*은",
+    userName: "oe*****",
     rating: 5,
     date: "2026.04.13",
     variant: "Q/K + 밸런스매트리스",
@@ -323,7 +323,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b18",
-    userName: "황*린",
+    userName: "hl*****",
     rating: 5,
     date: "2026.04.08",
     variant: "Q/K + 밸런스매트리스",
@@ -331,7 +331,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b19",
-    userName: "배*현",
+    userName: "bx*****",
     rating: 5,
     date: "2026.04.03",
     variant: "Q/K + 밸런스매트리스",
@@ -339,7 +339,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-b20",
-    userName: "석*민",
+    userName: "sk*****",
     rating: 5,
     date: "2026.03.28",
     variant: "Q/K + 밸런스매트리스",
@@ -348,7 +348,7 @@ const reviewItems: Review[] = [
   // ── KK 단품 ──
   {
     id: "r-c01",
-    userName: "남*준",
+    userName: "nj*****",
     rating: 5,
     date: "2026.04.25",
     variant: "KK 단품",
@@ -357,7 +357,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c02",
-    userName: "임*영",
+    userName: "ly*****",
     rating: 5,
     date: "2026.04.10",
     variant: "KK 단품",
@@ -365,7 +365,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c03",
-    userName: "한*솔",
+    userName: "hp*****",
     rating: 5,
     date: "2026.03.30",
     variant: "KK 단품",
@@ -374,7 +374,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c04",
-    userName: "서*현",
+    userName: "sv*****",
     rating: 4,
     date: "2026.03.10",
     variant: "KK 단품",
@@ -382,7 +382,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c05",
-    userName: "권*아",
+    userName: "kn*****",
     rating: 5,
     date: "2026.02.28",
     variant: "KK 단품",
@@ -391,7 +391,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c06",
-    userName: "윤*석",
+    userName: "yu*****",
     rating: 5,
     date: "2026.06.09",
     variant: "KK 단품",
@@ -399,7 +399,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c07",
-    userName: "강*하",
+    userName: "kz*****",
     rating: 5,
     date: "2026.06.05",
     variant: "KK 단품",
@@ -408,7 +408,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c08",
-    userName: "차*영",
+    userName: "cv*****",
     rating: 5,
     date: "2026.05.31",
     variant: "KK 단품",
@@ -416,7 +416,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c09",
-    userName: "이*수",
+    userName: "ls*****",
     rating: 4,
     date: "2026.05.26",
     variant: "KK 단품",
@@ -424,7 +424,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c10",
-    userName: "김*현",
+    userName: "km*****",
     rating: 5,
     date: "2026.05.21",
     variant: "KK 단품",
@@ -433,7 +433,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c11",
-    userName: "전*준",
+    userName: "jn*****",
     rating: 5,
     date: "2026.05.17",
     variant: "KK 단품",
@@ -441,7 +441,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c12",
-    userName: "홍*진",
+    userName: "hx*****",
     rating: 3,
     date: "2026.05.13",
     variant: "KK 단품",
@@ -449,7 +449,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c13",
-    userName: "박*서",
+    userName: "pt*****",
     rating: 5,
     date: "2026.05.08",
     variant: "KK 단품",
@@ -457,7 +457,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c14",
-    userName: "유*빈",
+    userName: "ub*****",
     rating: 5,
     date: "2026.05.03",
     variant: "KK 단품",
@@ -465,7 +465,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c15",
-    userName: "최*오",
+    userName: "cx*****",
     rating: 5,
     date: "2026.04.29",
     variant: "KK 단품",
@@ -474,7 +474,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c16",
-    userName: "안*미",
+    userName: "am*****",
     rating: 5,
     date: "2026.04.24",
     variant: "KK 단품",
@@ -482,7 +482,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c17",
-    userName: "오*진",
+    userName: "ov*****",
     rating: 5,
     date: "2026.04.19",
     variant: "KK 단품",
@@ -490,7 +490,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c18",
-    userName: "이*나",
+    userName: "ln*****",
     rating: 5,
     date: "2026.04.14",
     variant: "KK 단품",
@@ -498,7 +498,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c19",
-    userName: "송*주",
+    userName: "sp*****",
     rating: 5,
     date: "2026.04.09",
     variant: "KK 단품",
@@ -507,7 +507,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-c20",
-    userName: "정*훈",
+    userName: "jt*****",
     rating: 5,
     date: "2026.04.04",
     variant: "KK 단품",
@@ -516,7 +516,7 @@ const reviewItems: Review[] = [
   // ── Q/K 단품 ──
   {
     id: "r-d01",
-    userName: "고*현",
+    userName: "gx*****",
     rating: 5,
     date: "2026.04.30",
     variant: "Q/K 단품",
@@ -525,7 +525,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d02",
-    userName: "문*지",
+    userName: "mj*****",
     rating: 5,
     date: "2026.04.15",
     variant: "Q/K 단품",
@@ -533,7 +533,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d03",
-    userName: "백*우",
+    userName: "bu*****",
     rating: 5,
     date: "2026.04.01",
     variant: "Q/K 단품",
@@ -542,7 +542,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d04",
-    userName: "엄*민",
+    userName: "em*****",
     rating: 4,
     date: "2026.03.18",
     variant: "Q/K 단품",
@@ -550,7 +550,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d05",
-    userName: "신*영",
+    userName: "sn*****",
     rating: 5,
     date: "2026.03.05",
     variant: "Q/K 단품",
@@ -559,7 +559,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d06",
-    userName: "민*선",
+    userName: "ms*****",
     rating: 4,
     date: "2026.06.11",
     variant: "Q/K 단품",
@@ -567,7 +567,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d07",
-    userName: "구*현",
+    userName: "gu*****",
     rating: 5,
     date: "2026.06.06",
     variant: "Q/K 단품",
@@ -576,7 +576,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d08",
-    userName: "심*호",
+    userName: "si*****",
     rating: 5,
     date: "2026.06.01",
     variant: "Q/K 단품",
@@ -584,7 +584,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d09",
-    userName: "강*민",
+    userName: "ka*****",
     rating: 4,
     date: "2026.05.27",
     variant: "Q/K 단품",
@@ -592,7 +592,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d10",
-    userName: "고*란",
+    userName: "gl*****",
     rating: 5,
     date: "2026.05.22",
     variant: "Q/K 단품",
@@ -601,7 +601,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d11",
-    userName: "남*은",
+    userName: "ne*****",
     rating: 5,
     date: "2026.05.18",
     variant: "Q/K 단품",
@@ -609,7 +609,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d12",
-    userName: "임*도",
+    userName: "id*****",
     rating: 5,
     date: "2026.05.14",
     variant: "Q/K 단품",
@@ -617,7 +617,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d13",
-    userName: "탁*아",
+    userName: "ta*****",
     rating: 5,
     date: "2026.05.09",
     variant: "Q/K 단품",
@@ -626,7 +626,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d14",
-    userName: "변*진",
+    userName: "bj*****",
     rating: 5,
     date: "2026.05.05",
     variant: "Q/K 단품",
@@ -634,7 +634,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d15",
-    userName: "진*현",
+    userName: "jv*****",
     rating: 5,
     date: "2026.04.30",
     variant: "Q/K 단품",
@@ -643,7 +643,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d16",
-    userName: "류*인",
+    userName: "ri*****",
     rating: 5,
     date: "2026.04.25",
     variant: "Q/K 단품",
@@ -651,7 +651,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d17",
-    userName: "도*원",
+    userName: "dw*****",
     rating: 5,
     date: "2026.04.20",
     variant: "Q/K 단품",
@@ -660,7 +660,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d18",
-    userName: "유*솔",
+    userName: "us*****",
     rating: 5,
     date: "2026.04.15",
     variant: "Q/K 단품",
@@ -668,7 +668,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d19",
-    userName: "원*준",
+    userName: "wj*****",
     rating: 5,
     date: "2026.04.10",
     variant: "Q/K 단품",
@@ -677,7 +677,7 @@ const reviewItems: Review[] = [
   },
   {
     id: "r-d20",
-    userName: "지*훈",
+    userName: "zj*****",
     rating: 5,
     date: "2026.04.05",
     variant: "Q/K 단품",
@@ -696,7 +696,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-a01",
     category: "상품",
     question: "하부서랍 있는 옵션과 없는 옵션의 가격 차이가 얼마나 되나요? 나중에 하부서랍을 따로 추가 구매할 수 있나요?",
-    questioner: "이*진",
+    questioner: "ej*****",
     date: "2026.05.21",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 하부서랍 유/무에 따른 가격 차이는 약 8만 원입니다. 나중에 하부서랍만 따로 구매하시는 것은 어려우므로, 처음 구매 시 신중하게 선택해 주시기 바랍니다. 추가로 궁금한 점이 있으시면 고객센터(1688-4945)로 문의해 주세요.",
@@ -706,7 +706,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-a02",
     category: "배송",
     question: "제주도 배송이 가능한지, 추가 배송비가 얼마인지 알고 싶습니다.",
-    questioner: "강*민",
+    questioner: "kp*****",
     date: "2026.05.18",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 본 상품은 제주도 및 도서산간 지역 배송이 불가합니다. 가까운 한샘 플래그십 스토어를 방문하시거나 한샘직영 배송 가능 지역을 별도로 확인 후 구매해 주시기 바랍니다.",
@@ -716,7 +716,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-a03",
     category: "상품",
     question: "헤드 무드등 전구 종류가 어떻게 되나요? 나중에 직접 교체가 가능한지요?",
-    questioner: "오*영",
+    questioner: "oy*****",
     date: "2026.05.15",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 헤드 무드등은 LED 일체형으로 되어 있어 소비자가 직접 전구를 교체하기 어렵습니다. 제품 하자로 인한 LED 불량 시에는 A/S를 통해 무상으로 교체해 드리고 있으니 고객센터(1688-4945)로 연락 주세요.",
@@ -726,7 +726,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-a04",
     category: "배송",
     question: "사전판매 상품인데 정확한 배송 예정일을 알 수 있을까요? 이사 일정에 맞춰야 해서요.",
-    questioner: "정*호",
+    questioner: "zp*****",
     date: "2026.05.10",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 주문 순서에 따라 3~4주 내 순차 배송이 진행됩니다. 정확한 배송 일정은 배송 3~5일 전 담당 배송팀에서 별도 연락을 드릴 예정입니다. 이사 일정이 확정되신 분들은 고객센터로 날짜를 미리 알려주시면 최대한 맞춰 드리겠습니다.",
@@ -736,7 +736,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-a05",
     category: "상품",
     question: "색상이 베이지와 다크그레이 두 가지인데, 밝은 원목 가구와 함께 놓을 경우 어떤 색상이 더 잘 어울릴까요?",
-    questioner: "윤*아",
+    questioner: "ya*****",
     date: "2026.04.28",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 밝은 원목 가구와의 조합에서는 베이지 컬러가 보다 자연스럽고 따뜻한 인테리어를 연출하실 수 있습니다. 다크그레이는 모던하고 세련된 느낌을 주어 미니멀 인테리어에 잘 어울립니다.",
@@ -746,7 +746,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-a06",
     category: "기타",
     question: "기존 한샘 침대 프레임이 있는데 밸런스 볼륨탑 매트리스만 따로 구매할 수 있나요?",
-    questioner: "한*준",
+    questioner: "hz*****",
     date: "2026.06.01",
     answered: false,
   },
@@ -755,7 +755,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-b01",
     category: "상품",
     question: "Q/K 사이즈가 퀸과 킹 모두 해당되는 건가요? 각각 매트리스 규격이 다른데 어떻게 선택하나요?",
-    questioner: "박*영",
+    questioner: "pe*****",
     date: "2026.05.24",
     answered: true,
     answer: "안녕하세요, 한샘입니다. Q/K는 퀸(Q)과 킹(K) 사이즈를 선택할 수 있는 옵션입니다. 주문 시 옵션 선택란에서 원하시는 사이즈를 고르시면 됩니다. 퀸 사이즈는 1600×2000mm, 킹 사이즈는 1800×2000mm 기준입니다. 세트 상품이므로 선택한 사이즈에 맞는 매트리스가 함께 배송됩니다.",
@@ -765,7 +765,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-b02",
     category: "상품",
     question: "헤드 무드등은 밝기 조절이 가능한가요?",
-    questioner: "김*희",
+    questioner: "kd*****",
     date: "2026.05.12",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 현재 모델의 무드등은 ON/OFF 기능만 지원하며, 별도의 밝기 조절 기능은 없습니다. 간접조명으로서의 은은한 밝기로 설계되어 있습니다.",
@@ -775,7 +775,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-b03",
     category: "배송",
     question: "사전판매 배송 예정일을 알 수 있을까요? 이사 날짜에 맞추고 싶어요.",
-    questioner: "정*호",
+    questioner: "zq*****",
     date: "2026.05.08",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 주문 순서에 따라 3~4주 내 순차 배송이 진행됩니다. 배송 3~5일 전 배송팀에서 사전 연락을 드립니다. 이사 일정이 있으신 경우 고객센터(1688-4945)에 미리 날짜를 알려주시면 최대한 맞춰 드리겠습니다.",
@@ -785,7 +785,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-b04",
     category: "상품",
     question: "베이지 색상 실물이 사진과 많이 다른가요? 따뜻한 화이트인지 크림 계열인지 궁금합니다.",
-    questioner: "이*수",
+    questioner: "lt*****",
     date: "2026.04.30",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 베이지 색상은 따뜻한 크림 계열로, 순수 화이트보다 약간 웜톤이 가미되어 있습니다. 조명에 따라 색감 차이가 있을 수 있으므로 가까운 한샘 쇼룸에서 실물 확인을 권장드립니다.",
@@ -795,7 +795,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-b05",
     category: "기타",
     question: "밸런스 볼륨탑 매트리스 스펙을 더 자세히 알 수 있을까요? 경도나 소재가 궁금합니다.",
-    questioner: "최*준",
+    questioner: "cj*****",
     date: "2026.06.02",
     answered: false,
   },
@@ -804,7 +804,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-c01",
     category: "상품",
     question: "단품 구매 시 KK 사이즈 기준 어떤 매트리스가 맞나요? 규격을 알고 싶습니다.",
-    questioner: "이*준",
+    questioner: "lx*****",
     date: "2026.05.22",
     answered: true,
     answer: "안녕하세요, 한샘입니다. KK(킹킹) 사이즈는 2000×2000mm 규격입니다. 시중에서 판매되는 슈퍼킹 또는 KK 규격 매트리스를 사용하시면 됩니다. 한샘 밸런스 볼륨탑 매트리스(KK)와의 세트 상품도 별도로 판매되고 있으니 참고해 주세요.",
@@ -814,7 +814,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-c02",
     category: "상품",
     question: "하부서랍이 양쪽에 모두 있나요, 한쪽에만 있나요?",
-    questioner: "박*수",
+    questioner: "pn*****",
     date: "2026.05.16",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 하부서랍은 침대 양쪽(좌우) 모두에 위치하며, 서랍 2개가 포함되어 있습니다. 수납 공간이 넓어 이불·베개·의류 등을 보관하기에 적합합니다.",
@@ -824,7 +824,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-c03",
     category: "배송",
     question: "배송 전 사전 연락을 꼭 받을 수 있나요? 회사 재직 중이라 일정 조율이 필요합니다.",
-    questioner: "최*호",
+    questioner: "cz*****",
     date: "2026.05.11",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 배송 3~5일 전 담당 배송팀에서 전화로 사전 연락을 드립니다. 연락 시 원하시는 배송 날짜와 시간대를 조율해 드리고 있으니 안심하고 주문해 주세요.",
@@ -834,7 +834,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-c04",
     category: "상품",
     question: "무드등 스위치는 어디에 위치하나요? 리모컨이 별도로 있나요?",
-    questioner: "김*영",
+    questioner: "ke*****",
     date: "2026.05.05",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 무드등 스위치는 헤드보드 측면에 위치하며, 터치 방식으로 작동합니다. 별도의 리모컨은 제공되지 않습니다.",
@@ -844,7 +844,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-c05",
     category: "상품",
     question: "베이지 컬러 실물을 쇼룸에서 확인할 수 있나요?",
-    questioner: "정*은",
+    questioner: "je*****",
     date: "2026.04.25",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 전국 한샘 플래그십 스토어 및 주요 쇼룸에서 실물을 확인하실 수 있습니다. 방문 전 한샘 고객센터(1688-4945) 또는 홈페이지에서 전시 여부를 미리 확인해 주시기 바랍니다.",
@@ -854,7 +854,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-c06",
     category: "기타",
     question: "기존에 사용하던 침대 프레임 폐기 서비스도 함께 신청할 수 있나요?",
-    questioner: "오*석",
+    questioner: "os*****",
     date: "2026.06.03",
     answered: false,
   },
@@ -863,7 +863,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-d01",
     category: "상품",
     question: "Q/K 단품이 퀸과 킹 모두 선택 가능한 건가요? 퀸 사이즈와 킹 사이즈 가격이 같은가요?",
-    questioner: "조*훈",
+    questioner: "jo*****",
     date: "2026.05.26",
     answered: true,
     answer: "안녕하세요, 한샘입니다. Q/K 단품은 퀸(1600×2000mm)과 킹(1800×2000mm) 사이즈 중 선택 가능합니다. 두 사이즈의 가격은 동일합니다. 주문 시 옵션에서 원하시는 사이즈를 선택해 주세요.",
@@ -873,7 +873,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-d02",
     category: "상품",
     question: "하부서랍 없는 옵션도 있나요? 방 청소 시 활용하고 싶어서요.",
-    questioner: "배*은",
+    questioner: "bw*****",
     date: "2026.05.20",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 하부서랍 유/무 두 가지 옵션 중 선택 가능합니다. 서랍 없는 옵션은 바닥과의 공간이 열려있어 청소기 사용이 편리합니다. 주문 시 옵션 선택란을 확인해 주세요.",
@@ -883,7 +883,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-d03",
     category: "배송",
     question: "배송 기사님이 기존 침대 수거도 해주시나요?",
-    questioner: "한*주",
+    questioner: "hy*****",
     date: "2026.05.14",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 기존 가구 수거 서비스는 별도 신청이 필요하며, 유료로 진행됩니다. 자세한 사항은 배송팀 사전 연락 시 또는 고객센터(1688-4945)에 문의해 주세요.",
@@ -893,7 +893,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-d04",
     category: "상품",
     question: "퀸 사이즈 기준 침대 전체 폭이 어떻게 되나요? 방 배치를 미리 계획하고 싶습니다.",
-    questioner: "나*현",
+    questioner: "nc*****",
     date: "2026.05.07",
     answered: true,
     answer: "안녕하세요, 한샘입니다. 퀸 사이즈(Q) 기준 침대 전체 폭은 약 1720mm, 길이는 약 2180mm, 헤드보드 높이는 약 870mm입니다. 정확한 치수는 상품 상세 페이지 사이즈 탭에서 확인하실 수 있습니다.",
@@ -903,7 +903,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-d05",
     category: "상품",
     question: "베이지와 다크그레이 중 흠집이 덜 나는 색상이 어느 쪽인가요?",
-    questioner: "황*민",
+    questioner: "hm*****",
     date: "2026.04.22",
     answered: true,
     answer: "안녕하세요, 한샘입니다. LPM 소재 특성상 두 색상 모두 흠집에 강하고 내구성이 우수합니다. 다만 밝은 색상(베이지)은 어두운 이물질이, 어두운 색상(다크그레이)은 밝은 이물질이 상대적으로 눈에 더 잘 띌 수 있습니다.",
@@ -913,7 +913,7 @@ export const sharedQnaItems: QnaItem[] = [
     id: "q-d06",
     category: "기타",
     question: "추후 같은 모노 라인 협탁도 구매 예정인데 같이 배송받을 수 있나요?",
-    questioner: "류*서",
+    questioner: "rn*****",
     date: "2026.06.04",
     answered: false,
   },

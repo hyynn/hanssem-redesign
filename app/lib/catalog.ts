@@ -1,9 +1,17 @@
 import { ProductSummary } from "./types";
 import { summaries as monoBedSummaries } from "./products/families/bedroom/bed/101012001";
+import { summaries as monoDresserSummaries } from "./products/families/bedroom/dresser/101210001";
+import { summaries as monoChestSummaries } from "./products/families/bedroom/dresser/101210002";
+import { summaries as euroNightstandSummaries } from "./products/families/bedroom/dresser/101212001";
+import { summaries as moaSofaSummaries } from "./products/families/livingroom/sofa/111012001";
 
 export const catalog: ProductSummary[] = [
   // ─── 패밀리 상품 (각 패밀리 파일이 summaries 관리) ───────────────────────
   ...monoBedSummaries,
+  ...monoDresserSummaries,
+  ...monoChestSummaries,
+  ...euroNightstandSummaries,
+  ...moaSofaSummaries,
 
   // ─── 거실 ──────────────────────────────────────────────────────────────────
   {

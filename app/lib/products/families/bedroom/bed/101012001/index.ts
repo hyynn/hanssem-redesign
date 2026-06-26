@@ -44,6 +44,7 @@ export const summaries: ProductSummary[] = [
     reviewCount: 12,
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["수납침대", "Q/K침대"],
+    filterAttributes: { size: ["Q/K"], config: ["침대"], feature: ["조명리모컨형"] },
   },
   {
     id: "1010120011",
@@ -59,6 +60,7 @@ export const summaries: ProductSummary[] = [
     reviewCount: 15,
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["수납침대", "KK침대"],
+    filterAttributes: { size: ["KK"], config: ["침대"], feature: ["조명리모컨형"] },
   },
   {
     id: "1010120012",
@@ -75,6 +77,7 @@ export const summaries: ProductSummary[] = [
     badge: { text: "호텔침대 판매 2위", bgColor: "#FE5A5D" },
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["수납침대", "Q/K침대"],
+    filterAttributes: { size: ["Q/K"], config: ["침대+매트"], feature: ["조명리모컨형"] },
   },
   {
     id: "1010120013",
@@ -91,6 +94,7 @@ export const summaries: ProductSummary[] = [
     badge: { text: "호텔침대 판매 3위", bgColor: "#FE5A5D" },
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["수납침대", "KK침대"],
+    filterAttributes: { size: ["KK"], config: ["침대+매트"], feature: ["조명리모컨형"] },
   },
 ];
 

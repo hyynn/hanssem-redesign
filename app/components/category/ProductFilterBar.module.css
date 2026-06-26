@@ -1,0 +1,134 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 60px;
+  border-bottom: 1px solid var(--color-gray-light);
+  background: var(--color-bg);
+  gap: 12px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.count {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdownTrigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 4px;
+  padding: 6px 12px;
+  background: var(--color-bg);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.dropdownTrigger:hover {
+  border-color: var(--color-text-muted);
+}
+
+.dropdownTriggerActive {
+  border-color: var(--color-text-heading);
+  color: var(--color-text-heading);
+  font-weight: 600;
+}
+
+.sortTrigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 6px 0;
+  white-space: nowrap;
+}
+
+.sortTrigger:hover {
+  color: var(--color-text-heading);
+}
+
+.arrow {
+  font-size: 10px;
+  transition: transform 0.15s;
+  display: inline-block;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 60;
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 4px;
+  min-width: 120px;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dropdownMenuRight {
+  left: auto;
+  right: 0;
+}
+
+.dropdownItem {
+  font-size: 13px;
+  color: var(--color-text);
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s;
+}
+
+.dropdownItem:hover {
+  background: var(--color-gray-light);
+}
+
+.dropdownItemSelected {
+  color: var(--color-text-heading);
+  font-weight: 600;
+}
+
+.clearBtn {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  text-decoration: underline;
+  transition: color 0.15s;
+}
+
+.clearBtn:hover {
+  color: var(--color-text-heading);
+}

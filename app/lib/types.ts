@@ -15,6 +15,7 @@ export interface ProductSummary {
   category: string[];      // for filtering: ["침실", "침대", "호텔침대"]
   categoryTags?: string[]; // extra subcategory memberships: ["수납침대", "Q/K침대"]
   colors?: string[];       // optional color swatches
+  filterAttributes?: FilterAttributes;
 }
 
 // ─── Family (shared across variants) ─────────────────────────────────────────

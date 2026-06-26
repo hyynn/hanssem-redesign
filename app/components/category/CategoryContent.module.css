@@ -1,0 +1,124 @@
+.tabNav {
+  position: sticky;
+  top: var(--header-height);
+  z-index: 50;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.nav {
+  display: flex;
+  padding: 0 60px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.tab {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  padding: 18px 20px;
+  position: relative;
+  letter-spacing: -0.01em;
+  transition: color 0.2s;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.tab::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-text-heading);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.tabActive {
+  color: var(--color-text-heading);
+  font-weight: 600;
+}
+
+.tabActive::after {
+  transform: scaleX(1);
+}
+
+.tab:hover {
+  color: var(--color-text-heading);
+}
+
+/* Panel */
+.panel {
+  /* no padding — banner and grid handle their own spacing */
+}
+
+/* Depth3 chips — sticky below tab nav */
+.chips {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  padding: 16px 60px;
+  position: sticky;
+  top: calc(var(--header-height) + 57px);
+  z-index: 40;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-gray-light);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.chips::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 4px;
+  padding: 6px 16px;
+  background: var(--color-bg);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.chip:hover {
+  border-color: var(--color-text-muted);
+}
+
+.chipActive {
+  background: var(--color-text-heading);
+  color: var(--color-bg);
+  border-color: var(--color-text-heading);
+  font-weight: 600;
+}
+
+/* Grid */
+.gridWrapper {
+  padding: 40px 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px 24px;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 240px;
+  color: var(--color-text-muted);
+  font-size: 14px;
+}

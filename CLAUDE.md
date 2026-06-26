@@ -42,9 +42,9 @@
 - 한샘 로고 단독 사용 (W CONCEPT 콜라보 표기 제거됨)
 
 ## 인터랙션 규칙
-- hover 시 box-shadow + translateY 조합 금지 ("AI스러운" 느낌으로 판단,
+- hover 시 box-shadow + translateY 조합이나 image hover시 zoom(scale) 금지 ("AI스러운" 느낌으로 판단,
   제외 결정됨)
-- 대신 이미지 미세 줌(scale) 또는 텍스트 underline 애니메이션 같은 절제된
+- 대신 이미지 변경이나 텍스트 underline 애니메이션 같은 절제된
   인터랙션 사용
 - 위시리스트 하트 아이콘: 클릭 시 빨간색으로 토글 (useState, client component)
 - 영상(LazyVideo): 뷰포트 진입 시 lazy load 후 재생, 벗어나면 일시정지,
@@ -90,6 +90,26 @@
   자동 계산, ReviewData에 하드코딩 금지
 - 리뷰 정렬: 평점순 정렬 시 동점이면 최신순으로 2차 정렬
 - 문의(QnA): 카테고리 필터([전체]/[상품]/[배송]/[기타]) + 정렬은 항상 최신순 고정
+
+## reviews.ts 파일 패턴 (기준: 101012001/reviews.ts)
+- 임포트 순서: `import type { ReviewData, QnaItem, Review }` → `import { calculateReviewSummary }`
+- 내부 배열: `const reviewItems: Review[] = [...]` (named const, 타입 명시)
+- `userName` / `questioner` 형식: **영문 소문자 2자리 + `*****`(별 5개)** 고정
+  - 예: `"ho*****"`, `"ks*****"` — 한국어 이름(`"홍*희"`) 형식 사용 금지
+- `rating` 값: **정수만** 허용 (1–5, 소수점 금지)
+- 리뷰 id: `"r-{그룹문자}NN"` 형식 — variant 그룹별 a/b/c/d… + 두 자리 번호
+  - 단일 variant면 `"r-a01"` ~ `"r-aNN"`, 복수 variant면 그룹마다 `a / b / c …`
+- 문의 id: `"q-{그룹문자}NN"` 형식 (리뷰 그룹과 동일한 문자 사용)
+- 답변 형식: 반드시 `"안녕하세요, 한샘입니다. "` 로 시작
+- 미답변 문의: `answered: false`, `answer` / `answerDate` 필드 생략, 배열 맨 뒤에 배치
+- 내보내기 형식:
+  ```ts
+  export const sharedReviews: ReviewData = {
+    ...calculateReviewSummary(reviewItems),
+    items: reviewItems,
+  };
+  export const sharedQnaItems: QnaItem[] = [...];
+  ```
 
 ## 패밀리 데이터 폴더 구조
 - 코드 경로: `app/lib/products/families/{대분류slug}/{중분류slug}/{FAMILY_CODE}/`

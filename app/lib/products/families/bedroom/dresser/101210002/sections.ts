@@ -50,7 +50,7 @@ export function createSections(): ProductDetailSection[] {
           title: "사용자를 배려한 효율적인 수납 공간",
           body: "매일 입는 속옷, 양말 보관이 쉽도록 1단에는 얕은 서랍을, 두꺼운 니트와 바지를 수납할 수 있게 하단 2·3단 서랍은 16cm 높이의 깊은 서랍을 배치하였습니다.",
         },
-        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-basic-02.mp4`, alt: "모노 서랍장 수납 시연" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-basic-02.gif`, alt: "모노 서랍장 수납 시연" },
       ],
     },
     {
@@ -83,7 +83,6 @@ export function createSections(): ProductDetailSection[] {
           body: "EO 등급의 안전한 자재와 KC 인증받은 전자기기 부품으로 유해물질, 전자파 걱정 없이 사용할 수 있습니다. 한샘 서랍장은 전도사고 걱정 없이 안전하게 사용할 수 있도록 제품 출시 전 균형 테스트, 서랍 하중 테스트, 윗서랍 하중 테스트를 진행합니다.",
         },
         { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.mp4`, alt: "품질보증 영상" },
-        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-02.mp4`, alt: "전도 테스트 영상" },
       ],
     },
   ];

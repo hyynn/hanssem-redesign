@@ -8,7 +8,7 @@
   background: #fff;
   z-index: 5;
   border-bottom: 1px solid #efefef;
-  max-width: var(--max-width);
+  max-width: var(--detail-max-width);
   margin: 0 auto;
   padding-left: 40px;
   padding-right: 40px;
@@ -27,13 +27,13 @@
 }
 
 .tab:hover {
-  border-color: var(--color-text);
-  color: var(--color-text);
+  border-color: var(--color-accent);
+  color: var(--color-text-body);
 }
 
 .tabActive {
-  border-color: var(--color-text);
-  color: var(--color-text);
+  border-color: var(--color-accent);
+  color: var(--color-text-body);
   background-color: var(--color-bg-secondary);
   font-weight: 600;
 }

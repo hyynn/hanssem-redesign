@@ -3,6 +3,7 @@ import ProductOverview from "../../components/product-detail/ProductOverview";
 import PromotionBanner from "../../components/product-detail/PromotionBanner";
 import ProductTabLayout from "../../components/product-detail/ProductTabLayout";
 import { getProductDetail } from "../../lib/products";
+import { ArrowIcon } from "@/app/components/Icon";
 import styles from "./page.module.css";
 
 export default async function ProductDetailPage({
@@ -19,10 +20,10 @@ export default async function ProductDetailPage({
     <main>
       <div className={styles.breadcrumb}>
         {product.breadcrumb.map((crumb, index) => (
-          <span key={crumb}>
+          <span key={`${crumb}-${index}`}>
             {crumb}
             {index < product.breadcrumb.length - 1 && (
-              <span className={styles.separator}>›</span>
+              <span className={styles.separator}><ArrowIcon direction="right" size={14} /></span>
             )}
           </span>
         ))}

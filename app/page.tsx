@@ -18,8 +18,8 @@ const banners: HeroBanner[] = [
 // x/y 좌표는 실제 이미지 배치 후 조정 필요 (0~100 %)
 const livingHotspots: HotspotData[] = [
   { id: "lr1", x: 34, y: 64, productId: "1110120010" },
-  { id: "lr2", x: 52, y: 76, productId: "p2001" },
-  { id: "lr3", x: 80, y: 68, productId: "p2002" },
+  { id: "lr2", x: 52, y: 76, productId: "1111110010" },
+  { id: "lr3", x: 80, y: 68, productId: "1111100011" },
 ];
 
 const bedroomHotspots: HotspotData[] = [

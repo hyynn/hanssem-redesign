@@ -1,7 +1,12 @@
-.tabNav {
+/* tabNav · chips · (조건부) filterBar를 하나의 sticky 블록으로 묶는 래퍼 */
+.stickyBars {
   position: sticky;
   top: var(--header-height);
   z-index: 50;
+  background: var(--color-bg);
+}
+
+.tabNav {
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-gray-light);
 }
@@ -61,15 +66,12 @@
   /* no padding — banner and grid handle their own spacing */
 }
 
-/* Depth3 chips — sticky below tab nav */
+/* Depth3 chips — stickyBars 래퍼 안에 있으므로 개별 sticky 불필요 */
 .chips {
   display: flex;
   flex-wrap: nowrap;
   gap: 8px;
   padding: 16px 60px;
-  position: sticky;
-  top: calc(var(--header-height) + 57px);
-  z-index: 40;
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-gray-light);
   overflow-x: auto;
@@ -83,7 +85,7 @@
 .chip {
   font-size: 13px;
   font-weight: 400;
-  color: var(--color-text);
+  color: var(--color-text-body);
   border: 1px solid var(--color-gray-light);
   border-radius: 4px;
   padding: 6px 16px;

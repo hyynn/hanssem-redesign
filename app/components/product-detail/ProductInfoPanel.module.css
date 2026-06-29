@@ -1,26 +1,59 @@
 .panel {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
-.brand {
+/* ── 브랜드 행 ── */
+.brandRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brandBtn {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  padding: 0;
   font-size: 14px;
   color: var(--color-text-muted);
-  margin-bottom: 4px;
+  cursor: pointer;
+}
+
+.brandBtn:hover {
+  color: var(--color-text-body);
+}
+
+.shareBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .name {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 20px;
+  font-weight: 600;
   line-height: 1.4;
-  margin-bottom: 12px;
 }
 
 .ratingRow {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 16px;
 }
 
 .rating {
@@ -33,25 +66,35 @@
   color: var(--color-text-muted);
 }
 
+.badgeRow {
+  min-height: 26px;
+}
+
 .badge {
   display: inline-block;
   font-size: 12px;
   color: #fff;
   padding: 4px 10px;
   border-radius: 4px;
-  margin-bottom: 16px;
-  width: fit-content;
+}
+
+/* ── 가격 + 쿠폰 버튼 가로 배치 ── */
+.priceRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .priceBlock {
-  margin: 16px 0 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .discountRow {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 4px;
 }
 
 .discountRate {
@@ -67,14 +110,18 @@
 }
 
 .finalPrice {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
 }
 
 .couponBtn {
-  align-self: flex-start;
-  border: 1px solid var(--color-text);
+  flex-shrink: 0;
+  align-self: flex-end;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
 }

@@ -1,5 +1,6 @@
 import type { ProductSummary } from "@/app/lib/types";
 import ProductCard from "@/app/components/ProductCard";
+import { ArrowIcon } from "@/app/components/Icon";
 import styles from "./CategoryPopularGrid.module.css";
 
 interface Props {
@@ -23,7 +24,7 @@ export default function CategoryPopularGrid({
           <h2 className={styles.title}>{title}</h2>
         </div>
         <a href={href} className={styles.more}>
-          더보기 ›
+          더보기 <ArrowIcon direction="right" size={12} />
         </a>
       </div>
       <div className={styles.grid}>

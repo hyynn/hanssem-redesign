@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { ArrowIcon } from "@/app/components/Icon";
 import styles from "./SortDropdown.module.css";
 
 export type SortOrder = "latest" | "rating-high" | "rating-low";
@@ -48,19 +49,7 @@ export default function SortDropdown({ value, onChange }: Props) {
         aria-expanded={isOpen}
       >
         {currentLabel}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          height="20px"
-          viewBox="0 -960 960 960"
-          width="20px"
-          fill="currentColor"
-        >
-          {isOpen ? (
-            <path d="M480-537 296-354l-56-56 240-240 240 240-56 56-184-184Z" />
-          ) : (
-            <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z" />
-          )}
-        </svg>
+        <ArrowIcon direction={isOpen ? "up" : "down"} size={20} aria-hidden />
       </button>
 
       {isOpen && (

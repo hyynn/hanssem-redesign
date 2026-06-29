@@ -52,7 +52,9 @@ export interface CartItem {
   name: string;
   thumbnail: string;
   price: number;
+  originalPrice?: number;
   quantity: number;
+  optionLabel?: string;  // 색상명·variantLabel 등 옵션 식별자
 }
 
 // ─── Detail content blocks ────────────────────────────────────────────────────
@@ -111,8 +113,10 @@ export interface DeliveryGuideGroup {
 }
 
 // ─── Gallery assembly helper (single source of truth for image order) ─────────
+// Order: variant-specific images first (main-01, variant-01…), then shared family images.
+// thumbnail is NOT included here — it's always gallery[0] (variantImages[0] or sharedImages[0]).
 export function assembleGallery(
-  product: Pick<ProductDetail, "thumbnail" | "sharedImages" | "variantImages">
+  product: Pick<ProductDetail, "sharedImages" | "variantImages">
 ): string[] {
-  return [product.thumbnail, ...product.sharedImages, ...product.variantImages];
+  return [...product.variantImages, ...product.sharedImages];
 }

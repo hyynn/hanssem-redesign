@@ -1,4 +1,5 @@
 import type { ProductSummary } from "@/app/lib/types";
+import { ArrowIcon } from "@/app/components/Icon";
 import styles from "./EditorCollection.module.css";
 
 interface Props {
@@ -21,7 +22,7 @@ export default function EditorCollection({
       <div className={styles.header}>
         <h2 className={styles.title}>{sectionLabel}</h2>
         <a href={href} className={styles.more}>
-          더보기 ›
+          더보기 <ArrowIcon direction="right" size={12} />
         </a>
       </div>
 
@@ -44,7 +45,9 @@ export default function EditorCollection({
                 <p className={styles.cardBrand}>{p.brand}</p>
                 <p className={styles.cardName}>{p.name}</p>
                 <p className={styles.cardPrice}>
-                  <span className={styles.cardDiscount}>{p.discountRate}%</span>
+                  {p.discountRate > 0 && (
+                    <span className={styles.cardDiscount}>{p.discountRate}%</span>
+                  )}
                   {p.price.toLocaleString()}원
                 </p>
               </div>

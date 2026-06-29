@@ -1,0 +1,547 @@
+.page {
+  padding-top: var(--header-height);
+  min-height: 100vh;
+  background: var(--color-bg-secondary);
+}
+
+/* ── 브레드크럼 ── */
+.breadcrumb {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 18px 60px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-gray-light);
+}
+
+.breadcrumbLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.breadcrumbLink:hover {
+  color: var(--color-text-heading);
+}
+
+.sep {
+  opacity: 0.45;
+  font-size: 12px;
+}
+
+/* ── 페이지 내용 ── */
+.inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 48px 60px 80px;
+}
+
+.pageTitle {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin-bottom: 32px;
+}
+
+/* ── 2단 레이아웃 ── */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* ── 섹션 공통 ── */
+.section {
+  background: var(--color-bg);
+  padding: 28px 32px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-gray-light);
+  margin-bottom: 24px;
+}
+
+/* ── 주문 상품 ── */
+.noItems {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.backLink {
+  color: var(--color-text-body);
+  text-decoration: underline;
+}
+
+.orderItems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orderItem {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.orderThumb {
+  width: 72px;
+  height: 72px;
+  background: var(--color-bg-secondary);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.orderThumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.orderInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.orderName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-body);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.orderOption {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.orderQtyPrice {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* ── 섹션 타이틀 행 (제목 + 배송정보 저장) ── */
+.sectionTitleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-gray-light);
+  margin-bottom: 24px;
+}
+
+.sectionTitleRow .sectionTitle {
+  padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.saveInfoLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ── 배송 정보 폼 ── */
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-body);
+}
+
+.required {
+  color: var(--color-sale);
+}
+
+.input {
+  height: 44px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-text-body);
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input:focus {
+  border-color: var(--color-text-body);
+}
+
+.input::placeholder {
+  color: var(--color-gray-light);
+}
+
+.inputReadonly {
+  background: var(--color-bg-secondary);
+  cursor: pointer;
+}
+
+.inputError {
+  border-color: var(--color-sale) !important;
+}
+
+.inputMt {
+  margin-top: 6px;
+}
+
+/* ── 라벨 행 (라벨 + 글자수) ── */
+.labelRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.charCount {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.charCountOver {
+  color: var(--color-sale);
+}
+
+/* ── 오류 메시지 ── */
+.errorMsg {
+  font-size: 12px;
+  color: var(--color-sale);
+  margin-top: -2px;
+}
+
+/* ── 배송 메모 커스텀 드롭다운 ── */
+.memoWrap {
+  position: relative;
+}
+
+@keyframes memoEnter {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.memoToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-text-body);
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  cursor: pointer;
+  transition: border-color 0.15s;
+  text-align: left;
+}
+
+.memoToggle:hover {
+  border-color: var(--color-accent);
+}
+
+.memoToggleOpen {
+  border-color: var(--color-accent);
+  border-bottom-color: transparent;
+}
+
+.memoLabel {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  margin-right: 8px;
+}
+
+.memoPlaceholder {
+  color: var(--color-gray-light);
+}
+
+.memoList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  border: 1px solid var(--color-accent);
+  border-top: none;
+  animation: memoEnter 0.15s ease;
+}
+
+.memoItem {
+  display: block;
+  width: 100%;
+  padding: 11px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-text-body);
+  background: var(--color-bg);
+  border: none;
+  border-bottom: 1px solid var(--color-gray-light);
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+}
+
+.memoList li:last-child .memoItem {
+  border-bottom: none;
+}
+
+.memoItem:hover {
+  background: var(--color-bg-secondary);
+}
+
+.memoItemActive {
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+.addressGroup {
+  display: flex;
+  gap: 8px;
+}
+
+.addressGroup .input {
+  flex: 1;
+}
+
+.addrBtn {
+  flex-shrink: 0;
+  height: 44px;
+  padding: 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-body);
+  background: var(--color-bg);
+  border: 1px solid var(--color-text-body);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+
+.addrBtn:hover {
+  background: var(--color-text-body);
+  color: var(--color-bg);
+}
+
+/* ── 결제 수단 ── */
+.paymentMethods {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.paymentBtn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-body);
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  cursor: pointer;
+  transition: border-color 0.15s, font-weight 0.15s;
+}
+
+.paymentBtnActive {
+  border-color: var(--color-accent);
+  font-weight: 600;
+  color: var(--color-text-heading);
+}
+
+/* ── 동의 ── */
+.agreeRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+.agreeText {
+  font-size: 14px;
+  color: var(--color-text-body);
+}
+
+/* ── 주문 요약 (sticky) ── */
+.summary {
+  position: sticky;
+  top: calc(var(--header-height) + 24px);
+}
+
+.summaryInner {
+  background: var(--color-bg);
+  padding: 28px 24px;
+}
+
+.summaryTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-gray-light);
+  margin-bottom: 20px;
+}
+
+.summaryItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.summaryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.summaryItemName {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.summaryItemPrice {
+  font-size: 13px;
+  color: var(--color-text-body);
+  flex-shrink: 0;
+}
+
+.summaryDivider {
+  height: 1px;
+  background: var(--color-gray-light);
+  margin: 16px 0;
+}
+
+.summaryRows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--color-text-body);
+}
+
+.summaryDiscount {
+  color: var(--color-sale);
+}
+
+.summaryFree {
+  color: var(--color-text-muted);
+}
+
+.summaryTotal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.summaryTotal > span:first-child {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-heading);
+  padding-top: 4px;
+}
+
+.summaryTotalGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.summaryTotalPrice {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.summaryTotalSaving {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-sale);
+}
+
+.submitBtn {
+  display: block;
+  width: 100%;
+  height: 52px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-bg);
+  background: var(--color-accent);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  margin-bottom: 12px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  opacity: 0.85;
+}
+
+.submitBtnDisabled {
+  background: var(--color-gray-light);
+  cursor: not-allowed;
+}
+
+.summaryNote {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.6;
+}

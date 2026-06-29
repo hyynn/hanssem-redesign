@@ -23,5 +23,5 @@
 
 .tab:hover {
   color: var(--color-text-body);
-  border-bottom-color: var(--color-text);
+  border-bottom-color: var(--color-text-body);
 }

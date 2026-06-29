@@ -4,28 +4,224 @@
   left: 0;
   width: 100%;
   height: var(--header-height);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 40px;
   z-index: 100;
   background: transparent;
   color: #fff;
-  transition: background 0.4s ease, color 0.4s ease;
+  transition: background 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .header.scrolled {
   background: var(--color-bg);
-  color: var(--color-text);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  color: var(--color-text-body);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
 }
 
+/* ── Inner layout ── */
+.inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 40px;
+  gap: 0;
+}
+
+/* ── Logo ── */
 .logo {
   font-size: 22px;
   font-weight: 800;
   letter-spacing: -0.04em;
+  flex-shrink: 0;
+  color: inherit;
+  text-decoration: none;
 }
 
-.nav ul { display: flex; gap: 30px; }
-.nav li { font-size: 15px; font-weight: 500; cursor: pointer; transition: opacity 0.2s; }
-.nav li:hover { opacity: 0.6; }
+/* ── Nav ── */
+.nav {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav ul {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+}
+
+.navLink {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 500;
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+  padding: 6px 12px;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.navActive::after {
+  transform: scaleX(1);
+}
+
+.navActive {
+  font-weight: 600;
+}
+
+/* ── Search slot: 버튼의 공간을 유지하면서 폼을 절대위치로 오버레이 ── */
+.searchSlot {
+  position: relative;
+}
+
+.searchBtnHidden {
+  opacity: 0;
+  pointer-events: none;
+  /* 닫힐 때 사용되는 transition: 빠르게 숨김, 지연 없음 */
+  transition: opacity 0.15s ease 0s;
+}
+
+/* ── Search form: 우측 끝 기준 좌측으로 펼쳐짐 ── */
+.searchForm {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  width: 240px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+
+  /* 닫힌 상태: 우측에서 클리핑 */
+  opacity: 0;
+  pointer-events: none;
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path 0.3s ease, opacity 0.2s ease;
+}
+
+.searchFormOpen {
+  opacity: 1;
+  pointer-events: auto;
+  clip-path: inset(0 0 0 0%);
+}
+
+.scrolled .searchForm {
+  background: var(--color-bg);
+}
+
+.searchInput {
+  padding-left: 14px;
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-weight: 400;
+  font-family: inherit;
+  color: inherit;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.scrolled .searchInput::placeholder {
+  color: #aaa;
+}
+
+.searchClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0 10px;
+  height: 100%;
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.searchClose:hover {
+  opacity: 1;
+}
+
+/* ── Right area (search icon + icon buttons) ── */
+.rightArea {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: 20px;
+}
+
+/* ── Plain search icon button ── */
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  padding: 6px;
+  border-radius: 4px;
+}
+
+/* 검색 토글 버튼: 나타날 때는 폼이 닫히기 시작한 후 등장 */
+.searchToggleBtn {
+  transition: opacity 0.2s ease 0.15s;
+}
+
+/* ── Icon + label stacked ── */
+.iconWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 4px 6px;
+  min-width: 52px; /* 가장 긴 레이블(매장찾기/장바구니)에 맞춰 고정, 텍스트 변경 시 레이아웃 흔들림 방지 */
+}
+
+.iconLabel {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.iconSvgWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -5px;
+  right: -7px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 3px;
+  border-radius: 8px;
+  background: var(--color-sale);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  pointer-events: none;
+}

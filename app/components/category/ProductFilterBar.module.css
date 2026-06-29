@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 60px;
-  border-bottom: 1px solid var(--color-gray-light);
   background: var(--color-bg);
   gap: 12px;
 }
@@ -32,7 +31,7 @@
   gap: 4px;
   font-size: 13px;
   font-weight: 400;
-  color: var(--color-text);
+  color: var(--color-text-body);
   border: 1px solid var(--color-gray-light);
   border-radius: 4px;
   padding: 6px 12px;
@@ -58,7 +57,7 @@
   gap: 4px;
   font-size: 13px;
   font-weight: 400;
-  color: var(--color-text);
+  color: var(--color-text-body);
   border: none;
   background: none;
   cursor: pointer;
@@ -70,14 +69,189 @@
   color: var(--color-text-heading);
 }
 
-.arrow {
-  font-size: 10px;
-  transition: transform 0.15s;
-  display: inline-block;
+.divider {
+  width: 1px;
+  height: 18px;
+  background: var(--color-gray-light);
+  flex-shrink: 0;
 }
 
-.arrowOpen {
-  transform: rotate(180deg);
+/* ── 전체 필터 버튼 ── */
+.allFiltersBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--color-text-body);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 4px;
+  padding: 6px 12px;
+  background: var(--color-bg);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.allFiltersBtn:hover {
+  border-color: var(--color-text-muted);
+}
+
+.allFiltersBtnActive {
+  border-color: var(--color-text-heading);
+  color: var(--color-text-heading);
+  font-weight: 600;
+}
+
+.allFiltersBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 8px;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ── 전체 필터 패널 (드로어) ── */
+.panelBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 200;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 360px;
+  background: var(--color-bg);
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--color-gray-light);
+  flex-shrink: 0;
+}
+
+.panelTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.panelClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-body);
+  cursor: pointer;
+}
+
+.panelBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.panelSection {}
+
+.panelSectionLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.panelChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.panelChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-text-body);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 4px;
+  padding: 6px 14px;
+  background: var(--color-bg);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.panelChip:hover {
+  border-color: var(--color-text-muted);
+}
+
+.panelChipActive {
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+  background: var(--color-accent);
+  font-weight: 600;
+}
+
+.panelFooter {
+  display: flex;
+  gap: 8px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--color-gray-light);
+  flex-shrink: 0;
+}
+
+.panelClear {
+  flex: 1;
+  height: 48px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-body);
+  border: 1px solid var(--color-gray-light);
+  border-radius: 2px;
+  background: var(--color-bg);
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.panelClear:hover:not(:disabled) {
+  border-color: var(--color-text-muted);
+}
+
+.panelClear:disabled {
+  color: var(--color-gray-light);
+  cursor: default;
+}
+
+.panelApply {
+  flex: 2;
+  height: 48px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color-accent);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
 }
 
 .dropdownMenu {
@@ -100,9 +274,20 @@
   right: 0;
 }
 
+.colorSwatch {
+  display: inline-block;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  vertical-align: middle;
+}
+
 .dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 13px;
-  color: var(--color-text);
+  color: var(--color-text-body);
   padding: 8px 16px;
   cursor: pointer;
   white-space: nowrap;

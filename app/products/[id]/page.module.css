@@ -7,5 +7,13 @@
 }
 
 .separator {
-  margin: 0 6px;
+  margin: 0 2px;
+  opacity: 0.45;
+  display: inline-flex;
+  align-items: center;
+}
+
+.separator svg {
+  width: 14px;
+  height: 14px;
 }

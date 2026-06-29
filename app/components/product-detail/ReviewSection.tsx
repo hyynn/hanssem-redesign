@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
+import { ArrowIcon } from "@/app/components/Icon";
 import styles from "./ReviewSection.module.css";
 import { ReviewData, Review } from "./types";
 import ReviewPhotoModal from "./ReviewPhotoModal";
@@ -133,9 +134,7 @@ export default function ReviewSection({ data }: { data: ReviewData }) {
               onClick={() => scrollPhotos("left")}
               aria-label="이전 포토 후기"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="currentColor">
-                <path d="m388.87-480 300.46 300.46q14.97 15.35 15.09 37.73.12 22.38-15.42 38.58-16.01 15.64-38.39 15.64t-38.02-15.64l-315.02-314.7q-13.21-13.2-19.38-29.3-6.18-16.1-6.18-32.77t6.18-32.77q6.17-16.1 19.38-29.3L613.26-857.2q15.64-16.02 37.57-15.89 21.92.12 38.5 16.32 14.97 16.02 15.31 38.15.33 22.14-15.31 38.16L388.87-480Z" />
-              </svg>
+              <ArrowIcon direction="left" size={40} />
             </button>
 
             <div
@@ -160,9 +159,7 @@ export default function ReviewSection({ data }: { data: ReviewData }) {
               onClick={() => scrollPhotos("right")}
               aria-label="다음 포토 후기"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="currentColor">
-                <path d="M571.93-481.33 271.46-781.8q-15.34-15.35-15.46-37.61-.12-22.26 15.23-37.89 16.02-16.02 38.56-16.02 22.54 0 38.18 16.02l314.7 313.89q13.2 13.21 19.37 29.31 6.18 16.1 6.18 32.77 0 16.66-6.18 32.76-6.17 16.11-19.37 29.31L347.54-104.13q-16.02 16.01-37.87 15.51-21.86-.5-37.87-16.51-15.35-16.01-15.68-38.04-.34-22.02 15.68-38.03l300.13-300.13Z" />
-              </svg>
+              <ArrowIcon direction="right" size={40} />
             </button>
           </div>
         </div>

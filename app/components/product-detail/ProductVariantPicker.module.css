@@ -1,7 +1,3 @@
-.wrapper {
-  margin-top: 40px;
-}
-
 .title {
   font-size: 18px;
   font-weight: 700;
@@ -26,7 +22,7 @@
 }
 
 .arrowBtn:hover:not(.arrowDisabled) {
-  color: var(--color-text);
+  color: var(--color-text-body);
 }
 
 .arrowDisabled {
@@ -36,7 +32,7 @@
 }
 
 .arrowHidden {
-  visibility: hidden;
+  display: none;
 }
 
 .list {

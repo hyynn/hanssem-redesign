@@ -35,8 +35,23 @@
 - 정적 데이터 렌더링만 하는 컴포넌트에는 "use client" 추가 금지
 
 ## 디자인 시스템
-- 컬러: globals.css의 :root 변수(--color-bg, --color-text, --color-sale 등)
-  사용, 하드코딩 금지
+- 컬러: globals.css의 :root 변수만 사용, 하드코딩 금지
+- 현재 정의된 :root 변수 목록:
+  - --color-bg: #ffffff (페이지 배경)
+  - --color-bg-secondary: #f8f8f8 (섹션 배경, 슬롯 배경 등 subtle 배경)
+  - --color-text-heading: #1a1a1a (제목, 강조 텍스트)
+  - --color-text-body: #333333 (본문 텍스트, 기본 텍스트 컬러)
+  - --color-text-muted: #505050 (보조 텍스트, 레이블)
+  - --color-gray-light: #d0d0d0 (subtle 보더, 구분선)
+  - --color-accent: #1a1a1a (버튼 보더, 버튼 배경, 인터랙티브 요소 강조색)
+  - --color-sale: #ff4d4f (할인율, 판매가 강조 — 이 색만 사용)
+  - --max-width: 1440px
+  - --detail-max-width: 1200px
+  - --detail-content-width: 900px
+  - --header-height: 80px
+  - --product-tab-height: 50px
+- 존재하지 않는 변수 사용 금지: --color-text, --color-border, --color-bg-subtle 등
+  이전 버전 변수명이며 현재 :root에 없음
 - 포인트 컬러는 의도적으로 최소화 (상품 카테고리가 광범위해서 화이트/그레이
   베이스 유지, 할인율은 빨강(--color-sale) 고정)
 - 한샘 로고 단독 사용 (W CONCEPT 콜라보 표기 제거됨)
@@ -47,6 +62,8 @@
 - 대신 이미지 변경이나 텍스트 underline 애니메이션 같은 절제된
   인터랙션 사용
 - 위시리스트 하트 아이콘: 클릭 시 빨간색으로 토글 (useState, client component)
+- 아이콘 rotate 애니메이션 금지: open/closed 상태 전환 시 CSS transform rotate 사용 금지.
+  상태별로 다른 SVG path를 조건부 렌더링으로 처리할 것 (예: 토글 화살표 ▲/▼)
 - 영상(LazyVideo): 뷰포트 진입 시 lazy load 후 재생, 벗어나면 일시정지,
   다시 진입하면 이어서 재생. 뷰포트 안에 머무는 동안은 loop.
   (사용자 의도 없는 반복 재생 방지를 위한 IntersectionObserver 기반 제어)
@@ -77,12 +94,26 @@
 - 상품코드의 소분류 슬롯은 코드로 표현 가능한 primary 분류 1개만 담당
 - 필터 UI용 속성(사이즈·구성·기능)은 `filterAttributes`에 별도 저장
   `filterAttributes?: { size?: string[]; config?: string[]; feature?: string[] }`
-- 카테고리별 필터 칩 노출 정의(옵션 목록·라벨)는 lib/filter-dimensions.ts의
-  FILTER_DIMENSIONS_BY_CATEGORY에서 관리
+- **⚠️ 중요: `filterAttributes`는 반드시 `summaries[]` 항목에 직접 넣어야 함**
+  - 카테고리 페이지 필터는 `ProductSummary` 배열(`allProducts`)을 스캔 → summaries에 없으면 필터 미노출
+  - `variantDetails`의 `filterAttributes`는 상세 페이지 전용 — summaries와 동일한 값을 양쪽 모두에 작성
+- 카테고리 필터는 `lib/filter-dimensions.ts`의 `ALL_FILTER_AXES`를 기본값으로 products를 스캔해
+  실제 옵션이 있는 축만 자동 노출 (새 카테고리 추가 시 별도 등록 불필요)
+  - `FILTER_AXES_BY_CATEGORY`: 기본값과 다르게 제어해야 할 카테고리만 override 등록
+
+## SKU 구성 원칙
+- **컬러 전용 변형** → 단일 SKU로 통합. `colors: string[]`에 **한글 색상명** 배열 저장, 별도 SKU 코드 부여 금지
+  - 예: 차콜/화이트 두 색상 = 1 SKU, `colors: ["차콜", "화이트"]`
+  - hex 코드 직접 저장 금지. 렌더링 시 `lib/filter-dimensions.ts`의 `COLOR_HEX` 맵으로 변환
+  - 카드 1장만 노출; `variantLabel` 필드 불필요 (사용 금지)
+- **구성이 다른 변형** (사이즈·구성품·기능·모듈 조합 등) → 각각 별도 SKU
+  - 예: Q/K 단품 / KK 단품 / Q/K+매트 / KK+매트 = 4 SKU
+  - 각 SKU 내부에 `colors[]`로 컬러 옵션 추가 가능
+  - SKU마다 카드 1장씩 독립 노출
 
 ## 상품 카드 노출 방식
-- 같은 패밀리(형제 SKU)를 하나로 묶어 대표 카드 하나로 보여주지 않음
-- 한샘 원본과 동일하게 각 SKU를 독립된 카드로 노출 (각 옵션이 자기 썸네일 + 자기 가격을 가짐)
+- 컬러 전용 변형은 1 SKU → 카드 1장 (colors 칩으로 색상 표시)
+- 구성이 다른 SKU는 각각 독립 카드로 노출 (자기 썸네일 + 자기 가격)
 - 패밀리 단위 "최저가부터" 묶음 노출 방식은 채택하지 않음
 
 ## 리뷰/문의 데이터 규칙
@@ -117,14 +148,33 @@
   - {FAMILY_CODE}는 상품코드 앞 9자리 (불변, 예: 101012001)
   - 예: `app/lib/products/families/bedroom/bed/101012001/`
 - 각 패밀리 폴더는 3개 파일로 구성:
-  - `index.ts` — summaries[], variantDetails, monoBedFamily, getDetail() 등 핵심
-  - `sections.ts` — FAMILY_FOLDER, FAMILY_CODE, deliveryGuides, createSections()
+  - `index.ts` — familyObj, variantDetails, summaries[], getDetail() 핵심
+  - `sections.ts` — FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections()
   - `reviews.ts` — sharedReviews, sharedQnaItems
-- 새 패밀리 추가 시 수정 파일:
+- **index.ts 내부 선언 순서 (반드시 준수)**:
+  1. `familyObj` (sharedImages 포함)
+  2. `VariantData` 타입 선언
+  3. `variantDetails` — SKU별 variantImages, filterAttributes, sections
+  4. `thumbnailFor` helper 함수
+  5. `summaries[]`
+  6. `getDetail()` — 가장 마지막
+- **thumbnail 파생 규칙 (하드코딩 금지)**:
+  - `variantDetails`와 `summaries` 사이에 아래 helper를 반드시 작성:
+    ```ts
+    function thumbnailFor(id: string): string {
+      return variantDetails[id].variantImages[0] ?? XxxFamily.sharedImages[0];
+    }
+    ```
+    (`XxxFamily`는 해당 파일의 familyObj 변수명으로 교체)
+  - `summaries`의 thumbnail은 `thumbnailFor("SKU_ID")`로만 설정, 예외 없음
+  - 단일 SKU: `variantImages: []` → `variantImages[0]`이 undefined → 자동으로 `sharedImages[0]` 폴백
+  - 다중 SKU: `variantImages: ["...main-01.webp"]` → `variantImages[0]` 사용
+  - 문자열 경로 직접 작성 / `familyObj.sharedImages[0]` 직접 참조 모두 금지
+- 새 패밀리 추가 시 **4곳 모두** 수정 (하나라도 빠지면 상세 페이지 404):
   1. 새 폴더 생성 후 index.ts / sections.ts / reviews.ts 작성
-  2. `app/lib/products/families/index.ts`의 FAMILY_REGISTRY에 import 1줄 + 항목 1줄
-  3. `app/lib/products/index.ts`에 registry 항목 추가
-  4. `app/lib/catalog.ts`에 summaries spread 추가
+  2. `app/lib/products/families/index.ts` — FAMILY_REGISTRY에 import 1줄 + 항목 1줄
+  3. `app/lib/products/index.ts` — summaries import + getDetail import + registry Object.fromEntries 1줄
+  4. `app/lib/catalog.ts` — summaries spread 추가
 
 ## 폴더 네이밍 (이미지)
 - 이미지 경로: `public/images/products/{대분류slug}/{중분류slug}/{FAMILY_CODE}/`
@@ -139,9 +189,16 @@
 - 패밀리 코드 ↔ 경로 매핑은 `app/lib/products/families/index.ts`의 FAMILY_REGISTRY에서 관리
 
 ## 상세페이지 섹션 카탈로그
+- **모든 패밀리의 sections.ts는 아래 5개 섹션을 기본 구성으로 작성**:
+  | id | label | 내용 |
+  |----|-------|------|
+  | `"basic"` | 기본정보 | 제품 소개 텍스트 + 대표 이미지 |
+  | `"function"` | 기능 | 기능별 이미지 + 설명 |
+  | `"material"` | 소재 | 소재 클로즈업 이미지 + 설명 |
+  | `"size"` | 사이즈 | 사이즈 안내 이미지 |
+  | `"warranty"` | 품질보증 | 한샘 품질보증 텍스트 (고정 문구) |
 - section id/label은 각 패밀리 폴더의 sections.ts의 createSections() 안에서 직접 정의
-- 현재 사용 중인 section id: "basic" / "function" / "material" / "size" / "warranty"
-- 새 패밀리 추가 시 위 id를 우선 재사용하고, 카테고리 고유 섹션만 새 id 부여
+- 카테고리 고유 섹션이 필요한 경우에만 위 5개 외에 새 id 추가, 없애거나 순서 바꾸지 말 것
 
 ## 이미지 포맷 규칙
 - 기본: `.webp` (정적 이미지 전반)
@@ -154,6 +211,7 @@
 - `atStart` / `atEnd`는 scroll 이벤트마다 갱신
 - `canScroll !== true`이면 좌우 버튼 모두 숨김 — null(측정 전) 포함.
   값이 정해지기 전 잘못된 기본값으로 버튼이 깜빡이는 것을 방지하기 위함
+- **숨김 CSS는 반드시 `display: none`** — `visibility: hidden`은 공간을 차지하므로 사용 금지
 - 새로 가로 스크롤 컴포넌트를 만들 때 이 패턴을 그대로 재사용
 
 ## 모달 공통 규칙

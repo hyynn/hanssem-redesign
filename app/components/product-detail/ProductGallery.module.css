@@ -40,11 +40,9 @@
   flex: 0 0 64px;
   width: 64px;
   height: 64px;
-  border: 1px solid #e2e2e2;
+  border: 1px solid var(--color-gray-light);
   overflow: hidden;
-  opacity: 0.6;
-  position: relative;
-  transition: opacity 0.2s, border-color 0.2s;
+  transition: border-color 0.25s;
 }
 
 .thumbnailButton img {
@@ -53,76 +51,12 @@
   object-fit: cover;
 }
 
-/* border-trace overlay — drawn via background gradients over the image */
-.thumbnailButton::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(var(--color-text), var(--color-text)) left top / 0% 2px no-repeat,
-    linear-gradient(var(--color-text), var(--color-text)) right top / 2px 0% no-repeat,
-    linear-gradient(var(--color-text), var(--color-text)) right bottom / 0% 2px no-repeat,
-    linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
-}
-
 .thumbnailButton:hover:not(.thumbnailActive) {
-  opacity: 0.9;
-}
-
-.thumbnailButton:hover:not(.thumbnailActive)::after {
-  animation: thumbnailBorderTrace 0.4s linear forwards;
+  border-color: var(--color-text-muted);
 }
 
 .thumbnailActive {
-  opacity: 1;
-  border-color: var(--color-text);
-}
-
-.thumbnailActive::after {
-  background:
-    linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
-    linear-gradient(var(--color-text), var(--color-text)) right top / 2px 100% no-repeat,
-    linear-gradient(var(--color-text), var(--color-text)) right bottom / 100% 2px no-repeat,
-    linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 100% no-repeat;
-}
-
-@keyframes thumbnailBorderTrace {
-  0% {
-    background:
-      linear-gradient(var(--color-text), var(--color-text)) left top / 0% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 0% no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right bottom / 0% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
-  }
-  25% {
-    background:
-      linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 0% no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right bottom / 0% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
-  }
-  50% {
-    background:
-      linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 100% no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right bottom / 0% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
-  }
-  75% {
-    background:
-      linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 100% no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right bottom / 100% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 0% no-repeat;
-  }
-  100% {
-    background:
-      linear-gradient(var(--color-text), var(--color-text)) left top / 100% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right top / 2px 100% no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) right bottom / 100% 2px no-repeat,
-      linear-gradient(var(--color-text), var(--color-text)) left bottom / 2px 100% no-repeat;
-  }
+  border-color: var(--color-accent);
 }
 
 .arrowLeft,

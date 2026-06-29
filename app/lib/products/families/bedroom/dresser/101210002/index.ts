@@ -5,10 +5,10 @@ import { sharedReviews, sharedQnaItems } from "./reviews";
 export { FAMILY_PATH, FAMILY_CODE };
 
 const monoChestFamily: Omit<ProductFamily, "familyId"> = {
-  breadcrumb: ["침실", "화장대·서랍장", "화장대·서랍장"],
+  breadcrumb: ["침실", "서랍장"],
   promotions: [
-    { title: "6월 쌤위크", image: "/images/promotions/saemweek-2026-06.webp" },
-    { title: "침실이벤트 리뷰", image: "/images/promotions/bedroom-event-review.webp" },
+    { title: "6월 프로모션", image: "/images/promotions/promotion-01.webp" },
+    { title: "인테리어 프로모션", image: "/images/promotions/promotion-02.webp" },
   ],
   deliveryInfo: {
     method: "사전판매 (결제 후 순차 배송)",
@@ -18,41 +18,12 @@ const monoChestFamily: Omit<ProductFamily, "familyId"> = {
   sharedImages: [
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-01.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-02.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-03.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-04.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-05.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-06.webp`,
   ],
 };
-
-export const summaries: ProductSummary[] = [
-  {
-    id: "1012100020",
-    familyId: "mono-chest",
-    name: "호텔침대 모노 3단 서랍장 1000 화이트",
-    variantLabel: "화이트",
-    thumbnail: `/images/products/${FAMILY_PATH}/1012100020/1012100020-main-01.webp`,
-    brand: "한샘",
-    price: 369000,
-    originalPrice: 454000,
-    discountRate: 19,
-    rating: 4.9,
-    reviewCount: 20,
-    category: ["침실", "화장대·서랍장", "화장대·서랍장"],
-    categoryTags: ["서랍장"],
-  },
-  {
-    id: "1012100021",
-    familyId: "mono-chest",
-    name: "호텔침대 모노 3단 서랍장 1000 차콜",
-    variantLabel: "차콜",
-    thumbnail: `/images/products/${FAMILY_PATH}/1012100021/1012100021-main-01.webp`,
-    brand: "한샘",
-    price: 369000,
-    originalPrice: 454000,
-    discountRate: 19,
-    rating: 4.9,
-    reviewCount: 20,
-    category: ["침실", "화장대·서랍장", "화장대·서랍장"],
-    categoryTags: ["서랍장"],
-  },
-];
 
 type VariantData = {
   variantImages: string[];
@@ -63,15 +34,31 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1012100020": {
     variantImages: [],
-    filterAttributes: { config: ["화이트"] },
-    sections: createSections(),
-  },
-  "1012100021": {
-    variantImages: [],
-    filterAttributes: { config: ["차콜"] },
+    filterAttributes: {},
     sections: createSections(),
   },
 };
+
+function thumbnailFor(id: string): string {
+  return variantDetails[id].variantImages[0] ?? monoChestFamily.sharedImages[0];
+}
+
+export const summaries: ProductSummary[] = [
+  {
+    id: "1012100020",
+    familyId: "mono-chest",
+    name: "호텔침대 모노 3단 서랍장 1000 (색상2종)",
+    thumbnail: thumbnailFor("1012100020"),
+    brand: "한샘",
+    price: 369000,
+    originalPrice: 454000,
+    discountRate: 19,
+    rating: 4.9,
+    reviewCount: 20,
+    category: ["침실", "서랍장"],
+    colors: ["차콜", "화이트"],
+  },
+];
 
 export function getDetail(id: string): ProductDetail {
   const summary = summaries.find((s) => s.id === id);

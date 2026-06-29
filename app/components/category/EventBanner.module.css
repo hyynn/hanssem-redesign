@@ -20,11 +20,26 @@
   opacity: 0.95;
 }
 
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(255, 255, 255, 0.55) 35%,
+    rgba(255, 255, 255, 0.15) 62%,
+    transparent 82%
+  );
+  pointer-events: none;
+}
+
 .content {
   position: absolute;
   left: 60px;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 2;
   max-width: 440px;
   pointer-events: none;
 }

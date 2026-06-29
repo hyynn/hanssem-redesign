@@ -7,8 +7,8 @@ export { FAMILY_PATH, FAMILY_CODE };
 const euroNightstandFamily: Omit<ProductFamily, "familyId"> = {
   breadcrumb: ["침실", "화장대·서랍장", "협탁·침대패널"],
   promotions: [
-    { title: "6월 쌤위크", image: "/images/promotions/saemweek-2026-06.webp" },
-    { title: "침실이벤트 리뷰", image: "/images/promotions/bedroom-event-review.webp" },
+    { title: "6월 프로모션", image: "/images/promotions/promotion-01.webp" },
+    { title: "인테리어 프로모션", image: "/images/promotions/promotion-02.webp" },
   ],
   deliveryInfo: {
     method: "한샘배송 (전문 배송팀 설치 포함)",
@@ -20,23 +20,6 @@ const euroNightstandFamily: Omit<ProductFamily, "familyId"> = {
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-02.webp`,
   ],
 };
-
-export const summaries: ProductSummary[] = [
-  {
-    id: "1012120010",
-    familyId: "euro-nightstand",
-    name: "유로 605 슬로우 스틸협탁브라운",
-    variantLabel: "기본단품",
-    thumbnail: `/images/products/${FAMILY_PATH}/1012120010/1012120010-main-01.webp`,
-    brand: "한샘",
-    price: 242000,
-    originalPrice: 242000,
-    discountRate: 0,
-    rating: 5.0,
-    reviewCount: 6,
-    category: ["침실", "화장대·서랍장", "협탁·침대패널"],
-  },
-];
 
 type VariantData = {
   variantImages: string[];
@@ -51,6 +34,27 @@ const variantDetails: Record<string, VariantData> = {
     sections: createSections(),
   },
 };
+
+function thumbnailFor(id: string): string {
+  return variantDetails[id].variantImages[0] ?? euroNightstandFamily.sharedImages[0];
+}
+
+export const summaries: ProductSummary[] = [
+  {
+    id: "1012120010",
+    familyId: "euro-nightstand",
+    name: "유로 605 슬로우 스틸협탁브라운",
+    variantLabel: "기본단품",
+    thumbnail: thumbnailFor("1012120010"),
+    brand: "한샘",
+    price: 242000,
+    originalPrice: 242000,
+    discountRate: 0,
+    rating: 5.0,
+    reviewCount: 6,
+    category: ["침실", "화장대·서랍장", "협탁·침대패널"],
+  },
+];
 
 export function getDetail(id: string): ProductDetail {
   const summary = summaries.find((s) => s.id === id);

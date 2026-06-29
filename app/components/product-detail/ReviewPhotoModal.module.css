@@ -41,7 +41,7 @@
 }
 
 .closeBtn:hover {
-  color: var(--color-text);
+  color: var(--color-text-body);
 }
 
 /* Image area with prev/next nav */
@@ -67,7 +67,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center;
 }
 
 .navArrow {
@@ -85,7 +85,7 @@
 }
 
 .navArrow:hover:not(.navArrowDisabled) {
-  color: var(--color-text);
+  color: var(--color-text-body);
 }
 
 .navArrowDisabled {

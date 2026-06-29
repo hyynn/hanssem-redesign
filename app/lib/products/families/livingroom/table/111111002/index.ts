@@ -1,0 +1,75 @@
+import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
+import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
+import { sharedReviews, sharedQnaItems } from "./reviews";
+
+export { FAMILY_PATH, FAMILY_CODE };
+
+const pringleFamily: Omit<ProductFamily, "familyId"> = {
+  breadcrumb: ["거실", "거실장·테이블", "테이블"],
+  promotions: [
+    { title: "6월 프로모션", image: "/images/promotions/promotion-01.webp" },
+    { title: "인테리어 프로모션", image: "/images/promotions/promotion-02.webp" },
+  ],
+  deliveryInfo: {
+    method: "한샘배송 (전문 배송팀 설치 포함)",
+    region: "전국 (제주/도서 지역 추가 배송비 발생)",
+  },
+  deliveryGuides,
+  sharedImages: [
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-01.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-02.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-03.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-04.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-05.webp`,
+  ],
+};
+
+type VariantData = {
+  variantImages: string[];
+  filterAttributes: FilterAttributes;
+  sections: ProductDetailSection[];
+};
+
+const variantDetails: Record<string, VariantData> = {
+  "1111110020": {
+    variantImages: [],
+    filterAttributes: {},
+    sections: createSections(),
+  },
+};
+
+function thumbnailFor(id: string): string {
+  return variantDetails[id].variantImages[0] ?? pringleFamily.sharedImages[0];
+}
+
+export const summaries: ProductSummary[] = [
+  {
+    id: "1111110020",
+    familyId: "pringle-sofa-table",
+    name: "플래지어 프링글 소파테이블",
+    thumbnail: thumbnailFor("1111110020"),
+    brand: "한샘",
+    price: 459000,
+    originalPrice: 480000,
+    discountRate: 4,
+    rating: 4.7,
+    reviewCount: 12,
+    category: ["거실", "거실장·테이블", "테이블"],
+  },
+];
+
+export function getDetail(id: string): ProductDetail {
+  const summary = summaries.find((s) => s.id === id);
+  if (!summary) throw new Error(`pringle-sofa-table SKU not found: ${id}`);
+  const variant = variantDetails[id];
+  if (!variant) throw new Error(`pringle-sofa-table variant data missing: ${id}`);
+  return {
+    ...summary,
+    ...pringleFamily,
+    familyId: summary.familyId,
+    ...variant,
+    siblings: summaries,
+    reviews: sharedReviews,
+    qnaItems: sharedQnaItems,
+  };
+}

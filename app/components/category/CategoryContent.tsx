@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import type { ProductSummary } from "@/app/lib/types";
-import { getFilterDimensions } from "@/lib/filter-dimensions";
+import { ALL_FILTER_AXES, FILTER_AXES_BY_CATEGORY, buildDimensions, COLOR_GROUPS } from "@/lib/filter-dimensions";
 import ProductCard from "@/app/components/ProductCard";
 import SubcategoryBanner from "./SubcategoryBanner";
 import ProductFilterBar from "./ProductFilterBar";
@@ -19,45 +20,75 @@ export interface SubcategoryConfig {
 export interface TabConfig {
   id: string;
   label: string;
-  defaultSubcatId?: string;
   subcategories: SubcategoryConfig[];
 }
 
 interface Props {
   tabs: TabConfig[];
   allProducts: ProductSummary[];
+  initialTab?: string;
+  initialSubcat?: string;
   children?: React.ReactNode;
 }
 
 const MAIN_TAB_ID = "main";
+const ALL_SUBCAT_ID = "all";
 
-export default function CategoryContent({ tabs, allProducts, children }: Props) {
-  const [activeTabId, setActiveTabId] = useState(MAIN_TAB_ID);
-  const [activeSubcatId, setActiveSubcatId] = useState(
-    tabs[0]?.defaultSubcatId ?? tabs[0]?.subcategories[0]?.id ?? ""
-  );
+function resolveInitialTab(tabs: TabConfig[], initialTab?: string) {
+  if (initialTab === MAIN_TAB_ID) return MAIN_TAB_ID;
+  if (initialTab && tabs.some((t) => t.id === initialTab)) return initialTab;
+  return MAIN_TAB_ID;
+}
+
+function resolveInitialSubcat(tabs: TabConfig[], tabId: string, initialSubcat?: string) {
+  const tab = tabs.find((t) => t.id === tabId);
+  if (!tab) return ALL_SUBCAT_ID;
+  if (initialSubcat === ALL_SUBCAT_ID) return ALL_SUBCAT_ID;
+  if (initialSubcat && tab.subcategories.some((s) => s.id === initialSubcat)) return initialSubcat;
+  return ALL_SUBCAT_ID;
+}
+
+export default function CategoryContent({ tabs, allProducts, initialTab, initialSubcat, children }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const resolvedTab = resolveInitialTab(tabs, initialTab);
+  const resolvedSubcat = resolveInitialSubcat(tabs, resolvedTab, initialSubcat);
+
+  const [activeTabId, setActiveTabId] = useState(resolvedTab);
+  const [activeSubcatId, setActiveSubcatId] = useState(resolvedSubcat);
   const [filters, setFilters] = useState<Record<string, string>>({});
   const [sort, setSort] = useState("popular");
 
   const isMain = activeTabId === MAIN_TAB_ID;
+  const isAllSubcat = !isMain && activeSubcatId === ALL_SUBCAT_ID;
   const activeTab = tabs.find((t) => t.id === activeTabId);
-  const activeSubcat =
-    activeTab?.subcategories.find((s) => s.id === activeSubcatId) ??
-    activeTab?.subcategories[0];
+  const activeSubcat = isAllSubcat
+    ? undefined
+    : activeTab?.subcategories.find((s) => s.id === activeSubcatId) ?? activeTab?.subcategories[0];
+
+  function updateUrl(tabId: string, subcatId: string) {
+    const params = new URLSearchParams();
+    if (tabId !== MAIN_TAB_ID) {
+      params.set("tab", tabId);
+      if (subcatId !== ALL_SUBCAT_ID) params.set("subcat", subcatId);
+    }
+    const query = params.toString();
+    router.replace(pathname + (query ? `?${query}` : ""), { scroll: false });
+  }
 
   function handleTabChange(tabId: string) {
     setActiveTabId(tabId);
-    if (tabId !== MAIN_TAB_ID) {
-      const tab = tabs.find((t) => t.id === tabId);
-      if (tab) setActiveSubcatId(tab.defaultSubcatId ?? tab.subcategories[0]?.id ?? "");
-    }
+    if (tabId !== MAIN_TAB_ID) setActiveSubcatId(ALL_SUBCAT_ID);
     setFilters({});
     setSort("popular");
+    updateUrl(tabId, ALL_SUBCAT_ID);
   }
 
   function handleSubcatChange(subcatId: string) {
     setActiveSubcatId(subcatId);
     setFilters({});
+    updateUrl(activeTabId, subcatId);
   }
 
   function handleFilterChange(key: string, value: string) {
@@ -74,13 +105,27 @@ export default function CategoryContent({ tabs, allProducts, children }: Props) 
   const categoryName = activeSubcat?.categoryName ?? "";
   const categoryCode = activeSubcat?.categoryCode;
 
-  const filtered = isMain ? [] : allProducts.filter((p) => {
-    const inCategory =
-      p.category.includes(categoryName) || p.categoryTags?.includes(categoryName);
-    if (!inCategory) return false;
+  // 카테고리만 필터링 (filters 미적용) — dimension 옵션 계산 기준
+  const categoryProducts = isMain ? []
+    : isAllSubcat
+      ? allProducts.filter((p) =>
+          activeTab!.subcategories.some((sub) =>
+            p.category.includes(sub.categoryName) || p.categoryTags?.includes(sub.categoryName)
+          )
+        )
+      : allProducts.filter((p) =>
+          p.category.includes(categoryName) || p.categoryTags?.includes(categoryName)
+        );
+
+  const filtered = categoryProducts.filter((p) => {
     for (const [key, value] of Object.entries(filters)) {
-      const attr = p.filterAttributes?.[key as keyof typeof p.filterAttributes];
-      if (!attr || !attr.includes(value)) return false;
+      if (key === "color") {
+        const groups = p.colors?.map((c) => COLOR_GROUPS[c]).filter(Boolean) ?? [];
+        if (!groups.includes(value)) return false;
+      } else {
+        const attr = p.filterAttributes?.[key as keyof typeof p.filterAttributes];
+        if (!attr || !attr.includes(value)) return false;
+      }
     }
     return true;
   });
@@ -92,53 +137,63 @@ export default function CategoryContent({ tabs, allProducts, children }: Props) 
     return b.rating - a.rating;
   });
 
-  const { dimensions } = categoryCode
-    ? getFilterDimensions(categoryCode)
-    : { dimensions: [] };
+  const axes = categoryCode
+    ? (FILTER_AXES_BY_CATEGORY[categoryCode] ?? ALL_FILTER_AXES)
+    : ALL_FILTER_AXES;
+  const dimensions = buildDimensions(axes, categoryProducts);
 
   const allNavTabs = [{ id: MAIN_TAB_ID, label: "메인" }, ...tabs.map((t) => ({ id: t.id, label: t.label }))];
 
   return (
     <>
-      {/* Sticky tab nav */}
-      <div className={styles.tabNav}>
-        <nav className={styles.nav} role="tablist" aria-label="카테고리 탭">
-          {allNavTabs.map((tab) => (
+      {/* 단일 sticky 래퍼: tabNav + chips */}
+      <div className={styles.stickyBars}>
+        <div className={styles.tabNav}>
+          <nav className={styles.nav} role="tablist" aria-label="카테고리 탭">
+            {allNavTabs.map((tab) => (
+              <button
+                key={tab.id}
+                role="tab"
+                aria-selected={tab.id === activeTabId}
+                className={`${styles.tab} ${tab.id === activeTabId ? styles.tabActive : ""}`}
+                onClick={() => handleTabChange(tab.id)}
+                type="button"
+              >
+                {tab.label}
+              </button>
+            ))}
+          </nav>
+        </div>
+
+        {!isMain && activeTab && (
+          <div className={styles.chips}>
             <button
-              key={tab.id}
-              role="tab"
-              aria-selected={tab.id === activeTabId}
-              className={`${styles.tab} ${tab.id === activeTabId ? styles.tabActive : ""}`}
-              onClick={() => handleTabChange(tab.id)}
               type="button"
+              className={`${styles.chip} ${isAllSubcat ? styles.chipActive : ""}`}
+              onClick={() => handleSubcatChange(ALL_SUBCAT_ID)}
             >
-              {tab.label}
+              전체
             </button>
-          ))}
-        </nav>
+            {activeTab.subcategories.map((sub) => (
+              <button
+                key={sub.id}
+                type="button"
+                className={`${styles.chip} ${sub.id === activeSubcatId ? styles.chipActive : ""}`}
+                onClick={() => handleSubcatChange(sub.id)}
+              >
+                {sub.label}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* 메인 탭: 전달받은 sections 렌더 */}
+      {/* 메인 탭 콘텐츠 */}
       {isMain && children}
 
-      {/* 카테고리 탭: chips(sticky) + banner + filter + grid */}
+      {/* 카테고리 탭 콘텐츠 */}
       {!isMain && (
         <>
-          {activeTab && activeTab.subcategories.length > 1 && (
-            <div className={styles.chips}>
-              {activeTab.subcategories.map((sub) => (
-                <button
-                  key={sub.id}
-                  type="button"
-                  className={`${styles.chip} ${sub.id === activeSubcatId ? styles.chipActive : ""}`}
-                  onClick={() => handleSubcatChange(sub.id)}
-                >
-                  {sub.label}
-                </button>
-              ))}
-            </div>
-          )}
-
           {activeSubcat && (
             <SubcategoryBanner
               image={activeSubcat.banner.image}

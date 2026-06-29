@@ -5,6 +5,7 @@ import ProductGallery from "./ProductGallery";
 import ProductInfoPanel from "./ProductInfoPanel";
 import ProductVariantPicker from "./ProductVariantPicker";
 import DeliveryInfoBox from "./DeliveryInfoBox";
+import OrderArea from "./OrderArea";
 import { ProductDetail, assembleGallery } from "../../lib/types";
 import styles from "./ProductOverview.module.css";
 
@@ -36,6 +37,16 @@ export default function ProductOverview({ product }: { product: ProductDetail })
         <ProductVariantPicker
           siblings={product.siblings}
           selectedId={product.id}
+        />
+
+        <OrderArea
+          productId={product.id}
+          name={product.name}
+          thumbnail={product.thumbnail}
+          price={product.price}
+          originalPrice={product.originalPrice}
+          variantLabel={product.variantLabel}
+          colors={product.colors}
         />
 
         <DeliveryInfoBox

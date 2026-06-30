@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -22,6 +23,7 @@ const clintUrbanFamily: Omit<ProductFamily, "familyId"> = {
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-04.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-05.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-06.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-07.webp`,
   ],
 };
 
@@ -43,18 +45,25 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? clintUrbanFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: clintUrbanFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1111110030",
     familyId: "clint-urban-liftup-sofa-table",
     name: "클린트 어반 리프트업 소파테이블 플랩도어형105cm",
     thumbnail: thumbnailFor("1111110030"),
+    hoverImage: hoverImageFor("1111110030"),
     brand: "한샘",
     price: 365000,
     originalPrice: 412000,
     discountRate: 11,
     rating: 4.7,
     reviewCount: 23,
+    salesCount: 1050,
+    badge: { text: "소파테이블 판매 1위", bgColor: "#FE5A5D" },
     category: ["거실", "거실장·테이블", "테이블"],
     colors: ["화이트", "머드베이지"],
     filterAttributes: { feature: ["리프트업", "플랩도어"] },

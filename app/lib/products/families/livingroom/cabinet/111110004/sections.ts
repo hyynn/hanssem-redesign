@@ -39,7 +39,6 @@ export function createSections(): ProductDetailSection[] {
       label: "기본정보",
       blocks: [
         { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-basic-01.webp`, alt: "밀란 304 블랑 AV장 상세" },
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-basic-02.webp`, alt: "밀란 304 블랑 AV장 상세" },
       ],
     },
     {
@@ -47,7 +46,6 @@ export function createSections(): ProductDetailSection[] {
       label: "기능",
       blocks: [
         { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.webp`, alt: "밀란 304 블랑 AV장 기능 설명" },
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-02.webp`, alt: "밀란 304 블랑 AV장 기능 설명" },
       ],
     },
     {
@@ -58,10 +56,10 @@ export function createSections(): ProductDetailSection[] {
       ],
     },
     {
-      id: "warranty",
+      id: "caution",
       label: "주의사항",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.webp`, alt: "밀란 304 블랑 AV장 주의사항" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-caution-01.webp`, alt: "밀란 304 블랑 AV장 주의사항" },
       ],
     },
   ];

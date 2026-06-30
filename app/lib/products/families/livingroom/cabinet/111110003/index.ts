@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -19,6 +20,10 @@ const pleatsCabinetFamily: Omit<ProductFamily, "familyId"> = {
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-01.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-02.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-03.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-04.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-05.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-06.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-07.webp`,
   ],
 };
 
@@ -31,8 +36,6 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1111100030": {
     variantImages: [
-      `/images/products/${FAMILY_PATH}/1111100030/1111100030-variant-01.webp`,
-      `/images/products/${FAMILY_PATH}/1111100030/1111100030-variant-02.webp`,
     ],
     filterAttributes: {},
     sections: createSections(),
@@ -43,18 +46,24 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? pleatsCabinetFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: pleatsCabinetFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1111100030",
     familyId: "pleats-cabinet",
     name: "플리츠 거실장 210cm",
     thumbnail: thumbnailFor("1111100030"),
+    hoverImage: hoverImageFor("1111100030"),
     brand: "한샘",
     price: 669000,
     originalPrice: 850000,
     discountRate: 21,
-    rating: 4.8,
-    reviewCount: 47,
+    rating: sharedReviews.rating,
+    reviewCount: sharedReviews.count,
+    salesCount: 640,
     badge: { text: "거실수납 3위", bgColor: "#3a3a3a" },
     category: ["거실", "거실장"],
   },

@@ -46,8 +46,14 @@ export function createSections(): ProductDetailSection[] {
       id: "function",
       label: "기능",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.webp`, alt: "클린트 어반 높이조절 리프트업 사이드테이블 기능 설명" },
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-02.webp`, alt: "클린트 어반 높이조절 리프트업 사이드테이블 기능 설명" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.gif`, alt: "클린트 어반 높이조절 리프트업 사이드테이블 기능 설명" },
+      ],
+    },
+    {
+      id: "material",
+      label: "소재",
+      blocks: [
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-material-01.webp`, alt: "클린트 어반 높이조절 리프트업 사이드테이블 소재 설명" },
       ],
     },
     {
@@ -58,7 +64,7 @@ export function createSections(): ProductDetailSection[] {
       ],
     },
     {
-      id: "warranty",
+      id: "caution",
       label: "주의사항",
       blocks: [
         { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.webp`, alt: "클린트 어반 높이조절 리프트업 사이드테이블 주의사항" },

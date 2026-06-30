@@ -39,6 +39,25 @@ export function createSections(): ProductDetailSection[] {
       label: "기능",
       blocks: [
         { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.webp`, alt: "휴 회전형 라운지 좌식리클라이너 기능 설명" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-02.gif`, alt: "휴 회전형 라운지 좌식리클라이너 기능 설명" },
+      ],
+    },
+    {
+      id: "material",
+      label: "소재",
+      blocks: [
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-material-01.webp`, alt: "휴 회전형 라운지 좌식리클라이너 소재 정보" },
+        {
+          type: "text",
+          title: "아이와 반려동물, 모두를 배려한 소재",
+          body: "포근한 텍스처의 부드러운 감촉과 튼튼한 내구성을 모두 경험해보세요. 반려동물과 함께하는 일상에서도 스크래치 걱정없도록, 5만회 이상의 상업용 등급 마모 테스트로 우수한 내마모성을 검증했습니다.",
+        },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-material-02.webp`, alt: "휴 회전형 라운지 좌식리클라이너 소재 정보" },
+        {
+          type: "text",
+          title: "관리가 편한 기능성 발수 원단",
+          body: "생활 발수 기능이 탁월한 기능성 패브릭으로 오염물이 바로 흡수되지 않고 흘러내려 쉬운 관리가 가능합니다.",
+        },
       ],
     },
     {

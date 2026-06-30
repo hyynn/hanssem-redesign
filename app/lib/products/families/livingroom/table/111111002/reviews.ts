@@ -9,7 +9,7 @@ const reviewItems: Review[] = [
     rating: 5,
     date: "2026.05.20",
     variant: "기본",
-    content: "원목 느낌이 살아있고 거실에 잘 어울려요. 배송도 빠르고 설치도 깔끔했습니다.",
+    content: "미드센추리 감성이 살아있고 거실에 잘 어울려요. 배송도 빠르고 설치도 깔끔했습니다.",
     images: ["/images/reviews/1111110020/review-01-1.webp"],
   },
   {
@@ -44,6 +44,7 @@ const reviewItems: Review[] = [
     date: "2025.12.14",
     variant: "기본",
     content: "색감이 사진과 동일합니다. 인테리어 분위기가 확 달라졌어요.",
+    images: ["/images/reviews/1111110020/review-05-1.webp"],
   },
   {
     id: "r-a06",
@@ -75,7 +76,7 @@ const reviewItems: Review[] = [
     rating: 4,
     date: "2025.07.21",
     variant: "기본",
-    content: "예쁘고 품질도 좋은데 조립 과정이 조금 복잡했습니다.",
+    content: "예쁘고 품질도 좋은데 색상이 다양하면 좋겠어요,",
   },
   {
     id: "r-a10",
@@ -91,7 +92,7 @@ const reviewItems: Review[] = [
     rating: 4,
     date: "2025.05.11",
     variant: "기본",
-    content: "디자인은 좋습니다. 조금 더 수납 공간이 있으면 좋겠어요.",
+    content: "디자인은 좋습니다. 조금 더 큰 사이즈도 있으면 좋겠어요.",
   },
   {
     id: "r-a12",

@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -87,6 +88,10 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? monoBedFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: monoBedFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1010120010",
@@ -94,12 +99,14 @@ export const summaries: ProductSummary[] = [
     name: "호텔침대 모노침대 Q/K (색상2종, 하부서랍 선택)",
     variantLabel: "Q/K 단품",
     thumbnail: thumbnailFor("1010120010"),
+    hoverImage: hoverImageFor("1010120010"),
     brand: "한샘",
     price: 588870,
     originalPrice: 727000,
     discountRate: 19,
     rating: 4.7,
     reviewCount: 12,
+    salesCount: 180,
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["수납침대", "Q/K침대"],
     filterAttributes: { size: ["Q/K"], config: ["침대"], feature: ["조명리모컨형"] },
@@ -110,12 +117,14 @@ export const summaries: ProductSummary[] = [
     name: "호텔침대 모노침대 KK (색상2종, 하부서랍 선택)",
     variantLabel: "KK 단품",
     thumbnail: thumbnailFor("1010120011"),
+    hoverImage: hoverImageFor("1010120011"),
     brand: "한샘",
     price: 660150,
     originalPrice: 815000,
     discountRate: 19,
     rating: 4.7,
     reviewCount: 15,
+    salesCount: 210,
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["수납침대", "KK침대"],
     filterAttributes: { size: ["KK"], config: ["침대"], feature: ["조명리모컨형"] },
@@ -126,12 +135,14 @@ export const summaries: ProductSummary[] = [
     name: "호텔침대 모노침대 Q/K (색상2종, 하부서랍 선택) + 밸런스 볼륨탑 매트리스",
     variantLabel: "Q/K + 밸런스매트리스",
     thumbnail: thumbnailFor("1010120012"),
+    hoverImage: hoverImageFor("1010120012"),
     brand: "한샘",
     price: 1008040,
     originalPrice: 1270000,
     discountRate: 21,
     rating: 4.8,
     reviewCount: 28,
+    salesCount: 1380,
     badge: { text: "호텔침대 판매 2위", bgColor: "#FE5A5D" },
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["수납침대", "Q/K침대"],
@@ -143,12 +154,14 @@ export const summaries: ProductSummary[] = [
     name: "호텔침대 모노침대 KK (색상2종, 하부서랍 선택) + 밸런스 볼륨탑 매트리스",
     variantLabel: "KK + 밸런스매트리스",
     thumbnail: thumbnailFor("1010120013"),
+    hoverImage: hoverImageFor("1010120013"),
     brand: "한샘",
     price: 1280840,
     originalPrice: 1804000,
     discountRate: 29,
     rating: 4.9,
     reviewCount: 40,
+    salesCount: 980,
     badge: { text: "호텔침대 판매 3위", bgColor: "#FE5A5D" },
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["수납침대", "KK침대"],

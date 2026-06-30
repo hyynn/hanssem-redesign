@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -48,18 +49,24 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? monoDresserFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: monoDresserFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1012100010",
     familyId: "mono-dresser",
     name: "호텔침대 모노 화장대 800 (색상2종)",
     thumbnail: thumbnailFor("1012100010"),
+    hoverImage: hoverImageFor("1012100010"),
     brand: "한샘",
     price: 289000,
     originalPrice: 358000,
     discountRate: 19,
     rating: 5.0,
     reviewCount: 5,
+    salesCount: 60,
     category: ["침실", "화장대"],
     colors: ["차콜", "화이트"],
   },

@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -35,6 +36,10 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? steadyCompyFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: steadyCompyFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 const variantDetails: Record<string, VariantData> = {
   "1010140010": {
     variantImages: [
@@ -66,12 +71,14 @@ export const summaries: ProductSummary[] = [
     name: "스테디 컴피 패밀리침대 SS 일반형 (매트별도)",
     variantLabel: "일반형",
     thumbnail: thumbnailFor("1010140010"),
+    hoverImage: hoverImageFor("1010140010"),
     brand: "한샘",
     price: 489000,
     originalPrice: 584000,
     discountRate: 16,
     rating: 4.7,
     reviewCount: 32,
+    salesCount: 520,
     category: ["침실", "침대", "저상형·패밀리침대"],
     filterAttributes: { size: ["SS"], config: ["침대"] },
   },
@@ -81,12 +88,14 @@ export const summaries: ProductSummary[] = [
     name: "스테디 컴피 패밀리침대 SS 와이드헤드형 (매트별도)",
     variantLabel: "와이드헤드형",
     thumbnail: thumbnailFor("1010140011"),
+    hoverImage: hoverImageFor("1010140011"),
     brand: "한샘",
     price: 609020,
     originalPrice: 823000,
     discountRate: 26,
     rating: 4.7,
     reviewCount: 32,
+    salesCount: 410,
     category: ["침실", "침대", "저상형·패밀리침대"],
     filterAttributes: { size: ["SS"], config: ["침대"] },
   },
@@ -96,12 +105,14 @@ export const summaries: ProductSummary[] = [
     name: "스테디 컴피 패밀리침대 SS 가드형 (매트별도)",
     variantLabel: "가드형",
     thumbnail: thumbnailFor("1010140012"),
+    hoverImage: hoverImageFor("1010140012"),
     brand: "한샘",
     price: 794640,
     originalPrice: 903000,
     discountRate: 12,
     rating: 4.7,
     reviewCount: 32,
+    salesCount: 380,
     category: ["침실", "침대", "저상형·패밀리침대"],
     filterAttributes: { size: ["SS"], config: ["침대"], feature: ["낙상방지가드"] },
   },

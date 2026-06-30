@@ -10,6 +10,7 @@ const reviewItems: Review[] = [
     date: "2026.05.25",
     variant: "블랙",
     content: "소파 옆에 딱 어울립니다. 라운드 형태가 공간을 잘 활용하게 해줘요.",
+    images: ["/images/reviews/1111120010/review-01-1.webp"],
   },
   {
     id: "r-a02",
@@ -18,6 +19,7 @@ const reviewItems: Review[] = [
     date: "2026.05.05",
     variant: "화이트",
     content: "가격 대비 품질이 정말 좋습니다. 화이트 색상이 밝고 깔끔해요.",
+    images: ["/images/reviews/1111120010/review-02-1.webp"],
   },
   {
     id: "r-a03",
@@ -34,6 +36,7 @@ const reviewItems: Review[] = [
     date: "2026.03.22",
     variant: "베이지",
     content: "베이지 색상이 인테리어에 잘 녹아듭니다. 아담한 크기가 딱 좋아요.",
+    images: ["/images/reviews/1111120010/review-04-1.webp"],
   },
   {
     id: "r-a05",
@@ -49,7 +52,8 @@ const reviewItems: Review[] = [
     rating: 5,
     date: "2026.01.18",
     variant: "화이트",
-    content: "침대 옆에 협탁 대용으로 쓰고 있어요. 라운드 형태라 부딪혀도 안전합니다.",
+    content: "화분 받침대용으로 쓰고 있어요. 라운드 형태라 부딪혀도 안전하고 예쁘네요.",
+    images: ["/images/reviews/1111120010/review-06-1.webp"],
   },
   {
     id: "r-a07",

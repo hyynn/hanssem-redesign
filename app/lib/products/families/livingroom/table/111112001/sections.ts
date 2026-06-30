@@ -39,7 +39,24 @@ export function createSections(): ProductDetailSection[] {
       label: "기능",
       blocks: [
         { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.webp`, alt: "재크 400 라운드 사이드테이블 기능 설명" },
+        {
+          type: "text",
+          title: "다양한 공간 활용",
+          body: "소파 옆, 침대 옆 어느 공간에서든 어울림이 좋아요. 이동이 간편한 컴팩트한 사이즈로 부담없이 활용해보세요.",
+        },
         { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-02.webp`, alt: "재크 400 라운드 사이드테이블 기능 설명" },
+        {
+          type: "text",
+          title: "손쉬운 조립 구성",
+          body: "상판, 바닥판, 연결파이프 기둥의 단순한 3가지 구성으로 누구나 쉽고 간편하게  테이블을 완성시킬 수 있어요 조립설명서와 부자재가 동봉되어 있습니다.",
+        },
+      ],
+    },
+    {
+      id: "material",
+      label: "소재",
+      blocks: [
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-material-01.webp`, alt: "재크 400 라운드 사이드테이블 소재" },
       ],
     },
     {
@@ -47,13 +64,14 @@ export function createSections(): ProductDetailSection[] {
       label: "사이즈",
       blocks: [
         { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-size-01.webp`, alt: "재크 400 라운드 사이드테이블 사이즈" },
+
       ],
     },
     {
       id: "warranty",
-      label: "주의사항",
+      label: "품질보증",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.webp`, alt: "재크 400 라운드 사이드테이블 주의사항" },
+        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.mp4`, alt: "재크 400 라운드 사이드테이블 품질보증" },
       ],
     },
   ];

@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -43,18 +44,24 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? comfortBaseFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: comfortBaseFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1011120020",
     familyId: "comfort-base",
     name: "컴포트 하단 매트리스 SS (매트별도)",
     thumbnail: thumbnailFor("1011120020"),
+    hoverImage: hoverImageFor("1011120020"),
     brand: "한샘",
     price: 239000,
     originalPrice: 282000,
     discountRate: 15,
     rating: 4.8,
     reviewCount: 8,
+    salesCount: 85,
     category: ["침실", "매트리스", "토퍼·하단매트리스"],
     filterAttributes: { size: ["SS"] },
   },

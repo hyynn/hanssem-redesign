@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -65,6 +66,10 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? balanceSEurotopFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: balanceSEurotopFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1011110010",
@@ -72,12 +77,14 @@ export const summaries: ProductSummary[] = [
     name: "밸런스S 유로탑 매트리스 SS",
     variantLabel: "SS",
     thumbnail: thumbnailFor("1011110010"),
+    hoverImage: hoverImageFor("1011110010"),
     brand: "한샘",
     price: 609000,
     originalPrice: 609000,
     discountRate: 0,
     rating: 4.8,
     reviewCount: 39,
+    salesCount: 180,
     category: ["침실", "매트리스", "슈퍼·싱글매트리스"],
     filterAttributes: { size: ["SS"] },
   },
@@ -87,12 +94,14 @@ export const summaries: ProductSummary[] = [
     name: "밸런스S 유로탑 매트리스 Q",
     variantLabel: "Q",
     thumbnail: thumbnailFor("1011110011"),
+    hoverImage: hoverImageFor("1011110011"),
     brand: "한샘",
     price: 919000,
     originalPrice: 919000,
     discountRate: 0,
     rating: 4.8,
     reviewCount: 39,
+    salesCount: 1450,
     category: ["침실", "매트리스", "퀸·킹매트리스"],
     filterAttributes: { size: ["Q"] },
   },
@@ -102,12 +111,14 @@ export const summaries: ProductSummary[] = [
     name: "밸런스S 유로탑 매트리스 K",
     variantLabel: "K",
     thumbnail: thumbnailFor("1011110012"),
+    hoverImage: hoverImageFor("1011110012"),
     brand: "한샘",
     price: 1129000,
     originalPrice: 1129000,
     discountRate: 0,
     rating: 4.8,
     reviewCount: 39,
+    salesCount: 120,
     category: ["침실", "매트리스", "퀸·킹매트리스"],
     filterAttributes: { size: ["K"] },
   },
@@ -117,12 +128,14 @@ export const summaries: ProductSummary[] = [
     name: "밸런스S 유로탑 매트리스 KK",
     variantLabel: "KK",
     thumbnail: thumbnailFor("1011110013"),
+    hoverImage: hoverImageFor("1011110013"),
     brand: "한샘",
     price: 1329000,
     originalPrice: 1329000,
     discountRate: 0,
     rating: 4.8,
     reviewCount: 39,
+    salesCount: 540,
     category: ["침실", "매트리스", "KK매트리스"],
     filterAttributes: { size: ["KK"] },
   },

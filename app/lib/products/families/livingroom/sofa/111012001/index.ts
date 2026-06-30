@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -74,6 +75,10 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? moaSofaFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: moaSofaFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1110120010",
@@ -81,12 +86,14 @@ export const summaries: ProductSummary[] = [
     name: "모아 모듈형 패브릭소파 4인 오픈형",
     variantLabel: "4인 오픈형",
     thumbnail: thumbnailFor("1110120010"),
+    hoverImage: hoverImageFor("1110120010"),
     brand: "한샘",
     price: 718000,
     originalPrice: 967000,
     discountRate: 26,
     rating: 4.8,
     reviewCount: 42,
+    salesCount: 1180,
     category: ["거실", "소파", "패브릭소파"],
     categoryTags: ["모듈형소파", "4인소파"],
     filterAttributes: { config: ["오픈형"], size: ["4인"] },
@@ -97,12 +104,14 @@ export const summaries: ProductSummary[] = [
     name: "모아 모듈형 패브릭소파 와이드 4인",
     variantLabel: "와이드 4인",
     thumbnail: thumbnailFor("1110120011"),
+    hoverImage: hoverImageFor("1110120011"),
     brand: "한샘",
     price: 938000,
     originalPrice: 1256000,
     discountRate: 25,
     rating: 4.8,
     reviewCount: 42,
+    salesCount: 690,
     category: ["거실", "소파", "패브릭소파"],
     categoryTags: ["모듈형소파", "4인소파"],
     filterAttributes: { config: ["와이드"], size: ["4인"] },
@@ -113,12 +122,14 @@ export const summaries: ProductSummary[] = [
     name: "모아 모듈형 패브릭소파 와이드 4인 카우치형",
     variantLabel: "4인 카우치형",
     thumbnail: thumbnailFor("1110120012"),
+    hoverImage: hoverImageFor("1110120012"),
     brand: "한샘",
     price: 1020000,
     originalPrice: 1356000,
     discountRate: 25,
     rating: 4.8,
     reviewCount: 42,
+    salesCount: 590,
     category: ["거실", "소파", "패브릭소파"],
     categoryTags: ["모듈형소파", "4인소파", "카우치소파"],
     filterAttributes: { config: ["카우치형"], size: ["4인"] },
@@ -129,12 +140,15 @@ export const summaries: ProductSummary[] = [
     name: "모아 모듈형 패브릭소파 4인 라운지형",
     variantLabel: "4인 라운지형",
     thumbnail: thumbnailFor("1110120013"),
+    hoverImage: hoverImageFor("1110120013"),
     brand: "한샘",
     price: 1123000,
     originalPrice: 1490000,
     discountRate: 25,
     rating: 4.8,
     reviewCount: 42,
+    salesCount: 2350,
+    badge: { text: "패브릭소파 판매 1위", bgColor: "#FE5A5D" },
     category: ["거실", "소파", "패브릭소파"],
     categoryTags: ["모듈형소파", "4인소파", "카우치소파"],
     filterAttributes: { config: ["라운지형"], size: ["4인"] },

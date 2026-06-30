@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -53,6 +54,10 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? ridoSofaFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: ridoSofaFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1110100010",
@@ -60,12 +65,14 @@ export const summaries: ProductSummary[] = [
     name: "리도 천연가죽 소파 3인",
     variantLabel: "3인",
     thumbnail: thumbnailFor("1110100010"),
+    hoverImage: hoverImageFor("1110100010"),
     brand: "한샘",
     price: 879000,
     originalPrice: 1100000,
     discountRate: 20,
     rating: 4.9,
     reviewCount: 41,
+    salesCount: 760,
     category: ["거실", "소파", "가죽소파"],
     categoryTags: ["3인소파"],
     colors: ["크림화이트", "페더화이트"],
@@ -77,12 +84,15 @@ export const summaries: ProductSummary[] = [
     name: "리도 천연가죽 소파 4인",
     variantLabel: "4인",
     thumbnail: thumbnailFor("1110100011"),
+    hoverImage: hoverImageFor("1110100011"),
     brand: "한샘",
     price: 1229000,
     originalPrice: 1543000,
     discountRate: 20,
     rating: 4.9,
     reviewCount: 41,
+    salesCount: 1620,
+    badge: { text: "가죽소파 판매 2위", bgColor: "#FE5A5D" },
     category: ["거실", "소파", "가죽소파"],
     categoryTags: ["4인소파"],
     colors: ["크림화이트", "페더화이트"],

@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -60,6 +61,10 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? lunesoftBedFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: lunesoftBedFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1010120020",
@@ -67,12 +72,14 @@ export const summaries: ProductSummary[] = [
     name: "호텔침대 룬소프트 침대 리모컨형 Q/K (매트별도)",
     variantLabel: "Q/K 단품",
     thumbnail: thumbnailFor("1010120020"),
+    hoverImage: hoverImageFor("1010120020"),
     brand: "한샘",
     price: 1429000,
     originalPrice: 1429000,
     discountRate: 0,
     rating: 4.8,
     reviewCount: 10,
+    salesCount: 140,
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["Q/K침대"],
     filterAttributes: { size: ["Q/K"], config: ["침대"], feature: ["리모컨형"] },
@@ -83,12 +90,14 @@ export const summaries: ProductSummary[] = [
     name: "호텔침대 룬소프트 침대 리모컨형 KK (매트별도)",
     variantLabel: "KK 단품",
     thumbnail: thumbnailFor("1010120021"),
+    hoverImage: hoverImageFor("1010120021"),
     brand: "한샘",
     price: 1829000,
     originalPrice: 1829000,
     discountRate: 0,
     rating: 4.8,
     reviewCount: 10,
+    salesCount: 130,
     category: ["침실", "침대", "호텔침대"],
     categoryTags: ["KK침대"],
     filterAttributes: { size: ["KK"], config: ["침대"], feature: ["리모컨형"] },

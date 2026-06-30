@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -22,6 +23,7 @@ const jackRoundFamily: Omit<ProductFamily, "familyId"> = {
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-04.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-05.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-06.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-07.webp`,
   ],
 };
 
@@ -43,19 +45,26 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? jackRoundFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: jackRoundFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1111120010",
     familyId: "jack-400-round-side-table",
     name: "재크 400 라운드 사이드테이블",
     thumbnail: thumbnailFor("1111120010"),
+    hoverImage: hoverImageFor("1111120010"),
     brand: "한샘",
     price: 39900,
     originalPrice: 69000,
     discountRate: 42,
     rating: 4.8,
     reviewCount: 18,
+    salesCount: 410,
     category: ["거실", "거실장·테이블", "사이드테이블"],
+    categoryTags: ["침실", "협탁·침대패널"],
     colors: ["블랙", "그레이", "베이지", "화이트"],
   },
 ];

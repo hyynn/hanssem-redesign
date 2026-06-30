@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -19,6 +20,10 @@ const hyuLoungeReclinerlFamily: Omit<ProductFamily, "familyId"> = {
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-01.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-02.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-03.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-04.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-05.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-06.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-07.webp`,
   ],
 };
 
@@ -31,8 +36,6 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1110130020": {
     variantImages: [
-      `/images/products/${FAMILY_PATH}/1110130020/1110130020-variant-01.webp`,
-      `/images/products/${FAMILY_PATH}/1110130020/1110130020-variant-02.webp`,
     ],
     filterAttributes: { feature: ["회전형", "리클라이너"] },
     sections: createSections(),
@@ -43,18 +46,24 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? hyuLoungeReclinerlFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: hyuLoungeReclinerlFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1110130020",
     familyId: "hyu-lounge-recliner",
     name: "휴 회전형 라운지 좌식리클라이너 아이보리(쿠션 미포함)",
     thumbnail: thumbnailFor("1110130020"),
+    hoverImage: hoverImageFor("1110130020"),
     brand: "한샘",
     price: 199000,
     originalPrice: 280000,
     discountRate: 29,
     rating: 4.8,
     reviewCount: 2,
+    salesCount: 40,
     category: ["거실", "소파", "좌식소파"],
     categoryTags: ["리클라이너"],
     filterAttributes: { feature: ["회전형", "리클라이너"] },

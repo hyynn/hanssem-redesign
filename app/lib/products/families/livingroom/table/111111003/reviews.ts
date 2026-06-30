@@ -19,7 +19,7 @@ const reviewItems: Review[] = [
     date: "2026.05.10",
     variant: "화이트",
     content: "상판을 들어올리면 수납공간이 나와서 너무 실용적이에요. 디자인도 깔끔합니다.",
-    images: ["/images/reviews/1111110030/review-02-1.webp"],
+    images: ["/images/reviews/1111110030/review-02-1.webp", "/images/reviews/1111110030/review-02-2.webp"],
   },
   {
     id: "r-a03",
@@ -28,7 +28,6 @@ const reviewItems: Review[] = [
     date: "2026.04.19",
     variant: "머드베이지",
     content: "머드베이지 색상이 정말 예쁩니다. 거실 분위기가 따뜻해졌어요.",
-    images: ["/images/reviews/1111110030/review-03-1.webp"],
   },
   {
     id: "r-a04",
@@ -37,7 +36,6 @@ const reviewItems: Review[] = [
     date: "2026.03.30",
     variant: "화이트",
     content: "플랩도어 열리는 방식이 독특하고 신기합니다. 안쪽에 수납도 충분해요.",
-    images: ["/images/reviews/1111110030/review-04-1.webp"],
   },
   {
     id: "r-a05",
@@ -71,7 +69,8 @@ const reviewItems: Review[] = [
     rating: 5,
     date: "2025.11.18",
     variant: "머드베이지",
-    content: "수납력과 디자인 모두 훌륭합니다.",
+    content: "수납력과 디자인 모두 훌륭합니다. 색감도 마음에 들어요.",
+    images: ["/images/reviews/1111110030/review-08-1.webp"],
   },
   {
     id: "r-a09",
@@ -119,7 +118,8 @@ const reviewItems: Review[] = [
     rating: 5,
     date: "2025.05.01",
     variant: "머드베이지",
-    content: "색상이 너무 예쁘고 기능도 훌륭합니다.",
+    content: "색상이 차분해서 너무 예쁘네요. 소파랑 잘 어울려요. 리프트업 기능도 편하고 너무 좋아요.",
+    images: ["/images/reviews/1111110030/review-14-1.webp"],
   },
   {
     id: "r-a15",

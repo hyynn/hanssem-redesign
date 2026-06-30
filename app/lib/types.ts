@@ -5,12 +5,14 @@ export interface ProductSummary {
   name: string;
   variantLabel?: string;   // short label for sibling picker
   thumbnail: string;
+  hoverImage?: string;  // gallery 2번째 이미지 — 카드 hover 시 thumbnail과 크로스페이드
   brand: string;
   price: number;
   originalPrice: number;
   discountRate: number;
   rating: number;
   reviewCount: number;
+  salesCount: number;      // 월간 판매량 (이달의 베스트셀러 정렬 기준, DB 부재로 수기 입력)
   badge?: { text: string; bgColor: string };
   category: string[];      // for filtering: ["침실", "침대", "호텔침대"]
   categoryTags?: string[]; // extra subcategory memberships: ["수납침대", "Q/K침대"]
@@ -113,10 +115,12 @@ export interface DeliveryGuideGroup {
 }
 
 // ─── Gallery assembly helper (single source of truth for image order) ─────────
-// Order: variant-specific images first (main-01, variant-01…), then shared family images.
-// thumbnail is NOT included here — it's always gallery[0] (variantImages[0] or sharedImages[0]).
+// Order: variant "main-*" images first, then shared family images, then variant "variant-*" images.
+// thumbnail is NOT included here — it's always gallery[0] (first main image, or sharedImages[0] fallback).
 export function assembleGallery(
   product: Pick<ProductDetail, "sharedImages" | "variantImages">
 ): string[] {
-  return [...product.variantImages, ...product.sharedImages];
+  const mainImages = product.variantImages.filter((src) => src.includes("-main-"));
+  const variantOnlyImages = product.variantImages.filter((src) => !src.includes("-main-"));
+  return [...mainImages, ...product.sharedImages, ...variantOnlyImages];
 }

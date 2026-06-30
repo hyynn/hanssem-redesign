@@ -57,8 +57,8 @@ export const COLOR_GROUPS: Record<string, string> = {
   "모카": "브라운계열",
   "뉴메이플": "메이플계열",
   "네이비": "네이비계열",
-  "포레스트": "초록계열",
-  "그린": "초록계열",
+  "포레스트": "그린계열",
+  "그린": "그린계열",
   "오트밀": "아이보리계열",
 };
 
@@ -76,7 +76,7 @@ export const COLOR_GROUP_HEX: Record<string, string> = {
   "월넛계열": "#49352e",
   "네이비계열": "#002a69",
   "파랑계열": "#3186e8",
-  "초록계열": "#73a66b",
+  "그린계열": "#73a66b",
   "빨강계열": "#ff4040",
   "핑크계열": "#ffade2",
   "노랑계열": "#fccc4e",
@@ -88,10 +88,10 @@ export const COLOR_GROUP_HEX: Record<string, string> = {
  * 카테고리별 수동 등록 없이도 존재하는 옵션만 필터로 노출된다.
  */
 export const ALL_FILTER_AXES: FilterAxisDef[] = [
-  { key: "size",    label: "사이즈" },
-  { key: "config",  label: "구성" },
+  { key: "size", label: "사이즈" },
+  { key: "config", label: "구성" },
   { key: "feature", label: "기능" },
-  { key: "color",   label: "색상" },
+  { key: "color", label: "색상" },
 ];
 
 /**

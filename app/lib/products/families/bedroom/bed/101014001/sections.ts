@@ -75,7 +75,7 @@ export function createSections(): ProductDetailSection[] {
       id: "material",
       label: "소재",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-meterial-01.webp`, alt: "패브릭 헤드보드 소재 클로즈업" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-material-01.webp`, alt: "패브릭 헤드보드 소재 클로즈업" },
         {
           type: "text",
           title: "피부에 닿아도 편안한 고밀도 패브릭 헤드보드",

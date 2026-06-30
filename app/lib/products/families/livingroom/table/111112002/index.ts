@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -42,19 +43,26 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? clintUrbanSideFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: clintUrbanSideFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1111120020",
     familyId: "clint-urban-height-side-table",
     name: "클린트 어반 높이조절 리프트업 사이드테이블 60cm",
     thumbnail: thumbnailFor("1111120020"),
+    hoverImage: hoverImageFor("1111120020"),
     brand: "한샘",
     price: 174000,
     originalPrice: 220000,
     discountRate: 21,
     rating: 4.8,
     reviewCount: 26,
+    salesCount: 300,
     category: ["거실", "거실장·테이블", "사이드테이블"],
+    categoryTags: ["침실", "협탁·침대패널"],
     colors: ["화이트", "머드베이지", "뉴메이플"],
     filterAttributes: { feature: ["리프트업", "높이조절"] },
   },

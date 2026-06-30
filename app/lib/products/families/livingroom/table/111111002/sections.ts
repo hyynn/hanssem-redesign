@@ -46,21 +46,30 @@ export function createSections(): ProductDetailSection[] {
       label: "기능",
       blocks: [
         { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.webp`, alt: "플래지어 프링글 소파테이블 기능 설명" },
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-02.webp`, alt: "플래지어 프링글 소파테이블 기능 설명" },
+        {
+          type: "text",
+          title: "부드러운 곡선미를 자랑하는 테이블 디자인",
+          body: "부드러운 곡선미를 자랑하는 프링글 소파 테이블은 군더더기 없는 심플한 디자인으로 미드센추리 모던 감성을 가득 담았습니다. 매력적인 프링글 소파 테이블을 만나보세요.",
+        },
       ],
     },
     {
-      id: "size",
-      label: "사이즈",
+      id: "material",
+      label: "소재",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-size-01.webp`, alt: "플래지어 프링글 소파테이블 사이즈" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-material-01.webp`, alt: "플래지어 프링글 소파테이블 소재 설명" },
+        {
+          type: "text",
+          title: "스크래치와 마모에 강한 고급 LPM 소재 상판",
+          body: "유해물질 걱정 없는 고급 LPM 상판은 뛰어난 견고함을 자랑하며 지문, 오염 등의 걱정 없이 안심하고 사용 가능합니다.",
+        },
       ],
     },
     {
       id: "warranty",
-      label: "주의사항",
+      label: "품질보증",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.webp`, alt: "플래지어 프링글 소파테이블 주의사항" },
+        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.mp4`, alt: "플래지어 프링글 소파테이블 주의사항" },
       ],
     },
   ];

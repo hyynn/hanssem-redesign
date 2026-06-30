@@ -47,7 +47,13 @@ export function createSections(): ProductDetailSection[] {
       label: "기능",
       blocks: [
         { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.webp`, alt: "클린트 모던 높은 거실장 기능 설명" },
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-02.webp`, alt: "클린트 모던 높은 거실장 기능 설명" },
+      ],
+    },
+    {
+      id: "material",
+      label: "소재",
+      blocks: [
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-material-01.webp`, alt: "클린트 모던 높은 거실장 소재 설명" },
       ],
     },
     {
@@ -58,10 +64,10 @@ export function createSections(): ProductDetailSection[] {
       ],
     },
     {
-      id: "warranty",
+      id: "caution",
       label: "주의사항",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.webp`, alt: "클린트 모던 높은 거실장 주의사항" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-caution-01.webp`, alt: "클린트 모던 높은 거실장 주의사항" },
       ],
     },
   ];

@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -19,6 +20,7 @@ const clintUrbanCabinetFamily: Omit<ProductFamily, "familyId"> = {
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-01.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-02.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-03.webp`,
+    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-04.webp`,
   ],
 };
 
@@ -32,6 +34,7 @@ const variantDetails: Record<string, VariantData> = {
   "1111100010": {
     variantImages: [
       `/images/products/${FAMILY_PATH}/1111100010/1111100010-main-01.webp`,
+      `/images/products/${FAMILY_PATH}/1111100010/1111100010-main-02.webp`,
       `/images/products/${FAMILY_PATH}/1111100010/1111100010-variant-01.webp`,
       `/images/products/${FAMILY_PATH}/1111100010/1111100010-variant-02.webp`,
     ],
@@ -41,6 +44,8 @@ const variantDetails: Record<string, VariantData> = {
   "1111100011": {
     variantImages: [
       `/images/products/${FAMILY_PATH}/1111100011/1111100011-main-01.webp`,
+      `/images/products/${FAMILY_PATH}/1111100011/1111100011-main-02.webp`,
+      `/images/products/${FAMILY_PATH}/1111100011/1111100011-main-03.webp`,
       `/images/products/${FAMILY_PATH}/1111100011/1111100011-variant-01.webp`,
       `/images/products/${FAMILY_PATH}/1111100011/1111100011-variant-02.webp`,
     ],
@@ -53,6 +58,10 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? clintUrbanCabinetFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: clintUrbanCabinetFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1111100010",
@@ -60,12 +69,14 @@ export const summaries: ProductSummary[] = [
     name: "클린트 어반 180cm 거실장 일반형 (3종 택1)",
     variantLabel: "일반형",
     thumbnail: thumbnailFor("1111100010"),
+    hoverImage: hoverImageFor("1111100010"),
     brand: "한샘",
     price: 314000,
     originalPrice: 374000,
     discountRate: 16,
-    rating: 4.7,
-    reviewCount: 37,
+    rating: sharedReviews.rating,
+    reviewCount: sharedReviews.count,
+    salesCount: 310,
     colors: ["화이트", "머드베이지", "그린"],
     category: ["거실", "거실장"],
     filterAttributes: { config: ["일반형"] },
@@ -76,12 +87,14 @@ export const summaries: ProductSummary[] = [
     name: "클린트 어반 180cm 거실장 다릿발형 (3종 택1)",
     variantLabel: "다릿발형",
     thumbnail: thumbnailFor("1111100011"),
+    hoverImage: hoverImageFor("1111100011"),
     brand: "한샘",
     price: 344000,
     originalPrice: 421000,
     discountRate: 18,
-    rating: 4.7,
-    reviewCount: 37,
+    rating: sharedReviews.rating,
+    reviewCount: sharedReviews.count,
+    salesCount: 350,
     colors: ["화이트", "머드베이지", "그린"],
     category: ["거실", "거실장"],
     filterAttributes: { config: ["다릿발형"] },

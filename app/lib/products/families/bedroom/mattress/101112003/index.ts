@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -39,18 +40,24 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? foseasonBaseFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: foseasonBaseFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1011120030",
     familyId: "foseason-base",
     name: "포시즌 하단 베이스 SS",
     thumbnail: thumbnailFor("1011120030"),
+    hoverImage: hoverImageFor("1011120030"),
     brand: "한샘",
     price: 420000,
     originalPrice: 420000,
     discountRate: 0,
     rating: 4.5,
     reviewCount: 11,
+    salesCount: 160,
     category: ["침실", "매트리스", "토퍼·하단매트리스"],
     filterAttributes: { size: ["SS"] },
   },

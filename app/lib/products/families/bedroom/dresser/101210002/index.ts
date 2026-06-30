@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -43,18 +44,24 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? monoChestFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: monoChestFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1012100020",
     familyId: "mono-chest",
     name: "호텔침대 모노 3단 서랍장 1000 (색상2종)",
     thumbnail: thumbnailFor("1012100020"),
+    hoverImage: hoverImageFor("1012100020"),
     brand: "한샘",
     price: 369000,
     originalPrice: 454000,
     discountRate: 19,
     rating: 4.9,
     reviewCount: 20,
+    salesCount: 240,
     category: ["침실", "서랍장"],
     colors: ["차콜", "화이트"],
   },

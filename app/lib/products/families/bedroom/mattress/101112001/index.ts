@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -50,6 +51,10 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? stayTopperFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: stayTopperFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1011120010",
@@ -57,12 +62,14 @@ export const summaries: ProductSummary[] = [
     name: "스테이 리버서블 메모리폼 토퍼 SS",
     variantLabel: "SS",
     thumbnail: thumbnailFor("1011120010"),
+    hoverImage: hoverImageFor("1011120010"),
     brand: "한샘",
     price: 149000,
     originalPrice: 219000,
     discountRate: 32,
     rating: 4.8,
     reviewCount: 9,
+    salesCount: 95,
     category: ["침실", "매트리스", "토퍼·하단매트리스"],
     filterAttributes: { size: ["SS"] },
   },
@@ -72,12 +79,14 @@ export const summaries: ProductSummary[] = [
     name: "스테이 리버서블 메모리폼 토퍼 Q",
     variantLabel: "Q",
     thumbnail: thumbnailFor("1011120011"),
+    hoverImage: hoverImageFor("1011120011"),
     brand: "한샘",
     price: 179000,
     originalPrice: 249000,
     discountRate: 28,
     rating: 4.8,
     reviewCount: 9,
+    salesCount: 310,
     category: ["침실", "매트리스", "토퍼·하단매트리스"],
     filterAttributes: { size: ["Q"] },
   },

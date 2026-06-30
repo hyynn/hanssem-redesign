@@ -47,10 +47,10 @@ export function createSections(): ProductDetailSection[] {
       ],
     },
     {
-      id: "meterial",
+      id: "material",
       label: "소재",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-meterial-01.webp`, alt: "휴 모드 좌식 소파베드 소재 설명" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-material-01.webp`, alt: "휴 모드 좌식 소파베드 소재 설명" },
         {
           type: "text",
           title: "오염 걱정을 덜어주는 기능성 발수 원단",
@@ -69,13 +69,13 @@ export function createSections(): ProductDetailSection[] {
       id: "warranty",
       label: "품질보증",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.webp`, alt: "휴 모드 좌식 소파베드 주의사항" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.webp`, alt: "휴 모드 좌식 소파베드 품질보증" },
         {
           type: "text",
           title: "우리 가족, 우리 아이를 위한 변치 않는 내구성과 검증된 안전성",
           body: "한샘만의 엄격한 품질 테스트로 오래 사용할 수 있는 내구성은 물론, 어린이 사용요건에 준하는 유해성테스트를 통해 가족 모두가 안심하고 사용할 수 있도록 철저하게 검증하였습니다.",
         },
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-02.webp`, alt: "휴 모드 좌식 소파베드 주의사항" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-02.webp`, alt: "휴 모드 좌식 소파베드 품질보증" },
         {
           type: "text",
           title: "어린이제품 안전기준 적합성 인증",

@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -19,8 +20,6 @@ const pringleFamily: Omit<ProductFamily, "familyId"> = {
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-01.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-02.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-03.webp`,
-    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-04.webp`,
-    `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-05.webp`,
   ],
 };
 
@@ -42,18 +41,24 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? pringleFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: pringleFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1111110020",
     familyId: "pringle-sofa-table",
     name: "플래지어 프링글 소파테이블",
     thumbnail: thumbnailFor("1111110020"),
+    hoverImage: hoverImageFor("1111110020"),
     brand: "한샘",
     price: 459000,
     originalPrice: 480000,
     discountRate: 4,
     rating: 4.7,
     reviewCount: 12,
+    salesCount: 190,
     category: ["거실", "거실장·테이블", "테이블"],
   },
 ];

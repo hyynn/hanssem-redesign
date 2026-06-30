@@ -61,6 +61,8 @@
   제외 결정됨)
 - 대신 이미지 변경이나 텍스트 underline 애니메이션 같은 절제된
   인터랙션 사용
+- 상품 카드(ProductCard) hover: 텍스트 underline 대신 `hoverImage`(갤러리 2번째 이미지)로
+  크로스페이드(opacity transition) — 패밀리 추가 시 `hoverImageFor` 헬퍼로 자동 파생됨
 - 위시리스트 하트 아이콘: 클릭 시 빨간색으로 토글 (useState, client component)
 - 아이콘 rotate 애니메이션 금지: open/closed 상태 전환 시 CSS transform rotate 사용 금지.
   상태별로 다른 SVG path를 조건부 렌더링으로 처리할 것 (예: 토글 화살표 ▲/▼)
@@ -122,14 +124,24 @@
 - 리뷰 정렬: 평점순 정렬 시 동점이면 최신순으로 2차 정렬
 - 문의(QnA): 카테고리 필터([전체]/[상품]/[배송]/[기타]) + 정렬은 항상 최신순 고정
 
-## reviews.ts 파일 패턴 (기준: 101012001/reviews.ts)
+## reviews.ts 파일 패턴 (기준: bedroom/mattress/101111001/reviews.ts)
 - 임포트 순서: `import type { ReviewData, QnaItem, Review }` → `import { calculateReviewSummary }`
 - 내부 배열: `const reviewItems: Review[] = [...]` (named const, 타입 명시)
+- **리뷰 객체는 항상 멀티라인 포맷** (한 줄 압축 포맷 금지) — 필드마다 줄바꿈, 가독성 우선
 - `userName` / `questioner` 형식: **영문 소문자 2자리 + `*****`(별 5개)** 고정
   - 예: `"ho*****"`, `"ks*****"` — 한국어 이름(`"홍*희"`) 형식 사용 금지
+- `content`: **2문장 내외의 서술형** 작성 (한 줄짜리 단문 금지). 제품 사용 경험 + 디테일한 소감/아쉬운 점을
+  자연스럽게 묶어서 작성 (예: "가격이 있지만 그 이상의 퀄리티를 제공합니다. 거실 분위기가 완전히 달라졌어요.")
 - `rating` 값: **정수만** 허용 (1–5, 소수점 금지)
+  - 5점 위주이되 4점을 자연스럽게 섞고, 리얼리티를 위해 **3점도 1~2건 정도 포함** (배송 지연, 미세한 흠집,
+    뻑뻑한 도어 등 사소한 불편 사유로 작성). 별점 내림차순 정렬 금지 — 시간순으로 섞어서 배치
 - 리뷰 id: `"r-{그룹문자}NN"` 형식 — variant 그룹별 a/b/c/d… + 두 자리 번호
   - 단일 variant면 `"r-a01"` ~ `"r-aNN"`, 복수 variant면 그룹마다 `a / b / c …`
+  - 그룹 구분은 배열 내부에 `// ── {variant 라벨} ──` 인라인 주석으로 표시 (파일 상단 요약 주석 금지)
+- `images` 경로: `/images/reviews/{productId}/review-{NN}-{seq}.webp`
+  - `{NN}`은 해당 리뷰 id의 그룹문자를 뗀 두 자리 번호 (예: `r-a07` → `review-07-1.webp`)
+  - 포토 리뷰는 전체 기간에 걸쳐 분산 배치하되, 최신 리뷰(배열 앞쪽) 쪽에 더 많은 비중을 둘 것
+    (오래된 리뷰까지 끊기지 않게 1~2건은 남기되, 한쪽에만 몰아넣지 말 것)
 - 문의 id: `"q-{그룹문자}NN"` 형식 (리뷰 그룹과 동일한 문자 사용)
 - 답변 형식: 반드시 `"안녕하세요, 한샘입니다. "` 로 시작
 - 미답변 문의: `answered: false`, `answer` / `answerDate` 필드 생략, 배열 맨 뒤에 배치
@@ -155,7 +167,7 @@
   1. `familyObj` (sharedImages 포함)
   2. `VariantData` 타입 선언
   3. `variantDetails` — SKU별 variantImages, filterAttributes, sections
-  4. `thumbnailFor` helper 함수
+  4. `thumbnailFor` / `hoverImageFor` helper 함수
   5. `summaries[]`
   6. `getDetail()` — 가장 마지막
 - **thumbnail 파생 규칙 (하드코딩 금지)**:
@@ -170,6 +182,16 @@
   - 단일 SKU: `variantImages: []` → `variantImages[0]`이 undefined → 자동으로 `sharedImages[0]` 폴백
   - 다중 SKU: `variantImages: ["...main-01.webp"]` → `variantImages[0]` 사용
   - 문자열 경로 직접 작성 / `familyObj.sharedImages[0]` 직접 참조 모두 금지
+- **hoverImage 파생 규칙 (ProductCard hover 크로스페이드용, 하드코딩 금지)**:
+  - `thumbnailFor` 바로 다음에 `app/lib/types.ts`의 `assembleGallery`를 이용해 아래 helper를 반드시 작성:
+    ```ts
+    function hoverImageFor(id: string): string | undefined {
+      return assembleGallery({ sharedImages: XxxFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+    }
+    ```
+    (`XxxFamily`는 `thumbnailFor`와 동일한 familyObj 변수명)
+  - `summaries`의 `hoverImage`는 `thumbnail: thumbnailFor(...)` 바로 다음 줄에 `hoverImage: hoverImageFor("SKU_ID")`로만 설정, 예외 없음
+  - `assembleGallery`가 만드는 갤러리 순서(`-main-` 이미지 → sharedImages → 나머지 variantImages)상 1번 인덱스를 그대로 사용 — 갤러리 2번째 이미지가 없으면 자동으로 `undefined` (hover 시 썸네일 유지, 별도 처리 불필요)
 - 새 패밀리 추가 시 **4곳 모두** 수정 (하나라도 빠지면 상세 페이지 404):
   1. 새 폴더 생성 후 index.ts / sections.ts / reviews.ts 작성
   2. `app/lib/products/families/index.ts` — FAMILY_REGISTRY에 import 1줄 + 항목 1줄

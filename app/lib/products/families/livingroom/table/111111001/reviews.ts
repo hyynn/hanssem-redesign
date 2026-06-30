@@ -45,6 +45,7 @@ const reviewItems: Review[] = [
     date: "2026.01.07",
     variant: "화이트마블",
     content: "깔끔하고 고급스러운 느낌이에요. 공간이 화사해졌어요.",
+    images: ["/images/reviews/1111110010/review-05-1.webp"],
   },
   {
     id: "r-a06",

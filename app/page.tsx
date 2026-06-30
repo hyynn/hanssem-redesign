@@ -23,7 +23,7 @@ const livingHotspots: HotspotData[] = [
 ];
 
 const bedroomHotspots: HotspotData[] = [
-  { id: "br1", x: 14, y: 59, productId: "1012100011" },
+  { id: "br1", x: 14, y: 59, productId: "1012100010" },
   { id: "br2", x: 54, y: 66, productId: "1010120012" },
   { id: "br3", x: 88, y: 75, productId: "1012120010" },
 ];

@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -44,18 +45,24 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? hyuModeSofaFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: hyuModeSofaFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1110130010",
     familyId: "hyu-mode-sofa",
     name: "휴 모드 좌식 소파베드 아이보리",
     thumbnail: thumbnailFor("1110130010"),
+    hoverImage: hoverImageFor("1110130010"),
     brand: "한샘",
     price: 159000,
     originalPrice: 190000,
     discountRate: 16,
     rating: 4.7,
     reviewCount: 8,
+    salesCount: 75,
     category: ["거실", "소파", "좌식소파"],
     categoryTags: ["소파베드"],
     filterAttributes: { config: ["소파베드"] },

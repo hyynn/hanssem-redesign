@@ -1,3 +1,4 @@
+import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
 import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
@@ -39,6 +40,10 @@ function thumbnailFor(id: string): string {
   return variantDetails[id].variantImages[0] ?? euroNightstandFamily.sharedImages[0];
 }
 
+function hoverImageFor(id: string): string | undefined {
+  return assembleGallery({ sharedImages: euroNightstandFamily.sharedImages, variantImages: variantDetails[id].variantImages })[1];
+}
+
 export const summaries: ProductSummary[] = [
   {
     id: "1012120010",
@@ -46,12 +51,14 @@ export const summaries: ProductSummary[] = [
     name: "유로 605 슬로우 스틸협탁브라운",
     variantLabel: "기본단품",
     thumbnail: thumbnailFor("1012120010"),
+    hoverImage: hoverImageFor("1012120010"),
     brand: "한샘",
     price: 242000,
     originalPrice: 242000,
     discountRate: 0,
     rating: 5.0,
     reviewCount: 6,
+    salesCount: 320,
     category: ["침실", "화장대·서랍장", "협탁·침대패널"],
   },
 ];

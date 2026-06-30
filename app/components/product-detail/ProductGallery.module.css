@@ -52,11 +52,11 @@
 }
 
 .thumbnailButton:hover:not(.thumbnailActive) {
-  border-color: var(--color-text-muted);
+  border-color: var(--color-bg-secondary);
 }
 
 .thumbnailActive {
-  border-color: var(--color-accent);
+  border-color: var(--color-text-muted);
 }
 
 .arrowLeft,
@@ -74,4 +74,8 @@
 .arrowDisabled {
   color: var(--color-gray-light);
   cursor: default;
+}
+
+.arrowHidden {
+  display: none;
 }

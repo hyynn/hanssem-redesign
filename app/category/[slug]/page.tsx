@@ -209,24 +209,24 @@ const CATEGORY_CONFIG = {
         id: "table", label: "식탁",
         subcategories: [
           {
-            id: "table-2", label: "2인용식탁", categoryName: "2인용식탁", categoryCode: "121010",
-            banner: { image: "/images/category/dining/table/table-2.webp", title: "둘이 마주 앉는 식탁", body: "작지만 완성도 높은 2인 다이닝 공간" }
+            id: "wood", label: "원목", categoryName: "원목식탁", categoryCode: "121014",
+            banner: { image: "/images/category/dining/table/wood.webp", title: "자연을 닮은 원목의 결", body: "시간이 지날수록 깊어지는 원목 다이닝 공간" }
           },
           {
-            id: "table-4", label: "4인용식탁", categoryName: "4인용식탁", categoryCode: "121011",
-            banner: { image: "/images/category/dining/table/table-4.webp", title: "가족이 함께하는 테이블", body: "4인 가족의 일상이 모이는 다이닝 공간" }
-          },
-          {
-            id: "table-6", label: "6인용이상식탁", categoryName: "6인용식탁이상", categoryCode: "121012",
-            banner: { image: "/images/category/dining/table/table-6.webp", title: "넉넉한 자리, 풍성한 식사", body: "여럿이 모여도 여유로운 대형 식탁" }
-          },
-          {
-            id: "ceramic", label: "세라믹식탁", categoryName: "세라믹식탁", categoryCode: "121013",
+            id: "ceramic", label: "세라믹", categoryName: "세라믹식탁", categoryCode: "121013",
             banner: { image: "/images/category/dining/table/ceramic.webp", title: "세라믹의 단단한 아름다움", body: "스크래치에 강하고 관리가 쉬운 프리미엄 소재" }
           },
           {
-            id: "living-dining", label: "리빙다이닝", categoryName: "리빙다이닝식탁", categoryCode: "121014",
-            banner: { image: "/images/category/dining/table/living-dining.webp", title: "거실과 다이닝의 경계", body: "좌식과 입식을 넘나드는 리빙다이닝 스타일" }
+            id: "table-2", label: "2인", categoryName: "2인용식탁", categoryCode: "121010",
+            banner: { image: "/images/category/dining/table/table-2.webp", title: "둘이 마주 앉는 식탁", body: "작지만 완성도 높은 2인 다이닝 공간" }
+          },
+          {
+            id: "table-4", label: "4인", categoryName: "4인용식탁", categoryCode: "121011",
+            banner: { image: "/images/category/dining/table/table-4.webp", title: "가족이 함께하는 테이블", body: "4인 가족의 일상이 모이는 다이닝 공간" }
+          },
+          {
+            id: "table-6", label: "6인이상", categoryName: "6인용식탁이상", categoryCode: "121012",
+            banner: { image: "/images/category/dining/table/table-6.webp", title: "넉넉한 자리, 풍성한 식사", body: "여럿이 모여도 여유로운 대형 식탁" }
           },
         ],
       },
@@ -267,7 +267,7 @@ const CATEGORY_CONFIG = {
     ] satisfies TabConfig[],
     editor: {
       lifestyleImage: "/images/category/dining/editor-lifestyle.webp",
-      productIds: ["1111110010", "1111110020"] as [string, string],
+      productIds: ["1210120011", "1210130010"] as [string, string],
     },
     popularCategory: "다이닝",
     popularLabel: "Best of Month",

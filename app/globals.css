@@ -60,6 +60,7 @@ body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   color: var(--color-text-body);
   background-color: var(--color-bg);
+  min-width: 1280px;
 }
 
 

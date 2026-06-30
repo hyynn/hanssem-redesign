@@ -17,6 +17,9 @@ export default function ProductCard({ product }: { product: ProductSummary }) {
     >
       <div className={styles.imageWrapper}>
         <img src={product.thumbnail} alt={product.name} className={styles.image} />
+        {product.hoverImage && (
+          <img src={product.hoverImage} alt="" className={styles.imageHover} aria-hidden="true" />
+        )}
 
         {product.badge && (
           <span

@@ -133,6 +133,7 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
   const sorted = [...filtered].sort((a, b) => {
     if (sort === "price-asc") return a.price - b.price;
     if (sort === "price-desc") return b.price - a.price;
+    if (b.salesCount !== a.salesCount) return b.salesCount - a.salesCount;
     if (b.reviewCount !== a.reviewCount) return b.reviewCount - a.reviewCount;
     return b.rating - a.rating;
   });

@@ -20,19 +20,27 @@ export default function ProductGallery({
   onSelectThumbnail,
 }: ProductGalleryProps) {
   const listRef = useRef<HTMLDivElement>(null);
+  const [canScroll, setCanScroll] = useState<boolean | null>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
 
   const checkEdges = () => {
     const container = listRef.current;
     if (!container) return;
+    setCanScroll(container.scrollWidth > container.clientWidth + 1);
     setAtStart(container.scrollLeft <= 0);
     setAtEnd(container.scrollLeft + container.clientWidth >= container.scrollWidth - 1);
   };
 
   useEffect(() => {
-    checkEdges();
+    const container = listRef.current;
+    if (!container) return;
+    const ro = new ResizeObserver(checkEdges);
+    ro.observe(container);
+    return () => ro.disconnect();
   }, []);
+
+  const arrowsVisible = canScroll === true;
 
   const scrollThumbnails = (direction: "left" | "right") => {
     const container = listRef.current;
@@ -51,7 +59,7 @@ export default function ProductGallery({
 
       <div className={styles.thumbnailRow}>
         <button
-          className={`${styles.arrowLeft} ${atStart ? styles.arrowDisabled : ""}`}
+          className={`${styles.arrowLeft} ${!arrowsVisible ? styles.arrowHidden : atStart ? styles.arrowDisabled : ""}`}
           onClick={() => scrollThumbnails("left")}
           aria-label="이전 썸네일"
         >
@@ -73,7 +81,7 @@ export default function ProductGallery({
         </div>
 
         <button
-          className={`${styles.arrowRight} ${atEnd ? styles.arrowDisabled : ""}`}
+          className={`${styles.arrowRight} ${!arrowsVisible ? styles.arrowHidden : atEnd ? styles.arrowDisabled : ""}`}
           onClick={() => scrollThumbnails("right")}
           aria-label="다음 썸네일"
         >

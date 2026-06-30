@@ -15,12 +15,10 @@
   padding-bottom: 56px;
 }
 
-.packageText {}
-
 .label {
   font-size: 11px;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--color-gray-light);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 16px;
@@ -38,7 +36,7 @@
 .desc {
   font-size: 14px;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--color-bg-secondary);
 }
 
 .ctaBtn {
@@ -65,12 +63,11 @@
 }
 
 /* ── Construction cases ── */
-.casesSection {}
 
 .casesLabel {
   font-size: 11px;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--color-gray-light);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   margin-bottom: 24px;
@@ -107,13 +104,13 @@
   left: 0;
   right: 0;
   padding: 24px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.56) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.68) 50%, transparent 100%);
 }
 
 .caseMeta {
   font-size: 10px;
   font-weight: 300;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--color-gray-light);
   letter-spacing: 0.08em;
   margin-bottom: 7px;
 }
@@ -121,5 +118,5 @@
 .caseType {
   font-size: 17px;
   font-weight: 500;
-  color: #fff;
+  color: var(--color-bg);
 }

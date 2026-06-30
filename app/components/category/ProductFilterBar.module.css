@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 60px;
+  padding: 60px 60px 0;
   background: var(--color-bg);
   gap: 12px;
 }
@@ -169,8 +169,6 @@
   flex-direction: column;
   gap: 28px;
 }
-
-.panelSection {}
 
 .panelSectionLabel {
   font-size: 12px;

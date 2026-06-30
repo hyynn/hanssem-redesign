@@ -57,7 +57,6 @@
 .body {
   font-size: 15px;
   line-height: 1.8;
-  color: var(--color-text-heading);
-  opacity: 0.6;
+  color: var(--color-text-body);
   white-space: pre-line;
 }

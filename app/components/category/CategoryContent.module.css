@@ -61,10 +61,7 @@
   color: var(--color-text-heading);
 }
 
-/* Panel */
-.panel {
-  /* no padding — banner and grid handle their own spacing */
-}
+
 
 /* Depth3 chips — stickyBars 래퍼 안에 있으므로 개별 sticky 불필요 */
 .chips {
@@ -107,7 +104,7 @@
 
 /* Grid */
 .gridWrapper {
-  padding: 40px 60px;
+  padding: 30px 60px 40px;
 }
 
 .grid {

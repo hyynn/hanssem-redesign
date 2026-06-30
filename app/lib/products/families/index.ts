@@ -24,6 +24,8 @@ import { FAMILY_CODE as CLINT_URBAN_CAB_CODE, FAMILY_PATH as CLINT_URBAN_CAB_PAT
 import { FAMILY_CODE as CLINT_MODERN_CAB_CODE, FAMILY_PATH as CLINT_MODERN_CAB_PATH } from "./livingroom/cabinet/111110002";
 import { FAMILY_CODE as PLEATS_CAB_CODE, FAMILY_PATH as PLEATS_CAB_PATH } from "./livingroom/cabinet/111110003";
 import { FAMILY_CODE as MILAN_AV_CAB_CODE, FAMILY_PATH as MILAN_AV_CAB_PATH } from "./livingroom/cabinet/111110004";
+import { FAMILY_CODE as DONO_EDGE_CODE, FAMILY_PATH as DONO_EDGE_PATH } from "./dining/table/121013001";
+import { FAMILY_CODE as FORE_COMFORT_CODE, FAMILY_PATH as FORE_COMFORT_PATH } from "./dining/table/121012001";
 
 export const FAMILY_REGISTRY: Record<string, string> = {
   [MONO_BED_CODE]: MONO_BED_PATH,
@@ -50,6 +52,8 @@ export const FAMILY_REGISTRY: Record<string, string> = {
   [CLINT_MODERN_CAB_CODE]: CLINT_MODERN_CAB_PATH,
   [PLEATS_CAB_CODE]: PLEATS_CAB_PATH,
   [MILAN_AV_CAB_CODE]: MILAN_AV_CAB_PATH,
+  [DONO_EDGE_CODE]: DONO_EDGE_PATH,
+  [FORE_COMFORT_CODE]: FORE_COMFORT_PATH,
 };
 
 export function getFamilyFolder(productId: string): string {

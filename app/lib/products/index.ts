@@ -23,6 +23,8 @@ import { summaries as clintUrbanCabSummaries, getDetail as getClintUrbanCabDetai
 import { summaries as clintModernCabSummaries, getDetail as getClintModernCabDetail } from "./families/livingroom/cabinet/111110002";
 import { summaries as pleatsCabSummaries, getDetail as getPleatsCabDetail } from "./families/livingroom/cabinet/111110003";
 import { summaries as milanAvCabSummaries, getDetail as getMilanAvCabDetail } from "./families/livingroom/cabinet/111110004";
+import { summaries as donoEdgeSummaries, getDetail as getDonoEdgeDetail } from "./families/dining/table/121013001";
+import { summaries as foreComfortSummaries, getDetail as getForeComfortDetail } from "./families/dining/table/121012001";
 
 type Getter = (id: string) => ProductDetail;
 
@@ -52,6 +54,8 @@ const registry: Record<string, Getter> = {
   ...Object.fromEntries(clintModernCabSummaries.map((s) => [s.id, getClintModernCabDetail])),
   ...Object.fromEntries(pleatsCabSummaries.map((s) => [s.id, getPleatsCabDetail])),
   ...Object.fromEntries(milanAvCabSummaries.map((s) => [s.id, getMilanAvCabDetail])),
+  ...Object.fromEntries(donoEdgeSummaries.map((s) => [s.id, getDonoEdgeDetail])),
+  ...Object.fromEntries(foreComfortSummaries.map((s) => [s.id, getForeComfortDetail])),
 };
 
 export function getProductDetail(id: string): ProductDetail | null {

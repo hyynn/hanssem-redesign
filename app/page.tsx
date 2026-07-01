@@ -37,6 +37,7 @@ export default function Page() {
         spaceLabel="거실 · Living Room"
         tagline="편안함의 기준을 높이다"
         image="/images/space-curation/livingroom-main.webp"
+        viewAllHref="/category/livingroom"
         hotspots={livingHotspots}
       />
 
@@ -44,6 +45,7 @@ export default function Page() {
         spaceLabel="침실 · Bedroom"
         tagline="잠드는 순간도, 깨는 순간도"
         image="/images/space-curation/bedroom-main.webp"
+        viewAllHref="/category/bedroom"
         hotspots={bedroomHotspots}
       />
 

@@ -30,47 +30,29 @@
   letter-spacing: 0.1em;
   margin-bottom: 16px;
   opacity: 0.9;
+  margin-left: 4px;
 }
 .title {
   font-size: 48px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.25;
   margin-bottom: 16px;
   white-space: pre-line;
   min-height: calc(1.25em * 2);
+
 }
 .subTitle {
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1.4;
   opacity: 0.85;
   white-space: pre-line;
   min-height: calc(1.4em * 2);
+  margin-left: 4px;
 }
 .copyright {
   font-size: 12px;
   opacity: 0.6;
 }
-
-/* .arrowLeft, .arrowRight {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 28px;
-  color: #fff;
-  background: rgba(0,0,0,0.2);
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-  transition: background 0.2s;
-}
-.arrowLeft:hover, .arrowRight:hover { background: rgba(0,0,0,0.4); }
-.arrowLeft { left: 24px; }
-.arrowRight { right: 24px; } */
-
 .clickZoneLeft,
 .clickZoneRight {
   position: absolute;
@@ -84,6 +66,6 @@
 .clickZoneLeft { left: 0; }
 .clickZoneRight { right: 0; }
 
-.dots { position: absolute; bottom: 30px; right: 60px; display: flex; gap: 8px; z-index: 10; }
+.dots { position: absolute; bottom: 30px; left: 60px; display: flex; gap: 8px; z-index: 10; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s, width 0.3s; }
-.dotActive { background: #fff; width: 32px; border-radius: 4px; }
+.dotActive { background: #fff; width: 38px; border-radius: 4px; }

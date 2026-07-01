@@ -4,8 +4,6 @@
 }
 
 .topBar {
-  max-width: var(--max-width);
-  margin: 0 auto;
   padding: 24px 40px;
   display: flex;
   justify-content: space-between;
@@ -19,12 +17,17 @@
   font-size: 14px;
 }
 
-.topLinks a {
+.topLinks button {
   font-weight: 400;
   color: var(--color-text-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: inherit;
 }
 
-.emphasized {
+.topLinks button.emphasized {
   font-weight: 600;
   color: var(--color-text-body);
 }
@@ -77,24 +80,34 @@
   border-bottom: none;
 }
 
-.familySiteMenu a {
+.familySiteMenu button {
   display: block;
+  width: 100%;
+  text-align: left;
   padding: 10px 14px;
   font-size: 14px;
   color: var(--color-text-body);
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-.familySiteMenu a:hover {
+.familySiteMenu button:hover {
   background-color: var(--color-bg-secondary);
 }
 
 .mainSection {
-  max-width: var(--max-width);
-  margin: 0 auto;
   padding: 40px 40px 30px;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr 1fr 0.8fr;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 30px;
+}
+
+.contactGroup {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1fr;
+  gap: 40px;
 }
 
 .logoWrap {
@@ -143,11 +156,14 @@
 
 .qrBlock {
   text-align: center;
+  justify-self: center;
+  width: fit-content;
+  cursor: pointer;
 }
 
-.qrBlock img {
-  width: 90px;
-  height: 90px;
+.qrBlock svg {
+  width: 70px;
+  height: 70px;
   margin-bottom: 8px;
 }
 
@@ -157,8 +173,6 @@
 }
 
 .legalSection {
-  max-width: var(--max-width);
-  margin: 0 auto;
   padding: 0 40px 30px;
   font-size: 12px;
   color: var(--color-text-muted);

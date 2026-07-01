@@ -21,11 +21,11 @@ export default function Hero({ banners, autoPlayMs = 5000 }: HeroProps) {
     const [touchStartX, setTouchStartX] = useState<number | null>(null);
 
     useEffect(() => {
-        const timer = setInterval(() => {
+        const timer = setTimeout(() => {
             setIndex((prev) => (prev + 1) % banners.length);
         }, autoPlayMs);
-        return () => clearInterval(timer);
-    }, [banners.length, autoPlayMs]);
+        return () => clearTimeout(timer);
+    }, [index, banners.length, autoPlayMs]);
 
     const prev = () => setIndex((i) => (i - 1 + banners.length) % banners.length);
     const next = () => setIndex((i) => (i + 1) % banners.length);

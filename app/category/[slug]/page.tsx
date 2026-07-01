@@ -275,7 +275,7 @@ const CATEGORY_CONFIG = {
     brandStory: {
       label: "한샘이 생각하는 다이닝",
       title: "식사를 의식으로 만드는 공간",
-      body: "함께 먹는다는 것은 함께 산다는 것입니다.\n한샘은 소재의 온도와 테이블의 비례로\n매일의 식사가 특별한 시간이 되도록 설계합니다.",
+      body: "좋은 식사는 맛보다 먼저, 자리에서 시작됩니다.\n한샘은 소재의 온도와 테이블의 비례로\n매일의 식사가 특별한 시간이 되도록 설계합니다.",
       ctaLabel: "알아보기",
       ctaHref: "#",
       image: "/images/category/dining/brand-story.webp",

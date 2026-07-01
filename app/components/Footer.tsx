@@ -133,14 +133,12 @@ export default function Footer() {
                 <ul className={styles.topLinks}>
                     {TOP_LINKS.map((link) => (
                         <li key={link.label}>
-                            <a
-                                href={link.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                type="button"
                                 className={link.emphasized ? styles.emphasized : ""}
                             >
                                 {link.label}
-                            </a>
+                            </button>
                         </li>
                     ))}
                 </ul>
@@ -152,9 +150,9 @@ export default function Footer() {
                     <ul className={styles.familySiteMenu}>
                         {FAMILY_SITES.map((site) => (
                             <li key={site.label}>
-                                <a href={site.href} target="_blank" rel="noopener noreferrer">
+                                <button type="button">
                                     {site.label}
-                                </a>
+                                </button>
                             </li>
                         ))}
                     </ul>
@@ -162,37 +160,39 @@ export default function Footer() {
             </div>
 
             <div className={styles.mainSection}>
-                <div className={styles.brandBlock}>
-                    <div className={styles.logoWrap}>
-                        <HanssemLogo />
+                <div className={styles.contactGroup}>
+                    <div className={styles.brandBlock}>
+                        <div className={styles.logoWrap}>
+                            <HanssemLogo />
+                        </div>
+                        <p className={styles.csTitle}>고객센터 이용안내</p>
+                        <p className={styles.csTime}>
+                            평일 09:00 - 18:00 , 토요일 09:00 - 13:00
+                            <br />
+                            (일요일,공휴일 휴무)
+                        </p>
                     </div>
-                    <p className={styles.csTitle}>고객센터 이용안내</p>
-                    <p className={styles.csTime}>
-                        평일 09:00 - 18:00 , 토요일 09:00 - 13:00
-                        <br />
-                        (일요일,공휴일 휴무)
-                    </p>
+
+                    {CONTACT_BOXES.map((box) => (
+                        <div className={styles.contactBox} key={box.title}>
+                            <button className={styles.contactTitle}>
+                                {box.title}
+                                <ChevronRightIcon />
+                            </button>
+                            <div className={styles.contactDesc}>
+                                <span>{box.desc}</span>
+                                {box.phone && <span>({box.phone})</span>}
+                            </div>
+                            <button className={styles.contactBtn}>
+                                {box.icon === "chat" ? <ChatIcon /> : <RequestIcon />}
+                                {box.buttonLabel}
+                            </button>
+                        </div>
+                    ))}
                 </div>
 
-                {CONTACT_BOXES.map((box) => (
-                    <div className={styles.contactBox} key={box.title}>
-                        <button className={styles.contactTitle}>
-                            {box.title}
-                            <ChevronRightIcon />
-                        </button>
-                        <div className={styles.contactDesc}>
-                            <span>{box.desc}</span>
-                            {box.phone && <span>({box.phone})</span>}
-                        </div>
-                        <button className={styles.contactBtn}>
-                            {box.icon === "chat" ? <ChatIcon /> : <RequestIcon />}
-                            {box.buttonLabel}
-                        </button>
-                    </div>
-                ))}
-
                 <div className={styles.qrBlock}>
-                    <img src="/images/common/app-qr.png" alt="앱 다운 받기 QR 코드" />
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="#505050"><path d="M520-120v-80h80v80h-80Zm-80-80v-200h80v200h-80Zm320-120v-160h80v160h-80Zm-80-160v-80h80v80h-80Zm-480 80v-80h80v80h-80Zm-80-80v-80h80v80h-80Zm360-280v-80h80v80h-80ZM170-650h140v-140H170v140Zm-50 50v-240h240v240H120Zm50 430h140v-140H170v140Zm-50 50v-240h240v240H120Zm530-530h140v-140H650v140Zm-50 50v-240h240v240H600Zm80 480v-120h-80v-80h160v120h80v80H680ZM520-400v-80h160v80H520Zm-160 0v-80h-80v-80h240v80h-80v80h-80Zm40-200v-160h80v80h80v80H400Zm-190-90v-60h60v60h-60Zm0 480v-60h60v60h-60Zm480-480v-60h60v60h-60Z" /></svg>
                     <p>앱 다운 받기</p>
                 </div>
             </div>
@@ -228,9 +228,9 @@ export default function Footer() {
             </div>
 
             <div className={styles.disclaimerBar}>
-                한샘몰 판매 상품 중 &apos;입점브랜드상품&apos;으로 명기된 상품의 경우, (주)한샘은 판매자가
-                아닌 통신판매중개자이므로 판매자로서의 책임을 부담하지 아니합니다. 해당 상품, 거래정보
-                및 거래에 대하여는 실제 판매자인 각 입점업체에게 책임이 있습니다.
+                본 프로젝트는 개인 포트폴리오 목적으로 제작된 비공식 리디자인 컨셉으로, (주)한샘과 공식적인 관련이 없습니다.<br></br>
+                This is an unofficial redesign concept for portfolio purposes only.
+                Not affiliated with Hanssem Co., Ltd.
             </div>
         </footer>
     );

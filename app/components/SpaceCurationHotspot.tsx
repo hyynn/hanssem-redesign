@@ -54,7 +54,7 @@ export default function SpaceCurationHotspot({
     <section className={styles.section}>
       <div className={styles.header}>
         <span className={styles.label}>{spaceLabel}</span>
-        <a href={viewAllHref} className={styles.viewAll}>전체보기 <ArrowIcon direction="right" size={12} /></a>
+        <a href={viewAllHref} className={styles.viewAll}>전체보기 <ArrowIcon direction="right" size={13} /></a>
       </div>
 
       <div className={styles.imageArea} onClick={closeAll}>

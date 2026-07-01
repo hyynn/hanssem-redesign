@@ -40,7 +40,7 @@
   flex: 0 0 64px;
   width: 64px;
   height: 64px;
-  border: 1px solid var(--color-gray-light);
+  border: 1px solid var(--color-bg-secondary);
   overflow: hidden;
   transition: border-color 0.25s;
 }
@@ -52,7 +52,7 @@
 }
 
 .thumbnailButton:hover:not(.thumbnailActive) {
-  border-color: var(--color-bg-secondary);
+  border-color: var(--color-gray-light);
 }
 
 .thumbnailActive {

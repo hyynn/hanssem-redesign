@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/app/store/cartStore";
 import { ArrowIcon, WishlistBtn } from "@/app/components/Icon";
+import AddToCartModal from "./AddToCartModal";
+import type { FilterAttributes } from "@/app/lib/types";
 import styles from "./OrderArea.module.css";
 
 interface Props {
@@ -14,6 +16,8 @@ interface Props {
   originalPrice?: number;
   variantLabel?: string;
   colors?: string[];
+  category: string[];
+  filterAttributes?: FilterAttributes;
 }
 
 type SelectedItem = { optionKey: string; qty: number };
@@ -26,6 +30,8 @@ export default function OrderArea({
   originalPrice,
   variantLabel,
   colors,
+  category,
+  filterAttributes,
 }: Props) {
   const router = useRouter();
   const cartAdd = useCartStore((s) => s.add);
@@ -33,6 +39,7 @@ export default function OrderArea({
   const [isOpen, setIsOpen] = useState(false);
   const [qty, setQty] = useState(1);                          // 단일(색상 없는) 상품용
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]); // 색상 상품용
+  const [showCartModal, setShowCartModal] = useState(false);
 
   const hasColors = !!colors && colors.length > 0;
   const slotVisible = !hasColors ? isOpen : selectedItems.length > 0;
@@ -89,6 +96,7 @@ export default function OrderArea({
     setIsOpen(false);
     setQty(1);
     setSelectedItems([]);
+    setShowCartModal(true);
   }
 
   // ── 바로구매 ──────────────────────────────────────────────────────────────
@@ -116,6 +124,15 @@ export default function OrderArea({
   const alreadySelectedKeys = new Set(selectedItems.map((i) => i.optionKey));
 
   return (
+    <>
+    {showCartModal && (
+      <AddToCartModal
+        category={category}
+        filterAttributes={filterAttributes}
+        currentProductId={productId}
+        onClose={() => setShowCartModal(false)}
+      />
+    )}
     <div className={styles.area}>
       {/* ── 드롭다운 토글 — 항상 존재 ─────────────────────────────────── */}
       <div className={styles.toggleWrapper}>
@@ -259,5 +276,7 @@ export default function OrderArea({
         <WishlistBtn className={styles.wishBtn} size={24} />
       </div>
     </div>
+    </>
+
   );
 }

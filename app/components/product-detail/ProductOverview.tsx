@@ -47,6 +47,8 @@ export default function ProductOverview({ product }: { product: ProductDetail })
           originalPrice={product.originalPrice}
           variantLabel={product.variantLabel}
           colors={product.colors}
+          category={product.category}
+          filterAttributes={product.filterAttributes}
         />
 
         <DeliveryInfoBox

@@ -14,7 +14,7 @@ export default function PromotionBanner({
 
   return (
     <div className={styles.wrapper}>
-      <p className={styles.label}>이벤트 {promotions.length}</p>
+      <p className={styles.label}>이벤트</p>
       <div className={styles.grid}>
         {promotions.map((promo) => (
           <div key={promo.title} className={styles.item}>

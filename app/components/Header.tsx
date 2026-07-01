@@ -10,9 +10,9 @@ const NAV_ITEMS = [
   { label: "침실", href: "/category/bedroom" },
   { label: "거실", href: "/category/livingroom" },
   { label: "다이닝", href: "/category/dining" },
-  { label: "소품", href: "/category/home-deco" },
-  { label: "이벤트", href: "/events" },
-  { label: "매거진", href: "/magazine" },
+  { label: "소품", href: "/category/home-deco", prefetch: false },
+  { label: "이벤트", href: "/events", prefetch: false },
+  { label: "매거진", href: "/magazine", prefetch: false },
 ];
 
 export default function Header() {
@@ -58,6 +58,7 @@ export default function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  prefetch={item.prefetch ?? true}
                   className={`${styles.navLink} ${pathname.startsWith(item.href) ? styles.navActive : ""}`}
                 >
                   {item.label}

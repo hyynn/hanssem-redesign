@@ -58,7 +58,7 @@ export default function Header() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  prefetch={item.prefetch ?? true}
+                  prefetch={item.prefetch}
                   className={`${styles.navLink} ${pathname.startsWith(item.href) ? styles.navActive : ""}`}
                 >
                   {item.label}

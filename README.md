@@ -14,6 +14,7 @@
 
 - **Framework**: Next.js (App Router)
 - **Language**: TypeScript
+- **State**: zustand (장바구니 상태 관리)
 - **Styling**: CSS Modules (+ 일부 Tailwind 유틸리티 클래스 혼용)
 - **Font**: Pretendard (`@font-face`로 직접 정의)
 - **배포**: Vercel (GitHub 연동, push 시 자동 배포)
@@ -46,9 +47,9 @@
 
 ## 디자인 시스템
 
-- 컬러: `globals.css`의 CSS 변수(`--color-text`, `--color-sale` 등) 기반, 하드코딩 금지
+- 컬러: `globals.css`의 CSS 변수(`--color-text-heading`, `--color-sale` 등) 기반, 하드코딩 금지
 - 포인트 컬러 최소화 (화이트/그레이 베이스 + 할인율만 빨강으로 고정)
-- 인터랙션: hover 시 `box-shadow` + `translateY` 조합 금지 — 이미지 미세 줌, 텍스트 underline 등 절제된 방식 사용
+- 인터랙션: hover 시 `box-shadow` + `translateY` 조합, 이미지 줌(scale) 금지 — 상품 카드는 두 번째 이미지로의 크로스페이드, 텍스트는 underline 애니메이션 등 절제된 방식 사용
 - 영상/모달 등 동적 인터랙션도 "사용자 의도 없이 반복 재생되지 않기"를 원칙으로 설계
 
 ---

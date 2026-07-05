@@ -9,15 +9,20 @@
   시스템(컬러 토큰, hover 규칙 등) 안에서만 판단할 것
 
 ## 기술 스택
-- Next.js App Router (Pages Router 아님)
+- Next.js 16 App Router (Pages Router 아님) + React 19 + TypeScript
+- 상태 관리: zustand 5 (장바구니 — app/store/cartStore.ts)
 - 스타일링: CSS Modules (Tailwind 유틸리티 클래스도 일부 혼용 중 - layout.tsx의 h-full, flex 등)
 - 폰트: Pretendard (next/font 아닌 @font-face로 globals.css에 직접 정의)
 
 ## 디렉토리 규칙
 - app/page.tsx, app/layout.tsx: Next.js 예약 파일명, 이름 변경 금지
 - 공통 컴포넌트는 app/components/ 에 위치 (Header, Hero, ProductCard,
-  BestSellerMarquee, SpaceCuration 등)
+  BestSellerGrid, SpaceCurationHotspot 등)
+  - BestSellerMarquee, SpaceCuration은 레거시 백업 (page.tsx에서 주석 처리됨, 현재 미사용)
 - 각 컴포넌트는 자기 이름과 동일한 .module.css 파일을 짝으로 가짐
+- 라우트: app/cart/(장바구니), app/checkout/(주문서), app/category/[slug]/, app/products/[id]/
+- app/store/: zustand 스토어 (cartStore.ts)
+- app/actions/: 서버 액션 (auth.ts — 로그인/회원가입/세션. 현재 UI 미연결 상태, 로그인 페이지 추가 시 활용 예정)
 - lib/ (프로젝트 루트): 라우팅·렌더링과 무관한 순수 유틸/코드 체계
   - category-codes.ts (카테고리 트리 & 코드 헬퍼)
   - filter-dimensions.ts (카테고리별 필터 칩 옵션 정의)
@@ -45,8 +50,10 @@
   - --color-gray-light: #d0d0d0 (subtle 보더, 구분선)
   - --color-accent: #1a1a1a (버튼 보더, 버튼 배경, 인터랙티브 요소 강조색)
   - --color-sale: #ff4d4f (할인율, 판매가 강조 — 이 색만 사용)
-  - --max-width: 1440px
-  - --detail-max-width: 1200px
+  - --max-width: 1440px (전 페이지 공통 텍스트 정렬선의 기준 폭)
+  - --container-pad: 60px (정렬선 좌우 패딩)
+  - --align-inset: 풀블리드 요소용 수평 inset 계산값 (아래 "레이아웃 정렬 규칙" 참조)
+  - --detail-max-width: 1260px
   - --detail-content-width: 900px
   - --header-height: 80px
   - --product-tab-height: 50px
@@ -55,6 +62,25 @@
 - 포인트 컬러는 의도적으로 최소화 (상품 카테고리가 광범위해서 화이트/그레이
   베이스 유지, 할인율은 빨강(--color-sale) 고정)
 - 한샘 로고 단독 사용 (W CONCEPT 콜라보 표기 제거됨)
+- 반응형: 현재 데스크톱(--max-width: 1440px) 기준으로만 구현됨. @media 쿼리 없음.
+  반응형 작업은 별도 페이즈로 진행 예정 — 브레이크포인트 규칙이 정해지기 전까지
+  임의로 @media 쿼리를 추가하지 말 것
+
+## 레이아웃 정렬 규칙 (정렬선 스냅)
+- 모든 텍스트/콘텐츠는 하나의 수평 정렬선을 공유: `(100% - 1440px) / 2 + var(--container-pad)`
+  (1440px 이하 화면에서는 가장자리에서 60px). 배경/이미지는 풀블리드 허용,
+  글자 시작 위치만 정렬선에 스냅 — "풀블리드 = 의도된 breakout" 시스템
+- **캡 컨테이너** (장바구니·체크아웃·상세 브레드크럼 등 정보성 블록):
+  `max-width: var(--max-width); margin: 0 auto; padding-inline: var(--container-pad)`
+- **풀블리드 블록** (배경·보더·이미지가 화면을 가득 채우는 섹션):
+  수평 패딩(또는 absolute 오버레이의 left)에 `var(--align-inset)` 사용.
+  --align-inset은 % 기반이라 containing block이 뷰포트 폭인 요소에서만 동작함
+- **예외**: containing block이 뷰포트가 아닌 경우(예: CategoryBrandStory의 좌측
+  절반 컬럼)는 100vw 기반 calc로 직접 계산 (스크롤바 폭 오차 허용)
+- 수평 오프셋에 40px/60px/80px 등 하드코딩 금지 — 반드시 위 두 패턴 중 하나 사용.
+  반응형 진입 시 :root에서 --container-pad만 재정의하면 전 섹션이 함께 조정됨
+- 예외적으로 좁은 읽기 폭이 필요한 곳(상품 상세 본문)은 --detail-max-width /
+  --detail-content-width 유지 (정렬선과 별개의 의도된 좁은 컨테이너)
 
 ## 인터랙션 규칙
 - hover 시 box-shadow + translateY 조합이나 image hover시 zoom(scale) 금지 ("AI스러운" 느낌으로 판단,
@@ -223,6 +249,17 @@
 - 카테고리 고유 섹션이 필요한 경우에만 위 5개 외에 새 id 추가, 없애거나 순서 바꾸지 말 것
 
 ## 이미지 포맷 규칙
+- 렌더링: `next/image` 대신 일반 `<img>` 태그 사용 (프로젝트 전체 통일).
+  이미 .webp로 수동 최적화된 정적 에셋이라 변환 이점이 적고, CSS Modules 기반
+  레이아웃 제어를 우선하기 위한 선택 — 임의로 next/image로 교체하지 말 것
+- **원시 `<img>` 직접 사용 금지 (ESLint로 강제)** — 항상 공용 컴포넌트
+  `app/components/Img.tsx`의 `<Img>` 사용:
+  - 기본 동작: `loading="lazy"` 자동 적용 → React 19 SSR의 `<img>` 자동
+    `<link rel="preload">` 주입("preloaded but not used" 경고의 원인)을 구조적으로 차단
+  - 첫 화면(LCP) 이미지만 `<Img priority />` — eager + `fetchPriority="high"`.
+    현재 3곳뿐: Hero 첫 슬라이드, CategoryHero, 상세 갤러리 메인
+  - 새 페이지/컴포넌트에 이미지 추가 시 그냥 `<Img>`만 쓰면 됨 (별도 판단 불필요),
+    첫 화면 이미지일 때만 priority를 의도적으로 선언
 - 기본: `.webp` (정적 이미지 전반)
 - 움직임이 필요한 구간(소재 질감, 기능 시연 등): `.mp4`가 기본 선택
 - `.gif`: 압축 효율이 낮아 용량이 크게 늘어나므로(예: 4.5MB) 원칙적으로 mp4로 변환.
@@ -248,7 +285,8 @@
 - globals.css는 CSS Module이 아니므로 `import styles from`으로 받으면
   styles가 undefined가 됨. `import './globals.css'`처럼 사이드이펙트로만
   import할 것
-- 베스트셀러 섹션은 풀블리드(100vw) + 무한 가로 스크롤(marquee) 형태,
-  컨테이너 max-width를 벗어나야 함
+- 베스트셀러 섹션: 현재 홈은 BestSellerGrid(그리드형) 사용.
+  구버전 BestSellerMarquee(풀블리드 100vw + 무한 가로 스크롤)는 레거시 백업으로만 보관 중 —
+  marquee를 다시 쓸 경우 컨테이너 max-width를 벗어나야 한다는 제약이 있었음
 - 상품 카드(가격+할인율+평점+태그 등 정보량 많은 카드)는 그리드보다
   세로 리스트가 적합 (정보 밀도 문제로 그리드 압축 시 텍스트 깨짐)

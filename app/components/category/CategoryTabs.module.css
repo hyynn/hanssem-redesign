@@ -8,7 +8,7 @@
 
 .nav {
   display: flex;
-  padding: 0 60px;
+  padding: 0 var(--align-inset);
   overflow-x: auto;
   scrollbar-width: none;
 }

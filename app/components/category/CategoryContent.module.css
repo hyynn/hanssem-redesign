@@ -13,7 +13,7 @@
 
 .nav {
   display: flex;
-  padding: 0 60px;
+  padding: 0 var(--align-inset);
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -68,7 +68,7 @@
   display: flex;
   flex-wrap: nowrap;
   gap: 8px;
-  padding: 16px 60px;
+  padding: 16px var(--align-inset);
   background: var(--color-bg);
   border-bottom: 1px solid var(--color-gray-light);
   overflow-x: auto;
@@ -104,7 +104,7 @@
 
 /* Grid */
 .gridWrapper {
-  padding: 30px 60px 40px;
+  padding: 30px var(--align-inset) 40px;
 }
 
 .grid {

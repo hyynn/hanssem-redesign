@@ -8,7 +8,7 @@
 .breadcrumb {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 18px 60px;
+  padding: 18px var(--container-pad);
   font-size: 13px;
   color: var(--color-text-muted);
   display: flex;
@@ -37,7 +37,7 @@
 .inner {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 48px 60px 80px;
+  padding: 48px var(--container-pad) 80px;
 }
 
 .pageTitle {

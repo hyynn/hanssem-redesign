@@ -40,6 +40,11 @@
   --color-accent: #1a1a1a;
   --color-sale: #ff4d4f;
   --max-width: 1440px;
+  --container-pad: 60px;
+  /* 풀블리드 요소의 수평 패딩(또는 absolute left)에 사용 — 내부 콘텐츠를
+     1440 정렬선(캡 컨테이너 + --container-pad)에 스냅시킴.
+     % 는 사용 지점의 containing block 기준으로 계산되므로 풀블리드 요소에서만 쓸 것 */
+  --align-inset: calc(max((100% - var(--max-width)) / 2, 0px) + var(--container-pad));
   --detail-max-width: 1260px;
   --detail-content-width: 900px;
   --header-height: 80px;

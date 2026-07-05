@@ -4,7 +4,7 @@
 }
 
 .topBar {
-  padding: 24px 40px;
+  padding: 24px var(--align-inset);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,12 +52,17 @@
   display: none;
 }
 
-.familySiteTrigger svg {
-  transition: transform 0.05s ease;
+/* open/closed 상태는 rotate 대신 상하 화살표 SVG를 교체해 표현 */
+.arrowOpen {
+  display: none;
 }
 
-.familySite[open] .familySiteTrigger svg {
-  transform: rotate(180deg);
+.familySite[open] .arrowOpen {
+  display: block;
+}
+
+.familySite[open] .arrowClosed {
+  display: none;
 }
 
 .familySiteMenu {
@@ -97,7 +102,7 @@
 }
 
 .mainSection {
-  padding: 40px 40px 30px;
+  padding: 40px var(--align-inset) 30px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -173,7 +178,7 @@
 }
 
 .legalSection {
-  padding: 0 40px 30px;
+  padding: 0 var(--align-inset) 30px;
   font-size: 12px;
   color: var(--color-text-muted);
   line-height: 1.8;
@@ -205,7 +210,7 @@
 
 .disclaimerBar {
   background-color: #f0f0f0;
-  padding: 16px 40px;
+  padding: 16px var(--align-inset);
   font-size: 12px;
   color: var(--color-text-muted);
   text-align: center;

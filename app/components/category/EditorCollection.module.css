@@ -1,5 +1,5 @@
 .section {
-  padding: 72px 60px;
+  padding: 72px var(--align-inset);
   border-bottom: 1px solid var(--color-gray-light);
   /* overflow: hidden prevents any descendant from leaking outside */
   overflow: hidden;

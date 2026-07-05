@@ -9,7 +9,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 48px 80px;
+  padding: 48px var(--align-inset);
   flex-shrink: 0;
 }
 
@@ -98,7 +98,7 @@
 .tagline {
   position: absolute;
   bottom: 52px;
-  left: 80px;
+  left: var(--align-inset);
   font-size: 38px;
   font-weight: 500;
   color: #fff;

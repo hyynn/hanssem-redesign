@@ -1,5 +1,5 @@
 .breadcrumb {
-  padding: 18px 60px;
+  padding: 18px var(--align-inset);
   font-size: 13px;
   color: var(--color-text-muted);
   display: flex;

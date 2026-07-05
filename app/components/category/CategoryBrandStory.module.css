@@ -6,7 +6,9 @@
 }
 
 .text {
-  padding: 80px 60px;
+  /* 좌측 절반 컬럼이라 containing block이 뷰포트가 아님 → --align-inset(%) 대신
+     100vw 기반으로 직접 계산해 정렬선에 스냅 (스크롤바 폭만큼 오차 허용) */
+  padding: 80px 60px 80px calc(max((100vw - var(--max-width)) / 2, 0px) + var(--container-pad));
   display: flex;
   flex-direction: column;
   justify-content: center;

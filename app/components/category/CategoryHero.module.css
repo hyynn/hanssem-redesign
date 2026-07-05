@@ -28,7 +28,7 @@
 
 .content {
   position: absolute;
-  left: 60px;
+  left: var(--align-inset);
   top: 50%;
   transform: translateY(-50%);
   color: #fff;

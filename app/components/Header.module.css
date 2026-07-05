@@ -21,7 +21,7 @@
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 40px;
+  padding: 0 var(--align-inset);
   gap: 0;
 }
 

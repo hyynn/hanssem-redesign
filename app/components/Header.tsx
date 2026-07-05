@@ -18,19 +18,17 @@ const NAV_ITEMS = [
 export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [isScrolled, setIsScrolled] = useState(!isHome);
+  const [scrolledOnHome, setScrolledOnHome] = useState(false);
+  const isScrolled = !isHome || scrolledOnHome;
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const cartCount = useCartStore((s) => s.items.reduce((n, i) => n + i.quantity, 0));
 
   useEffect(() => {
-    if (!isHome) {
-      setIsScrolled(true);
-      return;
-    }
+    if (!isHome) return;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > window.innerHeight * 0.85);
+      setScrolledOnHome(window.scrollY > window.innerHeight * 0.85);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll);

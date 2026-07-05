@@ -129,10 +129,13 @@ export function buildDimensions(
 /**
  * 스타일 축 옵션(형제 소분류 이름 목록)을 카테고리 코드로부터 동적으로 가져온다.
  */
+type MidNode = { name: string; sub: Record<string, string> };
+type MajorNode = { name: string; sub: Record<string, MidNode> };
+
 export function getStyleFilterOptions(categoryCode: string): string[] {
   const major = categoryCode.slice(0, 2);
   const mid = categoryCode.slice(2, 4);
-  const tree = CATEGORY_TREE as any;
+  const tree = CATEGORY_TREE as Record<string, MajorNode>;
   const midNode = tree[major]?.sub?.[mid];
   if (!midNode) return [];
   return Object.values(midNode.sub) as string[];

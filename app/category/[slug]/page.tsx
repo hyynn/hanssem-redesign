@@ -6,6 +6,7 @@ import CategoryContent, { TabConfig } from "@/app/components/category/CategoryCo
 import EditorCollection from "@/app/components/category/EditorCollection";
 import EventBanner from "@/app/components/category/EventBanner";
 import CategoryPopularGrid from "@/app/components/category/CategoryPopularGrid";
+import Link from "next/link";
 import { ArrowIcon } from "@/app/components/Icon";
 import styles from "./page.module.css";
 
@@ -340,9 +341,9 @@ export default async function CategoryPage({
   return (
     <>
       <div className={styles.breadcrumb}>
-        <a href="/" className={styles.breadcrumbLink}>
+        <Link href="/" className={styles.breadcrumbLink}>
           홈
-        </a>
+        </Link>
         <span className={styles.sep}><ArrowIcon direction="right" size={14} /></span>
         <span>{config.title}</span>
       </div>

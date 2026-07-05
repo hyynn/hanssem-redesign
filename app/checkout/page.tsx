@@ -54,39 +54,30 @@ function validateField(key: FormKey, value: string): string {
   }
 }
 
+const EMPTY_FORM = { name: "", phone: "", address: "", addressDetail: "", memo: "" };
+
 export default function CheckoutPage() {
-  const [items, setItems] = useState<CartItem[]>([]);
+  const [items] = useState<CartItem[]>(() => {
+    try {
+      const stored = sessionStorage.getItem("hanssem-checkout");
+      return stored ? JSON.parse(stored) : [];
+    } catch { return []; }
+  });
   const [paymentMethod, setPaymentMethod] = useState("card");
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    addressDetail: "",
-    memo: "",
+  const [form, setForm] = useState(() => {
+    try {
+      const saved = localStorage.getItem(SAVED_INFO_KEY);
+      return saved ? { ...EMPTY_FORM, ...JSON.parse(saved) } : EMPTY_FORM;
+    } catch { return EMPTY_FORM; }
   });
   const [errors, setErrors] = useState<Partial<Record<FormKey, string>>>({});
   const [touched, setTouched] = useState<Partial<Record<FormKey, boolean>>>({});
   const [agreed, setAgreed] = useState(false);
-  const [saveInfo, setSaveInfo] = useState(false);
+  const [saveInfo, setSaveInfo] = useState(() => {
+    try { return !!localStorage.getItem(SAVED_INFO_KEY); } catch { return false; }
+  });
   const [memoOpen, setMemoOpen] = useState(false);
   const memoRef = useRef<HTMLDivElement>(null);
-
-  /* ── 초기 데이터 로드 ── */
-  useEffect(() => {
-    try {
-      const stored = sessionStorage.getItem("hanssem-checkout");
-      if (stored) setItems(JSON.parse(stored));
-    } catch { /* 무시 */ }
-
-    try {
-      const saved = localStorage.getItem(SAVED_INFO_KEY);
-      if (saved) {
-        const info = JSON.parse(saved);
-        setForm((prev) => ({ ...prev, ...info }));
-        setSaveInfo(true);
-      }
-    } catch { /* 무시 */ }
-  }, []);
 
   /* ── 카카오 우편번호 스크립트 ── */
   useEffect(() => {

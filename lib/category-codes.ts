@@ -236,12 +236,14 @@ export function buildCategoryCode(major: string, mid: string, leaf: string): str
   return `${major}${mid}${leaf}`;
 }
 
+type MajorNode = { name: string; sub: Record<string, { name: string; sub: Record<string, string> }> };
+
 /** 6자리 카테고리 코드를 받아 [대분류명, 중분류명, 소분류명] breadcrumb 배열로 변환합니다. */
 export function getCategoryPath(code: string): [string, string, string] {
   const major = code.slice(0, 2);
   const mid = code.slice(2, 4);
   const leaf = code.slice(4, 6);
-  const majorNode = (CATEGORY_TREE as any)[major];
+  const majorNode = (CATEGORY_TREE as Record<string, MajorNode>)[major];
   const midNode = majorNode?.sub[mid];
   const leafName = midNode?.sub[leaf];
   return [majorNode?.name, midNode?.name, leafName];

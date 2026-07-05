@@ -1,3 +1,4 @@
+import Img from "@/app/components/Img";
 import styles from "./CategoryBrandStory.module.css";
 
 interface Props {
@@ -30,7 +31,7 @@ export default function CategoryBrandStory({
         </a>
       </div>
       <div className={styles.imageWrapper}>
-        <img src={image} alt={imageAlt ?? title} className={styles.image} />
+        <Img src={image} alt={imageAlt ?? title} className={styles.image} />
       </div>
     </section>
   );

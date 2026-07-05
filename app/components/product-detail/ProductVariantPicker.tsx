@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { ProductSummary } from "../../lib/types";
 import { ArrowIcon } from "@/app/components/Icon";
+import Img from "@/app/components/Img";
 import styles from "./ProductVariantPicker.module.css";
 
 interface Props {
@@ -68,7 +69,7 @@ export default function ProductVariantPicker({
               className={styles.card}
             >
               <div className={styles.imageWrapper}>
-                <img
+                <Img
                   src={sibling.thumbnail}
                   alt={sibling.variantLabel ?? sibling.name}
                 />

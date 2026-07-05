@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { Review } from "../../lib/types";
+import Img from "@/app/components/Img";
 import styles from "./ReviewPhotoModal.module.css";
 
 interface Props {
@@ -84,7 +85,7 @@ export default function ReviewPhotoModal({
             </button>
 
             <div className={styles.imageWrapper}>
-              <img src={imgSrc} alt={imgAlt} className={styles.image} />
+              <Img src={imgSrc} alt={imgAlt} className={styles.image} />
             </div>
 
             <button
@@ -107,7 +108,7 @@ export default function ReviewPhotoModal({
                 onClick={() => onImageSelect(i)}
                 aria-label={`이미지 ${i + 1} 보기`}
               >
-                <img src={img} alt="" />
+                <Img src={img} alt="" />
               </button>
             ))}
           </div>

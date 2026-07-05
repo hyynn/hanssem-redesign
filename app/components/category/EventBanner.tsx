@@ -1,3 +1,4 @@
+import Img from "@/app/components/Img";
 import styles from "./EventBanner.module.css";
 
 interface Props {
@@ -13,7 +14,7 @@ export default function EventBanner({ image, alt = "이벤트 배너", href, tit
 
   const inner = (
     <>
-      <img src={image} alt={alt} className={styles.image} />
+      <Img src={image} alt={alt} className={styles.image} />
       {hasText && <div className={styles.overlay} />}
       {hasText && (
         <div className={styles.content}>

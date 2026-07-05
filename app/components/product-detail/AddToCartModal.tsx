@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
 import { catalog } from "@/app/lib/catalog";
 import type { ProductSummary, FilterAttributes } from "@/app/lib/types";
+import Img from "@/app/components/Img";
 import styles from "./AddToCartModal.module.css";
 
 interface Props {
@@ -90,7 +91,7 @@ export default function AddToCartModal({ category, filterAttributes, currentProd
                   onClick={() => { onClose(); router.push(`/products/${p.id}`); }}
                 >
                   <div className={styles.cardImageWrap}>
-                    <img src={p.thumbnail} alt={p.name} className={styles.cardImage} />
+                    <Img src={p.thumbnail} alt={p.name} className={styles.cardImage} />
                   </div>
                   <p className={styles.cardName}>{p.name}</p>
                   <div className={styles.cardPrice}>

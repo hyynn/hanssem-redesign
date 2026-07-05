@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { ArrowIcon } from "@/app/components/Icon";
+import Img from "@/app/components/Img";
 import styles from "./ProductGallery.module.css";
 
 function fileAlt(src: string): string {
@@ -54,7 +55,7 @@ export default function ProductGallery({
   return (
     <div className={styles.gallery}>
       <div className={styles.mainImageWrapper}>
-        <img src={images[activeIndex]} alt={fileAlt(images[activeIndex])} className={styles.mainImage} />
+        <Img src={images[activeIndex]} alt={fileAlt(images[activeIndex])} className={styles.mainImage} priority />
       </div>
 
       <div className={styles.thumbnailRow}>
@@ -75,7 +76,7 @@ export default function ProductGallery({
               onClick={() => onSelectThumbnail(index)}
               aria-label={`${index + 1}번 이미지 보기`}
             >
-              <img src={image} alt={fileAlt(image)} />
+              <Img src={image} alt={fileAlt(image)} />
             </button>
           ))}
         </div>

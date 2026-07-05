@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { ProductSummary } from "../lib/types";
 import { WishlistBtn } from "./Icon";
+import Img from "./Img";
 import { COLOR_HEX } from "@/lib/filter-dimensions";
 import styles from "./ProductCard.module.css";
 
@@ -16,9 +17,9 @@ export default function ProductCard({ product }: { product: ProductSummary }) {
       style={{ cursor: "pointer" }}
     >
       <div className={styles.imageWrapper}>
-        <img src={product.thumbnail} alt={product.name} className={styles.image} />
+        <Img src={product.thumbnail} alt={product.name} className={styles.image} />
         {product.hoverImage && (
-          <img src={product.hoverImage} alt="" className={styles.imageHover} aria-hidden="true" />
+          <Img src={product.hoverImage} alt="" className={styles.imageHover} aria-hidden="true" />
         )}
 
         {product.badge && (

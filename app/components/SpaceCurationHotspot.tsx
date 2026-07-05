@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import HotspotMiniCard from "./HotspotMiniCard";
 import { ArrowIcon } from "./Icon";
+import Img from "./Img";
 import styles from "./SpaceCurationHotspot.module.css";
 
 export interface HotspotData {
@@ -58,7 +59,7 @@ export default function SpaceCurationHotspot({
       </div>
 
       <div className={styles.imageArea} onClick={closeAll}>
-        <img src={image} alt={spaceLabel} className={styles.image} />
+        <Img src={image} alt={spaceLabel} className={styles.image} />
         <div className={styles.gradient} />
 
         {pins.map((h) => (

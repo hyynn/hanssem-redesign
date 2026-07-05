@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Img from "./Img";
 import styles from "./Hero.module.css";
 
 export interface HeroBanner {
@@ -55,7 +56,12 @@ export default function Hero({ banners, autoPlayMs = 5000 }: HeroProps) {
         >
             {banners.map((banner, i) => (
                 <div key={banner.id} className={`${styles.slide} ${i === index ? styles.active : ""}`}>
-                    <img src={banner.image} alt={banner.title} className={styles.slideImage} />
+                    <Img
+                        src={banner.image}
+                        alt={banner.title}
+                        className={styles.slideImage}
+                        priority={i === 0}
+                    />
                     <div className={styles.overlay} />
                     <div className={styles.content}>
                         <p className={styles.brand}>{banner.logoText ?? "HANSSEM"}</p>

@@ -1,4 +1,5 @@
 import styles from "./Footer.module.css";
+import { ArrowIcon } from "./Icon";
 
 const TOP_LINKS = [
     { label: "회사소개", href: "#" },
@@ -40,19 +41,6 @@ function ChatIcon() {
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
                 d="M7.99998 2C4.46527 2 1.59998 4.31154 1.59998 7.16308C1.59998 9.01921 2.81413 10.6456 4.63602 11.5558C4.50207 12.066 4.15129 13.4034 4.081 13.6897C3.99446 14.0449 4.20865 14.0402 4.3489 13.9444C4.45897 13.8697 6.10282 12.7295 6.81201 12.2372C7.19695 12.2954 7.59382 12.3262 7.99998 12.3262C11.5347 12.3262 14.4 10.0143 14.4 7.16308C14.4 4.31188 11.5347 2 7.99998 2Z"
-                fill="#121212"
-            />
-        </svg>
-    );
-}
-
-function ChevronIcon() {
-    return (
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M16.5303 6.96967C16.8232 7.26256 16.8232 7.73744 16.5303 8.03033L10.5303 14.0303C10.2374 14.3232 9.76256 14.3232 9.46967 14.0303L3.46967 8.03033C3.17678 7.73744 3.17678 7.26256 3.46967 6.96967C3.76256 6.67678 4.23744 6.67678 4.53033 6.96967L10 12.4393L15.4697 6.96967C15.7626 6.67678 16.2374 6.67678 16.5303 6.96967Z"
                 fill="#121212"
             />
         </svg>
@@ -145,7 +133,8 @@ export default function Footer() {
                 <details className={styles.familySite}>
                     <summary className={styles.familySiteTrigger}>
                         FAMILY SITE
-                        <ChevronIcon />
+                        <ArrowIcon direction="down" size={16} className={styles.arrowClosed} aria-hidden />
+                        <ArrowIcon direction="up" size={16} className={styles.arrowOpen} aria-hidden />
                     </summary>
                     <ul className={styles.familySiteMenu}>
                         {FAMILY_SITES.map((site) => (

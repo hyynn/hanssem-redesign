@@ -1,4 +1,5 @@
 import { ProductDetailSection as Section } from "./types";
+import Img from "@/app/components/Img";
 import styles from "./ProductDetailSection.module.css";
 import LazyVideo from "./LazyVideo";
 
@@ -23,7 +24,7 @@ export default function ProductDetailSection({ section }: { section: Section }) 
         }
         return (
           <div key={index} className={styles.imageBlock}>
-            <img src={block.src} alt={block.alt} />
+            <Img src={block.src} alt={block.alt} />
           </div>
         );
       })}

@@ -1,3 +1,4 @@
+import Img from "./Img";
 import styles from "./RenovationSection.module.css";
 
 interface CaseItem {
@@ -40,7 +41,7 @@ export default function RenovationSection({ cases = DEFAULT_CASES }: Props) {
           {cases.map((c) => (
             <div key={c.id} className={styles.caseCard}>
               <div className={styles.caseImage}>
-                {c.image && <img src={c.image} alt={`${c.area} ${c.type}`} />}
+                {c.image && <Img src={c.image} alt={`${c.area} ${c.type}`} />}
               </div>
               <div className={styles.caseInfo}>
                 <p className={styles.caseMeta}>{c.area} · {c.style}</p>

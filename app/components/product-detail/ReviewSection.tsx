@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { ArrowIcon } from "@/app/components/Icon";
+import Img from "@/app/components/Img";
 import styles from "./ReviewSection.module.css";
 import { ReviewData, Review } from "./types";
 import ReviewPhotoModal from "./ReviewPhotoModal";
@@ -149,7 +150,7 @@ export default function ReviewSection({ data }: { data: ReviewData }) {
                   onClick={() => openModal(idx, 0)}
                   aria-label={`${review.userName} 리뷰 사진 보기`}
                 >
-                  <img src={review.images![0]} alt={fileAlt(review.images![0])} />
+                  <Img src={review.images![0]} alt={fileAlt(review.images![0])} />
                 </button>
               ))}
             </div>
@@ -184,7 +185,7 @@ export default function ReviewSection({ data }: { data: ReviewData }) {
               {review.images && review.images.length > 0 && (
                 <div className={styles.itemImages}>
                   {review.images.map((img, imgIdx) => (
-                    <img
+                    <Img
                       key={imgIdx}
                       src={img}
                       alt={fileAlt(img)}

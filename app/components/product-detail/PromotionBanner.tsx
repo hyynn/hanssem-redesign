@@ -1,3 +1,4 @@
+import Img from "@/app/components/Img";
 import styles from "./PromotionBanner.module.css";
 
 interface Promotion {
@@ -18,7 +19,7 @@ export default function PromotionBanner({
       <div className={styles.grid}>
         {promotions.map((promo) => (
           <div key={promo.title} className={styles.item}>
-            <img src={promo.image} alt={promo.title} />
+            <Img src={promo.image} alt={promo.title} />
           </div>
         ))}
       </div>

@@ -1,4 +1,5 @@
 import ProductCard from "./ProductCard";
+import Img from "./Img";
 import { ProductSummary } from "../lib/types";
 import styles from "./SpaceCuration.module.css";
 
@@ -20,7 +21,7 @@ export default function SpaceCuration({
   return (
     <section className={`${styles.grid} ${reverse ? styles.reverse : ""}`}>
       <div className={styles.mainImage}>
-        <img src={image} alt={title} />
+        <Img src={image} alt={title} />
         <div className={styles.floatingText}>
           <h4>{title}</h4>
           <p>{description}</p>

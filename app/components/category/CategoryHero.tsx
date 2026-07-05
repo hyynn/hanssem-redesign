@@ -1,3 +1,4 @@
+import Img from "@/app/components/Img";
 import styles from "./CategoryHero.module.css";
 
 interface Props {
@@ -19,7 +20,7 @@ export default function CategoryHero({
 }: Props) {
   return (
     <section className={styles.hero}>
-      <img src={image} alt={title} className={styles.image} />
+      <Img src={image} alt={title} className={styles.image} priority />
       <div className={styles.overlay} />
       <div className={styles.content}>
         {label && <p className={styles.label}>{label}</p>}

@@ -1,5 +1,6 @@
 import type { ProductSummary } from "@/app/lib/types";
 import { ArrowIcon } from "@/app/components/Icon";
+import Img from "@/app/components/Img";
 import styles from "./EditorCollection.module.css";
 
 interface Props {
@@ -28,7 +29,7 @@ export default function EditorCollection({
 
       <div className={styles.body}>
         <div className={styles.lifestyle}>
-          <img
+          <Img
             src={lifestyleImage}
             alt={lifestyleAlt}
             className={styles.lifestyleImage}
@@ -39,7 +40,7 @@ export default function EditorCollection({
           {products.map((p) => (
             <a key={p.id} href={`/products/${p.id}`} className={styles.card}>
               <div className={styles.cardThumb}>
-                <img src={p.thumbnail} alt={p.name} className={styles.cardImage} />
+                <Img src={p.thumbnail} alt={p.name} className={styles.cardImage} />
               </div>
               <div className={styles.cardInfo}>
                 <p className={styles.cardBrand}>{p.brand}</p>

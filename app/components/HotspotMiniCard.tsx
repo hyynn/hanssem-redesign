@@ -1,4 +1,5 @@
 import { getProductById } from "../lib/catalog";
+import Img from "./Img";
 import styles from "./HotspotMiniCard.module.css";
 
 interface Props {
@@ -11,7 +12,7 @@ export default function HotspotMiniCard({ productId }: Props) {
   return (
     <div className={styles.card}>
       <div className={styles.image}>
-        <img src={p.thumbnail} alt={p.name} />
+        <Img src={p.thumbnail} alt={p.name} />
       </div>
       <div className={styles.body}>
         <span className={styles.category}>{p.category[0]}</span>

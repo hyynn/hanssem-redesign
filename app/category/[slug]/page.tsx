@@ -35,11 +35,11 @@ const CATEGORY_CONFIG = {
             banner: { image: "/images/category/bedroom/bed/family-bed.webp", title: "낮고 넓은 패밀리침대", body: "아이와 함께하는 안전하고 넓은 침실" }
           },
           {
-            id: "super-single", label: "SS침대", categoryName: "슈퍼·싱글침대", categoryCode: "101010",
+            id: "super-single", label: "SS침대", categoryName: "SS침대", categoryCode: "101010",
             banner: { image: "/images/category/bedroom/bed/super-single.webp", title: "합리적인 선택, 슈퍼싱글침대", body: "1인 생활 최적화 공간을 스마트하게 활용합니다" }
           },
           {
-            id: "queen-king", label: "Q/K침대", categoryName: "퀸·킹침대", categoryCode: "101011",
+            id: "queen-king", label: "Q/K침대", categoryName: "Q/K침대", categoryCode: "101011",
             banner: { image: "/images/category/bedroom/bed/queen-king.webp", title: "넉넉한 여유, 퀸/킹침대", body: "두 사람이 편안하게 쉬는 최적의 침실 공간" }
           },
           {

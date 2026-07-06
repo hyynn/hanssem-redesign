@@ -119,6 +119,13 @@
 - `categoryTags?: string[]` (ProductSummary): 추가 소분류 소속 (다중 허용)
   - 예: `categoryTags: ["수납침대", "Q/K침대"]`
   - `getByCategory(cat)`는 `category[]`와 `categoryTags[]` 모두 검색함
+  - **⚠️ 칩(chip) 자동 매칭 원칙**: `categoryTags`의 문자열 값은 카테고리 페이지 config의
+    `SubcategoryConfig.categoryName`과 **정확히 일치**해야 함. 칩 선택 시 CategoryContent가
+    `p.category.includes(categoryName) || p.categoryTags?.includes(categoryName)`로 상품을 필터링하므로,
+    한 글자라도 다르면 칩에서 상품이 보이지 않음.
+    - 사이즈 칩 예: "SS침대", "Q/K침대", "KK침대" → 해당 사이즈인 상품은 모두 이 이름으로 categoryTags에 추가
+    - 기능/스타일 겹침 예: 호텔침대이면서 수납침대이면 `categoryTags: ["수납침대"]` 추가
+    - 새 칩을 추가할 때: config의 `categoryName`을 먼저 확정 → 기존/신규 상품 전부 그 이름으로 태그
 - 상품코드의 소분류 슬롯은 코드로 표현 가능한 primary 분류 1개만 담당
 - 필터 UI용 속성(사이즈·구성·기능)은 `filterAttributes`에 별도 저장
   `filterAttributes?: { size?: string[]; config?: string[]; feature?: string[] }`

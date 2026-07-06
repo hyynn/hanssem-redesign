@@ -80,6 +80,7 @@ export const summaries: ProductSummary[] = [
     reviewCount: 32,
     salesCount: 520,
     category: ["침실", "침대", "저상형·패밀리침대"],
+    categoryTags: ["SS침대"],
     filterAttributes: { size: ["SS"], config: ["침대"] },
   },
   {
@@ -97,6 +98,7 @@ export const summaries: ProductSummary[] = [
     reviewCount: 32,
     salesCount: 410,
     category: ["침실", "침대", "저상형·패밀리침대"],
+    categoryTags: ["SS침대"],
     filterAttributes: { size: ["SS"], config: ["침대"] },
   },
   {
@@ -114,6 +116,7 @@ export const summaries: ProductSummary[] = [
     reviewCount: 32,
     salesCount: 380,
     category: ["침실", "침대", "저상형·패밀리침대"],
+    categoryTags: ["SS침대"],
     filterAttributes: { size: ["SS"], config: ["침대"], feature: ["낙상방지가드"] },
   },
 ];

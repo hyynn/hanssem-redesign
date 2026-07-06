@@ -34,12 +34,19 @@ export default function CartPage() {
       </div>
 
       <div className={styles.inner}>
-        <h1 className={styles.pageTitle}>
-          장바구니
+        <div className={styles.pageTitleRow}>
+          <h1 className={styles.pageTitle}>
+            장바구니
+            {items.length > 0 && (
+              <span className={styles.pageTitleCount}>{items.length}</span>
+            )}
+          </h1>
           {items.length > 0 && (
-            <span className={styles.pageTitleCount}>{items.length}</span>
+            <Link href="/category/bedroom" className={styles.continueBtn}>
+              ← 쇼핑 계속하기
+            </Link>
           )}
-        </h1>
+        </div>
 
         {items.length === 0 ? (
           /* 빈 장바구니 */
@@ -145,12 +152,6 @@ export default function CartPage() {
                 })}
               </ul>
 
-              {/* 계속 쇼핑 */}
-              <div className={styles.continueShopping}>
-                <Link href="/category/bedroom" className={styles.continueBtn}>
-                  ← 쇼핑 계속하기
-                </Link>
-              </div>
             </div>
 
             {/* 주문 요약 */}

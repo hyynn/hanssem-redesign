@@ -1,5 +1,4 @@
 .section {
-  height: calc(100vh - var(--header-height));
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid var(--color-gray-light);
@@ -38,9 +37,10 @@
   border-bottom-color: var(--color-text-heading);
 }
 
-/* Image area fills remaining height */
+/* 원본 이미지 픽셀비 그대로 고정 — object-fit: cover의 크롭이 0이 되어
+   핫스팟 %좌표가 모든 뷰포트에서 이미지의 같은 지점에 스냅됨. 근사값 반올림 금지 */
 .imageArea {
-  flex: 1;
+  aspect-ratio: 2752 / 1536;
   position: relative;
   overflow: hidden;
   cursor: default;
@@ -105,4 +105,23 @@
   letter-spacing: -0.025em;
   line-height: 1.2;
   pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .tagline { font-size: 30px; bottom: 40px; }
+  .gradient { height: 220px; }
+}
+
+/* ≤768: 가로형(2752:1536) 이미지가 낮아져 핀·미니카드가 겹치므로 핫스팟 비노출.
+   모바일 좌표 세트 + 세로형 아트디렉션 도입 전까지 이미지+태그라인만 유지 */
+@media (max-width: 768px) {
+  .header { padding-top: 32px; padding-bottom: 32px; }
+  .tagline { font-size: 24px; bottom: 28px; }
+  .gradient { height: 140px; }
+}
+
+@media (max-width: 580px) {
+  .header { padding-top: 24px; padding-bottom: 24px; }
+  .tagline { font-size: 18px; bottom: 20px; }
+  .gradient { height: 100px; }
 }

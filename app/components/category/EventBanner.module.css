@@ -60,3 +60,13 @@
   color: var(--color-text-body);
   white-space: pre-line;
 }
+
+@media (max-width: 1024px) {
+  .title { font-size: 32px; }
+}
+
+@media (max-width: 768px) {
+  .content { max-width: calc(100% - var(--container-pad) * 2); }
+  .title { font-size: 24px; margin-bottom: 12px; }
+  .body { font-size: 13px; line-height: 1.6; }
+}

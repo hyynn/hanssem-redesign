@@ -51,3 +51,8 @@
   color: var(--color-text-body);
   border-bottom: 1px solid #efefef;
 }
+
+/* ── 반응형 ── */
+@media (max-width: 768px) {
+  .section { padding: 40px var(--container-pad); }
+}

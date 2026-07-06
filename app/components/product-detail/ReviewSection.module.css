@@ -247,3 +247,8 @@
   background: var(--color-gray-light);
   cursor: pointer;
 }
+
+/* ── 반응형 ── */
+@media (max-width: 768px) {
+  .section { padding: 40px var(--container-pad); }
+}

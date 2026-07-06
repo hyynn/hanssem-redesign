@@ -38,3 +38,9 @@
   margin: 0;
   line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+  .banner { height: 200px; }
+  .title { font-size: 20px; }
+  .body { font-size: 13px; }
+}

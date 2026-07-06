@@ -545,3 +545,16 @@
   text-align: center;
   line-height: 1.6;
 }
+
+/* ── 반응형 ── */
+@media (max-width: 1024px) {
+  .layout { grid-template-columns: 1fr; gap: 12px; }
+  .summary { position: static; }
+}
+
+@media (max-width: 768px) {
+  .inner { padding-top: 32px; padding-bottom: 56px; }
+  .pageTitle { font-size: 22px; margin-bottom: 24px; }
+  .section { padding: 24px 20px; }
+  .summaryInner { padding: 24px 20px; }
+}

@@ -17,3 +17,15 @@
   flex-direction: column;
   gap: 20px;
 }
+
+@media (max-width: 1024px) {
+  .overview { gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  .overview {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 24px var(--container-pad) 40px;
+  }
+}

@@ -74,3 +74,17 @@
 .imageWrapper:hover .image {
   transform: scale(1.04);
 }
+
+@media (max-width: 1024px) {
+  .title { font-size: 28px; }
+}
+
+@media (max-width: 768px) {
+  /* 좌우 분할 해제 → 세로 스택. containing block이 뷰포트 폭이 되므로
+     100vw calc 예외 대신 --container-pad 직접 사용 가능 */
+  .section { grid-template-columns: 1fr; min-height: auto; }
+  .text { padding: 48px var(--container-pad); }
+  .title { font-size: 24px; }
+  .body { font-size: 14px; margin-bottom: 28px; }
+  .imageWrapper { aspect-ratio: 3 / 2; }
+}

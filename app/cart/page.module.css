@@ -384,3 +384,29 @@
   text-align: center;
   line-height: 1.6;
 }
+
+/* ── 반응형 ── */
+@media (max-width: 1024px) {
+  .layout { grid-template-columns: 1fr; gap: 32px; }
+  .summary { position: static; }
+}
+
+@media (max-width: 768px) {
+  .inner { padding-top: 32px; padding-bottom: 56px; }
+  .pageTitle { font-size: 22px; margin-bottom: 28px; }
+  /* 테이블형 헤더 제거 후 아이템을 카드형 2행 grid로 재배치 */
+  .itemsHeader { display: none; }
+  .item {
+    grid-template:
+      "thumb info remove" auto
+      "thumb qty price" auto / 80px 1fr auto;
+    gap: 8px 16px;
+    align-items: start;
+    padding: 20px 0;
+  }
+  .itemThumb { grid-area: thumb; width: 80px; height: 80px; }
+  .itemInfo { grid-area: info; }
+  .itemQty { grid-area: qty; justify-content: flex-start; align-self: end; }
+  .itemPrice { grid-area: price; text-align: right; align-self: end; line-height: 32px; }
+  .removeBtn { grid-area: remove; justify-self: end; }
+}

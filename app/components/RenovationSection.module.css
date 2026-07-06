@@ -79,9 +79,11 @@
   gap: 16px;
 }
 
+/* 카드 비율은 디자인 결정(1440 기준 현 모습 보존) — 이미지 원본비(574:354)와 무관하게
+   cover로 채움. 뷰포트 폭에 따라 높이가 함께 스케일됨 */
 .caseCard {
   position: relative;
-  height: 280px;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   cursor: pointer;
 }
@@ -119,4 +121,27 @@
   font-size: 17px;
   font-weight: 500;
   color: var(--color-bg);
+}
+
+@media (max-width: 1024px) {
+  .title { font-size: 36px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding-top: 56px; padding-bottom: 56px; min-height: auto; }
+  .packageRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+    padding-bottom: 40px;
+  }
+  .title { font-size: 28px; }
+  .divider { margin-bottom: 40px; }
+  .casesGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .section { padding-top: 40px; padding-bottom: 40px; }
+  .title { font-size: 24px; }
+  .caseInfo { padding: 16px; }
 }

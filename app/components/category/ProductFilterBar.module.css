@@ -315,3 +315,22 @@
 .clearBtn:hover {
   color: var(--color-text-heading);
 }
+
+/* ── 반응형 ── */
+@media (max-width: 768px) {
+  .bar {
+    padding-top: 32px;
+    flex-wrap: wrap;
+  }
+  /* 개별 드롭다운 축들이 넘치면 가로 스크롤로 유지 */
+  .controls {
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 100%;
+  }
+  .controls::-webkit-scrollbar { display: none; }
+}
+
+@media (max-width: 480px) {
+  .panel { width: 100%; }
+}

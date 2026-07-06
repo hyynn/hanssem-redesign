@@ -37,3 +37,14 @@
   background-color: var(--color-bg-secondary);
   font-weight: 600;
 }
+
+/* 좁은 화면: 칩이 넘치면 center 정렬이 앞쪽 칩을 클리핑하므로 좌측 정렬로 전환 */
+@media (max-width: 768px) {
+  .tabs {
+    justify-content: flex-start;
+    padding-left: var(--container-pad);
+    padding-right: var(--container-pad);
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+}

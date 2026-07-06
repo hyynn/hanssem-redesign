@@ -38,3 +38,8 @@
   width: 100%;
   display: block;
 }
+
+/* ── 반응형 ── */
+@media (max-width: 768px) {
+  .section { padding: 40px var(--container-pad); }
+}

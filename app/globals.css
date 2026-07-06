@@ -51,6 +51,22 @@
   --product-tab-height: 50px;
 }
 
+/* ── 반응형 브레이크포인트 (desktop-first, max-width) ──
+   1440px은 브레이크포인트가 아니라 --max-width 컨테이너 캡 (이하 구간은 %기반 정렬선이 유동 대응)
+   - 1024px: 태블릿 가로 — 카드 4열→3열, 사이드 요약(장바구니/체크아웃) 스택 전환
+   - 768px : 태블릿 세로 — 2단 분할 구조 세로 스택, 카드 3열→2열
+   - 480px : 모바일 (디자인 기준 폭 375px) — 정보 감량, 터치 최적화
+   각 지점에서 --container-pad만 재정의하면 정렬선 시스템 전체가 함께 조정됨 */
+@media (max-width: 1024px) {
+  :root { --container-pad: 40px; }
+}
+@media (max-width: 768px) {
+  :root { --container-pad: 24px; }
+}
+@media (max-width: 480px) {
+  :root { --container-pad: 16px; }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -65,7 +81,6 @@ body {
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   color: var(--color-text-body);
   background-color: var(--color-bg);
-  min-width: 1280px;
 }
 
 

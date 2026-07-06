@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useCartStore } from "@/app/store/cartStore";
+import HeaderDrawer from "./HeaderDrawer";
 import styles from "./Header.module.css";
 
 const NAV_ITEMS = [
@@ -21,6 +22,7 @@ export default function Header() {
   const [scrolledOnHome, setScrolledOnHome] = useState(false);
   const isScrolled = !isHome || scrolledOnHome;
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const cartCount = useCartStore((s) => s.items.reduce((n, i) => n + i.quantity, 0));
@@ -72,7 +74,7 @@ export default function Header() {
           <div className={styles.searchSlot}>
             <button
               className={`${styles.iconBtn} ${styles.searchToggleBtn} ${isSearchOpen ? styles.searchBtnHidden : ""}`}
-              onClick={() => setIsSearchOpen(true)}
+              onClick={() => setIsSearchOpen((prev) => !prev)}
               aria-label="검색"
             >
               <span className={styles.iconWrap}>
@@ -107,8 +109,8 @@ export default function Header() {
             </form>
           </div>
 
-          {/* 매장찾기 */}
-          <button className={styles.iconBtn} aria-label="매장찾기">
+          {/* 매장찾기 (≤768에서 숨김 — 드로어 유틸리티로 대체) */}
+          <button className={`${styles.iconBtn} ${styles.storeBtn}`} aria-label="매장찾기">
             <span className={styles.iconWrap}>
               <svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd" d="M15 8.2C15 5.31249 12.7018 3 9.90154 3C7.14338 3 5 5.26867 5 8.2C5 9.40561 5.40103 10.5114 6.07283 11.3914L6.07398 11.3929L9.91794 16.3827L13.9331 11.3837C14.6013 10.505 15 9.40209 15 8.2ZM14.7206 12L10.2996 17.5044C10.0968 17.7569 9.71124 17.753 9.51364 17.4965L5.27935 12C4.47746 10.9504 4 9.6319 4 8.2C4 4.77583 6.53346 2 9.90154 2C13.2696 2 16 4.77583 16 8.2C16 9.6319 15.5225 10.9504 14.7206 12Z" fill="currentColor"/>
@@ -158,8 +160,21 @@ export default function Header() {
               <span className={styles.iconLabel}>{isLoggedIn ? "마이" : "로그인"}</span>
             </span>
           </button>
+
+          {/* 햄버거 (모바일 전용, CSS로 노출 제어 — 우측 끝 배치) */}
+          <button
+            className={`${styles.iconBtn} ${styles.menuBtn}`}
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="전체 메뉴 열기"
+          >
+            <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 5.5H17M3 10H17M3 14.5H17" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+            </svg>
+          </button>
         </div>
       </div>
+
+      <HeaderDrawer open={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </header>
   );
 }

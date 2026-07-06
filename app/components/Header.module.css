@@ -1,4 +1,6 @@
 .header {
+  /* 검색폼 폭 — searchForm 크기와 nav의 겹침 방지 마진이 함께 참조 */
+  --search-form-width: 240px;
   position: fixed;
   top: 0;
   left: 0;
@@ -98,7 +100,7 @@
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  width: 240px;
+  width: var(--search-form-width);
   height: 38px;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid var(--color-gray-light);
@@ -224,4 +226,74 @@
   line-height: 16px;
   text-align: center;
   pointer-events: none;
+}
+
+/* ── 햄버거 버튼: 데스크톱에서는 숨김, ≤1024에서만 노출 (rightArea 우측 끝) ── */
+.menuBtn {
+  display: none;
+  flex-shrink: 0;
+  padding: 8px;
+}
+
+/* ── 반응형 ── */
+
+/* 컴포넌트 로컬 마이크로 브레이크포인트 (전역 1024/768/480 체계와 별개인 1440):
+   1440 이하에서 열린 검색폼이 중앙 정렬된 nav의 마지막 링크와 겹치기 시작.
+   대응: ① 아이콘 레이블 숨김으로 rightArea를 아이콘 전용으로 축소
+        ② 폼 폭 240→180px 축소
+        ③ nav margin-right 100px — 중앙을 살짝 왼쪽으로 치우쳐 겹침 회피.
+   100px은 실측 기반 값. 1024 이하는 nav가 드로어로 전환되므로 이 조합은
+   1025~1440 구간만 담당 */
+@media (max-width: 1440px) {
+  .header { --search-form-width: 180px; }
+  .nav { margin-right: 100px; }
+  .iconLabel { display: none; }
+  .iconWrap { min-width: auto; padding: 6px; }
+}
+
+/* ≤1024: 내비를 드로어로 전환. 노트북 유효 뷰포트는 최소 1280px대라
+   실질적으로 태블릿·축소 창에만 적용됨. 검색은 nav가 비운 공간이 넉넉해
+   인라인 폼을 그대로 유지 (풀폭 바 전환은 ≤580에서) */
+@media (max-width: 1024px) {
+  /* 내비는 드로어로 이동, 햄버거 노출. 매장찾기는 드로어 유틸리티로 대체 */
+  .nav { display: none; }
+  .menuBtn { display: flex; }
+  .storeBtn { display: none; }
+  .rightArea { margin-left: auto; }
+}
+
+/* ≤580 (컴포넌트 로컬 브레이크포인트): 검색을 인라인 폼 대신 헤더 바로 아래
+   풀폭 바로 전개. 768에서 넘기면 풀폭 바가 과하게 넓어 브랜드 톤과 어긋나서,
+   인라인 폼이 실제로 답답해지는 지점까지 내림(실측 기반).
+   좁아진 폭만큼 rightArea 간격과 로고도 함께 축소 */
+@media (max-width: 580px) {
+  .logo svg { width: 140px; height: auto; }
+  .rightArea { gap: 0; }
+
+  /* containing block을 .header(fixed)로 올리기 위해 슬롯의 relative 해제.
+     배경/글자색은 덮어쓰지 않음 — 스크롤 전엔 기존 글래스(반투명+blur) 스타일,
+     스크롤 후엔 .scrolled 규칙이 흰 배경으로 전환 (헤더와 한 몸으로 보이도록) */
+  .searchSlot { position: static; }
+  .searchForm {
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: auto;
+    transform: none;
+    height: 48px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    /* 세로 방향 클립패스 전개 (데스크톱의 가로 전개와 동일한 인터랙션 언어) */
+    clip-path: inset(0 0 100% 0);
+  }
+  .searchFormOpen {
+    clip-path: inset(0 0 0% 0);
+  }
+  /* 검색 바가 헤더 아래로 열려 아이콘과 겹치지 않으므로,
+     데스크톱과 달리 아이콘을 숨기지 않고 그대로 유지 (버튼이 열기/닫기 토글) */
+  .searchBtnHidden {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }

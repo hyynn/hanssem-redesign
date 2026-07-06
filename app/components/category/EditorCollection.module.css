@@ -34,7 +34,7 @@
    Right column stretches to match via align-items: stretch (grid default). */
 .body {
   display: grid;
-  grid-template-columns: 55fr 45fr;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   align-items: stretch;
 }
@@ -48,7 +48,6 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.7s ease;
 }
 
 /* Right column: two horizontal cards that together fill the same height
@@ -71,8 +70,9 @@
 }
 
 .cardThumb {
+  position: relative; /* hover 크로스페이드 이미지의 기준 */
   flex-shrink: 0;
-  width: 44%;
+  width: 50%;
   overflow: hidden;
   background: var(--color-gray-light);
 }
@@ -82,7 +82,21 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s ease;
+}
+
+/* ProductCard와 동일한 hover 크로스페이드 (hoverImage 있을 때만 렌더됨) */
+.cardImageHover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.card:hover .cardImageHover {
+  opacity: 1;
 }
 
 .cardInfo {

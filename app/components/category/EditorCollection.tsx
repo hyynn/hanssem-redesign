@@ -41,6 +41,14 @@ export default function EditorCollection({
             <a key={p.id} href={`/products/${p.id}`} className={styles.card}>
               <div className={styles.cardThumb}>
                 <Img src={p.thumbnail} alt={p.name} className={styles.cardImage} />
+                {p.hoverImage && (
+                  <Img
+                    src={p.hoverImage}
+                    alt=""
+                    aria-hidden="true"
+                    className={styles.cardImageHover}
+                  />
+                )}
               </div>
               <div className={styles.cardInfo}>
                 <p className={styles.cardBrand}>{p.brand}</p>

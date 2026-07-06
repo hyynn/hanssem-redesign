@@ -55,3 +55,14 @@
   border-bottom: 1px solid var(--color-text-muted);
   padding-bottom: 1px;
 }
+
+/* ── 반응형 ──
+   이미지 높이(원본비 고정)가 줄어드는 만큼 팝오버 카드도 컴팩트하게.
+   ≤768 모바일은 하단 고정 바 방식으로 전환 예정(팝오버 축소로는 한계) */
+@media (max-width: 1024px) {
+  .card { width: 150px; padding: 10px; }
+  .image { height: 78px; margin-bottom: 8px; }
+  .category { margin-bottom: 3px; }
+  .name { font-size: 12px; margin-bottom: 6px; }
+  .price { margin-bottom: 8px; }
+}

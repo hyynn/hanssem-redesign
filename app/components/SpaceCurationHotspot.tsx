@@ -21,17 +21,12 @@ interface Props {
   hotspots: HotspotData[];
 }
 
-function getCardOffset(x: number, y: number): React.CSSProperties {
-  if (x > 65) {
-    return { right: "44px", top: "50%", transform: "translateY(-50%)" };
-  }
-  if (x < 35) {
-    return { left: "44px", top: "50%", transform: "translateY(-50%)" };
-  }
-  if (y > 60) {
-    return { bottom: "44px", left: "50%", transform: "translateX(-50%)" };
-  }
-  return { top: "44px", left: "50%", transform: "translateX(-50%)" };
+/* 카드는 이미지(imageArea) 기준 세로 중앙 고정.
+   수평은 핀 좌표 기준 — 핀이 좌측 절반이면 오른쪽에, 우측 절반이면 왼쪽에 44px 간격 */
+function getCardOffset(x: number): React.CSSProperties {
+  return x > 50
+    ? { right: `calc(100% - ${x}% + 24px)`, top: "50%", transform: "translateY(-50%)" }
+    : { left: `calc(${x}% + 24px)`, top: "50%", transform: "translateY(-50%)" };
 }
 
 export default function SpaceCurationHotspot({
@@ -81,13 +76,22 @@ export default function SpaceCurationHotspot({
               </svg>
             </button>
 
-            {activeId === h.id && (
-              <div className={styles.cardWrapper} style={getCardOffset(h.x, h.y)}>
-                <HotspotMiniCard productId={h.productId} />
-              </div>
-            )}
           </div>
         ))}
+
+        {/* 카드는 핀이 아닌 imageArea 직속 — 이미지 기준 세로 중앙 배치를 위해 분리 */}
+        {pins.map((h) =>
+          activeId === h.id ? (
+            <div
+              key={`card-${h.id}`}
+              className={styles.cardWrapper}
+              style={getCardOffset(h.x)}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <HotspotMiniCard productId={h.productId} />
+            </div>
+          ) : null
+        )}
 
         <div className={styles.tagline}>{tagline}</div>
       </div>

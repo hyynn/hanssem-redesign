@@ -109,13 +109,13 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
   const categoryProducts = isMain ? []
     : isAllSubcat
       ? allProducts.filter((p) =>
-          activeTab!.subcategories.some((sub) =>
-            p.category.includes(sub.categoryName) || p.categoryTags?.includes(sub.categoryName)
-          )
+        activeTab!.subcategories.some((sub) =>
+          p.category.includes(sub.categoryName) || p.categoryTags?.includes(sub.categoryName)
         )
+      )
       : allProducts.filter((p) =>
-          p.category.includes(categoryName) || p.categoryTags?.includes(categoryName)
-        );
+        p.category.includes(categoryName) || p.categoryTags?.includes(categoryName)
+      );
 
   const filtered = categoryProducts.filter((p) => {
     for (const [key, value] of Object.entries(filters)) {
@@ -143,7 +143,7 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
     : ALL_FILTER_AXES;
   const dimensions = buildDimensions(axes, categoryProducts);
 
-  const allNavTabs = [{ id: MAIN_TAB_ID, label: "메인" }, ...tabs.map((t) => ({ id: t.id, label: t.label }))];
+  const allNavTabs = [{ id: MAIN_TAB_ID, label: "추천" }, ...tabs.map((t) => ({ id: t.id, label: t.label }))];
 
   return (
     <>
@@ -189,7 +189,7 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
         )}
       </div>
 
-      {/* 메인 탭 콘텐츠 */}
+      {/* 추천 탭 콘텐츠 */}
       {isMain && children}
 
       {/* 카테고리 탭 콘텐츠 */}

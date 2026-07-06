@@ -110,6 +110,7 @@
 
 .utility {
   display: flex;
+  justify-content: flex-end;
   gap: 20px;
   padding: 18px 20px;
   border-top: 1px solid var(--color-gray-light);

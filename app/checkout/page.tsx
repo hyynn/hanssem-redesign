@@ -64,7 +64,7 @@ export default function CheckoutPage() {
     } catch { return []; }
   });
   const [paymentMethod, setPaymentMethod] = useState("card");
-  const [form, setForm] = useState(() => {
+  const [form, setForm] = useState<typeof EMPTY_FORM>(() => {
     try {
       const saved = localStorage.getItem(SAVED_INFO_KEY);
       return saved ? { ...EMPTY_FORM, ...JSON.parse(saved) } : EMPTY_FORM;

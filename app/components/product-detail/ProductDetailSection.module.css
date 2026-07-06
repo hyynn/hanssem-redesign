@@ -42,4 +42,11 @@
 /* ── 반응형 ── */
 @media (max-width: 768px) {
   .section { padding: 40px var(--container-pad); }
+  .textBlock h3 { font-size: 26px; }
+  .textBlock p { font-size: 16px;}
+}
+
+@media (max-width: 480px) {
+  .textBlock h3 { font-size: 20px; }
+  .textBlock p { font-size: 14px;}
 }

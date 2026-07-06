@@ -156,7 +156,9 @@ export default function Footer() {
                         </div>
                         <p className={styles.csTitle}>고객센터 이용안내</p>
                         <p className={styles.csTime}>
-                            평일 09:00 - 18:00 , 토요일 09:00 - 13:00
+                            <span className={styles.csTimeLine}>평일 09:00 - 18:00</span>
+                            <span className={styles.csTimeSep}> , </span>
+                            <span className={styles.csTimeLine}>토요일 09:00 - 13:00</span>
                             <br />
                             (일요일,공휴일 휴무)
                         </p>

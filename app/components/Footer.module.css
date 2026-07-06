@@ -13,7 +13,8 @@
 
 .topLinks {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap; /* 공간 부족 시 버튼 단위로 줄바꿈 (버튼 내부 줄바꿈 금지) */
+  gap: 12px 24px;
   font-size: 14px;
 }
 
@@ -25,6 +26,7 @@
   padding: 0;
   cursor: pointer;
   font-size: inherit;
+  white-space: nowrap;
 }
 
 .topLinks button.emphasized {
@@ -214,4 +216,33 @@
   font-size: 12px;
   color: var(--color-text-muted);
   text-align: center;
+}
+
+@media (max-width: 1280px) {
+  .qrBlock { display: none; }
+  /* 컬럼 폭이 좁아지면 전화번호를 설명 아래 줄로 분리 */
+  .contactDesc { flex-direction: column; gap: 2px; }
+  /* desc 줄 수가 상자마다 달라져도 버튼은 같은 라인에 정렬:
+     그리드 행 높이는 동일하므로 버튼만 바닥으로 밀면 됨 */
+  .contactBox { display: flex; flex-direction: column; align-items: flex-start; }
+  .contactBtn { margin-top: auto; }
+  /* 평일/토요일 시간대를 두 줄로 분리 (구분 쉼표는 숨김) */
+  .csTimeLine { display: block; }
+  .csTimeSep { display: none; }
+}
+
+@media (max-width: 1024px) {
+  .mainSection { flex-direction: column; gap: 40px; }
+  .contactGroup { grid-template-columns: 1.2fr 1fr 1fr 1fr; width: 100%; }
+  .qrBlock { justify-self: start; text-align: left; }
+}
+
+@media (max-width: 768px) {
+  .topBar { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .topLinks { gap: 12px 20px; }
+  .contactGroup { grid-template-columns: 1fr 1fr; gap: 32px; }
+}
+
+@media (max-width: 480px) {
+  .contactGroup { grid-template-columns: 1fr; gap: 28px; }
 }

@@ -6,8 +6,9 @@ import CategoryContent, { TabConfig } from "@/app/components/category/CategoryCo
 import EditorCollection from "@/app/components/category/EditorCollection";
 import EventBanner from "@/app/components/category/EventBanner";
 import CategoryPopularGrid from "@/app/components/category/CategoryPopularGrid";
-import Link from "next/link";
-import { ArrowIcon } from "@/app/components/Icon";
+// 브레드크럼 임시 비활성화(하단 JSX 주석 참조) 동안 미사용 — 복원 시 주석 해제
+// import Link from "next/link";
+// import { ArrowIcon } from "@/app/components/Icon";
 import styles from "./page.module.css";
 
 // ─── Per-category config ───────────────────────────────────────────────────────
@@ -340,6 +341,8 @@ export default async function CategoryPage({
 
   return (
     <div className={styles.page}>
+      {/* 브레드크럼 임시 비활성화 — GNB 활성 탭 + sticky 탭바가 위치를 이미 전달하므로 중복.
+          복원 시 상단의 Link/ArrowIcon import 주석도 함께 해제할 것
       <div className={styles.breadcrumb}>
         <Link href="/" className={styles.breadcrumbLink}>
           홈
@@ -347,6 +350,7 @@ export default async function CategoryPage({
         <span className={styles.sep}><ArrowIcon direction="right" size={14} /></span>
         <span>{config.title}</span>
       </div>
+      */}
 
       <CategoryContent tabs={config.tabs} allProducts={allProducts} initialTab={tab} initialSubcat={subcat}>
         <CategoryHero

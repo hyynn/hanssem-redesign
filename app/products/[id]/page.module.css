@@ -7,9 +7,17 @@
 .breadcrumb {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 20px var(--container-pad);
+  padding: 20px var(--container-pad) 0;
   font-size: 13px;
   color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+}
+
+/* 각 크럼(텍스트+화살표 svg)을 세로 가운데 정렬 */
+.breadcrumb > span {
+  display: inline-flex;
+  align-items: center;
 }
 
 .separator {

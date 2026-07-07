@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Img from "./Img";
 import styles from "./Hero.module.css";
 
@@ -20,6 +20,32 @@ interface HeroProps {
 export default function Hero({ banners, autoPlayMs = 5000 }: HeroProps) {
     const [index, setIndex] = useState(0);
     const [touchStartX, setTouchStartX] = useState<number | null>(null);
+    const heroRef = useRef<HTMLElement>(null);
+
+    // 인앱 웹뷰(카카오톡 등)는 스크롤로 브라우저 UI가 접힐 때 vh/svh를 동적으로
+    // 재계산해 hero 높이가 변하고, object-fit: cover가 이미지를 재크롭하며
+    // 확대되는 것처럼 보임 — 터치 기기에서만 마운트 시 px로 고정하고, UI 접힘으로
+    // 높이만 변하는 리사이즈는 무시(가로 폭이 바뀌는 회전 시에만 갱신).
+    // 데스크톱(hover 가능 기기)은 개입하지 않음 — 창 리사이즈 시 CSS 100svh가
+    // 그대로 풀스크린을 유지해야 하므로
+    useEffect(() => {
+        const el = heroRef.current;
+        if (!el) return;
+        if (!window.matchMedia("(hover: none) and (pointer: coarse)").matches) return;
+        let lastWidth = window.innerWidth;
+        const lockHeight = () => { el.style.height = `${window.innerHeight}px`; };
+        lockHeight();
+        const handleResize = () => {
+            if (window.innerWidth === lastWidth) return;
+            lastWidth = window.innerWidth;
+            lockHeight();
+        };
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            el.style.height = "";
+        };
+    }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -50,6 +76,7 @@ export default function Hero({ banners, autoPlayMs = 5000 }: HeroProps) {
 
     return (
         <section
+            ref={heroRef}
             className={styles.hero}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}

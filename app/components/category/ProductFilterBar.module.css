@@ -25,9 +25,11 @@
   position: relative;
 }
 
-/* 정렬 드롭다운 마커 — 모바일에서 필터 축 드롭다운만 숨기고 정렬은 남기기 위한 구분자 */
+/* 정렬 드롭다운 마커 — 모바일에서 필터 축 드롭다운만 숨기고 정렬은 남기기 위한 구분자.
+   margin-left로 필터 축 드롭다운들과 시각적 그룹 분리 */
 .sortDropdown {
   position: relative;
+  margin-left: 20px;
 }
 
 .dropdownTrigger {
@@ -265,7 +267,7 @@
   background: var(--color-bg);
   border: 1px solid var(--color-gray-light);
   border-radius: 4px;
-  min-width: 120px;
+  min-width: 100%; /* 최소 자기 트리거 버튼 폭 — 내용이 더 길면 shrink-to-fit으로 늘어남 */
   list-style: none;
   margin: 0;
   padding: 4px 0;
@@ -326,13 +328,6 @@
   .bar {
     flex-wrap: wrap;
   }
-  /* 개별 드롭다운 축들이 넘치면 가로 스크롤로 유지 */
-  .controls {
-    overflow-x: auto;
-    scrollbar-width: none;
-    max-width: 100%;
-  }
-  .controls::-webkit-scrollbar { display: none; }
   /* 모바일: 필터 진입점을 드로어(전체 필터)로 일원화 — 개별 축 드롭다운·초기화 숨김
      (초기화는 드로어 푸터에 있고, 활성 필터 여부는 필터 버튼 배지로 표시됨) */
   .dropdown:not(.sortDropdown),

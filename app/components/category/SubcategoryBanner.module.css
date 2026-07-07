@@ -19,6 +19,14 @@
   flex-direction: column;
   justify-content: center;
   padding: 0 var(--align-inset);
+  /* 좌측 화이트 오버레이 — EventBanner와 동일한 그라데이션 (텍스트 가독성 확보) */
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(255, 255, 255, 0.55) 35%,
+    rgba(255, 255, 255, 0.15) 62%,
+    transparent 82%
+  );
 }
 
 .title {

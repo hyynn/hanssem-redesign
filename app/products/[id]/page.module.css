@@ -1,3 +1,9 @@
+/* fixed 헤더 보정 — cart/checkout/category와 동일 패턴.
+   이 보정이 없으면 브레드크럼이 헤더 밑에 가려짐 */
+.page {
+  padding-top: var(--header-height);
+}
+
 .breadcrumb {
   max-width: var(--max-width);
   margin: 0 auto;

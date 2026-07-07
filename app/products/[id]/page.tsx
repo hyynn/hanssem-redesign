@@ -17,7 +17,7 @@ export default async function ProductDetailPage({
   if (!product) notFound();
 
   return (
-    <main>
+    <main className={styles.page}>
       <div className={styles.breadcrumb}>
         {product.breadcrumb.map((crumb, index) => (
           <span key={`${crumb}-${index}`}>

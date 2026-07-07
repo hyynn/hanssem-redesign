@@ -1,3 +1,9 @@
+/* fixed 헤더 보정 — cart/checkout과 동일 패턴. 이 보정이 없으면 콘텐츠가
+   헤더 밑(y=0)에서 시작해 stickyBars가 로드 즉시 stuck되며 아래 콘텐츠를 덮음 */
+.page {
+  padding-top: var(--header-height);
+}
+
 .breadcrumb {
   padding: 18px var(--align-inset);
   font-size: 13px;

@@ -339,7 +339,7 @@ export default async function CategoryPage({
   const allProducts = getByCategory(config.mainCategory);
 
   return (
-    <>
+    <div className={styles.page}>
       <div className={styles.breadcrumb}>
         <Link href="/" className={styles.breadcrumbLink}>
           홈
@@ -377,6 +377,6 @@ export default async function CategoryPage({
         />
       </CategoryContent>
 
-    </>
+    </div>
   );
 }

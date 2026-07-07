@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import type { ProductSummary } from "@/app/lib/types";
 import { ALL_FILTER_AXES, FILTER_AXES_BY_CATEGORY, buildDimensions, COLOR_GROUPS } from "@/lib/filter-dimensions";
@@ -55,6 +55,7 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
   const resolvedTab = resolveInitialTab(tabs, initialTab);
   const resolvedSubcat = resolveInitialSubcat(tabs, resolvedTab, initialSubcat);
 
+  const sentinelRef = useRef<HTMLDivElement>(null);
   const [activeTabId, setActiveTabId] = useState(resolvedTab);
   const [activeSubcatId, setActiveSubcatId] = useState(resolvedSubcat);
   const [filters, setFilters] = useState<Record<string, string>>({});
@@ -77,18 +78,34 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
     router.replace(pathname + (query ? `?${query}` : ""), { scroll: false });
   }
 
+  // 탭/칩 전환 시 스크롤 위치가 유지되면 새 콘텐츠 상단이 stuck 상태의
+  // stickyBars 밑에 깔린 채 시작함 — 콘텐츠 시작점(stickyBars가 stuck되는
+  // 지점)으로 스크롤을 되돌려 항상 sticky 바 바로 아래에서 보이게 함.
+  // 기준점은 sticky 요소가 아닌 센티널로 측정 (sticky 요소의 offsetTop은
+  // stuck 상태에서 밀려난 위치를 반환해 기준으로 쓸 수 없음)
+  function resetScrollToContent() {
+    const el = sentinelRef.current;
+    if (!el) return;
+    const headerHeight =
+      parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-height")) || 80;
+    const stuckTop = el.offsetTop - headerHeight;
+    if (window.scrollY > stuckTop) window.scrollTo({ top: stuckTop });
+  }
+
   function handleTabChange(tabId: string) {
     setActiveTabId(tabId);
     if (tabId !== MAIN_TAB_ID) setActiveSubcatId(ALL_SUBCAT_ID);
     setFilters({});
     setSort("popular");
     updateUrl(tabId, ALL_SUBCAT_ID);
+    resetScrollToContent();
   }
 
   function handleSubcatChange(subcatId: string) {
     setActiveSubcatId(subcatId);
     setFilters({});
     updateUrl(activeTabId, subcatId);
+    resetScrollToContent();
   }
 
   function handleFilterChange(key: string, value: string) {
@@ -148,6 +165,8 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
   return (
     <>
       {/* 단일 sticky 래퍼: tabNav + chips */}
+      {/* 스크롤 리셋 기준점 — stickyBars의 정적(flow) top 위치 측정용 */}
+      <div ref={sentinelRef} aria-hidden="true" />
       <div className={styles.stickyBars}>
         <div className={styles.tabNav}>
           <nav className={styles.nav} role="tablist" aria-label="카테고리 탭">

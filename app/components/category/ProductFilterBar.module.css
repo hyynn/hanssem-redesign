@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 60px var(--align-inset) 0;
+  padding: 24px var(--align-inset) 0;
   background: var(--color-bg);
   gap: 12px;
 }
@@ -22,6 +22,11 @@
 }
 
 .dropdown {
+  position: relative;
+}
+
+/* 정렬 드롭다운 마커 — 모바일에서 필터 축 드롭다운만 숨기고 정렬은 남기기 위한 구분자 */
+.sortDropdown {
   position: relative;
 }
 
@@ -319,7 +324,6 @@
 /* ── 반응형 ── */
 @media (max-width: 768px) {
   .bar {
-    padding-top: 32px;
     flex-wrap: wrap;
   }
   /* 개별 드롭다운 축들이 넘치면 가로 스크롤로 유지 */
@@ -329,6 +333,13 @@
     max-width: 100%;
   }
   .controls::-webkit-scrollbar { display: none; }
+  /* 모바일: 필터 진입점을 드로어(전체 필터)로 일원화 — 개별 축 드롭다운·초기화 숨김
+     (초기화는 드로어 푸터에 있고, 활성 필터 여부는 필터 버튼 배지로 표시됨) */
+  .dropdown:not(.sortDropdown),
+  .divider,
+  .clearBtn {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {

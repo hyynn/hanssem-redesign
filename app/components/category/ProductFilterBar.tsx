@@ -134,7 +134,7 @@ function SortDropdown({ value, onChange }: { value: string; onChange: (v: string
   const currentLabel = SORT_OPTIONS.find((o) => o.value === value)?.label ?? "인기순";
 
   return (
-    <div className={styles.dropdown} ref={ref}>
+    <div className={`${styles.dropdown} ${styles.sortDropdown}`} ref={ref}>
       <button className={styles.sortTrigger} onClick={() => setOpen((v) => !v)} type="button">
         {currentLabel}
         {open ? <IconUp /> : <IconDown />}

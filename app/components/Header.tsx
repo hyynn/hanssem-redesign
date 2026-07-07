@@ -38,8 +38,18 @@ export default function Header() {
   }, [isHome]);
 
   useEffect(() => {
-    if (isSearchOpen) searchInputRef.current?.focus();
+    if (isSearchOpen) {
+      searchInputRef.current?.focus();
+    } else if (searchInputRef.current) {
+      // 닫힐 때 입력값 초기화 — 다시 열면 빈 상태로 시작
+      searchInputRef.current.value = "";
+    }
   }, [isSearchOpen]);
+
+  // 페이지 이동 시 검색폼 자동 닫힘 (위 effect가 입력값도 함께 초기화)
+  useEffect(() => {
+    setIsSearchOpen(false);
+  }, [pathname]);
 
   const closeSearch = () => setIsSearchOpen(false);
 

@@ -21,12 +21,20 @@ interface Props {
   hotspots: HotspotData[];
 }
 
-/* 카드는 이미지(imageArea) 기준 세로 중앙 고정.
-   수평은 핀 좌표 기준 — 핀이 좌측 절반이면 오른쪽에, 우측 절반이면 왼쪽에 44px 간격 */
-function getCardOffset(x: number): React.CSSProperties {
+/* 카드는 자기 핀 높이에 세로 정렬 (clamp로 이미지 상하단 이탈 방지 —
+   핀이 가장자리에 있어도 카드 절반 높이만큼 안쪽으로 잠김).
+   수평은 핀 좌표 기준 — 핀이 좌측 절반이면 오른쪽에, 우측 절반이면 왼쪽에 24px 간격 */
+const CARD_TOP_CLAMP = "clamp(120px, var(--pin-y) - 90px, 100% - 120px)";
+
+function getCardOffset(x: number, y: number): React.CSSProperties {
+  const vertical = {
+    "--pin-y": `${y}%`,
+    top: CARD_TOP_CLAMP,
+    transform: "translateY(-50%)",
+  } as React.CSSProperties;
   return x > 50
-    ? { right: `calc(100% - ${x}% + 24px)`, top: "50%", transform: "translateY(-50%)" }
-    : { left: `calc(${x}% + 24px)`, top: "50%", transform: "translateY(-50%)" };
+    ? { right: `calc(100% - ${x}% + 24px)`, ...vertical }
+    : { left: `calc(${x}% + 24px)`, ...vertical };
 }
 
 export default function SpaceCurationHotspot({
@@ -79,13 +87,13 @@ export default function SpaceCurationHotspot({
           </div>
         ))}
 
-        {/* 카드는 핀이 아닌 imageArea 직속 — 이미지 기준 세로 중앙 배치를 위해 분리 */}
+        {/* 카드는 핀이 아닌 imageArea 직속 — 이미지 기준 clamp 계산을 위해 분리 */}
         {pins.map((h) =>
           activeId === h.id ? (
             <div
               key={`card-${h.id}`}
               className={styles.cardWrapper}
-              style={getCardOffset(h.x)}
+              style={getCardOffset(h.x, h.y)}
               onClick={(e) => e.stopPropagation()}
             >
               <HotspotMiniCard productId={h.productId} />

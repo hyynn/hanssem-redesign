@@ -71,9 +71,18 @@
 .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s, width 0.3s; }
 .dotActive { background: #fff; width: 38px; border-radius: 4px; }
 
+/* 1280: 로컬 브레이크포인트 — brand/subTitle의 margin-left는 대형 타이틀
+   글리프 사이드 베어링에 대한 시각 보정이라, 타이틀이 작아지는 지점에 맞춰
+   보정량도 단계적으로 축소 (4→2→0px) */
+@media (max-width: 1280px) {
+  .brand { margin-left: 2px; }
+  .subTitle { margin-left: 2px; }
+}
+
 @media (max-width: 768px) {
   .content { bottom: 64px; max-width: calc(100% - var(--container-pad) * 2); }
-  .subTitle { font-size: var(--fs-h6); }
+  .brand { margin-left: 0; }
+  .subTitle { font-size: var(--fs-h6); margin-left: 0; }
 }
 
 @media (max-width: 480px) {

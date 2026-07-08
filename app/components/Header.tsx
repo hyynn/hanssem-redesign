@@ -1,11 +1,42 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCartStore } from "@/app/store/cartStore";
+import { catalog } from "@/app/lib/catalog";
+import { searchProducts, searchKeywords } from "@/lib/search";
 import HeaderDrawer from "./HeaderDrawer";
 import styles from "./Header.module.css";
+
+/* 하이브리드 드롭다운: 연관 분류명(탐색형) 위, 상품 다이렉트 히트(목적형) 아래 */
+const KEYWORD_LIMIT = 4;
+const SUGGESTION_LIMIT = 3;
+const RECENT_KEY = "hanssem-recent-searches";
+const RECENT_LIMIT = 8;
+
+function escapeRegExp(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/** 상품명에서 검색 토큰과 일치하는 부분만 font-weight 강조 */
+function HighlightedName({ name, query }: { name: string; query: string }) {
+  const tokens = query.trim().split(/\s+/).filter(Boolean);
+  if (tokens.length === 0) return <>{name}</>;
+  const re = new RegExp(`(${tokens.map(escapeRegExp).join("|")})`, "gi");
+  const lowerTokens = tokens.map((t) => t.toLowerCase());
+  return (
+    <>
+      {name.split(re).map((part, i) =>
+        lowerTokens.includes(part.toLowerCase()) ? (
+          <strong key={i}>{part}</strong>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
 
 const NAV_ITEMS = [
   { label: "침실", href: "/category/bedroom" },
@@ -18,6 +49,7 @@ const NAV_ITEMS = [
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
   const isHome = pathname === "/";
   const [scrolledOnHome, setScrolledOnHome] = useState(false);
   const isScrolled = !isHome || scrolledOnHome;
@@ -25,7 +57,16 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const [query, setQuery] = useState("");
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const [recent, setRecent] = useState<string[]>([]);
   const cartCount = useCartStore((s) => s.items.reduce((n, i) => n + i.quantity, 0));
+
+  const hasQuery = isSearchOpen && Boolean(query.trim());
+  const keywords = hasQuery ? searchKeywords(query, catalog).slice(0, KEYWORD_LIMIT) : [];
+  const suggestions = hasQuery ? searchProducts(query, catalog).slice(0, SUGGESTION_LIMIT) : [];
+  // 키보드 내비게이션 인덱스는 키워드 → 상품 순서의 통합 리스트를 순회
+  const optionCount = keywords.length + suggestions.length;
 
   useEffect(() => {
     if (!isHome) return;
@@ -40,9 +81,10 @@ export default function Header() {
   useEffect(() => {
     if (isSearchOpen) {
       searchInputRef.current?.focus();
-    } else if (searchInputRef.current) {
+    } else {
       // 닫힐 때 입력값 초기화 — 다시 열면 빈 상태로 시작
-      searchInputRef.current.value = "";
+      setQuery("");
+      setActiveIndex(-1);
     }
   }, [isSearchOpen]);
 
@@ -52,6 +94,60 @@ export default function Header() {
   }, [pathname]);
 
   const closeSearch = () => setIsSearchOpen(false);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem(RECENT_KEY) ?? "[]");
+      if (Array.isArray(saved)) setRecent(saved.filter((k) => typeof k === "string"));
+    } catch {
+      /* 손상된 저장값은 무시하고 빈 목록으로 시작 */
+    }
+  }, []);
+
+  const saveRecent = (list: string[]) => {
+    setRecent(list);
+    localStorage.setItem(RECENT_KEY, JSON.stringify(list));
+  };
+
+  const addRecent = (keyword: string) =>
+    saveRecent([keyword, ...recent.filter((k) => k !== keyword)].slice(0, RECENT_LIMIT));
+
+  const removeRecent = (keyword: string) =>
+    saveRecent(recent.filter((k) => k !== keyword));
+
+  const searchByKeyword = (keyword: string) => {
+    addRecent(keyword);
+    router.push(`/search?q=${encodeURIComponent(keyword)}`);
+  };
+
+  const submitSearch = () => {
+    // 드롭다운 선택 항목: 키워드면 해당 검색 결과로, 상품이면 상세로.
+    // 페이지 이동 시 pathname effect가 폼을 닫고 입력값을 초기화함
+    if (activeIndex >= 0 && activeIndex < keywords.length) {
+      searchByKeyword(keywords[activeIndex]);
+      return;
+    }
+    const product = suggestions[activeIndex - keywords.length];
+    if (activeIndex >= keywords.length && product) {
+      router.push(`/products/${product.id}`);
+      return;
+    }
+    const q = query.trim();
+    if (q) searchByKeyword(q);
+  };
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) return; // 한글 IME 조합 중 Enter 무시
+    if (e.key === "ArrowDown" && optionCount > 0) {
+      e.preventDefault();
+      setActiveIndex((prev) => (prev + 1) % optionCount);
+    } else if (e.key === "ArrowUp" && optionCount > 0) {
+      e.preventDefault();
+      setActiveIndex((prev) => (prev <= 0 ? optionCount - 1 : prev - 1));
+    } else if (e.key === "Escape") {
+      closeSearch();
+    }
+  };
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
@@ -97,7 +193,11 @@ export default function Header() {
             </button>
             <form
               className={`${styles.searchForm} ${isSearchOpen ? styles.searchFormOpen : ""}`}
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => {
+                e.preventDefault();
+                submitSearch();
+              }}
+              role="search"
             >
               <input
                 ref={searchInputRef}
@@ -105,6 +205,12 @@ export default function Header() {
                 placeholder="검색어를 입력해 주세요."
                 className={styles.searchInput}
                 maxLength={25}
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setActiveIndex(-1);
+                }}
+                onKeyDown={handleSearchKeyDown}
               />
               <button
                 type="button"
@@ -117,6 +223,90 @@ export default function Header() {
                 </svg>
               </button>
             </form>
+
+            {/* 실시간 추천 드롭다운 — searchForm은 overflow:hidden(클립패스 전개)이라 형제로 배치 */}
+            {optionCount > 0 && (
+              <ul className={styles.searchDropdown} role="listbox" aria-label="검색 추천">
+                {/* 연관 분류명 (탐색형) */}
+                {keywords.map((keyword, i) => (
+                  <li key={`kw-${keyword}`} role="option" aria-selected={i === activeIndex}>
+                    <button
+                      type="button"
+                      className={`${styles.keywordItem} ${i === activeIndex ? styles.suggestionActive : ""}`}
+                      onMouseEnter={() => setActiveIndex(i)}
+                      onClick={() => searchByKeyword(keyword)}
+                    >
+                      <HighlightedName name={keyword} query={query} />
+                    </button>
+                  </li>
+                ))}
+                {keywords.length > 0 && suggestions.length > 0 && (
+                  <li aria-hidden="true" className={styles.suggestionDivider} />
+                )}
+                {/* 상품 다이렉트 히트 (목적형) */}
+                {suggestions.map((p, i) => (
+                  <li key={p.id} role="option" aria-selected={keywords.length + i === activeIndex}>
+                    <Link
+                      href={`/products/${p.id}`}
+                      className={`${styles.suggestionItem} ${keywords.length + i === activeIndex ? styles.suggestionActive : ""}`}
+                      onMouseEnter={() => setActiveIndex(keywords.length + i)}
+                    >
+                      <HighlightedName name={p.name} query={query} />
+                    </Link>
+                  </li>
+                ))}
+                <li>
+                  <Link
+                    href={`/search?q=${encodeURIComponent(query.trim())}`}
+                    className={styles.suggestionAll}
+                  >
+                    &lsquo;<strong>{query.trim()}</strong>&rsquo; 전체 결과 보기
+                  </Link>
+                </li>
+              </ul>
+            )}
+
+            {/* 빈 입력 상태: 최근 검색어 (localStorage) */}
+            {isSearchOpen && !query.trim() && recent.length > 0 && (
+              <div className={styles.searchDropdown}>
+                <div className={styles.recentHeader}>
+                  <span>최근 검색어</span>
+                  <button
+                    type="button"
+                    className={styles.recentClear}
+                    onClick={() => saveRecent([])}
+                  >
+                    초기화
+                  </button>
+                </div>
+                <ul>
+                  {recent.map((keyword) => (
+                    <li key={keyword} className={styles.recentItem}>
+                      <button
+                        type="button"
+                        className={styles.recentKeyword}
+                        onClick={() => {
+                          addRecent(keyword);
+                          router.push(`/search?q=${encodeURIComponent(keyword)}`);
+                        }}
+                      >
+                        {keyword}
+                      </button>
+                      <button
+                        type="button"
+                        className={styles.recentRemove}
+                        onClick={() => removeRecent(keyword)}
+                        aria-label={`'${keyword}' 검색 기록 삭제`}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                        </svg>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           {/* 매장찾기 (≤768에서 숨김 — 드로어 유틸리티로 대체) */}

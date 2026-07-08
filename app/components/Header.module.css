@@ -105,7 +105,7 @@
   height: 38px;
   background: rgba(255, 255, 255, 0.15);
   border: 1px solid var(--color-gray-light);
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   backdrop-filter: blur(4px);
   overflow: hidden;
 
@@ -163,6 +163,145 @@
   opacity: 1;
 }
 
+/* ── 검색 추천 드롭다운 ──
+   헤더가 투명(홈 최상단)일 때도 읽히도록 배경·글자색을 자체 지정 */
+.searchDropdown {
+  position: absolute;
+  right: 0;
+  /* 폼(높이 38px)이 top 50% 기준 수직 중앙 정렬이므로 그 하단 + 8px */
+  top: calc(50% + 27px);
+  width: var(--search-form-width); /* 폼과 동일 폭 — 한 몸으로 읽히도록 */
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--radius-md);
+  overflow: hidden; /* 라운드 모서리 밖으로 행 hover 배경이 삐져나오지 않게 */
+  color: var(--color-text-body);
+}
+
+.keywordItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 9px 14px;
+  font-size: var(--fs-caption);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 0.15s;
+}
+
+.keywordItem:hover {
+  background: var(--color-bg-secondary);
+}
+
+.suggestionDivider {
+  height: 1px;
+  margin: 6px 0;
+  background: var(--color-gray-light);
+}
+
+/* 상품 행도 키워드 행과 같은 텍스트 리스트 — 폼 폭에 맞춘 미니멀 구성 */
+.suggestionItem {
+  display: block;
+  padding: 9px 14px;
+  font-size: var(--fs-caption);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  transition: background 0.15s;
+}
+
+.suggestionItem:hover,
+.suggestionActive {
+  background: var(--color-bg-secondary);
+}
+
+.suggestionAll {
+  display: block;
+  padding: 12px 14px;
+  font-size: var(--fs-caption);
+  color: var(--color-text-muted);
+  text-align: center;
+  text-decoration: none;
+  border-top: 1px solid var(--color-gray-light);
+  transition: color 0.15s;
+}
+
+.suggestionAll:hover {
+  color: var(--color-text-heading);
+}
+
+.suggestionAll strong {
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-heading);
+}
+
+/* 매칭 텍스트 강조 — 컬러 대신 굵기 한 단계(400→500).
+   빨강은 할인 전용이라 사용하지 않음 */
+.suggestionName strong {
+  font-weight: var(--fw-medium);
+}
+
+/* ── 최근 검색어 패널 ── */
+.recentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px 6px;
+  font-size: var(--fs-meta);
+  color: var(--color-text-muted);
+}
+
+.recentClear {
+  font-size: var(--fs-meta);
+  color: var(--color-text-muted);
+  transition: color 0.15s;
+}
+
+.recentClear:hover {
+  color: var(--color-text-heading);
+}
+
+.recentItem {
+  display: flex;
+  align-items: center;
+}
+
+.recentKeyword {
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+  padding: 9px 14px;
+  font-size: var(--fs-caption);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 0.15s;
+}
+
+.recentItem:hover {
+  background: var(--color-bg-secondary);
+}
+
+.recentItem:last-child {
+  margin-bottom: 6px;
+}
+
+.recentRemove {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  color: var(--color-text-muted);
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+.recentRemove:hover {
+  opacity: 1;
+}
+
 /* ── Right area (search icon + icon buttons) ── */
 .rightArea {
   display: flex;
@@ -179,7 +318,7 @@
   justify-content: center;
   color: inherit;
   padding: 6px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 /* 검색 토글 버튼: 나타날 때는 폼이 닫히기 시작한 후 등장 */
@@ -219,7 +358,7 @@
   min-width: 16px;
   height: 16px;
   padding: 0 3px;
-  border-radius: 8px;
+  border-radius: var(--radius-full);
   background: var(--color-sale);
   color: #fff;
   font-size: var(--fs-badge);
@@ -296,5 +435,17 @@
   .searchBtnHidden {
     opacity: 1;
     pointer-events: auto;
+  }
+
+  /* 드롭다운도 풀폭 검색 바 바로 아래로 — containing block은 .header(fixed).
+     풀폭 바(radius 0)와 동일하게 라운드 해제 */
+  .searchDropdown {
+    top: calc(100% + 48px);
+    left: 0;
+    right: 0;
+    width: auto;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
   }
 }

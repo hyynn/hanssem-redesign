@@ -24,7 +24,7 @@ export default function CategoryPopularGrid({
           <h2 className={styles.title}>{title}</h2>
         </div>
         <a href={href} className={styles.more}>
-          더보기 <ArrowIcon direction="right" size={12} />
+          더보기 <ArrowIcon direction="right" size="1em" />
         </a>
       </div>
       <div className={styles.grid}>

@@ -16,7 +16,8 @@ type ArrowDirection = keyof typeof ARROW_PATHS;
 
 interface ArrowIconProps {
   direction: ArrowDirection;
-  size?: number;
+  /** 숫자(px) 또는 "1em" — 텍스트와 나란히 쓸 때는 "1em"으로 폰트 크기에 자동 연동 */
+  size?: number | string;
   className?: string;
   style?: React.CSSProperties;
   "aria-hidden"?: boolean | "true" | "false";
@@ -32,9 +33,9 @@ export function ArrowIcon({
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      height={`${size}px`}
+      height={typeof size === "number" ? `${size}px` : size}
       viewBox="0 -960 960 960"
-      width={`${size}px`}
+      width={typeof size === "number" ? `${size}px` : size}
       fill="currentColor"
       className={className}
       style={style}

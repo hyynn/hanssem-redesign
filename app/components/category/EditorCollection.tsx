@@ -23,7 +23,7 @@ export default function EditorCollection({
       <div className={styles.header}>
         <h2 className={styles.title}>{sectionLabel}</h2>
         <a href={href} className={styles.more}>
-          더보기 <ArrowIcon direction="right" size={12} />
+          더보기 <ArrowIcon direction="right" size="1em" />
         </a>
       </div>
 

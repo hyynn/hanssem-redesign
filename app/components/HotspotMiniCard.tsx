@@ -10,7 +10,7 @@ export default function HotspotMiniCard({ productId }: Props) {
   const p = getProductById(productId);
 
   return (
-    <div className={styles.card}>
+    <a href={`/products/${p.id}`} className={styles.card}>
       <div className={styles.image}>
         <Img src={p.thumbnail} alt={p.name} />
       </div>
@@ -23,8 +23,9 @@ export default function HotspotMiniCard({ productId }: Props) {
           )}
           {p.price.toLocaleString()}원
         </p>
-        <a href={`/products/${p.id}`} className={styles.link}>바로가기 →</a>
+        {/* 시각적 어포던스만 담당 — 실제 링크는 카드 전체(터치 타겟 확보) */}
+        <span className={styles.link}>바로가기 →</span>
       </div>
-    </div>
+    </a>
   );
 }

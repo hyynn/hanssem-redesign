@@ -1,7 +1,14 @@
 .card {
+  display: block;
   width: 192px;
   background: #fff;
   padding: 14px;
+  cursor: pointer;
+}
+
+.card:hover .link {
+  color: var(--color-text-heading);
+  border-bottom-color: var(--color-text-heading);
 }
 
 .image {
@@ -22,30 +29,30 @@
 
 .category {
   display: block;
-  font-size: 10px;
-  font-weight: 300;
+  font-size: var(--fs-badge);
+  font-weight: var(--fw-light);
   color: var(--color-text-muted);
   letter-spacing: 0.04em;
   margin-bottom: 5px;
 }
 
 .name {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   line-height: 1.4;
   color: var(--color-text-heading);
   margin-bottom: 8px;
 }
 
 .price {
-  font-size: 13px;
-  font-weight: 500;
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
   color: var(--color-text-heading);
   margin-bottom: 10px;
 }
 
 .discount {
   color: var(--color-sale);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
 }
 
 .link {
@@ -53,11 +60,12 @@
   width: fit-content;
   margin-left: auto;
   margin-right: 4px;
-  font-size: 11px;
+  font-size: var(--fs-micro);
   color: var(--color-text-muted);
   text-decoration: none;
   border-bottom: 1px solid var(--color-text-muted);
   padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 /* ── 반응형 ──
@@ -67,11 +75,13 @@
   .card { width: 150px; padding: 10px; }
   .image { height: 78px; margin-bottom: 8px; }
   .category { margin-bottom: 3px; }
-  .name { font-size: 12px; margin-bottom: 6px; }
+  .name { font-size: var(--fs-meta); margin-bottom: 6px; }
   .price { margin-bottom: 8px; }
 }
 
-@media (max-width: 480px) {
+/* 580: SpaceCurationHotspot의 로컬 브레이크포인트와 동기 —
+   이미지 폭이 좁아져 카드가 핀·가장자리와 겹치기 시작하는 지점 */
+@media (max-width: 580px) {
   /* 미니카드 정보 축약 — 보조 라벨 숨기고 상품명은 최대 2줄 말줄임 */
   .category {
     display: none;
@@ -82,4 +92,14 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+}
+
+@media (max-width: 480px) {
+  /* 카드 자체를 축소 — 가격 줄이 좁아진 폭에서 2줄로 꺾이지 않게 meta(12px)로 */
+  .card { width: 120px; padding: 8px; }
+  .image { height: 64px; margin-bottom: 6px; }
+  .name { margin-bottom: 4px; }
+  .price { font-size: var(--fs-meta); margin-bottom: 0; }
+  /* 카드 전체가 링크이므로 어포던스 텍스트 생략 — 가격까지만 노출 */
+  .link { display: none; }
 }

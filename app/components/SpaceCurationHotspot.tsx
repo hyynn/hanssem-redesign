@@ -21,17 +21,11 @@ interface Props {
   hotspots: HotspotData[];
 }
 
-/* 카드는 자기 핀 높이에 세로 정렬 (clamp로 이미지 상하단 이탈 방지 —
-   핀이 가장자리에 있어도 카드 절반 높이만큼 안쪽으로 잠김).
+/* 카드 세로 정렬(핀 높이 기준 clamp)은 cardWrapper CSS에 있음 —
+   뷰포트별 오프셋(--card-shift)을 미디어 쿼리로 제어하기 위해 좌표만 인라인으로 전달.
    수평은 핀 좌표 기준 — 핀이 좌측 절반이면 오른쪽에, 우측 절반이면 왼쪽에 24px 간격 */
-const CARD_TOP_CLAMP = "clamp(120px, var(--pin-y) - 90px, 100% - 120px)";
-
 function getCardOffset(x: number, y: number): React.CSSProperties {
-  const vertical = {
-    "--pin-y": `${y}%`,
-    top: CARD_TOP_CLAMP,
-    transform: "translateY(-50%)",
-  } as React.CSSProperties;
+  const vertical = { "--pin-y": `${y}%` } as React.CSSProperties;
   return x > 50
     ? { right: `calc(100% - ${x}% + 24px)`, ...vertical }
     : { left: `calc(${x}% + 24px)`, ...vertical };
@@ -57,8 +51,11 @@ export default function SpaceCurationHotspot({
   return (
     <section className={styles.section}>
       <div className={styles.header}>
-        <span className={styles.label}>{spaceLabel}</span>
-        <a href={viewAllHref} className={styles.viewAll}>전체보기 <ArrowIcon direction="right" size={13} /></a>
+        <div>
+          <p className={styles.label}>Space Curation</p>
+          <h2 className={styles.title}>{spaceLabel}</h2>
+        </div>
+        <a href={viewAllHref} className={styles.viewAll}>전체보기 <ArrowIcon direction="right" size="1em" /></a>
       </div>
 
       <div className={styles.imageArea} onClick={closeAll}>
@@ -101,7 +98,7 @@ export default function SpaceCurationHotspot({
           ) : null
         )}
 
-        <div className={styles.tagline}>{tagline}</div>
+        <p className={styles.tagline}>{tagline}</p>
       </div>
     </section>
   );

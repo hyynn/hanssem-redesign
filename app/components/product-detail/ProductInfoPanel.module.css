@@ -75,7 +75,7 @@
   font-size: var(--fs-meta);
   color: #fff;
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
 }
 
 /* ── 가격 + 쿠폰 버튼 가로 배치 ── */

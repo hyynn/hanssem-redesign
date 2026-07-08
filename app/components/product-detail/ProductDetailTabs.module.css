@@ -19,7 +19,7 @@
   flex: 0 0 auto;
   padding: 8px 16px;
   border: 1px solid #e2e2e2;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-size: var(--fs-caption);
   color: var(--color-text-muted);
   white-space: nowrap;

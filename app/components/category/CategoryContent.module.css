@@ -85,7 +85,7 @@
   font-weight: var(--fw-regular);
   color: var(--color-text-body);
   border: 1px solid var(--color-gray-light);
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   padding: 6px 16px;
   background: var(--color-bg);
   cursor: pointer;

@@ -69,7 +69,7 @@
 
 .dots { position: absolute; bottom: 30px; left: var(--align-inset); display: flex; gap: 8px; z-index: 10; }
 .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s, width 0.3s; }
-.dotActive { background: #fff; width: 38px; border-radius: 4px; }
+.dotActive { background: #fff; width: 38px; border-radius: var(--radius-sm); }
 
 /* 1280: 로컬 브레이크포인트 — brand/subTitle의 margin-left는 대형 타이틀
    글리프 사이드 베어링에 대한 시각 보정이라, 타이틀이 작아지는 지점에 맞춰

@@ -63,6 +63,9 @@
     --fs-caption(13) / --fs-meta(12) / --fs-micro(11) / --fs-badge(10)
   - 용도 특수: --fs-price(22 — 최종가 강조, 전 컨텍스트 통일) / --fs-score(52 — 리뷰 평점 숫자)
   - 굵기: --fw-light(300) / --fw-regular(400) / --fw-medium(500) / --fw-semibold(600) / --fw-bold(700)
+  - 라운드: --radius-sm(4 — 칩·인풋·소형 컨트롤) / --radius-md(6 — 검색폼·드롭다운 등
+    인터랙티브 서피스) / --radius-full(999 — 카운트 뱃지 등 캡슐).
+    원형(50%)과 해제(0)는 토큰 대상 아님, px 직접 하드코딩 금지
   - 토큰의 h1~h6은 크기 계층 이름일 뿐 태그 지정이 아님. 태그는 문서 개요 기준:
     페이지당 h1 1개(그 페이지의 주제 — 홈은 Hero 첫 슬라이드 타이틀, 카테고리는 CategoryHero
     타이틀, 상세는 상품명, 장바구니/주문서는 pageTitle),

@@ -92,7 +92,12 @@ export default function Hero({ banners, autoPlayMs = 5000 }: HeroProps) {
                     <div className={styles.overlay} />
                     <div className={styles.content}>
                         <p className={styles.brand}>{banner.logoText ?? "HANSSEM"}</p>
-                        <h2 className={styles.title}>{banner.title}</h2>
+                        {/* 홈의 h1은 첫 슬라이드 타이틀 1개 — 나머지 슬라이드는 h2 (페이지당 h1 1개 원칙) */}
+                        {i === 0 ? (
+                            <h1 className={styles.title}>{banner.title}</h1>
+                        ) : (
+                            <h2 className={styles.title}>{banner.title}</h2>
+                        )}
                         <p className={styles.subTitle}>{banner.subTitle}</p>
                     </div>
                 </div>

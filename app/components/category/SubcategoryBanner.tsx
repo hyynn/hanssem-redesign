@@ -12,7 +12,7 @@ export default function SubcategoryBanner({ image, title, body }: Props) {
     <div className={styles.banner}>
       <Img src={image} alt={title} className={styles.image} />
       <div className={styles.overlay}>
-        <p className={styles.title}>{title}</p>
+        <h2 className={styles.title}>{title}</h2>
         <p className={styles.body}>{body}</p>
       </div>
     </div>

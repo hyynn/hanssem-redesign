@@ -18,7 +18,7 @@ export default function EventBanner({ image, alt = "이벤트 배너", href, tit
       {hasText && <div className={styles.overlay} />}
       {hasText && (
         <div className={styles.content}>
-          {title && <p className={styles.title}>{title}</p>}
+          {title && <h2 className={styles.title}>{title}</h2>}
           {body && <p className={styles.body}>{body}</p>}
         </div>
       )}

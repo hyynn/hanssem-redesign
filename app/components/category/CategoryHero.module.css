@@ -36,8 +36,8 @@
 }
 
 .label {
-  font-size: 11px;
-  font-weight: 300;
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-light);
   letter-spacing: 0.15em;
   text-transform: uppercase;
   opacity: 0.7;
@@ -45,15 +45,15 @@
 }
 
 .title {
-  font-size: 40px;
-  font-weight: 600;
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-semibold);
   letter-spacing: -0.03em;
   line-height: 1.2;
   margin-bottom: 20px;
 }
 
 .body {
-  font-size: 15px;
+  font-size: var(--fs-body-lg);
   line-height: 1.8;
   opacity: 0.8;
   white-space: pre-line;
@@ -62,8 +62,8 @@
 
 .cta {
   display: inline-block;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
   letter-spacing: 0.02em;
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.6);
@@ -77,18 +77,12 @@
   border-color: #fff;
 }
 
-@media (max-width: 1024px) {
-  .title { font-size: 34px; }
-}
-
 @media (max-width: 768px) {
   .hero { height: 56vh; min-height: 360px; }
   .content { max-width: calc(100% - var(--container-pad) * 2); }
-  .title { font-size: 28px; }
-  .body { font-size: 14px; margin-bottom: 28px; }
+  .body { font-size: var(--fs-body); margin-bottom: 28px; }
 }
 
 @media (max-width: 480px) {
   .hero { min-height: 320px; }
-  .title { font-size: 24px; }
 }

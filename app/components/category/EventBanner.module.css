@@ -45,8 +45,8 @@
 }
 
 .title {
-  font-size: 40px;
-  font-weight: 700;
+  font-size: var(--fs-h1);
+  font-weight: var(--fw-bold);
   letter-spacing: -0.03em;
   line-height: 1.15;
   color: var(--color-text-heading);
@@ -55,18 +55,14 @@
 }
 
 .body {
-  font-size: 15px;
+  font-size: var(--fs-body-lg);
   line-height: 1.8;
   color: var(--color-text-body);
   white-space: pre-line;
 }
 
-@media (max-width: 1024px) {
-  .title { font-size: 32px; }
-}
-
 @media (max-width: 768px) {
   .content { max-width: calc(100% - var(--container-pad) * 2); }
-  .title { font-size: 24px; margin-bottom: 12px; }
-  .body { font-size: 13px; line-height: 1.6; }
+  .title { margin-bottom: 12px; }
+  .body { font-size: var(--fs-caption); line-height: 1.6; }
 }

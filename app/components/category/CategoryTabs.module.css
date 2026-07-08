@@ -19,8 +19,8 @@
 
 .tab {
   flex-shrink: 0;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
   color: var(--color-text-muted);
   padding: 18px 20px;
   position: relative;
@@ -43,7 +43,7 @@
 
 .tab.active {
   color: var(--color-text-heading);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
 }
 
 .tab.active::after {

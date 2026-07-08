@@ -2,7 +2,7 @@
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 20px 40px;
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
 }
 

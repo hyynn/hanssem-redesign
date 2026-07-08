@@ -29,7 +29,7 @@
 }
 
 .toggleLabel {
-  font-size: 14px;
+  font-size: var(--fs-body);
   color: var(--color-text-body);
   overflow: hidden;
   white-space: nowrap;
@@ -66,7 +66,7 @@
   width: 100%;
   text-align: left;
   padding: 11px 16px;
-  font-size: 14px;
+  font-size: var(--fs-body);
   color: var(--color-text-body);
   background: var(--color-bg);
   border: none;
@@ -120,7 +120,7 @@
 }
 
 .slotName {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-body);
   overflow: hidden;
   white-space: nowrap;
@@ -128,7 +128,7 @@
 }
 
 .slotVariant {
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-text-muted);
 }
 
@@ -180,13 +180,13 @@
 .stepCount {
   min-width: 28px;
   text-align: center;
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-body);
 }
 
 .slotSubtotal {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-bold);
   color: var(--color-text-body);
 }
 
@@ -201,20 +201,20 @@
 }
 
 .totalLabel {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
   color: var(--color-text-body);
 }
 
 .totalPrice {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: var(--fs-price);
+  font-weight: var(--fw-bold);
   color: var(--color-text-body);
 }
 
 /* ── 쿠폰 안내 ── */
 .couponNote {
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-text-muted);
   padding: 6px 8px 1rem;
   line-height: 1.5;
@@ -246,8 +246,8 @@
 .buyBtn {
   flex: 1;
   height: 50px;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: var(--fs-title);
+  font-weight: var(--fw-semibold);
   color: var(--color-gray-light);
   background: #fff;
   border: 1px solid var(--color-gray-light);

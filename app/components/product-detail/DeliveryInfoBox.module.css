@@ -5,8 +5,8 @@
 }
 
 .summary {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
   cursor: pointer;
   list-style: none;
 }
@@ -17,7 +17,7 @@
 
 .content {
   margin-top: 12px;
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   display: flex;
   flex-direction: column;

@@ -49,6 +49,34 @@
   --detail-content-width: 900px;
   --header-height: 80px;
   --product-tab-height: 50px;
+
+  /* ── 타이포그래피 토큰 ──
+     display~h5는 브레이크포인트에서 :root 재정의로 일괄 축소됨 (아래 미디어 쿼리 참조).
+     title 이하는 전 구간 고정. 컴포넌트에서 font-size 직접 px 하드코딩 금지.
+     h1~h6은 "크기 계층" 이름이지 태그 지정이 아님 — 태그는 문서 개요(페이지당 h1 1개,
+     페이지 주제가 h1)를 따르고, 크기는 시각 위계에 맞는 토큰을 자유롭게 선택 */
+  --fs-display: 48px; /* 홈 Hero, 풀블리드 대형 타이틀 */
+  --fs-h1: 40px;      /* 페이지 히어로/배너 대형 타이틀 (CategoryHero, EventBanner) */
+  --fs-h2: 32px;      /* 섹션 타이틀 (BestSeller, BrandStory, 상세 본문 헤딩) */
+  --fs-h3: 26px;      /* 페이지 타이틀 (장바구니/주문서), 서브 섹션 */
+  --fs-h4: 22px;      /* 인섹션 헤딩 (리뷰/문의/배송 안내, EditorCollection) */
+  --fs-h5: 20px;      /* 상세 상품명, 상세 본문 리드 문단 */
+  --fs-title: 18px;   /* 소제목, 주요 CTA (구매 버튼, 할인율 강조) */
+  --fs-h6: 16px;      /* 미니 섹션 타이틀 (결제 금액, 필터 패널, 모달 타이틀) */
+  --fs-body-lg: 15px; /* 큰 본문 (카드 상품명·가격, 내비게이션) */
+  --fs-body: 14px;    /* 기본 본문 */
+  --fs-caption: 13px; /* 보조 텍스트 (브레드크럼, 칩, 옵션) */
+  --fs-meta: 12px;    /* 메타 정보 (날짜, 안내문, 법적 고지) */
+  --fs-micro: 11px;   /* 섹션 kicker 레이블, 아이콘 레이블 */
+  --fs-badge: 10px;   /* 뱃지, 카운트 */
+  --fs-price: 22px;   /* 최종 결제/판매가 강조 — 전 컨텍스트 통일 (장바구니·주문서·상세) */
+  --fs-score: 52px;   /* 리뷰 평점 대형 숫자 전용 */
+
+  --fw-light: 300;    /* kicker 레이블 */
+  --fw-regular: 400;  /* 본문 */
+  --fw-medium: 500;   /* 카드 상품명, 중간 강조 */
+  --fw-semibold: 600; /* 제목, active 상태 */
+  --fw-bold: 700;     /* 가격, 페이지 타이틀 */
 }
 
 /* ── 반응형 브레이크포인트 (desktop-first, max-width) ──
@@ -58,13 +86,33 @@
    - 480px : 모바일 (디자인 기준 폭 375px) — 정보 감량, 터치 최적화
    각 지점에서 --container-pad만 재정의하면 정렬선 시스템 전체가 함께 조정됨 */
 @media (max-width: 1024px) {
-  :root { --container-pad: 40px; }
+  :root {
+    --container-pad: 40px;
+    --fs-display: 40px;
+    --fs-h1: 34px;
+    --fs-h2: 28px;
+    --fs-h3: 24px;
+  }
 }
 @media (max-width: 768px) {
-  :root { --container-pad: 24px; }
+  :root {
+    --container-pad: 24px;
+    --fs-display: 32px;
+    --fs-h1: 28px;
+    --fs-h2: 24px;
+    --fs-h3: 22px;
+    --fs-h4: 20px;
+    --fs-h5: 18px;
+  }
 }
 @media (max-width: 480px) {
-  :root { --container-pad: 16px; }
+  :root {
+    --container-pad: 16px;
+    --fs-display: 26px;
+    --fs-h1: 24px;
+    --fs-h2: 22px;
+    --fs-h3: 20px;
+  }
 }
 
 * {

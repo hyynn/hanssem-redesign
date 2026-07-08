@@ -1,6 +1,6 @@
 .title {
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--fs-title);
+  font-weight: var(--fw-bold);
   margin-bottom: 16px;
 }
 
@@ -76,7 +76,7 @@
 }
 
 .label {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   margin-bottom: 8px;
   line-height: 1.4;
 }
@@ -89,11 +89,11 @@
 
 .discount {
   color: var(--color-sale);
-  font-weight: 700;
-  font-size: 13px;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-caption);
 }
 
 .price {
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
 }

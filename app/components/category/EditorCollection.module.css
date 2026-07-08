@@ -13,14 +13,16 @@
 }
 
 .title {
-  font-size: 22px;
-  font-weight: 500;
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-medium);
   letter-spacing: -0.025em;
   color: var(--color-text-heading);
 }
 
 .more {
-  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   text-decoration: none;
   transition: color 0.2s;
@@ -110,14 +112,14 @@
 }
 
 .cardBrand {
-  font-size: 11px;
+  font-size: var(--fs-micro);
   color: var(--color-text-muted);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
 .cardName {
-  font-size: 14px;
+  font-size: var(--fs-body);
   line-height: 1.45;
   color: var(--color-text-heading);
   display: -webkit-box;
@@ -128,16 +130,16 @@
 }
 
 .cardPrice {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-bold);
   color: var(--color-text-heading);
   margin-top: 4px;
 }
 
 .cardDiscount {
   color: var(--color-sale);
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-body);
   margin-right: 6px;
 }
 

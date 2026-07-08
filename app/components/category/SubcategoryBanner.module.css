@@ -30,8 +30,8 @@
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold);
   color: var(--color-text-heading);
   letter-spacing: -0.02em;
   margin: 0 0 8px 0;
@@ -39,8 +39,8 @@
 }
 
 .body {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
   color: var(--color-text-heading);
   opacity: 0.75;
   margin: 0;
@@ -49,6 +49,5 @@
 
 @media (max-width: 768px) {
   .banner { height: 200px; }
-  .title { font-size: 20px; }
-  .body { font-size: 13px; }
+  .body { font-size: var(--fs-caption); }
 }

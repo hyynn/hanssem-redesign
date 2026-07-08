@@ -16,8 +16,8 @@
 }
 
 .label {
-  font-size: 11px;
-  font-weight: 300;
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-light);
   color: var(--color-text-muted);
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -25,8 +25,8 @@
 }
 
 .title {
-  font-size: 32px;
-  font-weight: 600;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-semibold);
   letter-spacing: -0.03em;
   line-height: 1.2;
   color: var(--color-text-heading);
@@ -34,7 +34,7 @@
 }
 
 .body {
-  font-size: 15px;
+  font-size: var(--fs-body-lg);
   line-height: 1.8;
   color: var(--color-text-muted);
   white-space: pre-line;
@@ -44,8 +44,8 @@
 .cta {
   display: inline-block;
   align-self: flex-start;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
   letter-spacing: 0.02em;
   color: var(--color-text-heading);
   border: 1px solid var(--color-text-heading);
@@ -75,16 +75,11 @@
   transform: scale(1.04);
 }
 
-@media (max-width: 1024px) {
-  .title { font-size: 28px; }
-}
-
 @media (max-width: 768px) {
   /* 좌우 분할 해제 → 세로 스택. containing block이 뷰포트 폭이 되므로
      100vw calc 예외 대신 --container-pad 직접 사용 가능 */
   .section { grid-template-columns: 1fr; min-height: auto; }
   .text { padding: 48px var(--container-pad); }
-  .title { font-size: 24px; }
-  .body { font-size: 14px; margin-bottom: 28px; }
+  .body { font-size: var(--fs-body); margin-bottom: 28px; }
   .imageWrapper { aspect-ratio: 3 / 2; }
 }

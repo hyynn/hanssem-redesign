@@ -9,7 +9,7 @@
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 18px var(--container-pad);
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@
 
 .sep {
   opacity: 0.45;
-  font-size: 12px;
+  font-size: var(--fs-meta);
 }
 
 /* ── 페이지 내용 ── */
@@ -41,8 +41,8 @@
 }
 
 .pageTitle {
-  font-size: 26px;
-  font-weight: 700;
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-bold);
   color: var(--color-text-heading);
   margin-bottom: 32px;
 }
@@ -63,8 +63,8 @@
 }
 
 .sectionTitle {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--fs-h6);
+  font-weight: var(--fw-bold);
   color: var(--color-text-heading);
   padding-bottom: 16px;
   border-bottom: 1px solid var(--color-gray-light);
@@ -73,7 +73,7 @@
 
 /* ── 주문 상품 ── */
 .noItems {
-  font-size: 14px;
+  font-size: var(--fs-body);
   color: var(--color-text-muted);
 }
 
@@ -116,8 +116,8 @@
 }
 
 .orderName {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-medium);
   color: var(--color-text-body);
   overflow: hidden;
   white-space: nowrap;
@@ -125,12 +125,12 @@
 }
 
 .orderOption {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
 }
 
 .orderQtyPrice {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   margin-top: 2px;
 }
@@ -155,7 +155,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   cursor: pointer;
   user-select: none;
@@ -175,8 +175,8 @@
 }
 
 .label {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
   color: var(--color-text-body);
 }
 
@@ -187,7 +187,7 @@
 .input {
   height: 44px;
   padding: 0 14px;
-  font-size: 14px;
+  font-size: var(--fs-body);
   font-family: inherit;
   color: var(--color-text-body);
   background: var(--color-bg);
@@ -225,7 +225,7 @@
 }
 
 .charCount {
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-text-muted);
 }
 
@@ -235,7 +235,7 @@
 
 /* ── 오류 메시지 ── */
 .errorMsg {
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-sale);
   margin-top: -2px;
 }
@@ -257,7 +257,7 @@
   width: 100%;
   height: 44px;
   padding: 0 14px;
-  font-size: 14px;
+  font-size: var(--fs-body);
   font-family: inherit;
   color: var(--color-text-body);
   background: var(--color-bg);
@@ -309,7 +309,7 @@
   display: block;
   width: 100%;
   padding: 11px 14px;
-  font-size: 14px;
+  font-size: var(--fs-body);
   font-family: inherit;
   color: var(--color-text-body);
   background: var(--color-bg);
@@ -329,7 +329,7 @@
 }
 
 .memoItemActive {
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--color-text-heading);
 }
 
@@ -346,8 +346,8 @@
   flex-shrink: 0;
   height: 44px;
   padding: 0 20px;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
   color: var(--color-text-body);
   background: var(--color-bg);
   border: 1px solid var(--color-text-body);
@@ -370,8 +370,8 @@
 
 .paymentBtn {
   padding: 10px 20px;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-regular);
   color: var(--color-text-body);
   background: var(--color-bg);
   border: 1px solid var(--color-gray-light);
@@ -381,7 +381,7 @@
 
 .paymentBtnActive {
   border-color: var(--color-accent);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--color-text-heading);
 }
 
@@ -402,7 +402,7 @@
 }
 
 .agreeText {
-  font-size: 14px;
+  font-size: var(--fs-body);
   color: var(--color-text-body);
 }
 
@@ -418,8 +418,8 @@
 }
 
 .summaryTitle {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--fs-h6);
+  font-weight: var(--fw-bold);
   color: var(--color-text-heading);
   padding-bottom: 16px;
   border-bottom: 1px solid var(--color-gray-light);
@@ -441,7 +441,7 @@
 }
 
 .summaryItemName {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   flex: 1;
   min-width: 0;
@@ -451,7 +451,7 @@
 }
 
 .summaryItemPrice {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-body);
   flex-shrink: 0;
 }
@@ -471,7 +471,7 @@
 .summaryRow {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
+  font-size: var(--fs-body);
   color: var(--color-text-body);
 }
 
@@ -491,8 +491,8 @@
 }
 
 .summaryTotal > span:first-child {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-semibold);
   color: var(--color-text-heading);
   padding-top: 4px;
 }
@@ -505,14 +505,14 @@
 }
 
 .summaryTotalPrice {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: var(--fs-price);
+  font-weight: var(--fw-bold);
   color: var(--color-text-heading);
 }
 
 .summaryTotalSaving {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-semibold);
   color: var(--color-sale);
 }
 
@@ -520,8 +520,8 @@
   display: block;
   width: 100%;
   height: 52px;
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-bold);
   color: var(--color-bg);
   background: var(--color-accent);
   border: none;
@@ -540,7 +540,7 @@
 }
 
 .summaryNote {
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-text-muted);
   text-align: center;
   line-height: 1.6;
@@ -554,7 +554,7 @@
 
 @media (max-width: 768px) {
   .inner { padding-top: 32px; padding-bottom: 56px; }
-  .pageTitle { font-size: 22px; margin-bottom: 24px; }
+  .pageTitle { margin-bottom: 24px; }
   .section { padding: 24px 20px; }
   .summaryInner { padding: 24px 20px; }
 }

@@ -6,14 +6,14 @@
 }
 
 .heading {
-  font-size: 22px;
-  font-weight: 700;
+  font-size: var(--fs-h4);
+  font-weight: var(--fw-bold);
   margin-bottom: 36px;
 }
 
 .heading span {
   color: var(--color-text-muted);
-  font-weight: 400;
+  font-weight: var(--fw-regular);
 }
 
 /* Rating Summary */
@@ -36,14 +36,14 @@
 }
 
 .scoreNumber {
-  font-size: 52px;
-  font-weight: 700;
+  font-size: var(--fs-score);
+  font-weight: var(--fw-bold);
   line-height: 1;
   letter-spacing: -1px;
 }
 
 .scoreCount {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   white-space: nowrap;
 }
@@ -62,7 +62,7 @@
 }
 
 .barLabel {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   min-width: 22px;
   text-align: right;
   color: var(--color-text-muted);
@@ -84,7 +84,7 @@
 }
 
 .barCount {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   min-width: 20px;
   color: var(--color-text-muted);
 }
@@ -97,17 +97,17 @@
 
 .starFilled {
   color: #f5a623;
-  font-size: 14px;
+  font-size: var(--fs-body);
 }
 
 .starEmpty {
   color: #ddd;
-  font-size: 14px;
+  font-size: var(--fs-body);
 }
 
 .starsLg .starFilled,
 .starsLg .starEmpty {
-  font-size: 22px;
+  font-size: var(--fs-h4);
 }
 
 /* Photo Strip */
@@ -116,8 +116,8 @@
 }
 
 .photoTitle {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-semibold);
   margin-bottom: 14px;
 }
 
@@ -212,24 +212,24 @@
 }
 
 .itemUser {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
 }
 
 .itemDate {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   margin-left: auto;
 }
 
 .itemVariant {
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-text-muted);
   margin-bottom: 10px;
 }
 
 .itemContent {
-  font-size: 15px;
+  font-size: var(--fs-body-lg);
   line-height: 1.7;
   color: var(--color-text-body);
 }

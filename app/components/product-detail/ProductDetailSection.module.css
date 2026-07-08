@@ -10,13 +10,13 @@
 }
 
 .textBlock h3 {
-  font-size: 32px;
-  font-weight: 700;
+  font-size: var(--fs-h2);
+  font-weight: var(--fw-bold);
   margin-bottom: 12px;
 }
 
 .textBlock p {
-  font-size: 20px;
+  font-size: var(--fs-h5);
   line-height: 1.6;
   color: var(--color-text-muted);
 }
@@ -42,11 +42,9 @@
 /* ── 반응형 ── */
 @media (max-width: 768px) {
   .section { padding: 40px var(--container-pad); }
-  .textBlock h3 { font-size: 26px; }
-  .textBlock p { font-size: 16px;}
+  .textBlock p { font-size: var(--fs-h6);}
 }
 
 @media (max-width: 480px) {
-  .textBlock h3 { font-size: 20px; }
-  .textBlock p { font-size: 14px;}
+  .textBlock p { font-size: var(--fs-body);}
 }

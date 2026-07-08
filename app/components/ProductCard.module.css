@@ -31,8 +31,8 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: var(--fs-meta);
+  font-weight: var(--fw-medium);
   color: #fff;
   padding: 4px 10px;
   border-radius: 4px;
@@ -51,10 +51,10 @@
 
 
 .info { padding-top: 14px; }
-.brand { font-size: 12px; color: var(--color-text-muted); margin-bottom: 4px; }
+.brand { font-size: var(--fs-meta); color: var(--color-text-muted); margin-bottom: 4px; }
 
 .name {
-  font-size: 15px;
+  font-size: var(--fs-body-lg);
   margin-bottom: 8px;
 }
 
@@ -68,8 +68,8 @@
 } */
 
 .priceRow { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
-.discount { color: var(--color-sale); font-weight: 700; font-size: 14px; }
-.price { font-weight: 700; font-size: 15px; }
+.discount { color: var(--color-sale); font-weight: var(--fw-bold); font-size: var(--fs-body); }
+.price { font-weight: var(--fw-bold); font-size: var(--fs-body-lg); }
 
 .colorChips { display: flex; gap: 6px; }
 .colorChip { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }

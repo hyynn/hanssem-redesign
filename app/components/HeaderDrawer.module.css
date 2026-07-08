@@ -41,8 +41,8 @@
 }
 
 .panelTitle {
-  font-size: 15px;
-  font-weight: 700;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-bold);
   color: var(--color-text-heading);
 }
 
@@ -76,8 +76,8 @@
   display: flex;
   align-items: center;
   padding: 15px 20px;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-medium);
   color: var(--color-text-heading);
   text-decoration: none;
 }
@@ -99,7 +99,7 @@
 .subLink {
   display: block;
   padding: 11px 20px 11px 32px;
-  font-size: 14px;
+  font-size: var(--fs-body);
   color: var(--color-text-body);
   text-decoration: none;
 }
@@ -118,7 +118,7 @@
 }
 
 .utilityBtn {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   padding: 0;
 }

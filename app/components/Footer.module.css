@@ -15,11 +15,11 @@
   display: flex;
   flex-wrap: wrap; /* 공간 부족 시 버튼 단위로 줄바꿈 (버튼 내부 줄바꿈 금지) */
   gap: 12px 24px;
-  font-size: 14px;
+  font-size: var(--fs-body);
 }
 
 .topLinks button {
-  font-weight: 400;
+  font-weight: var(--fw-regular);
   color: var(--color-text-muted);
   background: none;
   border: none;
@@ -30,7 +30,7 @@
 }
 
 .topLinks button.emphasized {
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   color: var(--color-text-body);
 }
 
@@ -42,7 +42,7 @@
   display: flex;
   align-items: center;
   gap:12px;
-  font-size: 13px;
+  font-size: var(--fs-caption);
   border: 1px solid #ddd;
   padding: 6px 14px;
   border-radius: 4px;
@@ -92,7 +92,7 @@
   width: 100%;
   text-align: left;
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: var(--fs-body);
   color: var(--color-text-body);
   background: none;
   border: none;
@@ -122,20 +122,20 @@
 }
 
 .csTitle {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
   margin-bottom: 6px;
 }
 
 .csTime {
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   line-height: 1.5;
 }
 
 .contactTitle {
-  font-size: 15px;
-  font-weight: 600;
+  font-size: var(--fs-body-lg);
+  font-weight: var(--fw-semibold);
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -145,7 +145,7 @@
 .contactDesc {
   display: flex;
   gap: 4px;
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   margin-bottom: 16px;
 }
@@ -175,13 +175,13 @@
 }
 
 .qrBlock p {
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-text-muted);
 }
 
 .legalSection {
   padding: 0 var(--align-inset) 30px;
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-text-muted);
   line-height: 1.8;
 }
@@ -201,7 +201,7 @@
 
 .legalLink {
   text-decoration: underline;
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-text-muted);
   margin-left: 4px;
 }
@@ -213,7 +213,7 @@
 .disclaimerBar {
   background-color: #f0f0f0;
   padding: 16px var(--align-inset);
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--color-text-muted);
   text-align: center;
 }

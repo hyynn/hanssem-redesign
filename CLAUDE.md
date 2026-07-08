@@ -57,6 +57,21 @@
   - --detail-content-width: 900px
   - --header-height: 80px
   - --product-tab-height: 50px
+- 타이포그래피 토큰 (globals.css :root — 컴포넌트에서 font-size/weight px 직접 하드코딩 금지):
+  - 크기: --fs-display(48) / --fs-h1(40) / --fs-h2(32) / --fs-h3(26) / --fs-h4(22) /
+    --fs-h5(20) / --fs-title(18) / --fs-h6(16) / --fs-body-lg(15) / --fs-body(14) /
+    --fs-caption(13) / --fs-meta(12) / --fs-micro(11) / --fs-badge(10)
+  - 용도 특수: --fs-price(22 — 최종가 강조, 전 컨텍스트 통일) / --fs-score(52 — 리뷰 평점 숫자)
+  - 굵기: --fw-light(300) / --fw-regular(400) / --fw-medium(500) / --fw-semibold(600) / --fw-bold(700)
+  - 토큰의 h1~h6은 크기 계층 이름일 뿐 태그 지정이 아님. 태그는 문서 개요 기준:
+    페이지당 h1 1개(그 페이지의 주제 — 홈은 Hero 첫 슬라이드 타이틀, 카테고리는 CategoryHero
+    타이틀, 상세는 상품명, 장바구니/주문서는 pageTitle),
+    로고는 h1 금지, 섹션/배너 타이틀은 h2부터
+  - display~h5는 브레이크포인트(1024/768/480)에서 :root 재정의로 일괄 축소됨 —
+    컴포넌트 미디어 쿼리에서 제목 크기를 개별 축소하지 말 것 (본문 계열 등
+    토큰 계층을 넘나드는 축소가 꼭 필요할 때만 로컬 override, 값도 토큰으로)
+  - 예외: Header .logo(22px/800)는 브랜드 마크로 토큰 스케일 비적용 (주석 명시됨)
+  - 섹션 kicker 레이블 패턴: --fs-micro + --fw-light + letter-spacing 0.15em + uppercase
 - 존재하지 않는 변수 사용 금지: --color-text, --color-border, --color-bg-subtle 등
   이전 버전 변수명이며 현재 :root에 없음
 - 포인트 컬러는 의도적으로 최소화 (상품 카테고리가 광범위해서 화이트/그레이

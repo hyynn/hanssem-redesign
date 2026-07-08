@@ -6,7 +6,7 @@
 
 .breadcrumb {
   padding: 18px var(--align-inset);
-  font-size: 13px;
+  font-size: var(--fs-caption);
   color: var(--color-text-muted);
   display: flex;
   align-items: center;

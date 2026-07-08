@@ -21,7 +21,10 @@ export default function EditorCollection({
   return (
     <section className={styles.section}>
       <div className={styles.header}>
-        <h2 className={styles.title}>{sectionLabel}</h2>
+        <div>
+          <p className={styles.label}>Editor&apos;s Pick</p>
+          <h2 className={styles.title}>{sectionLabel}</h2>
+        </div>
         <a href={href} className={styles.more}>
           더보기 <ArrowIcon direction="right" size="1em" />
         </a>

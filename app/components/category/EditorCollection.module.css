@@ -8,8 +8,17 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-end;
   margin-bottom: 28px;
+}
+
+.label {
+  font-size: var(--fs-micro);
+  font-weight: var(--fw-light);
+  color: var(--color-text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
 }
 
 .title {

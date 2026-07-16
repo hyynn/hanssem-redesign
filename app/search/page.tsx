@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { catalog } from "@/app/lib/catalog";
-import { searchProducts } from "@/lib/search";
-import ProductCard from "@/app/components/ProductCard";
 import { ArrowIcon } from "@/app/components/Icon";
+import SearchResults from "./SearchResults";
 import styles from "./page.module.css";
 
 interface Props {
@@ -14,10 +12,11 @@ export async function generateMetadata({ searchParams }: Props) {
   return { title: q ? `'${q}' 검색 결과 — 한샘` : "검색 — 한샘" };
 }
 
+// 페이지 골격(메타데이터·브레드크럼)은 서버에 두고, 결과 목록만 클라이언트에서
+// /api/products/search를 fetch — 로딩/에러/빈 결과 상태는 SearchResults가 담당
 export default async function SearchPage({ searchParams }: Props) {
   const { q } = await searchParams;
   const query = q?.trim() ?? "";
-  const results = query ? searchProducts(query, catalog) : [];
 
   return (
     <div className={styles.page}>
@@ -28,36 +27,18 @@ export default async function SearchPage({ searchParams }: Props) {
       </div>
 
       <div className={styles.inner}>
-        <h1 className={styles.pageTitle}>
-          {query ? (
-            <>
-              &lsquo;<strong className={styles.pageTitleQuery}>{query}</strong>&rsquo;
-              <span className={styles.pageTitleLabel}>검색 결과</span>
-              <span className={styles.pageTitleCount}>{results.length}</span>
-            </>
-          ) : (
-            "검색"
-          )}
-        </h1>
-
-        {results.length > 0 ? (
-          <div className={styles.grid}>
-            {results.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
+        {query ? (
+          // key={query}: 검색어가 바뀌면 리마운트되어 이전 검색어의 결과·상태가 남지 않음
+          <SearchResults key={query} query={query} />
         ) : (
-          <div className={styles.empty}>
-            <p className={styles.emptyTitle}>
-              {query ? "검색 결과가 없습니다" : "검색어를 입력해 주세요"}
-            </p>
-            <p className={styles.emptyBody}>
-              {query
-                ? "다른 검색어를 입력하거나 카테고리에서 상품을 둘러보세요"
-                : "상품명 또는 카테고리명으로 검색할 수 있습니다"}
-            </p>
-            <Link href="/category/bedroom" className={styles.emptyBtn}>상품 보러가기</Link>
-          </div>
+          <>
+            <h1 className={styles.pageTitle}>검색</h1>
+            <div className={styles.empty}>
+              <p className={styles.emptyTitle}>검색어를 입력해 주세요</p>
+              <p className={styles.emptyBody}>상품명 또는 카테고리명으로 검색할 수 있습니다</p>
+              <Link href="/category/bedroom" className={styles.emptyBtn}>상품 보러가기</Link>
+            </div>
+          </>
         )}
       </div>
     </div>

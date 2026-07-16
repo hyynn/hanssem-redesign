@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCartStore } from "@/app/store/cartStore";
-import { catalog } from "@/app/lib/catalog";
-import { searchProducts, searchKeywords } from "@/lib/search";
+import type { ProductSummary } from "@/app/lib/types";
+import type { SearchResponse } from "@/app/lib/api-types";
 import HeaderDrawer from "./HeaderDrawer";
 import styles from "./Header.module.css";
 
@@ -14,6 +14,14 @@ const KEYWORD_LIMIT = 4;
 const SUGGESTION_LIMIT = 3;
 const RECENT_KEY = "hanssem-recent-searches";
 const RECENT_LIMIT = 8;
+/* 300ms: 연속 타이핑 중 키 간격(150~250ms, 한글 IME는 자모 단위로 onChange 발생)보다 길어
+   입력이 멈춘 시점에만 fetch가 나가고, 체감 지연 한계(~400ms)보다는 짧아 반응이 늦다고
+   느껴지지 않는 구간. 디바운스를 뚫고 겹친 요청은 AbortController가 취소 */
+const SEARCH_DEBOUNCE_MS = 300;
+
+/* fetch 자동완성의 화면 상태 — idle(빈 입력), loading(첫 결과 대기),
+   done(성공, 빈 결과 포함), error(요청 실패) */
+type SearchStatus = "idle" | "loading" | "done" | "error";
 
 function escapeRegExp(str: string): string {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -63,10 +71,39 @@ export default function Header() {
   const cartCount = useCartStore((s) => s.items.reduce((n, i) => n + i.quantity, 0));
 
   const hasQuery = isSearchOpen && Boolean(query.trim());
-  const keywords = hasQuery ? searchKeywords(query, catalog).slice(0, KEYWORD_LIMIT) : [];
-  const suggestions = hasQuery ? searchProducts(query, catalog).slice(0, SUGGESTION_LIMIT) : [];
+  const [keywords, setKeywords] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<ProductSummary[]>([]);
+  const [searchStatus, setSearchStatus] = useState<SearchStatus>("idle");
   // 키보드 내비게이션 인덱스는 키워드 → 상품 순서의 통합 리스트를 순회
   const optionCount = keywords.length + suggestions.length;
+
+  // 자동완성 fetch: 디바운스 + 언마운트/재입력 시 이전 요청 취소.
+  // 결과는 다음 응답이 올 때까지 유지(stale-while-loading) — 타이핑마다 깜빡이지 않게
+  useEffect(() => {
+    const q = query.trim();
+    if (!isSearchOpen || !q) return; // 빈 입력 시 초기화는 이벤트 핸들러(resetSearchResults)가 담당
+    const controller = new AbortController();
+    const timer = setTimeout(async () => {
+      setSearchStatus("loading");
+      try {
+        const res = await fetch(`/api/products/search?q=${encodeURIComponent(q)}`, {
+          signal: controller.signal,
+        });
+        if (!res.ok) throw new Error(`search failed: ${res.status}`);
+        const data: SearchResponse = await res.json();
+        setKeywords(data.keywords.slice(0, KEYWORD_LIMIT));
+        setSuggestions(data.products.slice(0, SUGGESTION_LIMIT));
+        setSearchStatus("done");
+      } catch {
+        // abort는 다음 입력이 이어졌다는 뜻이므로 에러로 표시하지 않음
+        if (!controller.signal.aborted) setSearchStatus("error");
+      }
+    }, SEARCH_DEBOUNCE_MS);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
+  }, [query, isSearchOpen]);
 
   useEffect(() => {
     if (!isHome) return;
@@ -90,10 +127,22 @@ export default function Header() {
 
   // 페이지 이동 시 검색폼 자동 닫힘 (위 effect가 입력값도 함께 초기화)
   useEffect(() => {
-    setIsSearchOpen(false);
+    closeSearch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
-  const closeSearch = () => setIsSearchOpen(false);
+  // 입력이 비거나 폼이 닫힐 때 이전 결과를 지워, 다음 입력 첫 글자에
+  // 직전 검색어의 결과가 잠깐 비치는 것(stale flash)을 방지
+  const resetSearchResults = () => {
+    setKeywords([]);
+    setSuggestions([]);
+    setSearchStatus("idle");
+  };
+
+  const closeSearch = () => {
+    setIsSearchOpen(false);
+    resetSearchResults();
+  };
 
   useEffect(() => {
     try {
@@ -209,6 +258,7 @@ export default function Header() {
                 onChange={(e) => {
                   setQuery(e.target.value);
                   setActiveIndex(-1);
+                  if (!e.target.value.trim()) resetSearchResults();
                 }}
                 onKeyDown={handleSearchKeyDown}
               />
@@ -224,7 +274,22 @@ export default function Header() {
               </button>
             </form>
 
-            {/* 실시간 추천 드롭다운 — searchForm은 overflow:hidden(클립패스 전개)이라 형제로 배치 */}
+            {/* 실시간 추천 드롭다운 — searchForm은 overflow:hidden(클립패스 전개)이라 형제로 배치.
+                결과가 없어도 loading/error/빈 결과 상태를 구분해 보여주기 위해 hasQuery 기준으로 유지 */}
+            {hasQuery && searchStatus !== "idle" && optionCount === 0 && (
+              <div className={styles.searchDropdown}>
+                <p className={styles.searchStatus} role="status">
+                  {searchStatus === "loading" && "검색 중이에요…"}
+                  {searchStatus === "error" &&
+                    "추천 검색어를 불러오지 못했어요. 잠시 후 다시 시도해 주세요."}
+                  {searchStatus === "done" && (
+                    <>
+                      &lsquo;<strong>{query.trim()}</strong>&rsquo;에 대한 검색 결과가 없어요.
+                    </>
+                  )}
+                </p>
+              </div>
+            )}
             {optionCount > 0 && (
               <ul className={styles.searchDropdown} role="listbox" aria-label="검색 추천">
                 {/* 연관 분류명 (탐색형) */}

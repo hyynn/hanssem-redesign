@@ -243,6 +243,18 @@
   font-weight: var(--fw-medium);
 }
 
+/* 상태 문구 행 (검색 중 / 불러오기 실패 / 결과 없음) */
+.searchStatus {
+  padding: 12px 14px;
+  font-size: var(--fs-caption);
+  color: var(--color-text-muted);
+}
+
+.searchStatus strong {
+  font-weight: var(--fw-medium);
+  color: var(--color-text-heading);
+}
+
 /* ── 최근 검색어 패널 ── */
 .recentHeader {
   display: flex;

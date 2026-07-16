@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/app/store/cartStore";
 import { ArrowIcon, WishlistBtn } from "@/app/components/Icon";
-import AddToCartModal from "./AddToCartModal";
+import AddToCartModal, { prefetchRecommendPool } from "./AddToCartModal";
 import type { FilterAttributes } from "@/app/lib/types";
 import styles from "./OrderArea.module.css";
 
@@ -40,6 +40,13 @@ export default function OrderArea({
   const [qty, setQty] = useState(1);                          // 단일(색상 없는) 상품용
   const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]); // 색상 상품용
   const [showCartModal, setShowCartModal] = useState(false);
+
+  // 장바구니 모달의 추천 상품 풀을 페이지 진입 시 미리 받아 둠 —
+  // 모달이 열리는 순간 로딩 없이 추천이 바로 보이게 하기 위한 프리페치.
+  // 실패해도 모달 쪽에서 다시 시도하므로 여기서는 조용히 무시
+  useEffect(() => {
+    prefetchRecommendPool(category[0]).catch(() => {});
+  }, [category]);
 
   const hasColors = !!colors && colors.length > 0;
   const slotVisible = !hasColors ? isOpen : selectedItems.length > 0;

@@ -29,8 +29,11 @@
   - reviews.ts (calculateReviewSummary 헬퍼)
 - app/lib/: Next.js 라우팅 범위 내 상품 데이터
   - types.ts (TypeScript 타입 정의 — Product, ProductDetail, Review 등)
+  - api-types.ts (API 응답 타입 — ProductListResponse, SearchResponse, ApiError)
   - catalog.ts (전체 상품 목록)
   - products/ (SKU별 데이터 파일, 패밀리 데이터)
+- app/api/: 상품 API Route Handlers (아래 "API & 데이터 소비 규칙" 참조)
+- docs/: 관리 문서 (product-data-guide.md — 상품군 추가·삭제·수정 절차와 API 구조 상세)
 
 ## "use client" 경계 규칙
 - Next.js App Router 기본은 서버 컴포넌트. 아래 경우에만 파일 상단에 "use client" 선언:
@@ -38,6 +41,35 @@
   - useEffect / 브라우저 API (window, document) 사용
   - 이벤트 핸들러(onClick 등)가 인라인이 아닌 함수로 분리된 경우
 - 정적 데이터 렌더링만 하는 컴포넌트에는 "use client" 추가 금지
+
+## API & 데이터 소비 규칙 (하이브리드)
+- 원칙: **서버 컴포넌트는 데이터 모듈(catalog.ts, getProductDetail)을 직접 호출**하고,
+  비동기성이 실제로 필요한 **클라이언트 컴포넌트만 API를 fetch**한다.
+  서버 컴포넌트가 자기 서버의 API를 fetch로 다시 부르는 것 금지 (불필요한 HTTP 왕복)
+- API route는 로직을 갖지 않는다 — 필터·정렬·검색 로직은 기존 모듈
+  (catalog.ts, lib/search.ts)에 두고 route는 호출만. 두 소비 경로의 결과가
+  어긋나지 않게 하는 단일 소스 원칙. 상품 추가·수정 시 route 수정 불필요
+- 엔드포인트 (모두 GET, app/api/products/):
+  - `/api/products` — 목록. category(getByCategory 재사용)·page·pageSize 쿼리
+  - `/api/products/[id]` — 상세(ProductDetail). 없는 id는 404
+  - `/api/products/search?q=` — 검색. 상품 + 연관 키워드를 한 응답에
+- 에러 계약: 잘못된 파라미터 400, 없는 리소스 404, 바디는 `ApiError = { error: string }`.
+  에러 메시지에 사용자 입력(id·검색어 등)을 반사하지 않음
+- 응답 타입은 app/lib/api-types.ts에 정의하고 route(서버)와 fetch(클라이언트)가
+  같은 타입을 import — 별도 DTO 없이 ProductSummary/ProductDetail 필드명 그대로 재사용
+- 클라이언트 fetch 패턴 (새 fetch 코드 작성 시 재사용):
+  - 입력 연동 fetch는 **디바운스 300ms** (타이핑 중 키 간격 150~250ms보다 길고,
+    체감 지연 한계 ~400ms보다 짧음) + **AbortController**로 겹친 요청 취소
+  - 자동완성류는 stale-while-loading — 새 응답까지 이전 결과 유지(깜빡임 방지),
+    입력이 비거나 닫히면 이벤트 핸들러에서 즉시 리셋 (effect 내 동기 setState는 lint 위반)
+  - 쿼리 기반 결과 화면은 서버 셸이 `key={query}`로 클라이언트 컴포넌트를 리마운트 —
+    쿼리 변경 시 상태가 자동 초기화되어 수동 리셋 불필요 (예: app/search/SearchResults.tsx)
+  - 열기 전에 데이터가 준비되어야 하는 UI(모달 등)는 **프리페치 + 모듈 레벨 캐시**
+    (예: AddToCartModal의 prefetchRecommendPool — 값 캐시와 진행 중 Promise 캐시 분리)
+  - 로딩/에러/빈 결과는 유니온 타입 상태로 구분해 각각 다른 화면 표시.
+    부가 정보(추천 등)는 실패 시 에러 노출 대신 해당 섹션만 조용히 생략
+  - 사용자 노출 문구는 자연스러운 한국어로 (예: "검색 결과를 불러오지 못했어요.
+    잠시 후 다시 시도해 주세요.")
 
 ## 디자인 시스템
 - 컬러: globals.css의 :root 변수만 사용, 하드코딩 금지
@@ -247,7 +279,8 @@
     (`XxxFamily`는 `thumbnailFor`와 동일한 familyObj 변수명)
   - `summaries`의 `hoverImage`는 `thumbnail: thumbnailFor(...)` 바로 다음 줄에 `hoverImage: hoverImageFor("SKU_ID")`로만 설정, 예외 없음
   - `assembleGallery`가 만드는 갤러리 순서(`-main-` 이미지 → sharedImages → 나머지 variantImages)상 1번 인덱스를 그대로 사용 — 갤러리 2번째 이미지가 없으면 자동으로 `undefined` (hover 시 썸네일 유지, 별도 처리 불필요)
-- 새 패밀리 추가 시 **4곳 모두** 수정 (하나라도 빠지면 상세 페이지 404):
+- 새 패밀리 추가 시 **4곳 모두** 수정 (하나라도 빠지면 상세 페이지 404).
+  삭제·SKU 변경·데이터 수정 절차 상세는 docs/product-data-guide.md 참조:
   1. 새 폴더 생성 후 index.ts / sections.ts / reviews.ts 작성
   2. `app/lib/products/families/index.ts` — FAMILY_REGISTRY에 import 1줄 + 항목 1줄
   3. `app/lib/products/index.ts` — summaries import + getDetail import + registry Object.fromEntries 1줄

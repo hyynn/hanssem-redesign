@@ -248,10 +248,21 @@
   - 예: `app/lib/products/families/bedroom/bed/101012001/`
 - 각 패밀리 폴더는 3개 파일로 구성:
   - `index.ts` — familyObj, variantDetails, summaries[], getDetail() 핵심
-  - `sections.ts` — FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections()
+  - `sections.ts` — FAMILY_PATH, FAMILY_CODE, deliveryGuides, notices, createSections()
   - `reviews.ts` — sharedReviews, sharedQnaItems
+- **배송 안내·고지 프리셋 규칙** (`app/lib/products/detail-presets.ts`):
+  - `deliveryGuides`는 그룹/행 리터럴 직접 작성 금지 — 배송 유형 프리셋
+    (`PARCEL_DELIVERY` 택배 소품 / `INSTALL_DELIVERY` 직배송+설치 가구 /
+    `DIRECT_DELIVERY` 직배송 매트리스류 / `CUSTOM_INSTALL_DELIVERY` 맞춤 시공)을 고르고,
+    상품 고유 사정(사전판매 배송기간, 설치 소요시간·주의사항 등)만
+    `withDeliveryOverrides(프리셋, { "그룹 title": { rows: { label: 값 } } })`로 덮어쓸 것
+    (값 `null`은 행 제거, 그룹에 `null`은 그룹 제거, `replaceRows`는 행 전체 교체)
+  - `notices`(구매전 필수 확인사항/상품 고시정보/교환·반품)는
+    `createNotices(배송유형, 고시정보 문자열, overrides?)`로 생성 — 필수 export.
+    고시정보는 "품명: … / 소재: … / 제조국: … / KC … / A/S 책임자: 한샘 고객센터(1688-4945)"
+    형식으로 패밀리별 작성, 확인사항·교환/반품은 유형 기본 문구 사용(특수한 상품만 override)
 - **index.ts 내부 선언 순서 (반드시 준수)**:
-  1. `familyObj` (sharedImages 포함)
+  1. `familyObj` (sharedImages·deliveryGuides·notices 포함)
   2. `VariantData` 타입 선언
   3. `variantDetails` — SKU별 variantImages, filterAttributes, sections
   4. `thumbnailFor` / `hoverImageFor` helper 함수

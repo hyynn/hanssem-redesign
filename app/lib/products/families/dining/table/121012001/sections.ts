@@ -1,37 +1,15 @@
-import type { ProductDetailSection, DeliveryGuideGroup } from "@/app/lib/types";
+import type { ProductDetailSection } from "@/app/lib/types";
+import { INSTALL_DELIVERY, withDeliveryOverrides, createNotices } from "@/app/lib/products/detail-presets";
 
 export const FAMILY_PATH = "dining/table/121012001";
 export const FAMILY_CODE = "121012001";
 
-export const deliveryGuides: DeliveryGuideGroup[] = [
-  {
-    title: "배송 안내",
-    rows: [
-      { label: "배송방법", value: "한샘배송 (전문 배송팀 조립·설치 포함)" },
-      { label: "배송기간", value: "결제 후 5~7일 이내 순차 배송" },
-      { label: "배송비", value: "무료 (제주도 15,000원 선불)" },
-      { label: "배송지역", value: "전국 배송 (단, 제주도 및 도서산간 지역 추가 배송비 발생)" },
-      { label: "배송 안내", value: "배송 3~5일 전 배송팀에서 사전 연락 후 방문합니다. 식탁·벤치·의자 조립 및 설치 완료 후 포장재를 수거 및 처리해 드립니다." },
-    ],
-  },
-  {
-    title: "설치 서비스 안내",
-    rows: [
-      { label: "설치 서비스", value: "포함 (전문 설치팀 방문 조립·설치)" },
-      { label: "설치 소요시간", value: "약 50~70분" },
-      { label: "주의사항", value: "벤치·코너벤치 구성에 따라 설치 공간이 달라지므로 사전 실측을 권장드립니다." },
-    ],
-  },
-  {
-    title: "반품 / 교환 안내",
-    rows: [
-      { label: "반품·교환 기간", value: "상품 수령 후 7일 이내" },
-      { label: "반품·교환 비용", value: "단순 변심 반품 시 왕복 배송비 고객 부담 / 제품 하자 시 무료 처리" },
-      { label: "반품 불가 조건", value: "설치 완료 후 / 상품 사용·훼손·오염된 경우 / 포장 훼손으로 상품 가치 감소된 경우" },
-      { label: "A/S", value: "한샘 고객센터 1688-4945 / 제품 하자 발생 시 1년 내 무상 A/S" },
-    ],
-  },
-];
+export const deliveryGuides = withDeliveryOverrides(INSTALL_DELIVERY, {
+  "배송 안내": { rows: { "배송방법": "한샘배송 (전문 배송팀 조립·설치 포함)", "배송 안내": "배송 3~5일 전 배송팀에서 사전 연락 후 방문합니다. 식탁·벤치·의자 조립 및 설치 완료 후 포장재를 수거 및 처리해 드립니다." } },
+  "설치 서비스 안내": { rows: { "설치 서비스": "포함 (전문 설치팀 방문 조립·설치)", "설치 소요시간": "약 50~70분", "주의사항": "벤치·코너벤치 구성에 따라 설치 공간이 달라지므로 사전 실측을 권장드립니다." } },
+});
+
+export const notices = createNotices("install", "품명: 식탁 세트 / 소재: 고무나무 원목(의자), LPM 상판, 패브릭 벤치 / 제조국: 대한민국 / KC 인증 완료 / A/S 책임자: 한샘 고객센터(1688-4945)");
 
 export function createSections(basic: { title: string; body: string }): ProductDetailSection[] {
   return [

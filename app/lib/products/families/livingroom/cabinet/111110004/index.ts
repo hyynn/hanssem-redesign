@@ -1,6 +1,6 @@
 import { assembleGallery } from "@/app/lib/types";
 import type { ProductFamily, ProductSummary, ProductDetail, FilterAttributes, ProductDetailSection } from "@/app/lib/types";
-import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, createSections } from "./sections";
+import { FAMILY_PATH, FAMILY_CODE, deliveryGuides, notices, createSections } from "./sections";
 import { sharedReviews, sharedQnaItems } from "./reviews";
 
 export { FAMILY_PATH, FAMILY_CODE };
@@ -16,6 +16,7 @@ const milanAvCabinetFamily: Omit<ProductFamily, "familyId"> = {
     region: "전국 (제주/도서 지역 추가 배송비 발생)",
   },
   deliveryGuides,
+  notices,
   sharedImages: [
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-01.webp`,
     `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-shared-02.webp`,

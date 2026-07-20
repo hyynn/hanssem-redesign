@@ -1,29 +1,18 @@
-import type { ProductDetailSection, DeliveryGuideGroup } from "@/app/lib/types";
+import type { ProductDetailSection } from "@/app/lib/types";
+import { PARCEL_DELIVERY, withDeliveryOverrides, createNotices } from "@/app/lib/products/detail-presets";
 
 export const FAMILY_PATH = "bedroom/mattress/101112001";
 export const FAMILY_CODE = "101112001";
 
-export const deliveryGuides: DeliveryGuideGroup[] = [
-  {
-    title: "배송 안내",
-    rows: [
-      { label: "배송방법", value: "택배 배송" },
-      { label: "배송기간", value: "결제 후 3~5 영업일 이내" },
-      { label: "배송비", value: "구매금액 50,000원 이상 무료 / 미만 시 3,000원" },
-      { label: "배송지역", value: "전국 배송 (제주·도서산간 지역 추가 배송비 발생)" },
-      { label: "배송 안내", value: "부피 상품으로 배송 시 압축 포장되어 발송됩니다. 개봉 후 자연 복원되며 완전 복원까지 24~48시간 소요됩니다." },
-    ],
-  },
-  {
-    title: "반품 / 교환 안내",
-    rows: [
-      { label: "반품·교환 기간", value: "상품 수령 후 7일 이내" },
-      { label: "반품·교환 비용", value: "단순 변심 반품 시 왕복 배송비 고객 부담 / 제품 하자 시 무료 처리" },
-      { label: "반품 불가 조건", value: "비닐 포장 개봉 후 / 사용·오염·훼손된 경우" },
-      { label: "A/S", value: "한샘 고객센터 1688-4945" },
-    ],
-  },
-];
+export const deliveryGuides = withDeliveryOverrides(PARCEL_DELIVERY, {
+  "배송 안내": { rows: { "배송방법": "택배 배송", "배송기간": "결제 후 3~5 영업일 이내", "배송지역": "전국 배송 (제주·도서산간 지역 추가 배송비 발생)", "배송 안내": "부피 상품으로 배송 시 압축 포장되어 발송됩니다. 개봉 후 자연 복원되며 완전 복원까지 24~48시간 소요됩니다." } },
+  "반품 / 교환 안내": { rows: { "반품 불가 조건": "비닐 포장 개봉 후 / 사용·오염·훼손된 경우", "A/S": "한샘 고객센터 1688-4945" } },
+});
+
+export const notices = createNotices("parcel", "품명: 토퍼 / 소재: 메모리폼, 폴리에스터 커버 / 제조국: 대한민국 / KC 인증 완료 / A/S 책임자: 한샘 고객센터(1688-4945)", {
+  returns:
+    "단순 변심 교환/반품은 상품 수령 후 7일 이내 가능하며, 왕복 배송비는 고객 부담입니다. 위생상 비닐 포장 개봉 후에는 단순 변심 교환/반품이 불가합니다.",
+});
 
 export function createSections(): ProductDetailSection[] {
   return [

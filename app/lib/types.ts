@@ -27,6 +27,7 @@ export interface ProductFamily {
   promotions: { title: string; image: string }[];
   deliveryInfo: { method: string; region: string };
   deliveryGuides: DeliveryGuideGroup[];
+  notices: NoticeItem[];
   sharedImages: string[];   // gallery images shared by all siblings
 }
 
@@ -112,6 +113,12 @@ export interface DeliveryGuideRow {
 export interface DeliveryGuideGroup {
   title: string;
   rows: DeliveryGuideRow[];
+}
+
+// ─── Pre-purchase notice (구매전 필수 확인사항 / 상품 고시정보 / 교환·반품) ────
+export interface NoticeItem {
+  title: string;
+  content: string;
 }
 
 // ─── Gallery assembly helper (single source of truth for image order) ─────────

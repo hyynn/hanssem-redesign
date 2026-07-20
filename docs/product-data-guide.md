@@ -8,7 +8,7 @@
 ```
 app/lib/products/families/{대분류}/{중분류}/{FAMILY_CODE}/   ← 원본 데이터 (패밀리당 3파일)
         │  index.ts    familyObj · variantDetails · summaries[] · getDetail()
-        │  sections.ts 상세페이지 섹션 5종 + 배송 안내
+        │  sections.ts 상세페이지 섹션 5종 + 배송 안내(deliveryGuides) + 고지(notices)
         │  reviews.ts  리뷰·문의
         ▼
 app/lib/products/families/index.ts   FAMILY_REGISTRY (코드↔경로 매핑)
@@ -35,14 +35,40 @@ API route(`app/api/products/`)는 catalog를 호출만 하므로 상품을 늘�
 - 3개 파일을 작성한다. 기존 패밀리(예: `bedroom/bed/101012001/`)를 복사해 시작하는 것이 가장 안전.
 
 **index.ts** — 내부 선언 순서 고정:
-1. `familyObj` (sharedImages 포함)
+1. `familyObj` (sharedImages·deliveryGuides·notices 포함)
 2. `VariantData` 타입
 3. `variantDetails` — SKU별 variantImages / filterAttributes / sections
 4. `thumbnailFor` / `hoverImageFor` 헬퍼 (경로 하드코딩 금지 — 반드시 헬퍼로 파생)
 5. `summaries[]` — 카드·목록·검색에 쓰이는 데이터. **filterAttributes는 variantDetails와 별개로 여기에도 직접** 넣어야 카테고리 필터에 노출됨
 6. `getDetail()` — 마지막
 
-**sections.ts** — `FAMILY_PATH`("{대분류slug}/{중분류slug}/{FAMILY_CODE}"), `FAMILY_CODE`, `deliveryGuides`, `createSections()`. 섹션은 `basic / function / material / size / warranty` 5종 기본 구성 유지.
+**sections.ts** — `FAMILY_PATH`("{대분류slug}/{중분류slug}/{FAMILY_CODE}"), `FAMILY_CODE`, `deliveryGuides`, `notices`, `createSections()`. 섹션은 `basic / function / material / size / warranty` 5종 기본 구성 유지.
+
+배송 안내와 고지 정보는 `app/lib/products/detail-presets.ts`의 프리셋 기반으로 작성한다 (리터럴 직접 작성 금지):
+
+```ts
+import { INSTALL_DELIVERY, withDeliveryOverrides, createNotices } from "@/app/lib/products/detail-presets";
+
+// 배송 유형 프리셋을 고르고, 상품 고유 사정만 덮어쓴다.
+// PARCEL_DELIVERY(택배 소품) / INSTALL_DELIVERY(직배송+설치 가구) /
+// DIRECT_DELIVERY(직배송 매트리스류) / CUSTOM_INSTALL_DELIVERY(맞춤 시공)
+export const deliveryGuides = withDeliveryOverrides(INSTALL_DELIVERY, {
+  "배송 안내": { rows: { "배송기간": "주문 후 3~4주 내 순차 배송 (사전판매 상품)" } },
+  "설치 서비스 안내": { rows: { "설치 소요시간": "약 60~90분" } },
+});
+// 프리셋 그대로면 override 없이: export const deliveryGuides = PARCEL_DELIVERY;
+// override 문법: 값 null = 행 제거, 그룹에 null = 그룹 제거, replaceRows = 행 전체 교체
+
+// 구매전 필수 확인사항 / 상품 고시정보 / 교환·반품 — 상세 페이지 PrePurchaseNotice에 노출
+export const notices = createNotices(
+  "install", // "parcel" | "install" | "direct" | "customInstall" — 배송 유형과 맞출 것
+  "품명: 침대 프레임 / 소재: LPM(E0 등급 친환경 보드), 스틸 / 제조국: 대한민국 / KC 인증 완료 / A/S 책임자: 한샘 고객센터(1688-4945)",
+  // 확인사항·교환/반품은 유형별 기본 문구가 채워짐. 맞춤제작 등 특수한 상품만
+  // { preCheck: "...", returns: "..." } 세 번째 인자로 override
+);
+```
+
+`notices`는 index.ts의 familyObj를 거쳐 상세 페이지로 전달되므로 **export 누락 시 타입 에러**가 난다.
 
 **reviews.ts** — `sharedReviews`(calculateReviewSummary로 자동 계산, 평점 하드코딩 금지) + `sharedQnaItems`. 형식 규칙은 CLAUDE.md의 "reviews.ts 파일 패턴" 참조.
 
@@ -115,7 +141,8 @@ catalog.ts 등록은 패밀리 단위라 SKU 변경 시 건드릴 필요 없음.
 | 추가 소분류·칩 노출 | index.ts | `summaries[]`의 `categoryTags[]` — **카테고리 config의 `categoryName`과 글자까지 정확히 일치**해야 칩에서 보임 |
 | 필터(사이즈·구성·기능) | index.ts | `filterAttributes` — **summaries와 variantDetails 양쪽 모두** 같은 값으로 (summaries에 없으면 필터 미노출) |
 | 상세 본문(소개·기능·소재·사이즈) | sections.ts | `createSections()`의 해당 섹션 blocks |
-| 배송 안내 | sections.ts | `deliveryGuides` |
+| 배송 안내 | sections.ts | `deliveryGuides` — 프리셋 공통 문구는 detail-presets.ts에서 일괄 수정, 상품 고유 값은 `withDeliveryOverrides` 인자 |
+| 구매전 확인사항·고시정보·교환/반품 | sections.ts | `notices` — 고시정보는 `createNotices` 두 번째 인자, 유형 공통 문구는 detail-presets.ts |
 | 리뷰·문의 | reviews.ts | `reviewItems[]` / `sharedQnaItems[]` — 평점·건수는 자동 계산되므로 items만 수정 |
 
 평점·리뷰수(`summaries`의 `rating`/`reviewCount`)는 카드 표시용 수기 값이므로, 리뷰를 크게 바꿨다면 상세 페이지의 자동 계산 값과 어긋나지 않게 함께 갱신할 것.

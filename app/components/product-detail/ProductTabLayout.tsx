@@ -59,7 +59,7 @@ export default function ProductTabLayout({ product }: { product: ProductDetail }
             {product.sections.map((section) => (
               <ProductDetailSection key={section.id} section={section} />
             ))}
-            <PrePurchaseNotice />
+            <PrePurchaseNotice notices={product.notices} />
           </>
         )}
         {activeTab === "review" && <ReviewSection data={product.reviews} />}

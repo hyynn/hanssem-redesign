@@ -26,21 +26,21 @@ export const EVENTS: EventItem[] = [
     id: "ev-living-sofa",
     title: "거실의 재발견, 소파 특가전",
     description: "패브릭부터 가죽까지, 베스트 소파 라인업 한자리에",
-    period: { start: "2026-07-10", end: "2026-08-09" },
+    period: { start: "2026-07-10", end: "2026-09-01" },
     image: "/images/products/livingroom/sofa/111013001/111013001-shared-01.webp",
   },
   {
     id: "ev-first-order",
     title: "첫 구매 웰컴 혜택",
     description: "신규 회원 첫 주문 시 즉시 할인 쿠폰과 무료 배송 혜택",
-    period: { start: "2026-06-01", end: "2026-12-31" },
+    period: { start: "2026-01-01", end: "2026-12-31" },
     image: "/images/products/livingroom/cabinet/111110001/111110001-shared-01.webp",
   },
   {
     id: "ev-kids-room",
     title: "우리 아이 첫 방 꾸미기",
     description: "샘키즈 추천 구성으로 완성하는 아이방 스타일링 제안",
-    period: { start: "2026-07-06", end: "2026-08-16" },
+    period: { start: "2026-07-06", end: "2026-09-01" },
     image: "/images/products/bedroom/bed/101014001/101014001-shared-01.webp",
   },
   {
@@ -63,8 +63,15 @@ export function getEventStatus(event: EventItem, now: Date): EventStatus {
   return event.period.end >= toDateString(now) ? "진행중" : "종료";
 }
 
+// 진행중을 먼저(종료 임박순), 종료는 뒤에(최근 종료순).
+// 종료일이 같으면 배열 작성 순서 유지 (sort는 stable)
 export function getEventsWithStatus(now: Date = new Date()): EventWithStatus[] {
-  return EVENTS.map((event) => ({ ...event, status: getEventStatus(event, now) }));
+  return EVENTS.map((event) => ({ ...event, status: getEventStatus(event, now) })).sort((a, b) => {
+    if (a.status !== b.status) return a.status === "진행중" ? -1 : 1;
+    return a.status === "진행중"
+      ? a.period.end.localeCompare(b.period.end)
+      : b.period.end.localeCompare(a.period.end);
+  });
 }
 
 function toDateString(date: Date): string {

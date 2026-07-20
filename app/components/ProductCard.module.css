@@ -56,16 +56,13 @@
 .name {
   font-size: var(--fs-body-lg);
   margin-bottom: 8px;
-}
-
-/* .name {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   line-height: 1.4;
-  min-height: calc(1.4em * 2); 
-} */
+  /* min-height: calc(1.4em * 2); */
+}
 
 .priceRow { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
 .discount { color: var(--color-sale); font-weight: var(--fw-bold); font-size: var(--fs-body); }

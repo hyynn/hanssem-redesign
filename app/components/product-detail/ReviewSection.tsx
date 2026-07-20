@@ -93,9 +93,9 @@ export default function ReviewSection({ data }: { data: ReviewData }) {
   });
 
   const maxDist = Math.max(...data.distribution.map((d) => d.count));
-  const photoReviews: Review[] = data.items.filter(
-    (r) => r.images && r.images.length > 0
-  );
+  const photoReviews: Review[] = [...data.items]
+    .filter((r) => r.images && r.images.length > 0)
+    .sort((a, b) => b.date.localeCompare(a.date));
   const photoArrowsVisible = canScroll === true;
 
   return (

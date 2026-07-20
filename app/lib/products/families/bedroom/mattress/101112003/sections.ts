@@ -1,5 +1,5 @@
 import type { ProductDetailSection } from "@/app/lib/types";
-import { DIRECT_DELIVERY, withDeliveryOverrides, createNotices } from "@/app/lib/products/detail-presets";
+import { DIRECT_DELIVERY, withDeliveryOverrides, createNotices, WARRANTY_VIDEO_SRC } from "@/app/lib/products/detail-presets";
 
 export const FAMILY_PATH = "bedroom/mattress/101112003";
 export const FAMILY_CODE = "101112003";
@@ -44,7 +44,7 @@ export function createSections(): ProductDetailSection[] {
       id: "warranty",
       label: "품질보증",
       blocks: [
-        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.mp4`, alt: "품질보증 안내" },
+        { type: "video", src: WARRANTY_VIDEO_SRC, alt: "품질보증 안내" },
       ],
     },
   ];

@@ -1,5 +1,5 @@
 import type { ProductDetailSection } from "@/app/lib/types";
-import { PARCEL_DELIVERY, withDeliveryOverrides, createNotices } from "@/app/lib/products/detail-presets";
+import { PARCEL_DELIVERY, withDeliveryOverrides, createNotices, WARRANTY_VIDEO_SRC } from "@/app/lib/products/detail-presets";
 
 export const FAMILY_PATH = "livingroom/table/111112001";
 export const FAMILY_CODE = "111112001";
@@ -57,7 +57,7 @@ export function createSections(): ProductDetailSection[] {
       id: "warranty",
       label: "품질보증",
       blocks: [
-        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.mp4`, alt: "재크 400 라운드 사이드테이블 품질보증" },
+        { type: "video", src: WARRANTY_VIDEO_SRC, alt: "재크 400 라운드 사이드테이블 품질보증" },
       ],
     },
   ];

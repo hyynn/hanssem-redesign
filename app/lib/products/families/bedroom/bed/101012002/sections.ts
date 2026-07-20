@@ -1,5 +1,5 @@
 import type { ProductDetailSection } from "@/app/lib/types";
-import { INSTALL_DELIVERY, withDeliveryOverrides, createNotices } from "@/app/lib/products/detail-presets";
+import { INSTALL_DELIVERY, withDeliveryOverrides, createNotices, WARRANTY_VIDEO_SRC } from "@/app/lib/products/detail-presets";
 
 export const FAMILY_PATH = "bedroom/bed/101012002";
 export const FAMILY_CODE = "101012002";
@@ -65,7 +65,7 @@ export function createSections(basic: { title: string; body: string }): ProductD
       id: "warranty",
       label: "품질보증",
       blocks: [
-        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.mp4`, alt: "품질보증 비디오" },
+        { type: "video", src: WARRANTY_VIDEO_SRC, alt: "품질보증 비디오" },
         {
           type: "text",
           title: "안심하고 사용하는 한샘 침대",

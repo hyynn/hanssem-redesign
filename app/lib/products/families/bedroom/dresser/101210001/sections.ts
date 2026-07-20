@@ -1,5 +1,5 @@
 import type { ProductDetailSection } from "@/app/lib/types";
-import { INSTALL_DELIVERY, withDeliveryOverrides, createNotices } from "@/app/lib/products/detail-presets";
+import { INSTALL_DELIVERY, withDeliveryOverrides, createNotices, WARRANTY_VIDEO_SRC } from "@/app/lib/products/detail-presets";
 
 export const FAMILY_PATH = "bedroom/dresser/101210001";
 export const FAMILY_CODE = "101210001";
@@ -49,13 +49,12 @@ export function createSections(): ProductDetailSection[] {
       id: "warranty",
       label: "품질보증",
       blocks: [
-        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.mp4`, alt: "한샘 모노 화장대 품질보증 비디오" },
+        { type: "video", src: WARRANTY_VIDEO_SRC, alt: "한샘 모노 화장대 품질보증 비디오" },
         {
           type: "text",
           title: "안심하고 사용하는 한샘 화장대",
           body: "EO 등급의 안전한 자재와 KC 인증받은 전자기기 부품으로 유해물질, 전자파 걱정 없이 사용할 수 있습니다.",
         },
-        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.mp4`, alt: "품질보증" },
       ],
     },
   ];

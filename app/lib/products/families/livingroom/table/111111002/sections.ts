@@ -1,5 +1,5 @@
 import type { ProductDetailSection } from "@/app/lib/types";
-import { INSTALL_DELIVERY, withDeliveryOverrides, createNotices } from "@/app/lib/products/detail-presets";
+import { INSTALL_DELIVERY, withDeliveryOverrides, createNotices, WARRANTY_VIDEO_SRC } from "@/app/lib/products/detail-presets";
 
 export const FAMILY_PATH = "livingroom/table/111111002";
 export const FAMILY_CODE = "111111002";
@@ -47,7 +47,7 @@ export function createSections(): ProductDetailSection[] {
       id: "warranty",
       label: "품질보증",
       blocks: [
-        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-warranty-01.mp4`, alt: "플래지어 프링글 소파테이블 주의사항" },
+        { type: "video", src: WARRANTY_VIDEO_SRC, alt: "플래지어 프링글 소파테이블 주의사항" },
       ],
     },
   ];

@@ -4,6 +4,10 @@ import type { DeliveryGuideGroup, DeliveryGuideRow, NoticeItem } from "@/app/lib
 // 기본 골격을 결정하므로, 패밀리별 sections.ts는 유형 프리셋을 고르고 상품 고유 사정
 // (사전판매, 설치 소요시간, 전기 부품 A/S 등)만 withDeliveryOverrides로 덮어쓴다.
 
+// 품질보증 섹션 공용 영상 — 카테고리 공통(9개+ 패밀리 공유)이라 패밀리 폴더가 아닌
+// shared에 1개만 두고 참조 (URL 통일로 페이지 간 브라우저 캐시 재사용)
+export const WARRANTY_VIDEO_SRC = "/images/products/shared/warranty-01.mp4";
+
 // ─── 배송 안내 프리셋 4종 ─────────────────────────────────────────────────────
 
 /** 택배 소품 (침구·러그·조명·주방용품 등) */

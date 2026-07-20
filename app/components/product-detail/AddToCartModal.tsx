@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import type { ProductSummary, FilterAttributes } from "@/app/lib/types";
 import type { ProductListResponse } from "@/app/lib/api-types";
 import Img from "@/app/components/Img";
+import { formatPrice } from "@/lib/format";
 import styles from "./AddToCartModal.module.css";
 
 /* 추천 후보 풀(같은 대분류 상품 목록) 캐시 — 모듈 레벨이라 모달을 닫았다 열거나
@@ -144,7 +145,7 @@ export default function AddToCartModal({ category, filterAttributes, currentProd
                     {p.discountRate > 0 && (
                       <span className={styles.cardDiscount}>{p.discountRate}%</span>
                     )}
-                    <span className={styles.cardPriceValue}>{p.price.toLocaleString()}원</span>
+                    <span className={styles.cardPriceValue}>{formatPrice(p.price)}원</span>
                   </div>
                 </button>
               ))}

@@ -5,6 +5,7 @@ import { ProductSummary } from "../lib/types";
 import { WishlistBtn } from "./Icon";
 import Img from "./Img";
 import { COLOR_HEX } from "@/lib/filter-dimensions";
+import { formatPrice } from "@/lib/format";
 import styles from "./ProductCard.module.css";
 
 export default function ProductCard({ product }: { product: ProductSummary }) {
@@ -42,7 +43,7 @@ export default function ProductCard({ product }: { product: ProductSummary }) {
           {product.discountRate > 0 && (
             <span className={styles.discount}>{product.discountRate}%</span>
           )}
-          <span className={styles.price}>{product.price.toLocaleString()}원</span>
+          <span className={styles.price}>{formatPrice(product.price)}원</span>
         </div>
 
         {product.colors && product.colors.length > 0 && (

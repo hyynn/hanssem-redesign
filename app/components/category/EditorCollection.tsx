@@ -1,6 +1,7 @@
 import type { ProductSummary } from "@/app/lib/types";
 import { ArrowIcon } from "@/app/components/Icon";
 import Img from "@/app/components/Img";
+import { formatPrice } from "@/lib/format";
 import styles from "./EditorCollection.module.css";
 
 interface Props {
@@ -60,7 +61,7 @@ export default function EditorCollection({
                   {p.discountRate > 0 && (
                     <span className={styles.cardDiscount}>{p.discountRate}%</span>
                   )}
-                  {p.price.toLocaleString()}원
+                  {formatPrice(p.price)}원
                 </p>
               </div>
             </a>

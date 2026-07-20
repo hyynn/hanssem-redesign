@@ -1,5 +1,6 @@
 import { getProductById } from "../lib/catalog";
 import Img from "./Img";
+import { formatPrice } from "@/lib/format";
 import styles from "./HotspotMiniCard.module.css";
 
 interface Props {
@@ -21,7 +22,7 @@ export default function HotspotMiniCard({ productId }: Props) {
           {p.discountRate > 0 && (
             <span className={styles.discount}>{p.discountRate}%↓ </span>
           )}
-          {p.price.toLocaleString()}원
+          {formatPrice(p.price)}원
         </p>
         {/* 시각적 어포던스만 담당 — 실제 링크는 카드 전체(터치 타겟 확보) */}
         <span className={styles.link}>바로가기 →</span>

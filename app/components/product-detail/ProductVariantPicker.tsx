@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ProductSummary } from "../../lib/types";
 import { ArrowIcon } from "@/app/components/Icon";
 import Img from "@/app/components/Img";
+import { formatPrice } from "@/lib/format";
 import styles from "./ProductVariantPicker.module.css";
 
 interface Props {
@@ -80,7 +81,7 @@ export default function ProductVariantPicker({
                   <span className={styles.discount}>{sibling.discountRate}%</span>
                 )}
                 <span className={styles.price}>
-                  {sibling.price.toLocaleString()}원
+                  {formatPrice(sibling.price)}원
                 </span>
               </div>
             </Link>

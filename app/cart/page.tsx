@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCartStore } from "@/app/store/cartStore";
 import { ArrowIcon } from "@/app/components/Icon";
+import { formatPrice } from "@/lib/format";
 import styles from "./page.module.css";
 
 export default function CartPage() {
@@ -98,11 +99,11 @@ export default function CartPage() {
                         <div className={styles.itemPriceGroup}>
                           {item.originalPrice && item.originalPrice > item.price && (
                             <span className={styles.itemOriginalPrice}>
-                              {item.originalPrice.toLocaleString()}원
+                              {formatPrice(item.originalPrice)}원
                             </span>
                           )}
                           <span className={styles.itemUnitPrice}>
-                            {item.price.toLocaleString()}원
+                            {formatPrice(item.price)}원
                           </span>
                         </div>
                       </div>
@@ -133,7 +134,7 @@ export default function CartPage() {
 
                       {/* 금액 */}
                       <div className={styles.itemPrice}>
-                        {(item.price * item.quantity).toLocaleString()}원
+                        {formatPrice(item.price * item.quantity)}원
                       </div>
 
                       {/* 삭제 */}
@@ -162,12 +163,12 @@ export default function CartPage() {
                 <div className={styles.summaryRows}>
                   <div className={styles.summaryRow}>
                     <span>정상가</span>
-                    <span>{originalTotal.toLocaleString()}원</span>
+                    <span>{formatPrice(originalTotal)}원</span>
                   </div>
                   {totalDiscount > 0 && (
                     <div className={`${styles.summaryRow} ${styles.summaryDiscount}`}>
                       <span>상품 할인</span>
-                      <span>−{totalDiscount.toLocaleString()}원</span>
+                      <span>−{formatPrice(totalDiscount)}원</span>
                     </div>
                   )}
                   <div className={styles.summaryRow}>
@@ -181,7 +182,7 @@ export default function CartPage() {
                 <div className={styles.summaryTotal}>
                   <span>총 결제금액</span>
                   <div className={styles.summaryTotalGroup}>
-                    <span className={styles.summaryTotalPrice}>{total.toLocaleString()}원</span>
+                    <span className={styles.summaryTotalPrice}>{formatPrice(total)}원</span>
                     {totalDiscount > 0 && (
                       <span className={styles.summaryTotalSaving}>
                         {Math.round(totalDiscount / originalTotal * 100)}% 할인 적용

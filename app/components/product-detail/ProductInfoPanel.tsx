@@ -1,4 +1,5 @@
 import { ArrowIcon } from "@/app/components/Icon";
+import { formatPrice } from "@/lib/format";
 import styles from "./ProductInfoPanel.module.css";
 
 interface ProductInfoPanelProps {
@@ -59,11 +60,11 @@ export default function ProductInfoPanel({
             <div className={styles.discountRow}>
               <span className={styles.discountRate}>{discountRate}%</span>
               <span className={styles.originalPrice}>
-                {originalPrice.toLocaleString()}원
+                {formatPrice(originalPrice)}원
               </span>
             </div>
           )}
-          <p className={styles.finalPrice}>{price.toLocaleString()}원</p>
+          <p className={styles.finalPrice}>{formatPrice(price)}원</p>
         </div>
 
         <button className={styles.couponBtn}>쿠폰받기</button>

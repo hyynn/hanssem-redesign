@@ -6,6 +6,7 @@ import { useCartStore } from "@/app/store/cartStore";
 import { ArrowIcon, WishlistBtn } from "@/app/components/Icon";
 import AddToCartModal, { prefetchRecommendPool } from "./AddToCartModal";
 import type { FilterAttributes } from "@/app/lib/types";
+import { formatPrice } from "@/lib/format";
 import styles from "./OrderArea.module.css";
 
 interface Props {
@@ -210,7 +211,7 @@ export default function OrderArea({
                     <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" /></svg>
                   </button>
                 </div>
-                <span className={styles.slotSubtotal}>{(price * qty).toLocaleString()}원</span>
+                <span className={styles.slotSubtotal}>{formatPrice(price * qty)}원</span>
               </div>
             </div>
           )}
@@ -244,7 +245,7 @@ export default function OrderArea({
                     <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" /></svg>
                   </button>
                 </div>
-                <span className={styles.slotSubtotal}>{(price * item.qty).toLocaleString()}원</span>
+                <span className={styles.slotSubtotal}>{formatPrice(price * item.qty)}원</span>
               </div>
             </div>
           ))}
@@ -255,7 +256,7 @@ export default function OrderArea({
       {ctaActive && (
         <div className={styles.totalRow}>
           <span className={styles.totalLabel}>총 구매가</span>
-          <span className={styles.totalPrice}>{total.toLocaleString()} 원</span>
+          <span className={styles.totalPrice}>{formatPrice(total)} 원</span>
         </div>
       )}
 

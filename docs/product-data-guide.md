@@ -42,6 +42,22 @@ API route(`app/api/products/`)는 catalog를 호출만 하므로 상품을 늘�
 5. `summaries[]` — 카드·목록·검색에 쓰이는 데이터. **filterAttributes는 variantDetails와 별개로 여기에도 직접** 넣어야 카테고리 필터에 노출됨
 6. `getDetail()` — 마지막
 
+용량·세트 추가처럼 콘텐츠는 같고 가격만 달라지는 옵션은 SKU를 늘리지 말고 `summaries[]`의 `priceOptionGroups`로 표현 (주방수납류처럼 옵션 조합이 많은 카테고리에 특히 유용):
+
+```ts
+priceOptionGroups: [
+  {
+    id: "capacity",
+    label: "용량 선택",
+    options: [
+      { id: "s", label: "실속형 (15L)", priceDelta: 0 },      // options[0] = 기본값, 항상 priceDelta 0
+      { id: "l", label: "라지 (35L)", priceDelta: 15000 },
+    ],
+  },
+],
+```
+
+
 **sections.ts** — `FAMILY_PATH`("{대분류slug}/{중분류slug}/{FAMILY_CODE}"), `FAMILY_CODE`, `deliveryGuides`, `notices`, `createSections()`. 새 패밀리는 `basic → function → material → size → warranty` 5종을 기본 틀로 시작하되, 이 5개가 고정은 아니다 — 카테고리 고유 섹션은 id를 자유롭게 추가할 수 있고(탭은 `sections` 배열을 그대로 렌더링하므로 별도 등록 불필요), `warranty` 자리가 `notice`(주의사항) 등으로 대체되거나 순서가 바뀔 수도 있다.
 
 배송 안내와 고지 정보는 `app/lib/products/detail-presets.ts`의 프리셋 기반으로 작성한다 (리터럴 직접 작성 금지):
@@ -119,7 +135,7 @@ summaries import 1줄 + `catalog` 배열에 spread 1줄 추가.
 
 - `variantDetails`에 SKU 항목 추가/제거
 - `summaries[]`에 카드 항목 추가/제거 (thumbnail은 `thumbnailFor()`, hoverImage는 `hoverImageFor()`로만)
-- SKU 구성 원칙: **컬러만 다르면 SKU를 늘리지 말고 `colors: string[]`(한글 색상명)에 추가.** 사이즈·구성품·기능이 다를 때만 별도 SKU.
+- SKU 구성 원칙: **사진·상세 콘텐츠가 같으면 SKU를 늘리지 않는다.** 색상만 다르면 `colors: ColorOption[]`(한글 색상명, 원재료 차이로 가격이 다르면 `{ name, priceDelta }` 객체)에 추가하고, 용량·세트 추가처럼 색상 외 축에서 가격만 달라지면 `priceOptionGroups`로 표현한다. 사진·설명까지 달라질 때만 별도 SKU.
 - 옵션 번호(코드 마지막 1자리)는 패밀리 전체를 가격 오름차순으로 0부터 부여. 단, 이미 부여된 코드는 바꾸지 않고 새 SKU만 다음 번호를 받는다.
 - 리뷰를 SKU별 그룹으로 관리 중이면 `reviews.ts`에 `// ── {variant 라벨} ──` 그룹 추가 (id는 `r-{그룹문자}NN`).
 
@@ -133,8 +149,10 @@ catalog.ts 등록은 패밀리 단위라 SKU 변경 시 건드릴 필요 없음.
 
 | 바꾸고 싶은 것 | 파일 | 위치 |
 |---|---|---|
-| 상품명·가격·할인율·판매량·배지 | index.ts | `summaries[]`의 해당 SKU 항목 |
-| 색상 옵션 | index.ts | `summaries[]`의 `colors[]` (한글 색상명, hex 금지 — 렌더링은 `lib/filter-dimensions.ts`의 `COLOR_HEX` 맵) |
+| 상품명·가격·판매량·배지 | index.ts | `summaries[]`의 해당 SKU 항목 |
+| 할인율 | — | 직접 입력하지 않음 — `price`/`originalPrice`에서 `lib/format.ts`의 `calcDiscountRate()`로 항상 자동 계산(내림) |
+| 색상 옵션 | index.ts | `summaries[]`의 `colors[]` (한글 색상명, hex 금지 — 렌더링은 `colorName()`으로 이름을 뽑은 뒤 `lib/filter-dimensions.ts`의 `COLOR_HEX` 맵. 원재료 차이로 가격이 다르면 `{ name, priceDelta }` 객체로) |
+| 유상 옵션(용량·세트 추가 등) | index.ts | `summaries[]`의 `priceOptionGroups[]` (`app/lib/types.ts`의 `PriceOptionGroup`/`PriceOption`). `options[0]`은 항상 기본값(`priceDelta: 0`) |
 | 썸네일/hover 이미지 | index.ts | `variantDetails[].variantImages` 순서 변경 또는 파일 교체 (`thumbnailFor`가 `variantImages[0]`, 없으면 `sharedImages[0]` 폴백) |
 | 갤러리 이미지 | index.ts | `familyObj.sharedImages`(공유) / `variantDetails[].variantImages`(SKU 전용) |
 | 카테고리 소속(primary) | index.ts | `summaries[]`의 `category[]` — 마지막 항목이 primary 소분류 (스타일/타입 축 우선) |

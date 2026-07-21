@@ -1,4 +1,5 @@
 import type { ProductSummary } from "@/app/lib/types";
+import { colorName } from "@/app/lib/types";
 import { CATEGORY_TREE } from "./category-codes";
 
 export type FilterDimensionKey = "size" | "config" | "feature" | "color";
@@ -114,7 +115,7 @@ export function buildDimensions(
       if (axis.key === "color") {
         options = [...new Set(
           products.flatMap((p) =>
-            (p.colors ?? []).map((c) => COLOR_GROUPS[c]).filter((g): g is string => !!g)
+            (p.colors ?? []).map((c) => COLOR_GROUPS[colorName(c)]).filter((g): g is string => !!g)
           )
         )];
       } else {

@@ -1,15 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ProductSummary } from "../lib/types";
+import { ProductSummary, colorName } from "../lib/types";
 import { WishlistBtn } from "./Icon";
 import Img from "./Img";
 import { COLOR_HEX } from "@/lib/filter-dimensions";
-import { formatPrice } from "@/lib/format";
+import { formatPrice, calcDiscountRate } from "@/lib/format";
 import styles from "./ProductCard.module.css";
 
 export default function ProductCard({ product }: { product: ProductSummary }) {
   const router = useRouter();
+  const discountRate = calcDiscountRate(product.price, product.originalPrice);
 
   return (
     <div
@@ -40,21 +41,24 @@ export default function ProductCard({ product }: { product: ProductSummary }) {
         <p className={styles.name}>{product.name}</p>
 
         <div className={styles.priceRow}>
-          {product.discountRate > 0 && (
-            <span className={styles.discount}>{product.discountRate}%</span>
+          {discountRate > 0 && (
+            <span className={styles.discount}>{discountRate}%</span>
           )}
           <span className={styles.price}>{formatPrice(product.price)}원</span>
         </div>
 
         {product.colors && product.colors.length > 0 && (
           <div className={styles.colorChips}>
-            {product.colors.map((color) => (
-              <span
-                key={color}
-                className={styles.colorChip}
-                style={{ backgroundColor: COLOR_HEX[color] ?? color }}
-              />
-            ))}
+            {product.colors.map((c) => {
+              const name = colorName(c);
+              return (
+                <span
+                  key={name}
+                  className={styles.colorChip}
+                  style={{ backgroundColor: COLOR_HEX[name] ?? name }}
+                />
+              );
+            })}
           </div>
         )}
       </div>

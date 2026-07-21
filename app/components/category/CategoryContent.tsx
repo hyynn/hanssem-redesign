@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import type { ProductSummary } from "@/app/lib/types";
+import { colorName } from "@/app/lib/types";
 import { ALL_FILTER_AXES, FILTER_AXES_BY_CATEGORY, buildDimensions, COLOR_GROUPS } from "@/lib/filter-dimensions";
 import ProductCard from "@/app/components/ProductCard";
 import SubcategoryBanner from "./SubcategoryBanner";
@@ -137,7 +138,7 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
   const filtered = categoryProducts.filter((p) => {
     for (const [key, value] of Object.entries(filters)) {
       if (key === "color") {
-        const groups = p.colors?.map((c) => COLOR_GROUPS[c]).filter(Boolean) ?? [];
+        const groups = p.colors?.map((c) => COLOR_GROUPS[colorName(c)]).filter(Boolean) ?? [];
         if (!groups.includes(value)) return false;
       } else {
         const attr = p.filterAttributes?.[key as keyof typeof p.filterAttributes];

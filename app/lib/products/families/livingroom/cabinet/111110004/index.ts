@@ -61,7 +61,6 @@ export const summaries: ProductSummary[] = [
     brand: "한샘",
     price: 539000,
     originalPrice: 539000,
-    discountRate: 0,
     rating: sharedReviews.rating,
     reviewCount: sharedReviews.count,
     salesCount: 220,

@@ -62,7 +62,9 @@
 }
 
 .colorOption {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 100%;
   text-align: left;
   padding: 11px 16px;
@@ -75,12 +77,112 @@
   transition: background 0.1s;
 }
 
+.colorOptionRight {
+  display: flex;
+  align-items: center;
+}
+
 .colorOptionList li:last-child .colorOption {
   border-bottom: none;
 }
 
 .colorOption:hover {
   background: var(--color-bg-secondary);
+}
+
+.colorOptionDisabled {
+  color: var(--color-text-muted);
+  background: var(--color-bg-secondary);
+  cursor: default;
+}
+
+.colorOptionDisabled:hover {
+  background: var(--color-bg-secondary);
+}
+
+.colorOptionBadge {
+  margin-left: 8px;
+  font-size: var(--fs-meta);
+  color: var(--color-text-muted);
+}
+
+.optionDelta {
+  margin-left: 6px;
+  font-size: var(--fs-meta);
+  color: var(--color-text-muted);
+}
+
+/* ── 유상 옵션 그룹(용량·세트 등) 패널 — 색상 목록과 같은 위치, 여러 그룹 + 담기 버튼 ── */
+.optionPanel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  border: 1px solid var(--color-gray-light);
+  border-top: none;
+  background: var(--color-bg);
+  animation: slotEnter 0.2s ease;
+}
+
+.optionGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.optionGroupLabel {
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text-body);
+}
+
+.optionChoiceList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.optionChoice {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: var(--fs-caption);
+  color: var(--color-text-body);
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.optionChoice:hover {
+  border-color: var(--color-accent);
+}
+
+.optionChoiceActive {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.optionConfirmBtn {
+  height: 40px;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  color: var(--color-bg);
+  background: var(--color-accent);
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.optionConfirmBtn:disabled {
+  opacity: 0.4;
+  cursor: default;
 }
 
 /* ── 선택 슬롯 ── */

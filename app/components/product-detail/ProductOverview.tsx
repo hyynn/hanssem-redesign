@@ -7,6 +7,7 @@ import ProductVariantPicker from "./ProductVariantPicker";
 import DeliveryInfoBox from "./DeliveryInfoBox";
 import OrderArea from "./OrderArea";
 import { ProductDetail, assembleGallery } from "../../lib/types";
+import { calcDiscountRate } from "@/lib/format";
 import styles from "./ProductOverview.module.css";
 
 export default function ProductOverview({ product }: { product: ProductDetail }) {
@@ -30,7 +31,7 @@ export default function ProductOverview({ product }: { product: ProductDetail })
           reviewCount={product.reviewCount}
           originalPrice={product.originalPrice}
           price={product.price}
-          discountRate={product.discountRate}
+          discountRate={calcDiscountRate(product.price, product.originalPrice)}
           badge={product.badge}
         />
 
@@ -47,6 +48,7 @@ export default function ProductOverview({ product }: { product: ProductDetail })
           originalPrice={product.originalPrice}
           variantLabel={product.variantLabel}
           colors={product.colors}
+          priceOptionGroups={product.priceOptionGroups}
           category={product.category}
           filterAttributes={product.filterAttributes}
         />

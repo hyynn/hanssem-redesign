@@ -1,7 +1,7 @@
 import type { ProductSummary } from "@/app/lib/types";
 import { ArrowIcon } from "@/app/components/Icon";
 import Img from "@/app/components/Img";
-import { formatPrice } from "@/lib/format";
+import { formatPrice, calcDiscountRate } from "@/lib/format";
 import styles from "./EditorCollection.module.css";
 
 interface Props {
@@ -41,31 +41,34 @@ export default function EditorCollection({
         </div>
 
         <div className={styles.cards}>
-          {products.map((p) => (
-            <a key={p.id} href={`/products/${p.id}`} className={styles.card}>
-              <div className={styles.cardThumb}>
-                <Img src={p.thumbnail} alt={p.name} className={styles.cardImage} />
-                {p.hoverImage && (
-                  <Img
-                    src={p.hoverImage}
-                    alt=""
-                    aria-hidden="true"
-                    className={styles.cardImageHover}
-                  />
-                )}
-              </div>
-              <div className={styles.cardInfo}>
-                <p className={styles.cardBrand}>{p.brand}</p>
-                <p className={styles.cardName}>{p.name}</p>
-                <p className={styles.cardPrice}>
-                  {p.discountRate > 0 && (
-                    <span className={styles.cardDiscount}>{p.discountRate}%</span>
+          {products.map((p) => {
+            const discountRate = calcDiscountRate(p.price, p.originalPrice);
+            return (
+              <a key={p.id} href={`/products/${p.id}`} className={styles.card}>
+                <div className={styles.cardThumb}>
+                  <Img src={p.thumbnail} alt={p.name} className={styles.cardImage} />
+                  {p.hoverImage && (
+                    <Img
+                      src={p.hoverImage}
+                      alt=""
+                      aria-hidden="true"
+                      className={styles.cardImageHover}
+                    />
                   )}
-                  {formatPrice(p.price)}원
-                </p>
-              </div>
-            </a>
-          ))}
+                </div>
+                <div className={styles.cardInfo}>
+                  <p className={styles.cardBrand}>{p.brand}</p>
+                  <p className={styles.cardName}>{p.name}</p>
+                  <p className={styles.cardPrice}>
+                    {discountRate > 0 && (
+                      <span className={styles.cardDiscount}>{discountRate}%</span>
+                    )}
+                    {formatPrice(p.price)}원
+                  </p>
+                </div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>

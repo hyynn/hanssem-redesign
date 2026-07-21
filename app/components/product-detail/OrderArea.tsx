@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useCartStore } from "@/app/store/cartStore";
 import { ArrowIcon, WishlistBtn } from "@/app/components/Icon";
 import AddToCartModal, { prefetchRecommendPool } from "./AddToCartModal";
-import type { FilterAttributes } from "@/app/lib/types";
+import type { FilterAttributes, ColorOption, PriceOptionGroup } from "@/app/lib/types";
+import { colorName, colorPriceDelta } from "@/app/lib/types";
 import { formatPrice } from "@/lib/format";
 import styles from "./OrderArea.module.css";
 
@@ -16,12 +17,18 @@ interface Props {
   price: number;
   originalPrice?: number;
   variantLabel?: string;
-  colors?: string[];
+  colors?: ColorOption[];
+  priceOptionGroups?: PriceOptionGroup[];
   category: string[];
   filterAttributes?: FilterAttributes;
 }
 
-type SelectedItem = { optionKey: string; qty: number };
+type SelectedItem = {
+  optionKey: string;
+  color?: ColorOption;
+  priceSelections: Record<string, string>; // groupId -> optionId
+  qty: number;
+};
 
 export default function OrderArea({
   productId,
@@ -31,6 +38,7 @@ export default function OrderArea({
   originalPrice,
   variantLabel,
   colors,
+  priceOptionGroups,
   category,
   filterAttributes,
 }: Props) {
@@ -38,9 +46,16 @@ export default function OrderArea({
   const cartAdd = useCartStore((s) => s.add);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [qty, setQty] = useState(1);                          // 단일(색상 없는) 상품용
-  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]); // 색상 상품용
+  const [qty, setQty] = useState(1);                          // 단일(옵션 없는) 상품용
+  const [selectedItems, setSelectedItems] = useState<SelectedItem[]>([]); // 옵션 있는 상품용
   const [showCartModal, setShowCartModal] = useState(false);
+
+  // 유상 옵션 그룹 선택 중인 값(드롭다운 안에서만 유지, 담기 전 임시 상태)
+  const defaultPriceSelections: Record<string, string> = Object.fromEntries(
+    (priceOptionGroups ?? []).map((g) => [g.id, g.options[0].id])
+  );
+  const [draftColor, setDraftColor] = useState<ColorOption | null>(null);
+  const [draftPriceSelections, setDraftPriceSelections] = useState<Record<string, string>>(defaultPriceSelections);
 
   // 장바구니 모달의 추천 상품 풀을 페이지 진입 시 미리 받아 둠 —
   // 모달이 열리는 순간 로딩 없이 추천이 바로 보이게 하기 위한 프리페치.
@@ -50,16 +65,48 @@ export default function OrderArea({
   }, [category]);
 
   const hasColors = !!colors && colors.length > 0;
-  const slotVisible = !hasColors ? isOpen : selectedItems.length > 0;
+  const hasPriceOptionGroups = !!priceOptionGroups && priceOptionGroups.length > 0;
+  const hasOptions = hasColors || hasPriceOptionGroups;
+  const slotVisible = !hasOptions ? isOpen : selectedItems.length > 0;
   const ctaActive = slotVisible;
 
-  const total = !hasColors
-    ? price * qty
-    : selectedItems.reduce((sum, i) => sum + price * i.qty, 0);
+  // ── 옵션 가격 계산 헬퍼 ──────────────────────────────────────────────────
+  function priceSelectionsDelta(selections: Record<string, string>): number {
+    return Object.entries(selections).reduce((sum, [groupId, optionId]) => {
+      const group = priceOptionGroups?.find((g) => g.id === groupId);
+      const option = group?.options.find((o) => o.id === optionId);
+      return sum + (option?.priceDelta ?? 0);
+    }, 0);
+  }
+
+  function unitPrice(item: SelectedItem): number {
+    const colorDelta = item.color ? colorPriceDelta(item.color) : 0;
+    return price + colorDelta + priceSelectionsDelta(item.priceSelections);
+  }
+
+  function optionDisplayLabel(item: SelectedItem): string {
+    const parts: string[] = [];
+    if (item.color) parts.push(colorName(item.color));
+    for (const group of priceOptionGroups ?? []) {
+      const optionId = item.priceSelections[group.id];
+      const option = group.options.find((o) => o.id === optionId);
+      if (option) parts.push(option.label);
+    }
+    return parts.join(" / ");
+  }
+
+  function buildOptionKey(color: ColorOption | null, selections: Record<string, string>): string {
+    const colorPart = color ? colorName(color) : "";
+    const selectionsPart = Object.entries(selections)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([groupId, optionId]) => `${groupId}:${optionId}`)
+      .join(",");
+    return [colorPart, selectionsPart].filter(Boolean).join("|");
+  }
 
   // ── 토글 ──────────────────────────────────────────────────────────────────
   function handleToggle() {
-    if (!hasColors) {
+    if (!hasOptions) {
       if (isOpen) { setIsOpen(false); setQty(1); }
       else         { setIsOpen(true); }
     } else {
@@ -73,13 +120,30 @@ export default function OrderArea({
     setQty(1);
   }
 
-  // ── 색상 선택 ─────────────────────────────────────────────────────────────
-  function selectColor(hex: string) {
-    if (!selectedItems.some((i) => i.optionKey === hex)) {
-      setSelectedItems((prev) => [...prev, { optionKey: hex, qty: 1 }]);
+  // ── 색상만 있는 경우 — 클릭 즉시 슬롯 추가 (기존 동작 그대로 유지) ────────
+  function selectColor(color: ColorOption) {
+    const optionKey = buildOptionKey(color, {});
+    if (!selectedItems.some((i) => i.optionKey === optionKey)) {
+      setSelectedItems((prev) => [...prev, { optionKey, color, priceSelections: {}, qty: 1 }]);
     }
     setIsOpen(false);
   }
+
+  // ── 유상 옵션(용량·세트 등)이 있는 경우 — 선택 후 "담기" 버튼으로 확정 ───
+  function confirmDraftSelection() {
+    const optionKey = buildOptionKey(draftColor, draftPriceSelections);
+    if (!selectedItems.some((i) => i.optionKey === optionKey)) {
+      setSelectedItems((prev) => [
+        ...prev,
+        { optionKey, color: draftColor ?? undefined, priceSelections: { ...draftPriceSelections }, qty: 1 },
+      ]);
+    }
+    setDraftColor(null);
+    setDraftPriceSelections(defaultPriceSelections);
+    setIsOpen(false);
+  }
+
+  const draftReady = !hasColors || draftColor !== null;
 
   function removeItem(optionKey: string) {
     setSelectedItems((prev) => prev.filter((i) => i.optionKey !== optionKey));
@@ -91,14 +155,25 @@ export default function OrderArea({
     );
   }
 
+  const total = !hasOptions
+    ? price * qty
+    : selectedItems.reduce((sum, i) => sum + unitPrice(i) * i.qty, 0);
+
   // ── 장바구니 ──────────────────────────────────────────────────────────────
   function handleAddToCart() {
-    if (!hasColors) {
+    if (!hasOptions) {
       cartAdd({ productId, name, thumbnail, price, originalPrice, optionLabel: variantLabel }, qty);
     } else {
       selectedItems.forEach((item) => {
-        const optionLabel = item.optionKey;
-        cartAdd({ productId, name, thumbnail, price, originalPrice, optionLabel }, item.qty);
+        const delta = unitPrice(item) - price;
+        cartAdd({
+          productId,
+          name,
+          thumbnail,
+          price: unitPrice(item),
+          originalPrice: originalPrice !== undefined ? originalPrice + delta : undefined,
+          optionLabel: optionDisplayLabel(item),
+        }, item.qty);
       });
     }
     setIsOpen(false);
@@ -109,27 +184,26 @@ export default function OrderArea({
 
   // ── 바로구매 ──────────────────────────────────────────────────────────────
   function handleBuyNow() {
-    const checkoutItems = !hasColors
+    const checkoutItems = !hasOptions
       ? [{ productId, name, thumbnail, price, originalPrice, quantity: qty, optionLabel: variantLabel }]
-      : selectedItems.map((item) => ({
-          productId,
-          name,
-          thumbnail,
-          price,
-          originalPrice,
-          quantity: item.qty,
-          optionLabel: item.optionKey,
-        }));
+      : selectedItems.map((item) => {
+          const delta = unitPrice(item) - price;
+          return {
+            productId,
+            name,
+            thumbnail,
+            price: unitPrice(item),
+            originalPrice: originalPrice !== undefined ? originalPrice + delta : undefined,
+            quantity: item.qty,
+            optionLabel: optionDisplayLabel(item),
+          };
+        });
     sessionStorage.setItem("hanssem-checkout", JSON.stringify(checkoutItems));
     router.push("/checkout");
   }
 
-  // ── 색상 옵션 라벨 헬퍼 ───────────────────────────────────────────────────
-  function colorLabel(name: string) {
-    return name;
-  }
-
   const alreadySelectedKeys = new Set(selectedItems.map((i) => i.optionKey));
+  const draftOptionKeyTaken = alreadySelectedKeys.has(buildOptionKey(draftColor, draftPriceSelections));
 
   return (
     <>
@@ -154,34 +228,103 @@ export default function OrderArea({
           <ArrowIcon direction={isOpen ? "up" : "down"} size={24} aria-hidden />
         </button>
 
-        {/* 색상 옵션 목록 — 절대 위치로 겹쳐 표시 */}
-        {isOpen && hasColors && (
+        {/* 색상만 있고 유상 옵션 그룹이 없는 경우 — 클릭 즉시 담기 (기존 동작) */}
+        {isOpen && hasColors && !hasPriceOptionGroups && (
           <ul className={styles.colorOptionList} role="listbox" aria-label="색상 선택">
-            {colors!.map((hex) => {
-              const disabled = alreadySelectedKeys.has(hex);
+            {colors!.map((c) => {
+              const name = colorName(c);
+              const delta = colorPriceDelta(c);
+              const disabled = alreadySelectedKeys.has(buildOptionKey(c, {}));
               return (
-                <li key={hex} role="option" aria-selected={disabled}>
+                <li key={name} role="option" aria-selected={disabled}>
                   <button
                     type="button"
                     className={`${styles.colorOption} ${disabled ? styles.colorOptionDisabled : ""}`}
-                    onClick={() => !disabled && selectColor(hex)}
+                    onClick={() => !disabled && selectColor(c)}
                     disabled={disabled}
                   >
-                    {colorLabel(hex)}
-                    {disabled && <span className={styles.colorOptionBadge}>선택됨</span>}
+                    <span>{name}</span>
+                    <span className={styles.colorOptionRight}>
+                      {delta > 0 && <span className={styles.optionDelta}>+{formatPrice(delta)}원</span>}
+                      {disabled && <span className={styles.colorOptionBadge}>선택됨</span>}
+                    </span>
                   </button>
                 </li>
               );
             })}
           </ul>
         )}
+
+        {/* 유상 옵션 그룹이 있는 경우 — 색상(있다면)·그룹별 선택 후 담기 버튼으로 확정 */}
+        {isOpen && hasPriceOptionGroups && (
+          <div className={styles.optionPanel}>
+            {hasColors && (
+              <div className={styles.optionGroup}>
+                <p className={styles.optionGroupLabel}>색상 선택</p>
+                <div className={styles.optionChoiceList}>
+                  {colors!.map((c) => {
+                    const name = colorName(c);
+                    const delta = colorPriceDelta(c);
+                    const active = draftColor !== null && colorName(draftColor) === name;
+                    return (
+                      <button
+                        key={name}
+                        type="button"
+                        className={`${styles.optionChoice} ${active ? styles.optionChoiceActive : ""}`}
+                        onClick={() => setDraftColor(c)}
+                      >
+                        {name}
+                        {delta > 0 && <span className={styles.optionDelta}>+{formatPrice(delta)}원</span>}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+
+            {priceOptionGroups!.map((group) => (
+              <div key={group.id} className={styles.optionGroup}>
+                <p className={styles.optionGroupLabel}>{group.label}</p>
+                <div className={styles.optionChoiceList}>
+                  {group.options.map((option) => {
+                    const active = draftPriceSelections[group.id] === option.id;
+                    return (
+                      <button
+                        key={option.id}
+                        type="button"
+                        className={`${styles.optionChoice} ${active ? styles.optionChoiceActive : ""}`}
+                        onClick={() =>
+                          setDraftPriceSelections((prev) => ({ ...prev, [group.id]: option.id }))
+                        }
+                      >
+                        {option.label}
+                        {option.priceDelta > 0 && (
+                          <span className={styles.optionDelta}>+{formatPrice(option.priceDelta)}원</span>
+                        )}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+
+            <button
+              type="button"
+              className={styles.optionConfirmBtn}
+              onClick={confirmDraftSelection}
+              disabled={!draftReady || draftOptionKeyTaken}
+            >
+              {draftOptionKeyTaken ? "이미 담긴 옵션입니다" : "옵션 담기"}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* ── 선택 슬롯 ─────────────────────────────────────────────────── */}
       {slotVisible && (
         <div className={styles.slotList}>
-          {/* 색상 없는 단일 상품 */}
-          {!hasColors && (
+          {/* 옵션 없는 단일 상품 */}
+          {!hasOptions && (
             <div className={styles.slot}>
               <div className={styles.slotTop}>
                 <div className={styles.slotNames}>
@@ -216,13 +359,13 @@ export default function OrderArea({
             </div>
           )}
 
-          {/* 색상 선택된 슬롯들 */}
-          {hasColors && selectedItems.map((item) => (
+          {/* 옵션이 선택된 슬롯들 */}
+          {hasOptions && selectedItems.map((item) => (
             <div key={item.optionKey} className={styles.slot}>
               <div className={styles.slotTop}>
                 <div className={styles.slotNames}>
                   <span className={styles.slotName}>{name}</span>
-                  <span className={styles.slotVariant}>ㄴ {colorLabel(item.optionKey)}</span>
+                  <span className={styles.slotVariant}>ㄴ {optionDisplayLabel(item)}</span>
                 </div>
                 <button
                   type="button"
@@ -245,7 +388,7 @@ export default function OrderArea({
                     <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px" fill="currentColor"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" /></svg>
                   </button>
                 </div>
-                <span className={styles.slotSubtotal}>{formatPrice(price * item.qty)}원</span>
+                <span className={styles.slotSubtotal}>{formatPrice(unitPrice(item) * item.qty)}원</span>
               </div>
             </div>
           ))}

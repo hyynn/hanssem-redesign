@@ -58,12 +58,11 @@ export const summaries: ProductSummary[] = [
     brand: "한샘",
     price: 310000,
     originalPrice: 317000,
-    discountRate: 2,
     rating: 4.7,
     reviewCount: 16,
     salesCount: 260,
     category: ["거실", "거실장·테이블", "테이블"],
-    colors: ["아이보리", "화이트마블"],
+    colors: ["아이보리", { name: "화이트마블", priceDelta: 109000 }],
   },
 ];
 

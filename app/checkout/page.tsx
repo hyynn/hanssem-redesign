@@ -445,7 +445,7 @@ export default function CheckoutPage() {
                   <span className={styles.summaryTotalPrice}>{formatPrice(total)}원</span>
                   {totalDiscount > 0 && (
                     <span className={styles.summaryTotalSaving}>
-                      {Math.round(totalDiscount / originalTotal * 100)}% 할인 적용
+                      {Math.floor(totalDiscount / originalTotal * 100)}% 할인 적용
                     </span>
                   )}
                 </div>

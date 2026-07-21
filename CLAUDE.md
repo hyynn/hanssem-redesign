@@ -191,13 +191,37 @@
   - `FILTER_AXES_BY_CATEGORY`: 기본값과 다르게 제어해야 할 카테고리만 override 등록
 
 ## SKU 구성 원칙
-- **컬러 전용 변형** → 단일 SKU로 통합. `colors: string[]`에 **한글 색상명** 배열 저장, 별도 SKU 코드 부여 금지
-  - 예: 차콜/화이트 두 색상 = 1 SKU, `colors: ["차콜", "화이트"]`
-  - hex 코드 직접 저장 금지. 렌더링 시 `lib/filter-dimensions.ts`의 `COLOR_HEX` 맵으로 변환
+판단 기준은 "사진·상세 콘텐츠까지 달라지는가"다. 콘텐츠가 달라지면 별도 SKU, 콘텐츠는 같고 가격만 달라지면(색상 포함) 유상 옵션으로 표현한다.
+
+- **색상 변형** → 단일 SKU로 통합, 별도 SKU 코드 부여 금지. `colors: ColorOption[]`
+  (`ColorOption = string | { name: string; priceDelta: number }`, `app/lib/types.ts`)에 저장
+  - 원재료 차이 없이 무상이면 지금처럼 문자열만: `colors: ["차콜", "화이트"]`
+  - 색상마다 원재료가 달라 가격이 붙으면 그 항목만 객체로: `colors: ["화이트", { name: "가죽", priceDelta: 30000 }]`
+    — **"색상 = 무조건 무상"이라는 규칙은 없다.** 지금까지 무상 사례만 있었을 뿐이니, 새 색상을 추가할 때마다 가격 차이가 있는지 먼저 확인할 것
+  - hex 코드 직접 저장 금지. 렌더링 시 `colorName()` 헬퍼로 이름을 뽑은 뒤 `lib/filter-dimensions.ts`의 `COLOR_HEX` 맵으로 변환
   - 카드 1장만 노출; `variantLabel` 필드 불필요 (사용 금지)
-- **구성이 다른 변형** (사이즈·구성품·기능·모듈 조합 등) → 각각 별도 SKU
+- **유상 옵션(용량·세트 추가 등, 색상 외 축)** → 별도 SKU를 만들지 않고 `priceOptionGroups: PriceOptionGroup[]`로 표현
+  (`app/lib/types.ts`). 사진·설명이 옵션 간 동일한데 가격만 차등되는 경우에 쓴다 (예: 주방수납 용량별 가격, 확장 세트 추가금)
+  - `PriceOptionGroup = { id, label, options: PriceOption[] }`, `PriceOption = { id, label, priceDelta }`
+  - `options[0]`은 항상 그룹의 기본값(`priceDelta: 0`)이어야 함 — "필수 선택" 상태를 별도로 관리하지 않기 위한 단순화
+  - **정확성 주의**: 옵션 delta는 장바구니 담을 때 `price`와 `originalPrice` 양쪽에 동일하게 더할 것.
+    `price`에만 더하면 `app/cart/page.tsx`/`app/checkout/page.tsx`의 블렌디드 할인율(`totalDiscount / originalTotal`)이
+    실제보다 부풀려짐. `app/components/product-detail/OrderArea.tsx`의 `unitPrice()`/`handleAddToCart` 참고
+  - `ProductCard`/`ProductInfoPanel`의 `price`/`originalPrice`는 손대지 않는다 —
+    이 값들은 "모든 옵션이 기본값일 때" 가격이라는 의미를 그대로 유지. `discountRate`는 아래 항목대로
+    `price`/`originalPrice`에서 매번 계산되므로 옵션 delta를 반영해도 별도 조치 불필요
+
+## 할인율(discountRate) 계산 규칙
+- `discountRate`는 `ProductSummary`의 저장 필드가 아니다 — SKU 데이터에 직접 쓰지 않는다.
+  `lib/format.ts`의 `calcDiscountRate(price, originalPrice)`로 항상 계산해서 쓸 것
+  (`price`/`originalPrice` 두 값만 있으면 100% 도출 가능한 값을 손으로 입력하면 오타로
+  세 값이 어긋날 위험만 생기기 때문 — `calculateReviewSummary`로 평점을 자동 계산하는 것과 같은 원칙)
+- 계산은 항상 **내림**(`Math.floor`). 반올림은 경우에 따라 실제보다 큰 할인율을 보여줄 수 있어
+  (예: 실제 19.6%를 20%로 표시) 과장 표시가 될 수 있음. 장바구니·체크아웃의 블렌디드 할인율
+  (`totalDiscount / originalTotal`, `app/cart/page.tsx`/`app/checkout/page.tsx`)도 같은 이유로 내림 처리
+- **구성이 다른 변형** (사이즈·구성품·기능·모듈 조합 등, 사진·설명까지 달라짐) → 각각 별도 SKU
   - 예: Q/K 단품 / KK 단품 / Q/K+매트 / KK+매트 = 4 SKU
-  - 각 SKU 내부에 `colors[]`로 컬러 옵션 추가 가능
+  - 각 SKU 내부에 `colors[]`/`priceOptionGroups[]`로 옵션 추가 가능
   - SKU마다 카드 1장씩 독립 노출
 
 ## 상품 카드 노출 방식

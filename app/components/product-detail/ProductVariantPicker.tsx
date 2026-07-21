@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ProductSummary } from "../../lib/types";
 import { ArrowIcon } from "@/app/components/Icon";
 import Img from "@/app/components/Img";
-import { formatPrice } from "@/lib/format";
+import { formatPrice, calcDiscountRate } from "@/lib/format";
 import styles from "./ProductVariantPicker.module.css";
 
 interface Props {
@@ -63,29 +63,32 @@ export default function ProductVariantPicker({
         </button>
 
         <div className={styles.list} ref={listRef} onScroll={checkEdges}>
-          {others.map((sibling) => (
-            <Link
-              key={sibling.id}
-              href={`/products/${sibling.id}`}
-              className={styles.card}
-            >
-              <div className={styles.imageWrapper}>
-                <Img
-                  src={sibling.thumbnail}
-                  alt={sibling.variantLabel ?? sibling.name}
-                />
-              </div>
-              <p className={styles.label}>{sibling.variantLabel ?? sibling.name}</p>
-              <div className={styles.priceRow}>
-                {sibling.discountRate > 0 && (
-                  <span className={styles.discount}>{sibling.discountRate}%</span>
-                )}
-                <span className={styles.price}>
-                  {formatPrice(sibling.price)}원
-                </span>
-              </div>
-            </Link>
-          ))}
+          {others.map((sibling) => {
+            const discountRate = calcDiscountRate(sibling.price, sibling.originalPrice);
+            return (
+              <Link
+                key={sibling.id}
+                href={`/products/${sibling.id}`}
+                className={styles.card}
+              >
+                <div className={styles.imageWrapper}>
+                  <Img
+                    src={sibling.thumbnail}
+                    alt={sibling.variantLabel ?? sibling.name}
+                  />
+                </div>
+                <p className={styles.label}>{sibling.variantLabel ?? sibling.name}</p>
+                <div className={styles.priceRow}>
+                  {discountRate > 0 && (
+                    <span className={styles.discount}>{discountRate}%</span>
+                  )}
+                  <span className={styles.price}>
+                    {formatPrice(sibling.price)}원
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         <button

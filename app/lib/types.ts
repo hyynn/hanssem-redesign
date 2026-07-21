@@ -9,15 +9,39 @@ export interface ProductSummary {
   brand: string;
   price: number;
   originalPrice: number;
-  discountRate: number;
   rating: number;
   reviewCount: number;
   salesCount: number;      // 월간 판매량 (이달의 베스트셀러 정렬 기준, DB 부재로 수기 입력)
   badge?: { text: string; bgColor: string };
   category: string[];      // for filtering: ["침실", "침대", "호텔침대"]
   categoryTags?: string[]; // extra subcategory memberships: ["수납침대", "Q/K침대"]
-  colors?: string[];       // optional color swatches
+  colors?: ColorOption[];  // optional color swatches — 원재료 차이로 가격이 다르면 객체 형태 사용
+  priceOptionGroups?: PriceOptionGroup[]; // 색상 외 축(용량·세트 추가 등)의 유상 옵션
   filterAttributes?: FilterAttributes;
+}
+
+// ─── Priced options ───────────────────────────────────────────────────────────
+// 무상 색상은 문자열, 원재료 차이로 가격이 달라지는 색상은 객체로 표기
+export type ColorOption = string | { name: string; priceDelta: number };
+
+export function colorName(c: ColorOption): string {
+  return typeof c === "string" ? c : c.name;
+}
+
+export function colorPriceDelta(c: ColorOption): number {
+  return typeof c === "string" ? 0 : c.priceDelta;
+}
+
+export interface PriceOption {
+  id: string;
+  label: string;       // "실속형", "라지 (35L)", "행거 세트 추가"
+  priceDelta: number;  // 기준가 대비 추가금. options[0]은 항상 0(그룹 기본값)
+}
+
+export interface PriceOptionGroup {
+  id: string;             // "capacity" | "set" 등, family별 자유
+  label: string;          // "용량 선택", "세트 구성"
+  options: PriceOption[]; // options[0] = 그룹 기본값
 }
 
 // ─── Family (shared across variants) ─────────────────────────────────────────

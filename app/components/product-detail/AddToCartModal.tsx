@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import type { ProductSummary, FilterAttributes } from "@/app/lib/types";
 import type { ProductListResponse } from "@/app/lib/api-types";
 import Img from "@/app/components/Img";
-import { formatPrice } from "@/lib/format";
+import { formatPrice, calcDiscountRate } from "@/lib/format";
 import styles from "./AddToCartModal.module.css";
 
 /* 추천 후보 풀(같은 대분류 상품 목록) 캐시 — 모듈 레벨이라 모달을 닫았다 열거나
@@ -130,25 +130,28 @@ export default function AddToCartModal({ category, filterAttributes, currentProd
           <div className={styles.recommended}>
             <p className={styles.recommendLabel}>함께 구매하면 좋은 상품</p>
             <div className={styles.cards}>
-              {recommended.map((p) => (
-                <button
-                  key={p.id}
-                  type="button"
-                  className={styles.card}
-                  onClick={() => { onClose(); router.push(`/products/${p.id}`); }}
-                >
-                  <div className={styles.cardImageWrap}>
-                    <Img src={p.thumbnail} alt={p.name} className={styles.cardImage} />
-                  </div>
-                  <p className={styles.cardName}>{p.name}</p>
-                  <div className={styles.cardPrice}>
-                    {p.discountRate > 0 && (
-                      <span className={styles.cardDiscount}>{p.discountRate}%</span>
-                    )}
-                    <span className={styles.cardPriceValue}>{formatPrice(p.price)}원</span>
-                  </div>
-                </button>
-              ))}
+              {recommended.map((p) => {
+                const discountRate = calcDiscountRate(p.price, p.originalPrice);
+                return (
+                  <button
+                    key={p.id}
+                    type="button"
+                    className={styles.card}
+                    onClick={() => { onClose(); router.push(`/products/${p.id}`); }}
+                  >
+                    <div className={styles.cardImageWrap}>
+                      <Img src={p.thumbnail} alt={p.name} className={styles.cardImage} />
+                    </div>
+                    <p className={styles.cardName}>{p.name}</p>
+                    <div className={styles.cardPrice}>
+                      {discountRate > 0 && (
+                        <span className={styles.cardDiscount}>{discountRate}%</span>
+                      )}
+                      <span className={styles.cardPriceValue}>{formatPrice(p.price)}원</span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </div>
         )}

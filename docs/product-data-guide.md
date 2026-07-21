@@ -8,7 +8,7 @@
 ```
 app/lib/products/families/{대분류}/{중분류}/{FAMILY_CODE}/   ← 원본 데이터 (패밀리당 3파일)
         │  index.ts    familyObj · variantDetails · summaries[] · getDetail()
-        │  sections.ts 상세페이지 섹션 5종 + 배송 안내(deliveryGuides) + 고지(notices)
+        │  sections.ts 상세페이지 섹션(기본 5종, 카테고리별 추가/변경 가능) + 배송 안내(deliveryGuides) + 고지(notices)
         │  reviews.ts  리뷰·문의
         ▼
 app/lib/products/families/index.ts   FAMILY_REGISTRY (코드↔경로 매핑)
@@ -42,7 +42,7 @@ API route(`app/api/products/`)는 catalog를 호출만 하므로 상품을 늘�
 5. `summaries[]` — 카드·목록·검색에 쓰이는 데이터. **filterAttributes는 variantDetails와 별개로 여기에도 직접** 넣어야 카테고리 필터에 노출됨
 6. `getDetail()` — 마지막
 
-**sections.ts** — `FAMILY_PATH`("{대분류slug}/{중분류slug}/{FAMILY_CODE}"), `FAMILY_CODE`, `deliveryGuides`, `notices`, `createSections()`. 섹션은 `basic / function / material / size / warranty` 5종 기본 구성 유지.
+**sections.ts** — `FAMILY_PATH`("{대분류slug}/{중분류slug}/{FAMILY_CODE}"), `FAMILY_CODE`, `deliveryGuides`, `notices`, `createSections()`. 새 패밀리는 `basic → function → material → size → warranty` 5종을 기본 틀로 시작하되, 이 5개가 고정은 아니다 — 카테고리 고유 섹션은 id를 자유롭게 추가할 수 있고(탭은 `sections` 배열을 그대로 렌더링하므로 별도 등록 불필요), `warranty` 자리가 `notice`(주의사항) 등으로 대체되거나 순서가 바뀔 수도 있다.
 
 배송 안내와 고지 정보는 `app/lib/products/detail-presets.ts`의 프리셋 기반으로 작성한다 (리터럴 직접 작성 금지):
 

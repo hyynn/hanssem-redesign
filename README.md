@@ -4,7 +4,8 @@
 기존 사이트의 정보 요소(가격/할인율/배지/태그)는 유지하면서, 구조와 비주얼 위계,
 인터랙션의 절제된 고급스러움을 재설계하는 데 초점을 맞췄습니다.
 
-모든 디자인 결정은 "왜 이렇게 했는가"에 답할 수 있도록 의도를 가지고 진행했습니다.
+디자인 규칙(컬러, 타이포그래피, 인터랙션)을 먼저 정의하고, 그 안에서만 판단하도록
+스스로 제약을 두고 작업했습니다.
 
 **배포 링크**: https://hanssem-redesign.vercel.app/
 
@@ -38,6 +39,11 @@
 영상은 사용자가 보고 있는 동안에만 재생되고 화면을 벗어나면 멈추도록 했습니다 —
 의도하지 않은 반복 재생이 "절제된" 인터랙션 원칙과 맞지 않다고 판단했습니다.
 
+데이터는 서버 컴포넌트가 상품 모듈을 직접 호출하고, 비동기 상호작용이 실제로
+필요한 클라이언트 컴포넌트(검색 자동완성, 장바구니 모달 추천 등)만 API를 fetch하도록
+나눴습니다. 서버가 자기 API를 다시 fetch로 불러오는 불필요한 왕복을 없애면서도,
+두 소비 경로가 같은 응답 타입을 참조해 목록·검색·추천 결과가 어긋나지 않게 했습니다.
+
 상품코드는 10자리(대분류 2 + 중분류 2 + 소분류 2 + 상품번호 3 + 옵션 1)로
 설계했고, 옵션 번호는 패밀리 내 가격 오름차순으로 자동 부여됩니다. 호텔침대이면서
 퀸·킹침대인 경우처럼 한 상품이 여러 분류에 걸치는 경우는 코드에 억지로 인코딩하지
@@ -58,14 +64,18 @@
 
 ```
 app/
-├── components/           # 공통 컴포넌트 + product-detail 하위 컴포넌트
-├── lib/
-│   ├── catalog.ts         # 상품 카드 공통 정보 (단일 소스)
-│   ├── types.ts           # 타입 정의 + assembleGallery 등 헬퍼
-│   └── products/
-│       ├── {code}.ts      # SKU별 데이터
-│       └── families/      # 패밀리 공유 데이터 (sharedImages, 섹션 등)
-└── products/[id]/         # 라우트 (data/는 lib/products의 thin shim)
+├── components/                  # 공통 컴포넌트 + product-detail 하위 컴포넌트
+├── api/products/                 # 목록·상세·검색 API (로직 없이 아래 모듈 호출만)
+└── lib/
+    ├── catalog.ts                 # 전체 상품 목록 (목록·검색·추천의 단일 소스)
+    ├── types.ts / api-types.ts    # 타입 정의 + assembleGallery 등 헬퍼
+    └── products/
+        ├── index.ts                # SKU → getDetail 레지스트리
+        └── families/
+            └── {대분류}/{중분류}/{FAMILY_CODE}/
+                ├── index.ts          # familyObj·variantDetails·summaries
+                ├── sections.ts       # 상세 섹션, 배송 안내, 고지 정보
+                └── reviews.ts        # 리뷰·문의
 
 lib/
 ├── category-codes.ts      # 카테고리 코드 트리 + 헬퍼

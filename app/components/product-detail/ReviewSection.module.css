@@ -142,7 +142,7 @@
 }
 
 .photoArrowHidden {
-  visibility: hidden;
+  display: none;
 }
 
 .photoArrowDisabled {

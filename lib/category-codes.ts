@@ -74,7 +74,7 @@ export const CATEGORY_TREE = {
         },
       },
       "11": {
-        name: "식탁의자",
+        name: "의자",
         sub: {
           "10": "식탁의자",
           "11": "바체어",

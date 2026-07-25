@@ -25,6 +25,18 @@ import { summaries as pleatsCabSummaries, getDetail as getPleatsCabDetail } from
 import { summaries as milanAvCabSummaries, getDetail as getMilanAvCabDetail } from "./families/livingroom/cabinet/111110004";
 import { summaries as donoEdgeSummaries, getDetail as getDonoEdgeDetail } from "./families/dining/table/121013001";
 import { summaries as foreComfortSummaries, getDetail as getForeComfortDetail } from "./families/dining/table/121012001";
+import { summaries as minaNaturalOvalTableSummaries, getDetail as getMinaNaturalOvalTableDetail } from "./families/dining/table/121014001";
+import { summaries as minaSteelSquareTableSummaries, getDetail as getMinaSteelSquareTableDetail } from "./families/dining/table/121010001";
+import { summaries as donoSlimDiningChairSummaries, getDetail as getDonoSlimDiningChairDetail } from "./families/dining/chair/121110001";
+import { summaries as minaRoundDiningChairSummaries, getDetail as getMinaRoundDiningChairDetail } from "./families/dining/chair/121110002";
+import { summaries as widRoundDiningChairSummaries, getDetail as getWidRoundDiningChairDetail } from "./families/dining/chair/121110003";
+import { summaries as heardLeatherBarChairSummaries, getDetail as getHeardLeatherBarChairDetail } from "./families/dining/chair/121111001";
+import { summaries as euro501FlatBarChairSummaries, getDetail as getEuro501FlatBarChairDetail } from "./families/dining/chair/121111002";
+import { summaries as libupBenchSummaries, getDetail as getLibupBenchDetail } from "./families/dining/chair/121112001";
+import { summaries as blancChairStoolSummaries, getDetail as getBlancChairStoolDetail } from "./families/dining/chair/121112002";
+import { summaries as modiPantryCabinetSummaries, getDetail as getModiPantryCabinetDetail } from "./families/dining/kitchen-storage/121210001";
+import { summaries as modiCafeCabinetSeriesSummaries, getDetail as getModiCafeCabinetSeriesDetail } from "./families/dining/kitchen-storage/121210002";
+import { summaries as modiRangeStandSeriesSummaries, getDetail as getModiRangeStandSeriesDetail } from "./families/dining/kitchen-storage/121210003";
 
 type Getter = (id: string) => ProductDetail;
 
@@ -56,6 +68,18 @@ const registry: Record<string, Getter> = {
   ...Object.fromEntries(milanAvCabSummaries.map((s) => [s.id, getMilanAvCabDetail])),
   ...Object.fromEntries(donoEdgeSummaries.map((s) => [s.id, getDonoEdgeDetail])),
   ...Object.fromEntries(foreComfortSummaries.map((s) => [s.id, getForeComfortDetail])),
+  ...Object.fromEntries(minaNaturalOvalTableSummaries.map((s) => [s.id, getMinaNaturalOvalTableDetail])),
+  ...Object.fromEntries(minaSteelSquareTableSummaries.map((s) => [s.id, getMinaSteelSquareTableDetail])),
+  ...Object.fromEntries(donoSlimDiningChairSummaries.map((s) => [s.id, getDonoSlimDiningChairDetail])),
+  ...Object.fromEntries(minaRoundDiningChairSummaries.map((s) => [s.id, getMinaRoundDiningChairDetail])),
+  ...Object.fromEntries(widRoundDiningChairSummaries.map((s) => [s.id, getWidRoundDiningChairDetail])),
+  ...Object.fromEntries(heardLeatherBarChairSummaries.map((s) => [s.id, getHeardLeatherBarChairDetail])),
+  ...Object.fromEntries(euro501FlatBarChairSummaries.map((s) => [s.id, getEuro501FlatBarChairDetail])),
+  ...Object.fromEntries(libupBenchSummaries.map((s) => [s.id, getLibupBenchDetail])),
+  ...Object.fromEntries(blancChairStoolSummaries.map((s) => [s.id, getBlancChairStoolDetail])),
+  ...Object.fromEntries(modiPantryCabinetSummaries.map((s) => [s.id, getModiPantryCabinetDetail])),
+  ...Object.fromEntries(modiCafeCabinetSeriesSummaries.map((s) => [s.id, getModiCafeCabinetSeriesDetail])),
+  ...Object.fromEntries(modiRangeStandSeriesSummaries.map((s) => [s.id, getModiRangeStandSeriesDetail])),
 };
 
 export function getProductDetail(id: string): ProductDetail | null {

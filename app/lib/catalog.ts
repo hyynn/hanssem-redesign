@@ -25,6 +25,18 @@ import { summaries as pleatsCabSummaries } from "./products/families/livingroom/
 import { summaries as milanAvCabSummaries } from "./products/families/livingroom/cabinet/111110004";
 import { summaries as donoEdgeSummaries } from "./products/families/dining/table/121013001";
 import { summaries as foreComfortSummaries } from "./products/families/dining/table/121012001";
+import { summaries as minaNaturalOvalTableSummaries } from "./products/families/dining/table/121014001";
+import { summaries as minaSteelSquareTableSummaries } from "./products/families/dining/table/121010001";
+import { summaries as donoSlimDiningChairSummaries } from "./products/families/dining/chair/121110001";
+import { summaries as minaRoundDiningChairSummaries } from "./products/families/dining/chair/121110002";
+import { summaries as widRoundDiningChairSummaries } from "./products/families/dining/chair/121110003";
+import { summaries as heardLeatherBarChairSummaries } from "./products/families/dining/chair/121111001";
+import { summaries as euro501FlatBarChairSummaries } from "./products/families/dining/chair/121111002";
+import { summaries as libupBenchSummaries } from "./products/families/dining/chair/121112001";
+import { summaries as blancChairStoolSummaries } from "./products/families/dining/chair/121112002";
+import { summaries as modiPantryCabinetSummaries } from "./products/families/dining/kitchen-storage/121210001";
+import { summaries as modiCafeCabinetSeriesSummaries } from "./products/families/dining/kitchen-storage/121210002";
+import { summaries as modiRangeStandSeriesSummaries } from "./products/families/dining/kitchen-storage/121210003";
 
 export const catalog: ProductSummary[] = [
   // ─── 패밀리 상품 (각 패밀리 파일이 summaries 관리) ───────────────────────
@@ -54,6 +66,18 @@ export const catalog: ProductSummary[] = [
   ...milanAvCabSummaries,
   ...donoEdgeSummaries,
   ...foreComfortSummaries,
+  ...minaNaturalOvalTableSummaries,
+  ...minaSteelSquareTableSummaries,
+  ...donoSlimDiningChairSummaries,
+  ...minaRoundDiningChairSummaries,
+  ...widRoundDiningChairSummaries,
+  ...heardLeatherBarChairSummaries,
+  ...euro501FlatBarChairSummaries,
+  ...libupBenchSummaries,
+  ...blancChairStoolSummaries,
+  ...modiPantryCabinetSummaries,
+  ...modiCafeCabinetSeriesSummaries,
+  ...modiRangeStandSeriesSummaries,
 ];
 
 // 특정 familyId에 속하는 모든 상품 (sibling picker용)

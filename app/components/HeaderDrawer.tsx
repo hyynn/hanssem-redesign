@@ -38,7 +38,7 @@ const DRAWER_MENU: {
     href: "/category/dining",
     children: [
       { label: "식탁", href: "/category/dining?tab=table" },
-      { label: "식탁의자", href: "/category/dining?tab=chair" },
+      { label: "의자", href: "/category/dining?tab=chair" },
       { label: "주방수납장", href: "/category/dining?tab=kitchen-storage" },
     ],
   },

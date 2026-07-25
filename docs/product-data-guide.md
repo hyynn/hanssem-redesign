@@ -42,6 +42,11 @@ API route(`app/api/products/`)는 catalog를 호출만 하므로 상품을 늘�
 5. `summaries[]` — 카드·목록·검색에 쓰이는 데이터. **filterAttributes는 variantDetails와 별개로 여기에도 직접** 넣어야 카테고리 필터에 노출됨
 6. `getDetail()` — 마지막
 
+`familyObj.breadcrumb: string[]`는 상세페이지에서 클릭 가능한 카테고리 링크로 렌더링되므로
+`lib/category-codes.ts`의 CATEGORY_TREE가 아니라 **`app/components/category/categoryConfig.ts`의
+CATEGORY_CONFIG 실제 값**(mainCategory / 탭 label / subcategory categoryName)을 그대로 옮겨 적을 것.
+자세한 매칭 규칙은 CLAUDE.md의 "브레드크럼 카테고리 매칭 규칙" 참조.
+
 용량·세트 추가처럼 콘텐츠는 같고 가격만 달라지는 옵션은 SKU를 늘리지 말고 `summaries[]`의 `priceOptionGroups`로 표현 (주방수납류처럼 옵션 조합이 많은 카테고리에 특히 유용):
 
 ```ts
@@ -222,5 +227,5 @@ catalog.ts 등록은 패밀리 단위라 SKU 변경 시 건드릴 필요 없음.
 - **API route는 수정 불필요.** `/api/products`(목록·카테고리 필터), `/api/products/[id]`(상세), `/api/products/search`(검색) 모두 catalog·getDetail을 호출만 하므로 데이터 변경이 즉시 반영된다.
 - 검색도 등록 불필요 — `lib/search.ts`는 `name`·`category[]`·`categoryTags[]`를 스캔하는 순수 매칭이라 새 상품·카테고리가 자동으로 잡힌다.
 - 카테고리 필터 축도 자동 — `lib/filter-dimensions.ts`의 `ALL_FILTER_AXES`를 기본값으로 실제 옵션이 있는 축만 노출. 기본과 다르게 제어할 카테고리만 `FILTER_AXES_BY_CATEGORY`에 override.
-- **새 카테고리 페이지**를 만들 때만 예외적으로 코드 수정 범위가 넓어진다: `lib/category-codes.ts`의 CATEGORY_TREE, `app/category/[slug]/page.tsx`의 config, 필요시 `lib/filter-dimensions.ts`.
+- **새 카테고리 페이지**를 만들 때만 예외적으로 코드 수정 범위가 넓어진다: `lib/category-codes.ts`의 CATEGORY_TREE, `app/components/category/categoryConfig.ts`의 CATEGORY_CONFIG, 필요시 `lib/filter-dimensions.ts`.
 - AddToCartModal의 추천 상품은 대분류 풀을 **세션(모듈 레벨) 캐시**로 들고 있음 — dev 중 데이터를 바꿨는데 모달 추천이 그대로면 브라우저 새로고침으로 캐시가 비워진 것인지부터 확인.

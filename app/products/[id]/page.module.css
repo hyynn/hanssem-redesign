@@ -20,6 +20,16 @@
   align-items: center;
 }
 
+.breadcrumbLink {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumbLink:hover {
+  color: var(--color-text-heading);
+}
+
 .separator {
   margin: 0 2px;
   opacity: 0.45;

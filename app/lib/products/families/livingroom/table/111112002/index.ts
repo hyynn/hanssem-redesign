@@ -6,7 +6,7 @@ import { sharedReviews, sharedQnaItems } from "./reviews";
 export { FAMILY_PATH, FAMILY_CODE };
 
 const clintUrbanSideFamily: Omit<ProductFamily, "familyId"> = {
-  breadcrumb: ["거실", "거실장·테이블", "사이드테이블"],
+  breadcrumb: ["거실", "테이블", "사이드테이블"],
   promotions: [
     { title: "6월 프로모션", image: "/images/promotions/promotion-01.webp" },
     { title: "인테리어 프로모션", image: "/images/promotions/promotion-02.webp" },

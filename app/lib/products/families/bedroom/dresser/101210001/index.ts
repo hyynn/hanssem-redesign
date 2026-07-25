@@ -6,7 +6,7 @@ import { sharedReviews, sharedQnaItems } from "./reviews";
 export { FAMILY_PATH, FAMILY_CODE };
 
 const monoDresserFamily: Omit<ProductFamily, "familyId"> = {
-  breadcrumb: ["침실", "화장대", "화장대·서랍장"],
+  breadcrumb: ["침실", "화장대", "화장대"],
   promotions: [
     { title: "6월 프로모션", image: "/images/promotions/promotion-01.webp" },
     { title: "인테리어 프로모션", image: "/images/promotions/promotion-02.webp" },

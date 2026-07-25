@@ -190,6 +190,26 @@
   실제 옵션이 있는 축만 자동 노출 (새 카테고리 추가 시 별도 등록 불필요)
   - `FILTER_AXES_BY_CATEGORY`: 기본값과 다르게 제어해야 할 카테고리만 override 등록
 
+## 브레드크럼 카테고리 매칭 규칙
+- `ProductFamily.breadcrumb: string[]`(예: `["다이닝", "의자", "바체어"]`)는 상품 상세페이지에서
+  카테고리 페이지로 이동하는 클릭 가능한 링크로 렌더링됨(`app/products/[id]/page.tsx`) —
+  각 문자열이 `app/components/category/categoryConfig.ts`의 `CATEGORY_CONFIG`와
+  **`resolveBreadcrumbLinks()`**로 매칭되어 href가 결정됨
+- **소스 오브 트루스는 `CATEGORY_CONFIG`지 `lib/category-codes.ts`의 `CATEGORY_TREE`가 아니다.**
+  둘은 목적이 다름 — `CATEGORY_TREE`는 상품코드(10자리) 생성 전용이고, `CATEGORY_CONFIG`는
+  실제 카테고리 페이지 라우팅(탭·서브카테고리)이라 두 트리 구조가 얼마든지 달라질 수 있음
+  (예: `CATEGORY_TREE`의 중분류 "화장대·서랍장" 하나가 `CATEGORY_CONFIG`에서는 화장대/서랍장/협탁
+  3개 탭으로 쪼개져 있음). breadcrumb 문자열은 **반드시 `CATEGORY_CONFIG`의 실제 값**을 그대로 써야 함:
+  - 1번째 크럼 = 해당 대분류의 `mainCategory`
+  - 2번째 크럼 = 그 상품이 속한 탭의 `label`
+  - 3번째 크럼 = 그 탭 안의 `SubcategoryConfig.categoryName`
+  - `CATEGORY_TREE`의 명칭을 그대로 베끼면 링크가 매칭되지 않고 조용히 비클릭 텍스트로 폴백됨
+    (에러는 안 나지만 의도한 클릭 동작이 없어짐 — 새 패밀리 작성 시 반드시 `CATEGORY_CONFIG`를
+    직접 확인하고 옮겨 적을 것)
+- `resolveBreadcrumbLinks()`는 이름 매칭에 실패해도 예외를 던지지 않고 해당 크럼만 href 없는
+  일반 텍스트로 반환함 (예: 침구(bedding) 탭처럼 `CATEGORY_CONFIG`에 아예 항목이 없는 경우) —
+  향후 새 카테고리를 추가하다 이름이 일시적으로 어긋나도 페이지가 깨지지 않도록 의도한 설계
+
 ## SKU 구성 원칙
 판단 기준은 "사진·상세 콘텐츠까지 달라지는가"다. 콘텐츠가 달라지면 별도 SKU, 콘텐츠는 같고 가격만 달라지면(색상 포함) 유상 옵션으로 표현한다.
 

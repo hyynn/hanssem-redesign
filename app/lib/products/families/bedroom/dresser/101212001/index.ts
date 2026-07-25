@@ -6,7 +6,7 @@ import { sharedReviews, sharedQnaItems } from "./reviews";
 export { FAMILY_PATH, FAMILY_CODE };
 
 const euroNightstandFamily: Omit<ProductFamily, "familyId"> = {
-  breadcrumb: ["침실", "화장대·서랍장", "협탁·침대패널"],
+  breadcrumb: ["침실", "협탁", "협탁·침대패널"],
   promotions: [
     { title: "6월 프로모션", image: "/images/promotions/promotion-01.webp" },
     { title: "인테리어 프로모션", image: "/images/promotions/promotion-02.webp" },

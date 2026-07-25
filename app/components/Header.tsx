@@ -67,7 +67,18 @@ export default function Header() {
   const searchInputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
-  const [recent, setRecent] = useState<string[]>([]);
+  // 최근 검색어(localStorage): 렌더에 쓰이는 지점이 전부 isSearchOpen(초기값 false) 뒤에
+  // 있어 서버·클라이언트 첫 렌더가 항상 동일 — effect로 미룰 필요 없이 마운트 시점에 바로 읽음
+  const [recent, setRecent] = useState<string[]>(() => {
+    if (typeof window === "undefined") return [];
+    try {
+      const saved = JSON.parse(localStorage.getItem(RECENT_KEY) ?? "[]");
+      return Array.isArray(saved) ? saved.filter((k): k is string => typeof k === "string") : [];
+    } catch {
+      return [];
+    }
+  });
+  const [prevPathname, setPrevPathname] = useState(pathname);
   const cartCount = useCartStore((s) => s.items.reduce((n, i) => n + i.quantity, 0));
 
   const hasQuery = isSearchOpen && Boolean(query.trim());
@@ -115,21 +126,10 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHome]);
 
+  // 검색창이 열릴 때 포커스만 처리 — 닫힐 때 입력값 초기화는 closeSearch()가 담당
   useEffect(() => {
-    if (isSearchOpen) {
-      searchInputRef.current?.focus();
-    } else {
-      // 닫힐 때 입력값 초기화 — 다시 열면 빈 상태로 시작
-      setQuery("");
-      setActiveIndex(-1);
-    }
+    if (isSearchOpen) searchInputRef.current?.focus();
   }, [isSearchOpen]);
-
-  // 페이지 이동 시 검색폼 자동 닫힘 (위 effect가 입력값도 함께 초기화)
-  useEffect(() => {
-    closeSearch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
 
   // 입력이 비거나 폼이 닫힐 때 이전 결과를 지워, 다음 입력 첫 글자에
   // 직전 검색어의 결과가 잠깐 비치는 것(stale flash)을 방지
@@ -139,19 +139,26 @@ export default function Header() {
     setSearchStatus("idle");
   };
 
+  // 검색창을 닫는 모든 경로(버튼·Esc·페이지 이동)가 공유하는 단일 지점 —
+  // 닫힘 + 입력값·결과 초기화를 한 번에 처리해 "다시 열면 빈 상태로 시작" 보장
   const closeSearch = () => {
     setIsSearchOpen(false);
+    setQuery("");
+    setActiveIndex(-1);
     resetSearchResults();
   };
 
-  useEffect(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem(RECENT_KEY) ?? "[]");
-      if (Array.isArray(saved)) setRecent(saved.filter((k) => typeof k === "string"));
-    } catch {
-      /* 손상된 저장값은 무시하고 빈 목록으로 시작 */
-    }
-  }, []);
+  const toggleSearch = () => {
+    if (isSearchOpen) closeSearch();
+    else setIsSearchOpen(true);
+  };
+
+  // 페이지 이동 시 검색폼 자동 닫힘 — effect 대신 렌더 중 pathname 변화를 감지해
+  // 즉시 반영(React 권장 패턴: prop 변화에 따른 상태 리셋은 effect가 아니라 렌더 중 처리)
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    closeSearch();
+  }
 
   const saveRecent = (list: string[]) => {
     setRecent(list);
@@ -171,7 +178,7 @@ export default function Header() {
 
   const submitSearch = () => {
     // 드롭다운 선택 항목: 키워드면 해당 검색 결과로, 상품이면 상세로.
-    // 페이지 이동 시 pathname effect가 폼을 닫고 입력값을 초기화함
+    // 페이지 이동 시 pathname 변화 감지 로직이 폼을 닫고 입력값을 초기화함
     if (activeIndex >= 0 && activeIndex < keywords.length) {
       searchByKeyword(keywords[activeIndex]);
       return;
@@ -229,7 +236,7 @@ export default function Header() {
           <div className={styles.searchSlot}>
             <button
               className={`${styles.iconBtn} ${styles.searchToggleBtn} ${isSearchOpen ? styles.searchBtnHidden : ""}`}
-              onClick={() => setIsSearchOpen((prev) => !prev)}
+              onClick={toggleSearch}
               aria-label="검색"
             >
               <span className={styles.iconWrap}>

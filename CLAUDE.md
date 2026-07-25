@@ -42,6 +42,28 @@
   - 이벤트 핸들러(onClick 등)가 인라인이 아닌 함수로 분리된 경우
 - 정적 데이터 렌더링만 하는 컴포넌트에는 "use client" 추가 금지
 
+## 상태 초기화 패턴 (react-hooks/set-state-in-effect 방지)
+- 브라우저 전용 초기값(localStorage/sessionStorage 등)은 마운트 effect에서 읽어
+  setState하지 말고, useState의 lazy initializer로 바로 읽는다
+  (`useState<T>(() => { if (typeof window === "undefined") return 기본값; ... })`).
+  기존 컨벤션(app/checkout/page.tsx의 items/form/saveInfo 초기화 참고) —
+  단, 그 값이 첫 렌더 DOM에 영향을 주는 경우 서버·클라이언트 결과가 달라져
+  하이드레이션 불일치가 날 수 있으니, 그 값에 의존하는 렌더 분기가 다른 클라이언트
+  전용 상태(예: 열림 여부) 뒤에 가려져 있어 첫 렌더에 영향이 없는지 먼저 확인할 것
+- prop(예: usePathname())이 바뀔 때 상태를 리셋해야 하면 useEffect가 아니라
+  렌더 중 조건부 처리로 한다 (React 공식 패턴 — "Adjusting state when a prop changes"):
+  ```tsx
+  const [prevValue, setPrevValue] = useState(value);
+  if (value !== prevValue) {
+    setPrevValue(value);
+    // 여기서 리셋할 상태들 setState
+  }
+  ```
+- 이 프로젝트는 eslint-plugin-react-hooks의 `set-state-in-effect`/`immutability` 룰을
+  에러로 강제함. effect 안에서 직접 또는 간접적으로(다른 함수 호출을 통해) setState를
+  호출하면 걸리고, 그 함수를 effect보다 아래에서 선언해도 걸림(TDZ) — 참조하는 함수·값은
+  항상 사용하는 effect보다 위에서 선언할 것
+
 ## API & 데이터 소비 규칙 (하이브리드)
 - 원칙: **서버 컴포넌트는 데이터 모듈(catalog.ts, getProductDetail)을 직접 호출**하고,
   비동기성이 실제로 필요한 **클라이언트 컴포넌트만 API를 fetch**한다.

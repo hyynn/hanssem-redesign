@@ -81,6 +81,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 31,
     salesCount: 190,
+    badge: { text: "렌지대 판매 1위", bgColor: "#FE5A5D" },
     category: ["다이닝", "주방수납장", "주방수납장"],
     categoryTags: ["렌지대"],
     colors: ["화이트", "메이플"],

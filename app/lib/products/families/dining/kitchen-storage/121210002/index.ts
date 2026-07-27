@@ -130,7 +130,6 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 42,
     salesCount: 140,
-    badge: { text: "주방수납장 판매 1위", bgColor: "#FE5A5D" },
     category: ["다이닝", "주방수납장", "주방수납장"],
     colors: ["화이트", "메이플"],
     priceOptionGroups: [

@@ -64,6 +64,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 31,
     salesCount: 210,
+    badge: { text: "팬트리장 판매 1위", bgColor: "#FE5A5D" },
     category: ["다이닝", "주방수납장", "주방수납장"],
     colors: ["화이트", "메이플"],
     priceOptionGroups: [

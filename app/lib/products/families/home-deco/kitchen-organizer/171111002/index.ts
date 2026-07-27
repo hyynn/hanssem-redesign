@@ -34,12 +34,12 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1711110020": {
     variantImages: [],
-    filterAttributes: { config: ["6종/택1"] },
+    filterAttributes: {},
     sections: createSections(),
   },
   "1711110021": {
     variantImages: [],
-    filterAttributes: { config: ["4종/택1"] },
+    filterAttributes: {},
     sections: createSections(),
   },
 };
@@ -81,7 +81,7 @@ export const summaries: ProductSummary[] = [
         ],
       },
     ],
-    filterAttributes: { config: ["6종/택1"] },
+    filterAttributes: {},
   },
   {
     id: "1711110021",
@@ -108,7 +108,7 @@ export const summaries: ProductSummary[] = [
         ],
       },
     ],
-    filterAttributes: { config: ["4종/택1"] },
+    filterAttributes: {},
   },
 ];
 

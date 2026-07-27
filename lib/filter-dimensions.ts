@@ -43,6 +43,14 @@ export const COLOR_HEX: Record<string, string> = {
   "웜그레이": "#b5aca3",
   "베이지&블랙": "#e8dcc8",
   "그레이&카키": "#9a9a9a",
+  "내추럴": "#c9a876",
+  "코튼화이트": "#f7f5f0",
+  "웜블랙": "#221f1d",
+  "러스트": "#a8512f",
+  "매트그린": "#5c6e52",
+  "부클아이보리": "#f0e6d2",
+  "카멜": "#c19a6b",
+  "메이플": "#dfc19c",
 };
 
 /**
@@ -77,6 +85,13 @@ export const COLOR_GROUPS: Record<string, string> = {
   "웜그레이": "그레이계열",
   "베이지&블랙": "베이지계열",
   "그레이&카키": "그레이계열",
+  "코튼화이트": "화이트계열",
+  "웜블랙": "블랙계열",
+  "러스트": "브라운계열",
+  "매트그린": "그린계열",
+  "부클아이보리": "아이보리계열",
+  "카멜": "브라운계열",
+  "메이플": "메이플계열",
 };
 
 /** 계열명 → 대표 hex (필터 스와치 렌더링용) */
@@ -116,6 +131,16 @@ export const ALL_FILTER_AXES: FilterAxisDef[] = [
  * 기본값(ALL_FILTER_AXES)과 다르게 제어해야 할 카테고리만 등록.
  */
 export const FILTER_AXES_BY_CATEGORY: Record<string, FilterAxisDef[]> = {};
+
+/**
+ * 탭 id → "전체" 서브카테고리(소분류 미선택) 상태에서 쓸 필터 축 override.
+ * 한 탭 안에 서로 무관한 소분류가 섞여 있어 사이즈/구성/기능 값이 뒤섞이는 경우
+ * (예: 인테리어소품 = 조명/러그/데코소품) 전체 보기에서는 축을 좁혀서 보여주고,
+ * 개별 소분류를 선택하면 FILTER_AXES_BY_CATEGORY 또는 기본값으로 되돌아간다.
+ */
+export const ALL_SUBCAT_AXES_BY_TAB: Record<string, FilterAxisDef[]> = {
+  deco: [{ key: "color", label: "색상" }],
+};
 
 /**
  * 현재 카테고리 products를 스캔해 각 축의 실제 옵션을 집계.

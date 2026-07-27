@@ -35,7 +35,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1710110020": {
     variantImages: [],
-    filterAttributes: { config: ["2P세트"] },
+    filterAttributes: { config: ["세트"] },
     sections: createSections(),
   },
 };
@@ -62,7 +62,7 @@ export const summaries: ProductSummary[] = [
     reviewCount: 11,
     salesCount: 170,
     category: ["소품", "침구", "베개솜·베개커버"],
-    filterAttributes: { config: ["2P세트"] },
+    filterAttributes: { config: ["세트"] },
   },
 ];
 

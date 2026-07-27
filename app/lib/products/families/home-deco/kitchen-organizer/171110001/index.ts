@@ -43,7 +43,7 @@ const variantDetails: Record<string, VariantData> = {
     variantImages: [
       `/images/products/${FAMILY_PATH}/1711100011/1711100011-main-01.webp`,
     ],
-    filterAttributes: { config: ["1+1"] },
+    filterAttributes: { config: ["세트"] },
     sections: createSections(),
   },
 };
@@ -110,7 +110,7 @@ export const summaries: ProductSummary[] = [
         ],
       },
     ],
-    filterAttributes: { config: ["1+1"] },
+    filterAttributes: { config: ["세트"] },
   },
 ];
 

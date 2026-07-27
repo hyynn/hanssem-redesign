@@ -37,7 +37,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1711110010": {
     variantImages: [],
-    filterAttributes: { config: ["4종/택1"] },
+    filterAttributes: {},
     sections: createSections(),
   },
 };
@@ -75,7 +75,7 @@ export const summaries: ProductSummary[] = [
         ],
       },
     ],
-    filterAttributes: { config: ["4종/택1"] },
+    filterAttributes: {},
   },
 ];
 

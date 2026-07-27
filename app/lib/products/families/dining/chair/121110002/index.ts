@@ -37,7 +37,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1211100020": {
     variantImages: [],
-    filterAttributes: { config: ["1개입"] },
+    filterAttributes: { config: ["단품"] },
     sections: createSections(),
   },
 };
@@ -65,7 +65,7 @@ export const summaries: ProductSummary[] = [
     salesCount: 260,
     category: ["다이닝", "의자", "식탁의자"],
     colors: ["내추럴", "코튼화이트", "웜블랙", "러스트", "매트그린"],
-    filterAttributes: { config: ["1개입"] },
+    filterAttributes: { config: ["단품"] },
   },
 ];
 

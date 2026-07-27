@@ -35,7 +35,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1712100030": {
     variantImages: [],
-    filterAttributes: { feature: ["암막"], config: ["맞춤제작"] },
+    filterAttributes: { feature: ["암막"] },
     sections: createSections(),
   },
 };
@@ -64,7 +64,7 @@ export const summaries: ProductSummary[] = [
     badge: { text: "암막커튼 판매 1위", bgColor: "#FE5A5D" },
     category: ["소품", "커튼·블라인드", "커튼"],
     colors: ["화이트", "차콜"],
-    filterAttributes: { feature: ["암막"], config: ["맞춤제작"] },
+    filterAttributes: { feature: ["암막"] },
   },
 ];
 

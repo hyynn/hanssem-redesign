@@ -37,7 +37,7 @@ const variantDetails: Record<string, VariantData> = {
   },
   "1211110011": {
     variantImages: [`/images/products/${FAMILY_PATH}/1211110011/1211110011-main-01.webp`],
-    filterAttributes: { feature: ["가죽"] },
+    filterAttributes: { feature: ["가죽"], config: ["세트"] },
     sections: createSections(),
   },
 };
@@ -81,7 +81,7 @@ export const summaries: ProductSummary[] = [
     salesCount: 150,
     category: ["다이닝", "의자", "바체어"],
     colors: ["그레이", "카멜"],
-    filterAttributes: { feature: ["가죽"] },
+    filterAttributes: { feature: ["가죽"], config: ["세트"] },
   },
 ];
 

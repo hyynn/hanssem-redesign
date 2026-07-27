@@ -37,7 +37,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1712110020": {
     variantImages: [],
-    filterAttributes: { feature: ["암막", "시어솔리드", "펀칭레이스"], config: ["맞춤제작"] },
+    filterAttributes: { feature: ["암막"] },
     sections: createSections(),
   },
 };
@@ -64,7 +64,7 @@ export const summaries: ProductSummary[] = [
     reviewCount: 12,
     salesCount: 210,
     category: ["소품", "커튼·블라인드", "블라인드"],
-    filterAttributes: { feature: ["암막", "시어솔리드", "펀칭레이스"], config: ["맞춤제작"] },
+    filterAttributes: { feature: ["암막"] },
   },
 ];
 

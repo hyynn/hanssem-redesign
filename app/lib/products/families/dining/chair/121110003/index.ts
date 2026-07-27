@@ -37,7 +37,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1211100030": {
     variantImages: [],
-    filterAttributes: { config: ["2개입"] },
+    filterAttributes: { config: ["세트"] },
     sections: createSections(),
   },
 };
@@ -66,7 +66,7 @@ export const summaries: ProductSummary[] = [
     badge: { text: "식탁의자 판매 1위", bgColor: "#FE5A5D" },
     category: ["다이닝", "의자", "식탁의자"],
     colors: ["부클아이보리", "코튼화이트"],
-    filterAttributes: { config: ["2개입"] },
+    filterAttributes: { config: ["세트"] },
   },
 ];
 

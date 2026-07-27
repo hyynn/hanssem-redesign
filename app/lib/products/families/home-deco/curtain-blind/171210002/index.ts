@@ -35,7 +35,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1712100020": {
     variantImages: [],
-    filterAttributes: { feature: ["빛조절"], config: ["맞춤제작"] },
+    filterAttributes: { feature: ["빛조절"] },
     sections: createSections(),
   },
 };
@@ -63,7 +63,7 @@ export const summaries: ProductSummary[] = [
     salesCount: 240,
     category: ["소품", "커튼·블라인드", "커튼"],
     colors: ["화이트", "베이지"],
-    filterAttributes: { feature: ["빛조절"], config: ["맞춤제작"] },
+    filterAttributes: { feature: ["빛조절"] },
   },
 ];
 

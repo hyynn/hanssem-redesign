@@ -35,7 +35,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1712110010": {
     variantImages: [],
-    filterAttributes: { config: ["맞춤제작"] },
+    filterAttributes: {},
     sections: createSections(),
   },
 };
@@ -63,7 +63,7 @@ export const summaries: ProductSummary[] = [
     salesCount: 260,
     category: ["소품", "커튼·블라인드", "블라인드"],
     colors: ["실버화이트", "어반베이지", "내추럴베이지", "라이트그레이"],
-    filterAttributes: { config: ["맞춤제작"] },
+    filterAttributes: {},
   },
 ];
 

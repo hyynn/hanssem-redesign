@@ -37,7 +37,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1713100010": {
     variantImages: [],
-    filterAttributes: { config: ["테이블+플로어"] },
+    filterAttributes: { config: ["세트"] },
     sections: createSections(),
   },
 };
@@ -65,7 +65,7 @@ export const summaries: ProductSummary[] = [
     salesCount: 300,
     badge: { text: "램프 세트 판매 1위", bgColor: "#FE5A5D" },
     category: ["소품", "인테리어소품", "조명"],
-    filterAttributes: { config: ["테이블+플로어"] },
+    filterAttributes: { config: ["세트"] },
   },
 ];
 

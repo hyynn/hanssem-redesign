@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import type { ProductSummary } from "@/app/lib/types";
 import { colorName } from "@/app/lib/types";
-import { ALL_FILTER_AXES, FILTER_AXES_BY_CATEGORY, buildDimensions, COLOR_GROUPS } from "@/lib/filter-dimensions";
+import { ALL_FILTER_AXES, FILTER_AXES_BY_CATEGORY, ALL_SUBCAT_AXES_BY_TAB, buildDimensions, COLOR_GROUPS } from "@/lib/filter-dimensions";
 import ProductCard from "@/app/components/ProductCard";
 import SubcategoryBanner from "./SubcategoryBanner";
 import ProductFilterBar from "./ProductFilterBar";
@@ -156,9 +156,11 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
     return b.rating - a.rating;
   });
 
-  const axes = categoryCode
-    ? (FILTER_AXES_BY_CATEGORY[categoryCode] ?? ALL_FILTER_AXES)
-    : ALL_FILTER_AXES;
+  const axes = isAllSubcat
+    ? (ALL_SUBCAT_AXES_BY_TAB[activeTabId] ?? ALL_FILTER_AXES)
+    : categoryCode
+      ? (FILTER_AXES_BY_CATEGORY[categoryCode] ?? ALL_FILTER_AXES)
+      : ALL_FILTER_AXES;
   const dimensions = buildDimensions(axes, categoryProducts);
 
   const allNavTabs = [{ id: MAIN_TAB_ID, label: "추천" }, ...tabs.map((t) => ({ id: t.id, label: t.label }))];

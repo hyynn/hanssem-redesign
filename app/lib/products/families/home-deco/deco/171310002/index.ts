@@ -36,7 +36,7 @@ type VariantData = {
 const variantDetails: Record<string, VariantData> = {
   "1713100020": {
     variantImages: [],
-    filterAttributes: { config: ["테이블+플로어"] },
+    filterAttributes: { config: ["세트"] },
     sections: createSections(),
   },
 };
@@ -63,7 +63,7 @@ export const summaries: ProductSummary[] = [
     reviewCount: 14,
     salesCount: 220,
     category: ["소품", "인테리어소품", "조명"],
-    filterAttributes: { config: ["테이블+플로어"] },
+    filterAttributes: { config: ["세트"] },
   },
 ];
 

@@ -7,7 +7,7 @@ import RenovationSection from "./components/RenovationSection";
 import { getBestSellers } from "./lib/catalog";
 
 const banners: HeroBanner[] = [
-  { id: "b1", image: "/images/hero/hero-1.webp", title: "한눈에 보이는\n테이블의 모든 것", subTitle: "2026.06.28 - 07.16\n용산 아이파크몰 리빙파크 5F 이벤트홀" },
+  { id: "b1", image: "/images/hero/hero-1.webp", title: "한눈에 보이는\n테이블의 모든 것", subTitle: "2026.07.20 - 08.23\n용산 아이파크몰 리빙파크 5F 이벤트홀" },
   { id: "b2", image: "/images/hero/hero-2.webp", title: "인테리어 특가\n상반기 결산 이벤트", subTitle: "즉시할인 -23%\n최대 40만원 추가 할인" },
   { id: "b3", image: "/images/hero/hero-3.webp", title: "거실의 완성\n소파 라인업" },
   { id: "b4", image: "/images/hero/hero-4.webp", title: "한샘 수납가구\n이달의 혜택", subTitle: "매주 바뀌는 타임특가\n붙박이장 포토리뷰 사은품 증정" },

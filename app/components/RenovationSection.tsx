@@ -14,8 +14,8 @@ interface Props {
 }
 
 const DEFAULT_CASES: CaseItem[] = [
-  { id: "c1", image: "/images/renovation/case-01.webp", area: "32평 아파트", style: "모던 미니멀", type: "전체 리모델링" },
-  { id: "c2", image: "/images/renovation/case-02.webp", area: "25평 아파트", style: "북유럽 스타일", type: "주방 + 침실" },
+  { id: "c1", image: "/images/renovation/case-01.webp", area: "36평 아파트", style: "모던 미니멀", type: "전체 리모델링" },
+  { id: "c2", image: "/images/renovation/case-02.webp", area: "28평 아파트", style: "북유럽 스타일", type: "주방 + 침실" },
   { id: "c3", image: "/images/renovation/case-03.webp", area: "43평 아파트", style: "내추럴 모던", type: "전체 리모델링" },
 ];
 

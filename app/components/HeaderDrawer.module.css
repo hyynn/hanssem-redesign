@@ -59,7 +59,6 @@
 .menu {
   flex: 1;
   overflow-y: auto;
-  padding: 8px 0;
 }
 
 .menuItem {
@@ -69,6 +68,11 @@
 .menuRow {
   display: flex;
   align-items: stretch;
+  transition: background 0.15s;
+}
+
+.menuRow:hover {
+  background: var(--color-bg-secondary);
 }
 
 .menuLink {
@@ -87,13 +91,26 @@
   align-items: center;
   justify-content: center;
   width: 52px;
-  color: var(--color-text-muted);
+  color: var(--color-text-body);
   padding: 0;
 }
 
+/* JS로 높이를 측정하지 않고도 부드럽게 펼쳐지도록 grid-template-rows를
+   0fr↔1fr로 트랜지션 — 항목 개수가 카테고리마다 달라도(침실 5개/거실 3개)
+   자동으로 그 높이에 맞춰 열리고 닫힌다 */
+.subListWrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s ease;
+}
+
+.subListWrapOpen {
+  grid-template-rows: 1fr;
+}
+
 .subList {
+  overflow: hidden;
   background: var(--color-bg-secondary);
-  padding: 6px 0;
 }
 
 .subLink {
@@ -102,9 +119,12 @@
   font-size: var(--fs-body);
   color: var(--color-text-body);
   text-decoration: none;
+  transition: background 0.15s, color 0.15s;
 }
 
+.subLink:hover,
 .subLink:active {
+  background: var(--color-gray-light);
   color: var(--color-text-heading);
 }
 

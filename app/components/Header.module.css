@@ -45,10 +45,17 @@
   justify-content: center;
 }
 
-.nav ul {
+/* 직계 자식만 — HeaderMegaMenu가 nav 하위(DOM 자손)에 렌더링하는 depth1/depth2
+   <ul>까지 descendant selector로 새어 들어가 flex-row가 적용되는 것을 방지 */
+.nav > ul {
   display: flex;
   gap: 8px;
   list-style: none;
+}
+
+/* 캐스케이드 플라이아웃(HeaderMegaMenu)의 top:100%/left:0 기준점 */
+.navItem {
+  position: relative;
 }
 
 .navLink {

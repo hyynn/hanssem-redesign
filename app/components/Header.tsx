@@ -6,7 +6,9 @@ import Link from "next/link";
 import { useCartStore } from "@/app/store/cartStore";
 import type { ProductSummary } from "@/app/lib/types";
 import type { SearchResponse } from "@/app/lib/api-types";
+import { CATEGORY_CONFIG, CATEGORY_SLUGS } from "@/app/components/category/categoryConfig";
 import HeaderDrawer from "./HeaderDrawer";
+import HeaderMegaMenu from "./HeaderMegaMenu";
 import styles from "./Header.module.css";
 
 /* 하이브리드 드롭다운: 연관 분류명(탐색형) 위, 상품 다이렉트 히트(목적형) 아래 */
@@ -46,14 +48,25 @@ function HighlightedName({ name, query }: { name: string; query: string }) {
   );
 }
 
-const NAV_ITEMS = [
-  { label: "침실", href: "/category/bedroom" },
-  { label: "거실", href: "/category/livingroom" },
-  { label: "다이닝", href: "/category/dining" },
-  { label: "소품", href: "/category/home-deco", prefetch: false },
+// categoryConfig.ts(CATEGORY_SLUGS)를 단일 소스로 삼아 카테고리 링크를 파생 —
+// HeaderMegaMenu·HeaderDrawer도 같은 소스를 쓰므로 카테고리 구성이 바뀌어도
+// 한 곳(categoryConfig.ts)만 고치면 nav·드로어 전부 자동으로 맞춰짐.
+// 이벤트/매거진처럼 카테고리가 아닌 링크만 아래에 수동으로 이어붙인다.
+const NAV_ITEMS: { label: string; href: string; prefetch?: false; categorySlug?: string }[] = [
+  ...CATEGORY_SLUGS.map((slug) => ({
+    label: CATEGORY_CONFIG[slug].mainCategory,
+    href: `/category/${slug}`,
+    categorySlug: slug as string,
+    // 소품(home-deco)만 prefetch 비활성 — 기존 설정 유지
+    ...(slug === "home-deco" ? { prefetch: false as const } : {}),
+  })),
   { label: "이벤트", href: "/events", prefetch: false },
   { label: "매거진", href: "/magazine", prefetch: false },
 ];
+
+/* hover로 열린 메가메뉴를 닫는 지연 — navLink에서 패널로 마우스가 이동하는 동안
+   경계를 살짝 벗어나도(예: 대각선 이동) 바로 닫히지 않도록 하는 여유 구간 */
+const MEGA_MENU_CLOSE_DELAY_MS = 150;
 
 export default function Header() {
   const pathname = usePathname();
@@ -65,6 +78,19 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const [isMegaOpen, setIsMegaOpen] = useState(false);
+  const [megaSlug, setMegaSlug] = useState(NAV_ITEMS[0].categorySlug ?? "");
+  const megaCloseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const openMega = (slug: string) => {
+    if (megaCloseTimer.current) clearTimeout(megaCloseTimer.current);
+    setMegaSlug(slug);
+    setIsMegaOpen(true);
+  };
+
+  const scheduleCloseMega = () => {
+    megaCloseTimer.current = setTimeout(() => setIsMegaOpen(false), MEGA_MENU_CLOSE_DELAY_MS);
+  };
   const [query, setQuery] = useState("");
   const [activeIndex, setActiveIndex] = useState(-1);
   // 최근 검색어(localStorage): 렌더에 쓰이는 지점이 전부 isSearchOpen(초기값 false) 뒤에
@@ -131,6 +157,16 @@ export default function Header() {
     if (isSearchOpen) searchInputRef.current?.focus();
   }, [isSearchOpen]);
 
+  // 메가메뉴가 열려 있을 때 Esc로 닫기
+  useEffect(() => {
+    if (!isMegaOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsMegaOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isMegaOpen]);
+
   // 입력이 비거나 폼이 닫힐 때 이전 결과를 지워, 다음 입력 첫 글자에
   // 직전 검색어의 결과가 잠깐 비치는 것(stale flash)을 방지
   const resetSearchResults = () => {
@@ -153,11 +189,12 @@ export default function Header() {
     else setIsSearchOpen(true);
   };
 
-  // 페이지 이동 시 검색폼 자동 닫힘 — effect 대신 렌더 중 pathname 변화를 감지해
+  // 페이지 이동 시 검색폼·메가메뉴 자동 닫힘 — effect 대신 렌더 중 pathname 변화를 감지해
   // 즉시 반영(React 권장 패턴: prop 변화에 따른 상태 리셋은 effect가 아니라 렌더 중 처리)
   if (pathname !== prevPathname) {
     setPrevPathname(pathname);
     closeSearch();
+    setIsMegaOpen(false);
   }
 
   const saveRecent = (list: string[]) => {
@@ -217,7 +254,12 @@ export default function Header() {
         <nav className={styles.nav}>
           <ul>
             {NAV_ITEMS.map((item) => (
-              <li key={item.href}>
+              <li
+                key={item.href}
+                className={styles.navItem}
+                onMouseEnter={item.categorySlug ? () => openMega(item.categorySlug!) : undefined}
+                onMouseLeave={item.categorySlug ? scheduleCloseMega : undefined}
+              >
                 <Link
                   href={item.href}
                   prefetch={item.prefetch}
@@ -225,6 +267,9 @@ export default function Header() {
                 >
                   {item.label}
                 </Link>
+                {item.categorySlug && isMegaOpen && megaSlug === item.categorySlug && (
+                  <HeaderMegaMenu slug={item.categorySlug} />
+                )}
               </li>
             ))}
           </ul>

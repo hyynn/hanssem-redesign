@@ -362,6 +362,12 @@ export const CATEGORY_CONFIG = {
   },
 } satisfies Record<string, CategoryPageConfig>;
 
+// 헤더 nav(데스크톱 메가메뉴·모바일 드로어)가 공유하는 카테고리 슬러그 목록·순서 —
+// 두 UI가 각자 하드코딩하면 한쪽만 갱신되고 다른 쪽은 누락되는 사고가 나기 쉬워
+// 여기 하나로만 관리한다. 이벤트/매거진처럼 CATEGORY_CONFIG에 없는 링크는
+// 각 헤더 컴포넌트에서 별도로 이어붙인다.
+export const CATEGORY_SLUGS = Object.keys(CATEGORY_CONFIG) as (keyof typeof CATEGORY_CONFIG)[];
+
 export interface CategoryPageConfig {
   title: string;
   mainCategory: string;

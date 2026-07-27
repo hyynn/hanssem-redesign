@@ -1,0 +1,46 @@
+/* width를 지정하지 않고 position:absolute + shrink-to-fit에 맡겨, 패널 폭이
+   항상 그 안의 가장 긴 행(.row, white-space:nowrap) 폭에 자동으로 맞춰지게 함 —
+   라벨 텍스트나 폰트 크기가 바뀌어도 하드코딩된 값 없이 그대로 따라감 */
+.depth1 {
+  --lnb-row: 44px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding: 6px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--radius-md);
+  color: var(--color-text-body);
+}
+
+/* depth2는 hover된 개별 행이 아니라 depth1 패널을 기준으로 위치를 잡아,
+   어느 행을 hover하든 top이 항상 depth1과 같은 선(= nav 링크 하단)에서 시작 */
+.depth2 {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  padding: 6px;
+  margin-left: 6px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
+  border-radius: var(--radius-md);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  height: var(--lnb-row);
+  padding: 0 12px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-body);
+  color: var(--color-text-body);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.row:hover,
+.rowActive {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-heading);
+}

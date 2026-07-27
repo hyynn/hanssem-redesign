@@ -1,0 +1,132 @@
+import type { ReviewData, QnaItem, Review } from "@/app/lib/types";
+import { calculateReviewSummary } from "@/lib/reviews";
+
+const reviewItems: Review[] = [
+  {
+    id: "r-a01",
+    userName: "jn*****",
+    rating: 5,
+    date: "2026.07.04",
+    variant: "베이지&블랙",
+    content: "발을 딛는 순간 푹 꺼지는 쿠션감이 호텔 라운지 같아요. 82% 할인이 믿기지 않는 퀄리티입니다.",
+    images: ["/images/reviews/1713110030/review-01-1.webp", "/images/reviews/1713110030/review-01-2.webp"],
+  },
+  {
+    id: "r-a02",
+    userName: "sd*****",
+    rating: 5,
+    date: "2026.06.25",
+    variant: "그레이&카키",
+    content: "그레이&카키 조합이 흔치 않아서 골랐는데 거실이 훨씬 차분해졌어요. 투톤 패턴이 은근한 포인트가 됩니다.",
+  },
+  {
+    id: "r-a03",
+    userName: "mp*****",
+    rating: 5,
+    date: "2026.06.16",
+    variant: "베이지&블랙",
+    content: "25mm 두께라 겨울 바닥 냉기가 완전히 차단돼요. 아이가 러그에서 뒹굴며 놀아도 안 아파합니다.",
+    images: ["/images/reviews/1713110030/review-03-1.webp"],
+  },
+  {
+    id: "r-a04",
+    userName: "dg*****",
+    rating: 4,
+    date: "2026.06.07",
+    variant: "그레이&카키",
+    content: "쿠션감과 색감은 최고인데 파일이 길어서 로봇청소기가 살짝 버거워해요. 일반 청소기로는 문제없습니다.",
+  },
+  {
+    id: "r-a05",
+    userName: "yw*****",
+    rating: 5,
+    date: "2026.05.29",
+    variant: "베이지&블랙",
+    content: "소파 밑에 깔았는데 거실 무게중심이 잡혔어요. 밟을 때마다 기분 좋은 푹신함이 있습니다.",
+  },
+  {
+    id: "r-a06",
+    userName: "hb*****",
+    rating: 5,
+    date: "2026.05.20",
+    variant: "그레이&카키",
+    content: "가구 눌린 자국이 빗질하니 정말 살아나요. 복원력 하나는 확실한 제품입니다.",
+  },
+  {
+    id: "r-a07",
+    userName: "cs*****",
+    rating: 4,
+    date: "2026.05.11",
+    variant: "베이지&블랙",
+    content: "포근하고 예쁘긴 한데 초반에 잔털이 좀 날렸어요. 몇 번 청소기 돌리니 잦아들었지만 참고하세요.",
+  },
+  {
+    id: "r-a08",
+    userName: "tw*****",
+    rating: 5,
+    date: "2026.05.02",
+    variant: "그레이&카키",
+    content: "층간소음 걱정에 두꺼운 러그를 찾다가 정착했어요. 발소리가 확실히 줄어 아이 있는 집에 추천합니다.",
+    images: ["/images/reviews/1713110030/review-08-1.webp"],
+  },
+  {
+    id: "r-a09",
+    userName: "lm*****",
+    rating: 5,
+    date: "2026.04.23",
+    variant: "베이지&블랙",
+    content: "베이지&블랙 조합이 우드+블랙 가구 집에 완벽해요. 이 가격에 이 두께는 다시 없을 것 같아 하나 더 샀습니다.",
+  },
+  {
+    id: "r-a10",
+    userName: "bp*****",
+    rating: 5,
+    date: "2026.04.14",
+    variant: "그레이&카키",
+    content: "겨울 내내 바닥 생활을 하는데 러그 위에서만 지내게 돼요. 도톰해서 방석이 필요 없습니다.",
+  },
+  {
+    id: "r-a11",
+    userName: "kc*****",
+    rating: 5,
+    date: "2026.04.05",
+    variant: "베이지&블랙",
+    content: "미끄럼 방지 바닥면 덕분에 패드 없이 바로 깔았는데 전혀 안 밀려요. 마감이 꼼꼼한 러그입니다.",
+  },
+];
+
+export const sharedReviews: ReviewData = {
+  ...calculateReviewSummary(reviewItems),
+  items: reviewItems,
+};
+
+export const sharedQnaItems: QnaItem[] = [
+  {
+    id: "q-a01",
+    category: "상품",
+    question: "물세탁이 가능한가요? 25mm 두께라 세탁기에 안 들어갈 것 같아서요.",
+    questioner: "vr*****",
+    date: "2026.06.13",
+    answered: true,
+    answer: "안녕하세요, 한샘입니다. 본 제품은 파일 보호를 위해 통세탁 대신 부분 오염 시 중성세제를 활용한 부분 세척을 권장드립니다. 정기 관리는 청소기와 빗질로 충분합니다. 감사합니다.",
+    answerDate: "2026.06.14",
+  },
+  {
+    id: "q-a02",
+    category: "상품",
+    question: "그레이&카키 색상이 화면마다 달라 보이는데 실제 톤이 궁금합니다.",
+    questioner: "eo*****",
+    date: "2026.05.26",
+    answered: true,
+    answer: "안녕하세요, 한샘입니다. 그레이&카키는 차분한 미드그레이 바탕에 올리브 카키 패턴이 들어간 조합으로, 실물은 화면보다 채도가 낮은 편입니다. 상세 페이지 소재 컷을 참고 부탁드립니다. 감사합니다.",
+    answerDate: "2026.05.27",
+  },
+  {
+    id: "q-a03",
+    category: "배송",
+    question: "롤 포장으로 오나요, 접혀서 오나요?",
+    questioner: "ga*****",
+    date: "2026.07.05",
+    answered: false,
+  },
+];

@@ -289,23 +289,6 @@ export const CATEGORY_CONFIG = {
     // 카테고리 페이지 노출만 막음. 복원 시 이 탭 항목을 다시 추가할 것
     tabs: [
       {
-        id: "kitchen-organizer", label: "주방수납",
-        subcategories: [
-          {
-            id: "organizer", label: "수납용품", categoryName: "수납용품", categoryCode: "171110",
-            banner: { image: "/images/category/home-deco/kitchen-organizer/organizer.webp", title: "손에 닿는 자리의 질서", body: "자주 쓰는 물건일수록 제자리가 필요합니다" }
-          },
-          {
-            id: "container", label: "밀폐·보관용기", categoryName: "밀폐·보관용기", categoryCode: "171111",
-            banner: { image: "/images/category/home-deco/kitchen-organizer/container.webp", title: "신선함을 지키는 밀폐력", body: "재료 본연의 맛을 오래 보관하는 스마트한 용기" }
-          },
-          {
-            id: "kitchen-tidy", label: "주방정리", categoryName: "주방정리", categoryCode: "171112",
-            banner: { image: "/images/category/home-deco/kitchen-organizer/kitchen-tidy.webp", title: "정돈된 주방의 여유", body: "동선을 줄이는 정리 소품으로 요리가 쉬워집니다" }
-          },
-        ],
-      },
-      {
         id: "curtain-blind", label: "커튼·블라인드",
         subcategories: [
           {
@@ -319,6 +302,23 @@ export const CATEGORY_CONFIG = {
         ],
       },
       {
+        id: "kitchen-organizer", label: "주방수납",
+        subcategories: [
+          {
+            id: "organizer", label: "수납용품", categoryName: "수납용품", categoryCode: "171110",
+            banner: { image: "/images/category/home-deco/kitchen-organizer/organizer.webp", title: "손에 닿는 자리의 질서", body: "자주 쓰는 물건을 정리하는 공간" }
+          },
+          {
+            id: "container", label: "밀폐·보관용기", categoryName: "밀폐·보관용기", categoryCode: "171111",
+            banner: { image: "/images/category/home-deco/kitchen-organizer/container.webp", title: "신선함을 지키는 밀폐력", body: "재료 본연의 맛을 오래 보관하는 스마트한 용기" }
+          },
+          {
+            id: "kitchen-tidy", label: "주방정리", categoryName: "주방정리", categoryCode: "171112",
+            banner: { image: "/images/category/home-deco/kitchen-organizer/kitchen-tidy.webp", title: "정돈된 주방의 여유", body: "동선을 줄이는 소품으로 손쉬운 관리" }
+          },
+        ],
+      },
+      {
         id: "deco", label: "인테리어소품",
         subcategories: [
           {
@@ -327,7 +327,7 @@ export const CATEGORY_CONFIG = {
           },
           {
             id: "rug", label: "러그·카페트", categoryName: "러그·카페트", categoryCode: "171311",
-            banner: { image: "/images/category/home-deco/deco/rug.webp", title: "바닥에서 시작되는 온기", body: "발끝에 닿는 감촉이 공간의 인상을 바꿉니다" }
+            banner: { image: "/images/category/home-deco/deco/rug.webp", title: "바닥에서 시작되는 온기", body: "공간의 인상을 바꾸는 부드러운 감촉" }
           },
           {
             id: "deco-object", label: "데코소품", categoryName: "데코소품", categoryCode: "171312",
@@ -338,8 +338,7 @@ export const CATEGORY_CONFIG = {
     ] satisfies TabConfig[],
     editor: {
       lifestyleImage: "/images/category/home-deco/editor-lifestyle.webp",
-      // TODO: 소품 패밀리 데이터 추가 전까지 거실 상품 임시 차용
-      productIds: ["1110120012", "1110120013"] as [string, string],
+      productIds: ["1712100020", "1713110010"] as [string, string],
     },
     popularCategory: "소품",
     popularLabel: "Best of Month",

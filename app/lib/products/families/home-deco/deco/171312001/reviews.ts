@@ -1,0 +1,138 @@
+import type { ReviewData, QnaItem, Review } from "@/app/lib/types";
+import { calculateReviewSummary } from "@/lib/reviews";
+
+const reviewItems: Review[] = [
+  {
+    id: "r-a01",
+    userName: "mj*****",
+    rating: 5,
+    date: "2026.07.20",
+    variant: "기본",
+    content: "화장실 선반 위에 두었는데 향보다 먼저 모양에 반했어요. 은은한 향까지 더해지니 공간이 한층 차분해졌습니다.",
+    images: ["/images/reviews/1713120010/review-01-1.webp"],
+  },
+  {
+    id: "r-a02",
+    userName: "sy*****",
+    rating: 4,
+    date: "2026.07.10",
+    variant: "기본",
+    content: "가격 대비 만듦새가 좋아서 선물용으로 하나 더 주문했어요. 다만 향이 생각보다 약해서 방향제라기보다 인테리어 소품에 가깝습니다.",
+  },
+  {
+    id: "r-a03",
+    userName: "hb*****",
+    rating: 5,
+    date: "2026.06.30",
+    variant: "기본",
+    content: "도자기 질감이 사진보다 훨씬 고급스러워요. 화장대 위에 올려두니 정리된 느낌까지 나서 만족스럽습니다.",
+    images: ["/images/reviews/1713120010/review-03-1.webp", "/images/reviews/1713120010/review-03-2.webp"],
+  },
+  {
+    id: "r-a04",
+    userName: "ky*****",
+    rating: 5,
+    date: "2026.06.20",
+    variant: "기본",
+    content: "화장실 선반에 두었는데 냄새 잡는 데 은근히 효과가 있어요. 크기도 아담해서 좁은 공간에도 부담 없습니다.",
+  },
+  {
+    id: "r-a05",
+    userName: "je*****",
+    rating: 4,
+    date: "2026.06.10",
+    variant: "기본",
+    content: "디자인은 정말 예쁜데 리드스틱이 조금 짧게 느껴졌어요. 그래도 전체적인 완성도는 이 가격대에 훌륭합니다.",
+  },
+  {
+    id: "r-a06",
+    userName: "wo*****",
+    rating: 5,
+    date: "2026.05.30",
+    variant: "기본",
+    content: "신혼집 집들이 선물로 준비했는데 반응이 정말 좋았어요. 포장도 정갈해서 선물하기에 부담 없는 구성입니다.",
+  },
+  {
+    id: "r-a07",
+    userName: "db*****",
+    rating: 5,
+    date: "2026.05.18",
+    variant: "기본",
+    content: "도자기 특유의 무광 질감이 조명 아래서 은은하게 빛나요. 사진으로 보던 것보다 실물이 훨씬 예쁩니다.",
+    images: ["/images/reviews/1713120010/review-07-1.webp"],
+  },
+  {
+    id: "r-a08",
+    userName: "tn*****",
+    rating: 3,
+    date: "2026.05.06",
+    variant: "기본",
+    content: "배송 중 완충재가 부족했는지 상자가 조금 눌려서 도착했어요. 다행히 내용물은 무사해서 그냥 사용 중입니다.",
+  },
+  {
+    id: "r-a09",
+    userName: "yr*****",
+    rating: 4,
+    date: "2026.04.24",
+    variant: "기본",
+    content: "책상 위에 두고 은은한 향을 즐기고 있어요. 향이 진하지 않아 사무공간에서도 부담 없이 쓰기 좋습니다.",
+  },
+  {
+    id: "r-a10",
+    userName: "ph*****",
+    rating: 5,
+    date: "2026.04.10",
+    variant: "기본",
+    content: "친구 생일 선물로 드렸는데 포장부터 예쁘다고 좋아했어요. 가성비 좋은 인테리어 소품 선물로 강력 추천합니다.",
+  },
+  {
+    id: "r-a11",
+    userName: "ck*****",
+    rating: 5,
+    date: "2026.03.28",
+    variant: "기본",
+    content: "은은한 우드향이 침실과 잘 어울려요. 자기 전 향초 대신 켜두는 느낌으로 매일 사용 중입니다.",
+  },
+  {
+    id: "r-a12",
+    userName: "rl*****",
+    rating: 4,
+    date: "2026.03.12",
+    variant: "기본",
+    content: "생각보다 향 지속력이 길어서 만족스러워요. 오일을 조금씩 자주 적셔줘야 향이 오래가는 점만 참고하세요.",
+  },
+  {
+    id: "r-a13",
+    userName: "os*****",
+    rating: 5,
+    date: "2026.02.24",
+    variant: "기본",
+    content: "작은 소품 하나로 공간 분위기가 확 달라졌어요. 다른 색감으로도 나오면 꼭 추가 구매하고 싶습니다.",
+  },
+];
+
+export const sharedReviews: ReviewData = {
+  ...calculateReviewSummary(reviewItems),
+  items: reviewItems,
+};
+
+export const sharedQnaItems: QnaItem[] = [
+  {
+    id: "q-a01",
+    category: "상품",
+    question: "규조토 재질이라 충격에 약해서 잘 깨지지는 않나요?",
+    questioner: "hn*****",
+    date: "2026.06.05",
+    answered: true,
+    answer: "안녕하세요, 한샘입니다. 도자기 소성 공정을 거쳐 일상적인 사용 환경에서는 문제없이 사용하실 수 있으나, 바닥에 떨어뜨리는 등 강한 충격에는 파손될 수 있어 주의가 필요합니다. 감사합니다.",
+    answerDate: "2026.06.06",
+  },
+  {
+    id: "q-a02",
+    category: "기타",
+    question: "디퓨저 오일이 다 떨어지면 리필액만 따로 구매할 수 있나요?",
+    questioner: "gw*****",
+    date: "2026.07.15",
+    answered: false,
+  },
+];

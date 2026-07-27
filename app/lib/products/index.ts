@@ -37,6 +37,34 @@ import { summaries as blancChairStoolSummaries, getDetail as getBlancChairStoolD
 import { summaries as modiPantryCabinetSummaries, getDetail as getModiPantryCabinetDetail } from "./families/dining/kitchen-storage/121210001";
 import { summaries as modiCafeCabinetSeriesSummaries, getDetail as getModiCafeCabinetSeriesDetail } from "./families/dining/kitchen-storage/121210002";
 import { summaries as modiRangeStandSeriesSummaries, getDetail as getModiRangeStandSeriesDetail } from "./families/dining/kitchen-storage/121210003";
+import { summaries as softCoolingSetSummaries, getDetail as getSoftCoolingSetDetail } from "./families/home-deco/bedding/171012001";
+import { summaries as modalAllergySetSummaries, getDetail as getModalAllergySetDetail } from "./families/home-deco/bedding/171012002";
+import { summaries as foseasonTencelSetSummaries, getDetail as getFoseasonTencelSetDetail } from "./families/home-deco/bedding/171012003";
+import { summaries as polandGooseSummaries, getDetail as getPolandGooseDetail } from "./families/home-deco/bedding/171010001";
+import { summaries as balanceGoosePillowSummaries, getDetail as getBalanceGoosePillowDetail } from "./families/home-deco/bedding/171011001";
+import { summaries as sleepdiverPillowSummaries, getDetail as getSleepdiverPillowDetail } from "./families/home-deco/bedding/171011002";
+import { summaries as sokSlidingBoxSummaries, getDetail as getSokSlidingBoxDetail } from "./families/home-deco/kitchen-organizer/171110001";
+import { summaries as allstenDishRackSummaries, getDetail as getAllstenDishRackDetail } from "./families/home-deco/kitchen-organizer/171112001";
+import { summaries as primeKnifeRackSummaries, getDetail as getPrimeKnifeRackDetail } from "./families/home-deco/kitchen-organizer/171112002";
+import { summaries as windowPackageSummaries, getDetail as getWindowPackageDetail } from "./families/home-deco/curtain-blind/171210001";
+import { summaries as cozyCurtainSummaries, getDetail as getCozyCurtainDetail } from "./families/home-deco/curtain-blind/171210002";
+import { summaries as relaxBlackoutSummaries, getDetail as getRelaxBlackoutDetail } from "./families/home-deco/curtain-blind/171210003";
+import { summaries as shinyLunaBlindSummaries, getDetail as getShinyLunaBlindDetail } from "./families/home-deco/curtain-blind/171211001";
+import { summaries as doubleRollscreenSummaries, getDetail as getDoubleRollscreenDetail } from "./families/home-deco/curtain-blind/171211002";
+import { summaries as newKlimtLampSummaries, getDetail as getNewKlimtLampDetail } from "./families/home-deco/deco/171310001";
+import { summaries as oliviaLampSummaries, getDetail as getOliviaLampDetail } from "./families/home-deco/deco/171310002";
+import { summaries as joyFloorLampSummaries, getDetail as getJoyFloorLampDetail } from "./families/home-deco/deco/171310003";
+import { summaries as emmaSlubRugSummaries, getDetail as getEmmaSlubRugDetail } from "./families/home-deco/deco/171311001";
+import { summaries as samkidsRoundRugSummaries, getDetail as getSamkidsRoundRugDetail } from "./families/home-deco/deco/171311002";
+import { summaries as primeTuftingRugSummaries, getDetail as getPrimeTuftingRugDetail } from "./families/home-deco/deco/171311003";
+import { summaries as sokSteelContainerSummaries, getDetail as getSokSteelContainerDetail } from "./families/home-deco/kitchen-organizer/171111001";
+import { summaries as clearFoodContainerSummaries, getDetail as getClearFoodContainerDetail } from "./families/home-deco/kitchen-organizer/171111002";
+import { summaries as clearGlassRiceContainerSummaries, getDetail as getClearGlassRiceContainerDetail } from "./families/home-deco/kitchen-organizer/171111003";
+import { summaries as moonJarDiffuserSummaries, getDetail as getMoonJarDiffuserDetail } from "./families/home-deco/deco/171312001";
+import { summaries as foseasonDiffuserSummaries, getDetail as getFoseasonDiffuserDetail } from "./families/home-deco/deco/171312002";
+import { summaries as leatherTissueCoverSummaries, getDetail as getLeatherTissueCoverDetail } from "./families/home-deco/deco/171312003";
+import { summaries as feltTissueCaseSummaries, getDetail as getFeltTissueCaseDetail } from "./families/home-deco/deco/171312004";
+import { summaries as tarpaulinShoppingBagSummaries, getDetail as getTarpaulinShoppingBagDetail } from "./families/home-deco/deco/171312005";
 
 type Getter = (id: string) => ProductDetail;
 
@@ -80,6 +108,34 @@ const registry: Record<string, Getter> = {
   ...Object.fromEntries(modiPantryCabinetSummaries.map((s) => [s.id, getModiPantryCabinetDetail])),
   ...Object.fromEntries(modiCafeCabinetSeriesSummaries.map((s) => [s.id, getModiCafeCabinetSeriesDetail])),
   ...Object.fromEntries(modiRangeStandSeriesSummaries.map((s) => [s.id, getModiRangeStandSeriesDetail])),
+  ...Object.fromEntries(softCoolingSetSummaries.map((s) => [s.id, getSoftCoolingSetDetail])),
+  ...Object.fromEntries(modalAllergySetSummaries.map((s) => [s.id, getModalAllergySetDetail])),
+  ...Object.fromEntries(foseasonTencelSetSummaries.map((s) => [s.id, getFoseasonTencelSetDetail])),
+  ...Object.fromEntries(polandGooseSummaries.map((s) => [s.id, getPolandGooseDetail])),
+  ...Object.fromEntries(balanceGoosePillowSummaries.map((s) => [s.id, getBalanceGoosePillowDetail])),
+  ...Object.fromEntries(sleepdiverPillowSummaries.map((s) => [s.id, getSleepdiverPillowDetail])),
+  ...Object.fromEntries(sokSlidingBoxSummaries.map((s) => [s.id, getSokSlidingBoxDetail])),
+  ...Object.fromEntries(allstenDishRackSummaries.map((s) => [s.id, getAllstenDishRackDetail])),
+  ...Object.fromEntries(primeKnifeRackSummaries.map((s) => [s.id, getPrimeKnifeRackDetail])),
+  ...Object.fromEntries(windowPackageSummaries.map((s) => [s.id, getWindowPackageDetail])),
+  ...Object.fromEntries(cozyCurtainSummaries.map((s) => [s.id, getCozyCurtainDetail])),
+  ...Object.fromEntries(relaxBlackoutSummaries.map((s) => [s.id, getRelaxBlackoutDetail])),
+  ...Object.fromEntries(shinyLunaBlindSummaries.map((s) => [s.id, getShinyLunaBlindDetail])),
+  ...Object.fromEntries(doubleRollscreenSummaries.map((s) => [s.id, getDoubleRollscreenDetail])),
+  ...Object.fromEntries(newKlimtLampSummaries.map((s) => [s.id, getNewKlimtLampDetail])),
+  ...Object.fromEntries(oliviaLampSummaries.map((s) => [s.id, getOliviaLampDetail])),
+  ...Object.fromEntries(joyFloorLampSummaries.map((s) => [s.id, getJoyFloorLampDetail])),
+  ...Object.fromEntries(emmaSlubRugSummaries.map((s) => [s.id, getEmmaSlubRugDetail])),
+  ...Object.fromEntries(samkidsRoundRugSummaries.map((s) => [s.id, getSamkidsRoundRugDetail])),
+  ...Object.fromEntries(primeTuftingRugSummaries.map((s) => [s.id, getPrimeTuftingRugDetail])),
+  ...Object.fromEntries(sokSteelContainerSummaries.map((s) => [s.id, getSokSteelContainerDetail])),
+  ...Object.fromEntries(clearFoodContainerSummaries.map((s) => [s.id, getClearFoodContainerDetail])),
+  ...Object.fromEntries(clearGlassRiceContainerSummaries.map((s) => [s.id, getClearGlassRiceContainerDetail])),
+  ...Object.fromEntries(moonJarDiffuserSummaries.map((s) => [s.id, getMoonJarDiffuserDetail])),
+  ...Object.fromEntries(foseasonDiffuserSummaries.map((s) => [s.id, getFoseasonDiffuserDetail])),
+  ...Object.fromEntries(leatherTissueCoverSummaries.map((s) => [s.id, getLeatherTissueCoverDetail])),
+  ...Object.fromEntries(feltTissueCaseSummaries.map((s) => [s.id, getFeltTissueCaseDetail])),
+  ...Object.fromEntries(tarpaulinShoppingBagSummaries.map((s) => [s.id, getTarpaulinShoppingBagDetail])),
 };
 
 export function getProductDetail(id: string): ProductDetail | null {

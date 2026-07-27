@@ -1,0 +1,132 @@
+import type { ReviewData, QnaItem, Review } from "@/app/lib/types";
+import { calculateReviewSummary } from "@/lib/reviews";
+
+const reviewItems: Review[] = [
+  {
+    id: "r-a01",
+    userName: "hw*****",
+    rating: 5,
+    date: "2026.07.04",
+    variant: "실버화이트",
+    content: "거실 통창에 실버화이트로 시공했는데 빛 받을 때 은은한 광이 정말 고급스러워요. 손님마다 어디 제품이냐고 물어봅니다.",
+    images: ["/images/reviews/1712110010/review-01-1.webp", "/images/reviews/1712110010/review-01-2.webp"],
+  },
+  {
+    id: "r-a02",
+    userName: "sj*****",
+    rating: 5,
+    date: "2026.06.25",
+    variant: "어반베이지",
+    content: "우드톤 가구랑 어반베이지가 잘 어울려요. 콤비라 낮에는 반쯤 열어 풍경을 즐기고 밤엔 완전히 닫습니다.",
+  },
+  {
+    id: "r-a03",
+    userName: "mc*****",
+    rating: 5,
+    date: "2026.06.16",
+    variant: "라이트그레이",
+    content: "사무공간 겸 서재에 달았는데 모니터 반사 없이 채광 조절이 딱 됩니다. 무게감 있는 그레이 톤도 마음에 들어요.",
+    images: ["/images/reviews/1712110010/review-03-1.webp"],
+  },
+  {
+    id: "r-a04",
+    userName: "dv*****",
+    rating: 4,
+    date: "2026.06.07",
+    variant: "내추럴베이지",
+    content: "원단 퀄리티와 시공은 만족스러운데 성수기라 예약이 밀려 시공까지 3주 걸렸어요. 결과물은 기다린 보람이 있습니다.",
+  },
+  {
+    id: "r-a05",
+    userName: "yg*****",
+    rating: 5,
+    date: "2026.05.29",
+    variant: "실버화이트",
+    content: "블랙라벨 라인은 처음인데 원단 광택부터 부품 마감까지 확실히 달라요. 줄 당김도 부드럽고 소음이 없습니다.",
+  },
+  {
+    id: "r-a06",
+    userName: "pk*****",
+    rating: 5,
+    date: "2026.05.20",
+    variant: "어반베이지",
+    content: "맞춤 시공이라 창틀 안쪽에 딱 맞게 들어갔어요. 기성품처럼 옆으로 뜨는 부분이 없어서 빛샘도 적습니다.",
+  },
+  {
+    id: "r-a07",
+    userName: "cf*****",
+    rating: 3,
+    date: "2026.05.11",
+    variant: "라이트그레이",
+    content: "제품은 좋은데 실측 때 본 샘플보다 실제 시공 색이 살짝 밝게 느껴져요. 채광에 따라 달라 보이니 참고하세요.",
+  },
+  {
+    id: "r-a08",
+    userName: "wq*****",
+    rating: 5,
+    date: "2026.05.02",
+    variant: "내추럴베이지",
+    content: "침실 창 두 개를 같은 컬러로 맞췄더니 방이 정돈돼 보여요. 먼지가 잘 안 붙는다는 말이 사실이라 관리가 편합니다.",
+    images: ["/images/reviews/1712110010/review-08-1.webp"],
+  },
+  {
+    id: "r-a09",
+    userName: "lb*****",
+    rating: 5,
+    date: "2026.04.23",
+    variant: "실버화이트",
+    content: "해 질 무렵 블라인드 사이로 들어오는 빛의 결이 예술이에요. 인테리어 마감재 하나로 이런 만족감은 처음입니다.",
+  },
+  {
+    id: "r-a10",
+    userName: "nz*****",
+    rating: 5,
+    date: "2026.04.14",
+    variant: "어반베이지",
+    content: "기사님이 수평까지 꼼꼼하게 맞춰주고 조작법도 알려주셨어요. 아이 안전 코드 처리도 기본으로 되어 있어 안심입니다.",
+  },
+  {
+    id: "r-a11",
+    userName: "xt*****",
+    rating: 5,
+    date: "2026.04.05",
+    variant: "라이트그레이",
+    content: "이사 오면서 커튼 대신 블라인드로 바꿨는데 공간이 훨씬 넓고 미니멀해 보여요. 4컬러 중에 고르는 재미도 있습니다.",
+  },
+];
+
+export const sharedReviews: ReviewData = {
+  ...calculateReviewSummary(reviewItems),
+  items: reviewItems,
+};
+
+export const sharedQnaItems: QnaItem[] = [
+  {
+    id: "q-a01",
+    category: "상품",
+    question: "거실 창과 방 창 컬러를 다르게 시공할 수 있나요?",
+    questioner: "rk*****",
+    date: "2026.06.10",
+    answered: true,
+    answer: "안녕하세요, 한샘입니다. 네, 창별로 4가지 컬러 중 각각 선택 가능합니다. 실측 방문 시 실제 원단 샘플을 보고 공간별로 확정하실 수 있습니다. 감사합니다.",
+    answerDate: "2026.06.11",
+  },
+  {
+    id: "q-a02",
+    category: "상품",
+    question: "콤비 블라인드도 완전 암막이 되나요? 침실에 시공하려고 합니다.",
+    questioner: "ez*****",
+    date: "2026.05.24",
+    answered: true,
+    answer: "안녕하세요, 한샘입니다. 콤비 블라인드는 불투명 원단을 겹치면 높은 차광률을 내지만 완전 암막은 아닙니다. 침실의 완전 암막이 필요하시면 암막 롤스크린 또는 암막 커튼과의 조합을 권장드립니다. 감사합니다.",
+    answerDate: "2026.05.25",
+  },
+  {
+    id: "q-a03",
+    category: "배송",
+    question: "실측 방문 전에 대략적인 견적을 미리 알 수 있나요?",
+    questioner: "qm*****",
+    date: "2026.07.06",
+    answered: false,
+  },
+];

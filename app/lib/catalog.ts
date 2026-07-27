@@ -37,6 +37,34 @@ import { summaries as blancChairStoolSummaries } from "./products/families/dinin
 import { summaries as modiPantryCabinetSummaries } from "./products/families/dining/kitchen-storage/121210001";
 import { summaries as modiCafeCabinetSeriesSummaries } from "./products/families/dining/kitchen-storage/121210002";
 import { summaries as modiRangeStandSeriesSummaries } from "./products/families/dining/kitchen-storage/121210003";
+import { summaries as softCoolingSetSummaries } from "./products/families/home-deco/bedding/171012001";
+import { summaries as modalAllergySetSummaries } from "./products/families/home-deco/bedding/171012002";
+import { summaries as foseasonTencelSetSummaries } from "./products/families/home-deco/bedding/171012003";
+import { summaries as polandGooseSummaries } from "./products/families/home-deco/bedding/171010001";
+import { summaries as balanceGoosePillowSummaries } from "./products/families/home-deco/bedding/171011001";
+import { summaries as sleepdiverPillowSummaries } from "./products/families/home-deco/bedding/171011002";
+import { summaries as sokSlidingBoxSummaries } from "./products/families/home-deco/kitchen-organizer/171110001";
+import { summaries as allstenDishRackSummaries } from "./products/families/home-deco/kitchen-organizer/171112001";
+import { summaries as primeKnifeRackSummaries } from "./products/families/home-deco/kitchen-organizer/171112002";
+import { summaries as windowPackageSummaries } from "./products/families/home-deco/curtain-blind/171210001";
+import { summaries as cozyCurtainSummaries } from "./products/families/home-deco/curtain-blind/171210002";
+import { summaries as relaxBlackoutSummaries } from "./products/families/home-deco/curtain-blind/171210003";
+import { summaries as shinyLunaBlindSummaries } from "./products/families/home-deco/curtain-blind/171211001";
+import { summaries as doubleRollscreenSummaries } from "./products/families/home-deco/curtain-blind/171211002";
+import { summaries as newKlimtLampSummaries } from "./products/families/home-deco/deco/171310001";
+import { summaries as oliviaLampSummaries } from "./products/families/home-deco/deco/171310002";
+import { summaries as joyFloorLampSummaries } from "./products/families/home-deco/deco/171310003";
+import { summaries as emmaSlubRugSummaries } from "./products/families/home-deco/deco/171311001";
+import { summaries as samkidsRoundRugSummaries } from "./products/families/home-deco/deco/171311002";
+import { summaries as primeTuftingRugSummaries } from "./products/families/home-deco/deco/171311003";
+import { summaries as sokSteelContainerSummaries } from "./products/families/home-deco/kitchen-organizer/171111001";
+import { summaries as clearFoodContainerSummaries } from "./products/families/home-deco/kitchen-organizer/171111002";
+import { summaries as clearGlassRiceContainerSummaries } from "./products/families/home-deco/kitchen-organizer/171111003";
+import { summaries as moonJarDiffuserSummaries } from "./products/families/home-deco/deco/171312001";
+import { summaries as foseasonDiffuserSummaries } from "./products/families/home-deco/deco/171312002";
+import { summaries as leatherTissueCoverSummaries } from "./products/families/home-deco/deco/171312003";
+import { summaries as feltTissueCaseSummaries } from "./products/families/home-deco/deco/171312004";
+import { summaries as tarpaulinShoppingBagSummaries } from "./products/families/home-deco/deco/171312005";
 
 export const catalog: ProductSummary[] = [
   // ─── 패밀리 상품 (각 패밀리 파일이 summaries 관리) ───────────────────────
@@ -78,6 +106,34 @@ export const catalog: ProductSummary[] = [
   ...modiPantryCabinetSummaries,
   ...modiCafeCabinetSeriesSummaries,
   ...modiRangeStandSeriesSummaries,
+  ...softCoolingSetSummaries,
+  ...modalAllergySetSummaries,
+  ...foseasonTencelSetSummaries,
+  ...polandGooseSummaries,
+  ...balanceGoosePillowSummaries,
+  ...sleepdiverPillowSummaries,
+  ...sokSlidingBoxSummaries,
+  ...allstenDishRackSummaries,
+  ...primeKnifeRackSummaries,
+  ...windowPackageSummaries,
+  ...cozyCurtainSummaries,
+  ...relaxBlackoutSummaries,
+  ...shinyLunaBlindSummaries,
+  ...doubleRollscreenSummaries,
+  ...newKlimtLampSummaries,
+  ...oliviaLampSummaries,
+  ...joyFloorLampSummaries,
+  ...emmaSlubRugSummaries,
+  ...samkidsRoundRugSummaries,
+  ...primeTuftingRugSummaries,
+  ...sokSteelContainerSummaries,
+  ...clearFoodContainerSummaries,
+  ...clearGlassRiceContainerSummaries,
+  ...moonJarDiffuserSummaries,
+  ...foseasonDiffuserSummaries,
+  ...leatherTissueCoverSummaries,
+  ...feltTissueCaseSummaries,
+  ...tarpaulinShoppingBagSummaries,
 ];
 
 // 특정 familyId에 속하는 모든 상품 (sibling picker용)

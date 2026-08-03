@@ -7,6 +7,7 @@ import { colorName } from "@/app/lib/types";
 import { ALL_FILTER_AXES, FILTER_AXES_BY_CATEGORY, ALL_SUBCAT_AXES_BY_TAB, buildDimensions, COLOR_GROUPS } from "@/lib/filter-dimensions";
 import ProductCard from "@/app/components/ProductCard";
 import SubcategoryBanner from "./SubcategoryBanner";
+import CategoryPopularGrid from "./CategoryPopularGrid";
 import ProductFilterBar from "./ProductFilterBar";
 import styles from "./CategoryContent.module.css";
 
@@ -156,6 +157,10 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
     return b.rating - a.rating;
   });
 
+  const monthlyBest = isAllSubcat
+    ? [...categoryProducts].sort((a, b) => b.salesCount - a.salesCount).slice(0, 8)
+    : [];
+
   const axes = isAllSubcat
     ? (ALL_SUBCAT_AXES_BY_TAB[activeTabId] ?? ALL_FILTER_AXES)
     : categoryCode
@@ -224,6 +229,8 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
               body={activeSubcat.banner.body}
             />
           )}
+
+          {isAllSubcat && <CategoryPopularGrid products={monthlyBest} />}
 
           <ProductFilterBar
             dimensions={dimensions}

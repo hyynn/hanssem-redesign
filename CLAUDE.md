@@ -12,7 +12,12 @@
 - Next.js 16 App Router (Pages Router 아님) + React 19 + TypeScript
 - 상태 관리: zustand 5 (장바구니 — app/store/cartStore.ts)
 - 스타일링: CSS Modules (Tailwind 유틸리티 클래스도 일부 혼용 중 - layout.tsx의 h-full, flex 등)
-- 폰트: Pretendard (next/font 아닌 @font-face로 globals.css에 직접 정의)
+- 폰트: Pretendard Variable 다이나믹 서브셋 — `pretendard` npm 패키지의
+  `pretendardvariable-dynamic-subset.css`를 app/layout.tsx에서 import (번들링되어 self-host)
+  - 이전 방식(CDN에서 굵기 5종 전체 글리프 woff2)은 폰트만 약 3.8MB → 모바일 LCP 지연 원인이었음.
+    300 굵기 파일이 없어 --fw-light가 400으로 그려지던 문제도 Variable 폰트로 해소
+  - next/font/local 금지: 한글 폰트를 unicode-range 조각으로 나누지 못해 큰 단일 파일이 preload됨
+  - 굵기별 @font-face 추가 금지 — Variable 폰트 하나가 45~920 전 범위를 커버
 
 ## 디렉토리 규칙
 - app/page.tsx, app/layout.tsx: Next.js 예약 파일명, 이름 변경 금지

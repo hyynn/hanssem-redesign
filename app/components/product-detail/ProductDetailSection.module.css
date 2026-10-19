@@ -36,6 +36,7 @@
 
 .imageBlock img {
   width: 100%;
+  height: auto; /* width/height 속성의 고유 비율로 로드 전 공간 확보 (CLS 방지) */
   display: block;
 }
 

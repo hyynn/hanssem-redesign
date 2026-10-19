@@ -32,6 +32,8 @@
   - category-codes.ts (카테고리 트리 & 코드 헬퍼)
   - filter-dimensions.ts (카테고리별 필터 칩 옵션 정의)
   - reviews.ts (calculateReviewSummary 헬퍼)
+  - image-dimensions.ts (서버 전용 — public/ 이미지 헤더에서 고유 크기를 읽어 상세 섹션
+    image 블록에 width/height 부여, CLS 방지. 클라이언트 컴포넌트에서 import 금지)
 - app/lib/: Next.js 라우팅 범위 내 상품 데이터
   - types.ts (TypeScript 타입 정의 — Product, ProductDetail, Review 등)
   - api-types.ts (API 응답 타입 — ProductListResponse, SearchResponse, ApiError)

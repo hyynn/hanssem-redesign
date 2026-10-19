@@ -4,6 +4,7 @@ import ProductOverview from "../../components/product-detail/ProductOverview";
 import PromotionBanner from "../../components/product-detail/PromotionBanner";
 import ProductTabLayout from "../../components/product-detail/ProductTabLayout";
 import { getProductDetail } from "../../lib/products";
+import { attachImageDimensions } from "@/lib/image-dimensions";
 import { ArrowIcon } from "@/app/components/Icon";
 import { resolveBreadcrumbLinks } from "@/app/components/category/categoryConfig";
 import styles from "./page.module.css";
@@ -15,8 +16,11 @@ export default async function ProductDetailPage({
 }) {
   const { id } = await params;
 
-  const product = getProductDetail(id);
-  if (!product) notFound();
+  const rawProduct = getProductDetail(id);
+  if (!rawProduct) notFound();
+
+  // 섹션 이미지에 고유 크기를 부여해 lazy load 시 레이아웃 시프트(CLS) 방지
+  const product = { ...rawProduct, sections: attachImageDimensions(rawProduct.sections) };
 
   const crumbs = resolveBreadcrumbLinks(product.breadcrumb);
 

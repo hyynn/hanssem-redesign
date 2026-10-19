@@ -24,7 +24,7 @@ export default function ProductDetailSection({ section }: { section: Section }) 
         }
         return (
           <div key={index} className={styles.imageBlock}>
-            <Img src={block.src} alt={block.alt} />
+            <Img src={block.src} alt={block.alt} width={block.width} height={block.height} />
           </div>
         );
       })}

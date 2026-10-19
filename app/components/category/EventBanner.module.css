@@ -11,7 +11,10 @@
 
 .image {
   width: 100%;
-  height: auto;
+  /* 배너 원본(1920×740 기준)에 비율 고정 — lazy load 시 공간 미리 확보(CLS 방지).
+     비율이 다른 원본(홈데코 1920×850)은 cover로 상하 크롭됨 */
+  aspect-ratio: 1920 / 740;
+  object-fit: cover;
   display: block;
   transition: opacity 0.2s;
 }

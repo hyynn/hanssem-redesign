@@ -1,14 +1,7 @@
 "use client";
 
-import { useState, useRef } from "react";
-import ProductDetailTabs from "./ProductDetailTabs";
-import ProductDetailSection from "./ProductDetailSection";
-import PrePurchaseNotice from "./PrePurchaseNotice";
-import ReviewSection from "./ReviewSection";
-import QnaSection from "./QnaSection";
-import DeliverySection from "./DeliverySection";
+import { useState, useRef, type ReactNode } from "react";
 import styles from "./ProductTabLayout.module.css";
-import { ProductDetail } from "./types";
 
 const MAIN_TABS = [
   { id: "info", label: "상품정보" },
@@ -17,9 +10,20 @@ const MAIN_TABS = [
   { id: "delivery", label: "배송정보" },
 ] as const;
 
-type TabId = (typeof MAIN_TABS)[number]["id"];
+export type TabId = (typeof MAIN_TABS)[number]["id"];
 
-export default function ProductTabLayout({ product }: { product: ProductDetail }) {
+// 탭 전환만 담당하는 클라이언트 셸. 각 패널은 page(서버)가 렌더링해 slot으로 넘기므로
+// 상세 섹션·고지·배송 안내처럼 정적인 패널은 서버 컴포넌트로 남고,
+// 리뷰(정렬·포토 모달)·문의(필터)만 클라이언트 컴포넌트로 동작
+export default function ProductTabLayout({
+  panels,
+  reviewCount,
+  qnaCount,
+}: {
+  panels: Record<TabId, ReactNode>;
+  reviewCount: number;
+  qnaCount: number;
+}) {
   const [activeTab, setActiveTab] = useState<TabId>("info");
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -42,10 +46,10 @@ export default function ProductTabLayout({ product }: { product: ProductDetail }
           >
             {tab.label}
             {tab.id === "review" && (
-              <span className={styles.tabCount}>({product.reviews.count})</span>
+              <span className={styles.tabCount}>({reviewCount})</span>
             )}
             {tab.id === "qna" && (
-              <span className={styles.tabCount}>({product.qnaItems.length})</span>
+              <span className={styles.tabCount}>({qnaCount})</span>
             )}
           </button>
         ))}
@@ -53,18 +57,7 @@ export default function ProductTabLayout({ product }: { product: ProductDetail }
 
       {/* key를 activeTab으로 주면 탭 전환 시 div가 재마운트되어 animation이 재실행됨 */}
       <div key={activeTab} className={styles.panel}>
-        {activeTab === "info" && (
-          <>
-            <ProductDetailTabs sections={product.sections} />
-            {product.sections.map((section) => (
-              <ProductDetailSection key={section.id} section={section} />
-            ))}
-            <PrePurchaseNotice notices={product.notices} />
-          </>
-        )}
-        {activeTab === "review" && <ReviewSection data={product.reviews} />}
-        {activeTab === "qna" && <QnaSection items={product.qnaItems} />}
-        {activeTab === "delivery" && <DeliverySection guides={product.deliveryGuides} />}
+        {panels[activeTab]}
       </div>
     </div>
   );

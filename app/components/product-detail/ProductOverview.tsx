@@ -1,6 +1,5 @@
-"use client";
-
-import { useState } from "react";
+// 서버 컴포넌트 — 인터랙션이 있는 Gallery·VariantPicker·OrderArea만 클라이언트 leaf로 두고,
+// 상품명·가격(ProductInfoPanel)과 배송 요약(DeliveryInfoBox)은 서버에서 렌더링
 import ProductGallery from "./ProductGallery";
 import ProductInfoPanel from "./ProductInfoPanel";
 import ProductVariantPicker from "./ProductVariantPicker";
@@ -11,16 +10,10 @@ import { calcDiscountRate } from "@/lib/format";
 import styles from "./ProductOverview.module.css";
 
 export default function ProductOverview({ product }: { product: ProductDetail }) {
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-
   return (
     <div className={styles.overview}>
       <div className={styles.galleryColumn}>
-        <ProductGallery
-          images={assembleGallery(product)}
-          activeIndex={activeImageIndex}
-          onSelectThumbnail={setActiveImageIndex}
-        />
+        <ProductGallery images={assembleGallery(product)} />
       </div>
 
       <div className={styles.infoColumn}>

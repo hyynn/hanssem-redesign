@@ -3,6 +3,12 @@ import Link from "next/link";
 import ProductOverview from "../../components/product-detail/ProductOverview";
 import PromotionBanner from "../../components/product-detail/PromotionBanner";
 import ProductTabLayout from "../../components/product-detail/ProductTabLayout";
+import ProductDetailTabs from "../../components/product-detail/ProductDetailTabs";
+import ProductDetailSection from "../../components/product-detail/ProductDetailSection";
+import PrePurchaseNotice from "../../components/product-detail/PrePurchaseNotice";
+import ReviewSection from "../../components/product-detail/ReviewSection";
+import QnaSection from "../../components/product-detail/QnaSection";
+import DeliverySection from "../../components/product-detail/DeliverySection";
 import { getProductDetail } from "../../lib/products";
 import { attachImageDimensions } from "@/lib/image-dimensions";
 import { ArrowIcon } from "@/app/components/Icon";
@@ -25,7 +31,7 @@ export default async function ProductDetailPage({
   const crumbs = resolveBreadcrumbLinks(product.breadcrumb);
 
   return (
-    <main className={styles.page}>
+    <div className={styles.page}>
       <div className={styles.breadcrumb}>
         {crumbs.map((crumb, index) => (
           <span key={`${crumb.label}-${index}`}>
@@ -47,7 +53,24 @@ export default async function ProductDetailPage({
 
       <PromotionBanner promotions={product.promotions} />
 
-      <ProductTabLayout product={product} />
-    </main>
+      <ProductTabLayout
+        reviewCount={product.reviews.count}
+        qnaCount={product.qnaItems.length}
+        panels={{
+          info: (
+            <>
+              <ProductDetailTabs sections={product.sections.map(({ id, label }) => ({ id, label }))} />
+              {product.sections.map((section) => (
+                <ProductDetailSection key={section.id} section={section} />
+              ))}
+              <PrePurchaseNotice notices={product.notices} />
+            </>
+          ),
+          review: <ReviewSection data={product.reviews} />,
+          qna: <QnaSection items={product.qnaItems} />,
+          delivery: <DeliverySection guides={product.deliveryGuides} />,
+        }}
+      />
+    </div>
   );
 }

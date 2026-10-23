@@ -11,15 +11,12 @@ function fileAlt(src: string): string {
 
 interface ProductGalleryProps {
   images: string[];
-  activeIndex: number;
-  onSelectThumbnail: (index: number) => void;
 }
 
-export default function ProductGallery({
-  images,
-  activeIndex,
-  onSelectThumbnail,
-}: ProductGalleryProps) {
+// 선택 인덱스는 갤러리 안에서만 쓰여서 내부 state로 둠 — 부모(ProductOverview)가
+// state를 들고 있지 않아도 되므로 부모와 형제(상품 정보 패널 등)가 서버 컴포넌트로 남음
+export default function ProductGallery({ images }: ProductGalleryProps) {
+  const [activeIndex, setActiveIndex] = useState(0);
   const listRef = useRef<HTMLDivElement>(null);
   const [canScroll, setCanScroll] = useState<boolean | null>(null);
   const [atStart, setAtStart] = useState(true);
@@ -73,7 +70,7 @@ export default function ProductGallery({
               key={image}
               className={`${styles.thumbnailButton} ${index === activeIndex ? styles.thumbnailActive : ""
                 }`}
-              onClick={() => onSelectThumbnail(index)}
+              onClick={() => setActiveIndex(index)}
               aria-label={`${index + 1}번 이미지 보기`}
             >
               <Img src={image} alt={fileAlt(image)} />

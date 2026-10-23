@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ProductDetailSection } from "./types";
 import styles from "./ProductDetailTabs.module.css";
 
 export default function ProductDetailTabs({
   sections,
 }: {
-  sections: ProductDetailSection[];
+  sections: { id: string; label: string }[]; // 앵커 내비에 필요한 값만 — 섹션 본문(blocks)은 직렬화하지 않음
 }) {
   const [activeId, setActiveId] = useState(sections[0]?.id);
 

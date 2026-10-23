@@ -289,6 +289,8 @@
 
 .dropdownItem {
   display: flex;
+  width: 100%;
+  text-align: left;
   align-items: center;
   gap: 8px;
   font-size: var(--fs-caption);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { CartItem } from "@/app/lib/types";
@@ -79,6 +79,9 @@ export default function CheckoutPage() {
   });
   const [memoOpen, setMemoOpen] = useState(false);
   const memoRef = useRef<HTMLDivElement>(null);
+  const memoLabelId = useId();
+  const memoValueId = useId();
+  const memoListId = useId();
 
   /* ── 카카오 우편번호 스크립트 ── */
   useEffect(() => {
@@ -89,7 +92,7 @@ export default function CheckoutPage() {
     return () => { document.head.removeChild(script); };
   }, []);
 
-  /* ── 메모 드롭다운 바깥 클릭 닫기 ── */
+  /* ── 메모 드롭다운 바깥 클릭·Esc 닫기 ── */
   useEffect(() => {
     if (!memoOpen) return;
     function handleOutside(e: MouseEvent) {
@@ -97,8 +100,15 @@ export default function CheckoutPage() {
         setMemoOpen(false);
       }
     }
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setMemoOpen(false);
+    }
     document.addEventListener("mousedown", handleOutside);
-    return () => document.removeEventListener("mousedown", handleOutside);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("keydown", handleKey);
+    };
   }, [memoOpen]);
 
   /* ── 배송정보 저장 ── */
@@ -323,20 +333,23 @@ export default function CheckoutPage() {
 
                 {/* 배송 메모 — 커스텀 드롭다운 */}
                 <div className={styles.formRow}>
-                  <label className={styles.label}>배송 메모</label>
+                  <span className={styles.label} id={memoLabelId}>배송 메모</span>
                   <div ref={memoRef} className={styles.memoWrap}>
                     <button
                       type="button"
                       className={`${styles.memoToggle} ${memoOpen ? styles.memoToggleOpen : ""}`}
                       onClick={() => setMemoOpen((o) => !o)}
+                      aria-expanded={memoOpen}
+                      aria-controls={memoListId}
+                      aria-labelledby={`${memoLabelId} ${memoValueId}`}
                     >
-                      <span className={`${styles.memoLabel} ${!form.memo ? styles.memoPlaceholder : ""}`}>
+                      <span id={memoValueId} className={`${styles.memoLabel} ${!form.memo ? styles.memoPlaceholder : ""}`}>
                         {form.memo || "배송 메모를 선택해 주세요"}
                       </span>
                       <ArrowIcon direction={memoOpen ? "up" : "down"} size={16} aria-hidden />
                     </button>
                     {memoOpen && (
-                      <ul className={styles.memoList}>
+                      <ul className={styles.memoList} id={memoListId}>
                         {form.memo && (
                           <li>
                             <button type="button" className={styles.memoItem} onClick={() => selectMemo("")}>
@@ -349,6 +362,7 @@ export default function CheckoutPage() {
                             <button
                               type="button"
                               className={`${styles.memoItem} ${form.memo === opt ? styles.memoItemActive : ""}`}
+                              aria-pressed={form.memo === opt}
                               onClick={() => selectMemo(opt)}
                             >
                               {opt}

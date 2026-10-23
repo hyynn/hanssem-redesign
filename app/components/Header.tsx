@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCartStore } from "@/app/store/cartStore";
@@ -113,6 +113,10 @@ export default function Header() {
   const [searchStatus, setSearchStatus] = useState<SearchStatus>("idle");
   // 키보드 내비게이션 인덱스는 키워드 → 상품 순서의 통합 리스트를 순회
   const optionCount = keywords.length + suggestions.length;
+  // 검색 자동완성 = combobox 패턴: 포커스는 입력창에 두고 화살표로 고른 항목을
+  // aria-activedescendant로 알림 (옵션은 탭 순서에서 제외, Enter는 submitSearch가 처리)
+  const suggestListId = useId();
+  const optionId = (i: number) => `${suggestListId}-opt-${i}`;
 
   // 자동완성 fetch: 디바운스 + 언마운트/재입력 시 이전 요청 취소.
   // 결과는 다음 응답이 올 때까지 유지(stale-while-loading) — 타이핑마다 깜빡이지 않게
@@ -282,7 +286,9 @@ export default function Header() {
             <button
               className={`${styles.iconBtn} ${styles.searchToggleBtn} ${isSearchOpen ? styles.searchBtnHidden : ""}`}
               onClick={toggleSearch}
+              type="button"
               aria-label="검색"
+              aria-expanded={isSearchOpen}
             >
               <span className={styles.iconWrap}>
                 <svg width="24" height="24" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -313,6 +319,12 @@ export default function Header() {
                   if (!e.target.value.trim()) resetSearchResults();
                 }}
                 onKeyDown={handleSearchKeyDown}
+                role="combobox"
+                aria-label="검색어"
+                aria-autocomplete="list"
+                aria-expanded={optionCount > 0}
+                aria-controls={suggestListId}
+                aria-activedescendant={activeIndex >= 0 ? optionId(activeIndex) : undefined}
               />
               <button
                 type="button"
@@ -343,12 +355,16 @@ export default function Header() {
               </div>
             )}
             {optionCount > 0 && (
-              <ul className={styles.searchDropdown} role="listbox" aria-label="검색 추천">
+              <ul className={styles.searchDropdown} role="listbox" aria-label="검색 추천" id={suggestListId}>
                 {/* 연관 분류명 (탐색형) */}
                 {keywords.map((keyword, i) => (
-                  <li key={`kw-${keyword}`} role="option" aria-selected={i === activeIndex}>
+                  <li key={`kw-${keyword}`} role="none">
                     <button
                       type="button"
+                      role="option"
+                      id={optionId(i)}
+                      aria-selected={i === activeIndex}
+                      tabIndex={-1}
                       className={`${styles.keywordItem} ${i === activeIndex ? styles.suggestionActive : ""}`}
                       onMouseEnter={() => setActiveIndex(i)}
                       onClick={() => searchByKeyword(keyword)}
@@ -362,9 +378,13 @@ export default function Header() {
                 )}
                 {/* 상품 다이렉트 히트 (목적형) */}
                 {suggestions.map((p, i) => (
-                  <li key={p.id} role="option" aria-selected={keywords.length + i === activeIndex}>
+                  <li key={p.id} role="none">
                     <Link
                       href={`/products/${p.id}`}
+                      role="option"
+                      id={optionId(keywords.length + i)}
+                      aria-selected={keywords.length + i === activeIndex}
+                      tabIndex={-1}
                       className={`${styles.suggestionItem} ${keywords.length + i === activeIndex ? styles.suggestionActive : ""}`}
                       onMouseEnter={() => setActiveIndex(keywords.length + i)}
                     >
@@ -372,9 +392,12 @@ export default function Header() {
                     </Link>
                   </li>
                 ))}
-                <li>
+                <li role="none">
                   <Link
                     href={`/search?q=${encodeURIComponent(query.trim())}`}
+                    role="option"
+                    aria-selected={false}
+                    tabIndex={-1}
                     className={styles.suggestionAll}
                   >
                     &lsquo;<strong>{query.trim()}</strong>&rsquo; 전체 결과 보기
@@ -482,7 +505,10 @@ export default function Header() {
           <button
             className={`${styles.iconBtn} ${styles.menuBtn}`}
             onClick={() => setIsMenuOpen(true)}
+            type="button"
             aria-label="전체 메뉴 열기"
+            aria-haspopup="dialog"
+            aria-expanded={isMenuOpen}
           >
             <svg width="22" height="22" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3 5.5H17M3 10H17M3 14.5H17" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />

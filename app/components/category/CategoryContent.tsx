@@ -194,10 +194,11 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
         </div>
 
         {!isMain && activeTab && (
-          <div className={styles.chips}>
+          <div className={styles.chips} role="group" aria-label="소분류">
             <button
               type="button"
               className={`${styles.chip} ${isAllSubcat ? styles.chipActive : ""}`}
+              aria-pressed={isAllSubcat}
               onClick={() => handleSubcatChange(ALL_SUBCAT_ID)}
             >
               전체
@@ -207,6 +208,7 @@ export default function CategoryContent({ tabs, allProducts, initialTab, initial
                 key={sub.id}
                 type="button"
                 className={`${styles.chip} ${sub.id === activeSubcatId ? styles.chipActive : ""}`}
+                aria-pressed={sub.id === activeSubcatId}
                 onClick={() => handleSubcatChange(sub.id)}
               >
                 {sub.label}

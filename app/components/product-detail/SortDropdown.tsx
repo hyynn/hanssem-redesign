@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useId } from "react";
 import { ArrowIcon } from "@/app/components/Icon";
 import styles from "./SortDropdown.module.css";
 
@@ -39,24 +39,28 @@ export default function SortDropdown({ value, onChange }: Props) {
   }, []);
 
   const currentLabel = OPTIONS.find((o) => o.value === value)?.label ?? "";
+  const menuId = useId();
 
   return (
     <div className={styles.wrapper} ref={wrapperRef}>
       <button
         className={`${styles.trigger} ${isOpen ? styles.triggerOpen : ""}`}
         onClick={() => setIsOpen((prev) => !prev)}
-        aria-haspopup="listbox"
+        type="button"
         aria-expanded={isOpen}
+        aria-controls={menuId}
       >
         {currentLabel}
         <ArrowIcon direction={isOpen ? "up" : "down"} size={20} aria-hidden />
       </button>
 
       {isOpen && (
-        <ul className={styles.dropdown} role="listbox">
+        <ul className={styles.dropdown} id={menuId}>
           {OPTIONS.map((opt) => (
-            <li key={opt.value} role="option" aria-selected={value === opt.value}>
+            <li key={opt.value}>
               <button
+                type="button"
+                aria-pressed={value === opt.value}
                 className={`${styles.option} ${value === opt.value ? styles.optionActive : ""}`}
                 onClick={() => {
                   onChange(opt.value);

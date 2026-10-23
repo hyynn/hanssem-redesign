@@ -1,7 +1,7 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useId } from "react";
 import type { FilterDimensionDef, FilterDimensionKey } from "@/lib/filter-dimensions";
 import { COLOR_GROUP_HEX } from "@/lib/filter-dimensions";
 import { ArrowIcon } from "@/app/components/Icon";
@@ -64,6 +64,7 @@ function Dropdown({
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const menuId = useId();
 
   useEffect(() => {
     if (!open) return;
@@ -87,22 +88,25 @@ function Dropdown({
         className={`${styles.dropdownTrigger} ${active ? styles.dropdownTriggerActive : ""}`}
         onClick={() => setOpen((v) => !v)}
         type="button"
+        aria-expanded={open}
+        aria-controls={menuId}
       >
         {label}
         {open ? <IconUp /> : <IconDown />}
       </button>
       {open && (
-        <ul className={styles.dropdownMenu} role="listbox">
+        <ul className={styles.dropdownMenu} id={menuId}>
           {options.map((opt) => (
-            <li
-              key={opt}
-              role="option"
-              aria-selected={value === opt}
-              className={`${styles.dropdownItem} ${value === opt ? styles.dropdownItemSelected : ""}`}
-              onClick={() => { onChange(opt); setOpen(false); }}
-            >
-              {dimensionKey === "color" && <ColorSwatch name={opt} />}
-              {optionLabel(dimensionKey, opt)}
+            <li key={opt}>
+              <button
+                type="button"
+                aria-pressed={value === opt}
+                className={`${styles.dropdownItem} ${value === opt ? styles.dropdownItemSelected : ""}`}
+                onClick={() => { onChange(opt); setOpen(false); }}
+              >
+                {dimensionKey === "color" && <ColorSwatch name={opt} />}
+                {optionLabel(dimensionKey, opt)}
+              </button>
             </li>
           ))}
         </ul>
@@ -132,24 +136,32 @@ function SortDropdown({ value, onChange }: { value: string; onChange: (v: string
   }, [open]);
 
   const currentLabel = SORT_OPTIONS.find((o) => o.value === value)?.label ?? "인기순";
+  const menuId = useId();
 
   return (
     <div className={`${styles.dropdown} ${styles.sortDropdown}`} ref={ref}>
-      <button className={styles.sortTrigger} onClick={() => setOpen((v) => !v)} type="button">
+      <button
+        className={styles.sortTrigger}
+        onClick={() => setOpen((v) => !v)}
+        type="button"
+        aria-expanded={open}
+        aria-controls={menuId}
+      >
         {currentLabel}
         {open ? <IconUp /> : <IconDown />}
       </button>
       {open && (
-        <ul className={`${styles.dropdownMenu} ${styles.dropdownMenuRight}`} role="listbox">
+        <ul className={`${styles.dropdownMenu} ${styles.dropdownMenuRight}`} id={menuId}>
           {SORT_OPTIONS.map((opt) => (
-            <li
-              key={opt.value}
-              role="option"
-              aria-selected={value === opt.value}
-              className={`${styles.dropdownItem} ${value === opt.value ? styles.dropdownItemSelected : ""}`}
-              onClick={() => { onChange(opt.value); setOpen(false); }}
-            >
-              {opt.label}
+            <li key={opt.value}>
+              <button
+                type="button"
+                aria-pressed={value === opt.value}
+                className={`${styles.dropdownItem} ${value === opt.value ? styles.dropdownItemSelected : ""}`}
+                onClick={() => { onChange(opt.value); setOpen(false); }}
+              >
+                {opt.label}
+              </button>
             </li>
           ))}
         </ul>

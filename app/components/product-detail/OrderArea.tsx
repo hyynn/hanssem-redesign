@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/app/store/cartStore";
 import { ArrowIcon, WishlistBtn } from "@/app/components/Icon";
@@ -69,6 +69,18 @@ export default function OrderArea({
   const hasOptions = hasColors || hasPriceOptionGroups;
   const slotVisible = !hasOptions ? isOpen : selectedItems.length > 0;
   const ctaActive = slotVisible;
+  const optionPanelId = useId();
+
+  // 옵션 패널(absolute로 뜨는 드롭다운)이 열려 있을 때 Esc로 닫기 —
+  // 옵션 없는 상품은 토글이 인라인 수량 슬롯을 여닫는 용도라 대상 아님
+  useEffect(() => {
+    if (!isOpen || !hasOptions) return;
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setIsOpen(false);
+    }
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [isOpen, hasOptions]);
 
   // ── 옵션 가격 계산 헬퍼 ──────────────────────────────────────────────────
   function priceSelectionsDelta(selections: Record<string, string>): number {
@@ -223,6 +235,7 @@ export default function OrderArea({
           className={`${styles.toggle} ${isOpen ? styles.toggleOpen : ""}`}
           onClick={handleToggle}
           aria-expanded={isOpen}
+          aria-controls={hasOptions ? optionPanelId : undefined}
         >
           <span className={styles.toggleLabel}>기본 상품 선택</span>
           <ArrowIcon direction={isOpen ? "up" : "down"} size={24} aria-hidden />
@@ -230,13 +243,13 @@ export default function OrderArea({
 
         {/* 색상만 있고 유상 옵션 그룹이 없는 경우 — 클릭 즉시 담기 (기존 동작) */}
         {isOpen && hasColors && !hasPriceOptionGroups && (
-          <ul className={styles.colorOptionList} role="listbox" aria-label="색상 선택">
+          <ul className={styles.colorOptionList} id={optionPanelId} aria-label="색상 선택">
             {colors!.map((c) => {
               const name = colorName(c);
               const delta = colorPriceDelta(c);
               const disabled = alreadySelectedKeys.has(buildOptionKey(c, {}));
               return (
-                <li key={name} role="option" aria-selected={disabled}>
+                <li key={name}>
                   <button
                     type="button"
                     className={`${styles.colorOption} ${disabled ? styles.colorOptionDisabled : ""}`}
@@ -257,7 +270,7 @@ export default function OrderArea({
 
         {/* 유상 옵션 그룹이 있는 경우 — 색상(있다면)·그룹별 선택 후 담기 버튼으로 확정 */}
         {isOpen && hasPriceOptionGroups && (
-          <div className={styles.optionPanel}>
+          <div className={styles.optionPanel} id={optionPanelId}>
             {hasColors && (
               <div className={styles.optionGroup}>
                 <p className={styles.optionGroupLabel}>색상 선택</p>
@@ -271,6 +284,7 @@ export default function OrderArea({
                         key={name}
                         type="button"
                         className={`${styles.optionChoice} ${active ? styles.optionChoiceActive : ""}`}
+                        aria-pressed={active}
                         onClick={() => setDraftColor(c)}
                       >
                         {name}
@@ -293,6 +307,7 @@ export default function OrderArea({
                         key={option.id}
                         type="button"
                         className={`${styles.optionChoice} ${active ? styles.optionChoiceActive : ""}`}
+                        aria-pressed={active}
                         onClick={() =>
                           setDraftPriceSelections((prev) => ({ ...prev, [group.id]: option.id }))
                         }

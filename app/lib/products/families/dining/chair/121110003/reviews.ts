@@ -9,7 +9,7 @@ const reviewItems: Review[] = [
     date: "2026.07.22",
     variant: "부클아이보리",
     content: "부클아이보리 컬러가 사진보다 더 포근하고 고급스러워요. 두 개를 나란히 두니 카페 같은 분위기가 납니다.",
-    images: ["/images/reviews/1211100030/review-01-1.webp", "/images/reviews/1211100030/review-01-2.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1211100030/review-01-1.webp", "/images/reviews/1211100030/review-01-2.webp"],
   },
   {
     id: "r-a02",
@@ -50,7 +50,7 @@ const reviewItems: Review[] = [
     date: "2026.06.07",
     variant: "코튼화이트",
     content: "화이트 부클이 화사해서 밝은 주방이랑 정말 잘 어울려요. 둥근 등받이 디자인도 세련됐습니다.",
-    images: ["/images/reviews/1211100030/review-06-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1211100030/review-06-1.webp"],
   },
   {
     id: "r-a07",
@@ -91,7 +91,7 @@ const reviewItems: Review[] = [
     date: "2026.04.23",
     variant: "부클아이보리",
     content: "겨울에 부클 소재라 그런지 앉는 순간부터 따뜻한 느낌이 들어요. 색상도 사진과 동일합니다.",
-    images: ["/images/reviews/1211100030/review-11-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1211100030/review-11-1.webp"],
   },
   {
     id: "r-a12",
@@ -132,7 +132,7 @@ const reviewItems: Review[] = [
     date: "2026.03.09",
     variant: "코튼화이트",
     content: "라운드 등받이라 자세가 편안하게 잡혀요. 화이트 컬러라 어떤 소품과도 잘 어울립니다.",
-    images: ["/images/reviews/1211100030/review-16-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1211100030/review-16-1.webp"],
   },
   {
     id: "r-a17",
@@ -173,7 +173,7 @@ const reviewItems: Review[] = [
     date: "2026.01.23",
     variant: "부클아이보리",
     content: "부클아이보리 컬러가 인테리어 사진처럼 예쁘게 나왔어요. 포근한 소재감이 마음에 듭니다.",
-    images: ["/images/reviews/1211100030/review-21-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1211100030/review-21-1.webp"],
   },
   {
     id: "r-a22",

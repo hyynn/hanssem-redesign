@@ -224,7 +224,7 @@ const reviewItems: Review[] = [
     date: "2026.06.17",
     variant: "홈바형 4인 페더화이트",
     content: "홈바 소파를 오래 원했는데 MVME 홈바형을 선택하길 정말 잘했어요. 수납 공간이 꽤 넉넉해서 티슈, 리모컨, 간식 등을 넣어두니 거실이 깔끔해졌어요. 리클라이너도 당연히 편안하고요.",
-    images: ["/images/reviews/1110110012/review-02-1.webp", "/images/reviews/1110110012/review-02-2.webp", "/images/reviews/1110110012/review-03-1.webp"],
+    images: ["/images/reviews/1110110012/review-02-1.webp", "/images/reviews/1110110012/review-02-2.webp", "/images/reviews/1110110012/review-02-3.webp"],
   },
   {
     id: "r-c03",

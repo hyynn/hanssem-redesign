@@ -60,6 +60,7 @@ const reviewItems: Review[] = [
     date: "2026.05.28",
     variant: "베이지",
     content: "2개 다 색상 편차 없이 동일하게 와서 만족스러워요. 등받이 각도도 편안한 편입니다.",
+    images: ["/images/reviews/1211100010/review-07-1.webp"],
   },
   {
     id: "r-a08",

@@ -226,7 +226,7 @@ const reviewItems: Review[] = [
     date: "2026.04.17",
     variant: "화이트 / 오픈형",
     content: "오픈형이라 인테리어 소품처럼 진열할 수 있어요. 화이트라 깔끔해 보입니다.",
-    images: ["/images/reviews/1212100021/review-11-1.webp", "/images/reviews/1212100021/review-12-1.webp"],
+    images: ["/images/reviews/1212100021/review-11-1.webp", "/images/reviews/1212100021/review-11-2.webp"],
   },
   {
     id: "r-b12",

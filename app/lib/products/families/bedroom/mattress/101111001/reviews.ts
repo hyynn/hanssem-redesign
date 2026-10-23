@@ -95,7 +95,7 @@ const reviewItems: Review[] = [
     date: "2026.06.18",
     variant: "Q",
     content: "퀸 사이즈 선택했는데 신혼집에 딱 어울려요. 유로탑층이 포근해서 둘이 자도 스프링 소리 없이 조용하고 편안합니다. 만족스러운 구매예요.",
-    images: ["/images/reviews/1011110011/review-01-1.webp"],
+    images: ["/images/reviews/1011110011/review-01-1.webp", "/images/reviews/1011110011/review-01-2.webp"],
   },
   {
     id: "r-b02",

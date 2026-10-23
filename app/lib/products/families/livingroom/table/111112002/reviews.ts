@@ -10,7 +10,7 @@ const reviewItems: Review[] = [
     date: "2026.05.30",
     variant: "화이트",
     content: "높이 조절이 되어서 소파에서도 식사할 때 너무 편합니다.",
-    images: ["/images/reviews/1111110020/review-01-1.webp"],
+    images: ["/images/reviews/1111120020/review-01-1.webp"],
   },
   {
     id: "r-a02",
@@ -19,7 +19,7 @@ const reviewItems: Review[] = [
     date: "2026.05.15",
     variant: "머드베이지",
     content: "머드베이지 색상이 우리 거실과 딱 어울려요. 리프트업도 부드럽게 작동합니다.",
-    images: ["/images/reviews/1111110020/review-02-1.webp"],
+    images: ["/images/reviews/1111120020/review-02-1.webp"],
   },
   {
     id: "r-a03",
@@ -52,7 +52,7 @@ const reviewItems: Review[] = [
     date: "2026.03.01",
     variant: "머드베이지",
     content: "소파에서 간단하게 사용하기 너무 좋아요. 제품 품질도 좋습니다.",
-    images: ["/images/reviews/1111110020/review-06-1.webp"],
+    images: ["/images/reviews/1111120020/review-06-1.webp"],
   },
   {
     id: "r-a07",
@@ -61,7 +61,7 @@ const reviewItems: Review[] = [
     date: "2026.02.12",
     variant: "화이트",
     content: "소파 옆에 두니 인테리어가 완성된 느낌입니다.",
-    images: ["/images/reviews/1111110020/review-07-1.webp"],
+    images: ["/images/reviews/1111120020/review-07-1.webp"],
   },
   {
     id: "r-a08",

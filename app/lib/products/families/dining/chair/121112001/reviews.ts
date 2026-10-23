@@ -302,7 +302,7 @@ const reviewItems: Review[] = [
     date: "2026.06.11",
     variant: "2520 라운지세트",
     content: "가족 모임할 때 다 같이 편하게 앉을 수 있어서 좋아요. 쿠션감이 너무 좋아요.",
-    images: ["/images/reviews/1211120012/review-02-1.webp"],
+    images: ["/images/reviews/1211120012/review-04-1.webp"],
   },
   {
     id: "r-c05",

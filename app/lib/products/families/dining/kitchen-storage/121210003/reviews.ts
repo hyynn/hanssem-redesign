@@ -52,7 +52,7 @@ const reviewItems: Review[] = [
     date: "2026.06.07",
     variant: "메이플",
     content: "조리 동선 바로 옆이라 양념통 꺼내기가 훨씬 편해졌어요. 메이플 컬러도 고급스럽습니다.",
-    images: ["/images/reviews/1212100030/review-06-1.webp"],
+    images: ["/images/reviews/1212100030/review-06-1.webp", "/images/reviews/1212100030/review-06-2.webp"],
   },
   {
     id: "r-a07",

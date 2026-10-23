@@ -10,7 +10,7 @@ const reviewItems: Review[] = [
     date: "2026.07.06",
     variant: "이불솜",
     content: "구스 이불은 처음인데 왜 다들 구스구스 하는지 알겠어요. 가벼운데 덮는 순간 폭 감싸는 온기가 완전히 다릅니다.",
-    images: ["/images/reviews/1710100011/review-01-1.webp", "/images/reviews/1710100011/review-01-2.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710100011/review-01-1.webp", "/images/reviews/1710100011/review-01-2.webp"],
   },
   {
     id: "r-a02",
@@ -27,7 +27,7 @@ const reviewItems: Review[] = [
     date: "2026.06.20",
     variant: "이불솜",
     content: "10년 쓴 목화솜 이불을 드디어 바꿨어요. 무게가 절반도 안 되는데 훨씬 따뜻하고, 어깨가 눌리지 않아 편합니다.",
-    images: ["/images/reviews/1710100011/review-03-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710100011/review-03-1.webp"],
   },
   {
     id: "r-a04",
@@ -52,7 +52,7 @@ const reviewItems: Review[] = [
     date: "2026.05.24",
     variant: "이불솜",
     content: "깃털 빠짐이 걱정이었는데 한 달 넘게 써도 삐져나온 게 거의 없어요. 원단이 촘촘해서 바스락거림도 적습니다.",
-    images: ["/images/reviews/1710100011/review-06-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710100011/review-06-1.webp"],
   },
   {
     id: "r-a07",
@@ -118,7 +118,7 @@ const reviewItems: Review[] = [
     date: "2026.07.02",
     variant: "베개솜",
     content: "이불솜이 너무 좋아서 베개솜도 추가 구매했어요. 머리를 대는 순간 폭 가라앉았다가 부드럽게 받쳐주는 느낌이 일품입니다.",
-    images: ["/images/reviews/1710100010/review-01-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710100010/review-01-1.webp"],
   },
   {
     id: "r-b02",
@@ -135,7 +135,7 @@ const reviewItems: Review[] = [
     date: "2026.06.14",
     variant: "베개솜",
     content: "다운 베개는 처음인데 화이바 베개랑 차원이 다르네요. 뒤척일 때 머리 모양대로 부드럽게 맞춰집니다.",
-    images: ["/images/reviews/1710100010/review-03-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710100010/review-03-1.webp"],
   },
   {
     id: "r-b04",
@@ -168,7 +168,7 @@ const reviewItems: Review[] = [
     date: "2026.05.09",
     variant: "베개솜",
     content: "필파워가 좋아서 아침에 한 번 털어주면 하루 종일 빵빵해요. 커버를 씌워도 고급스러운 볼륨이 살아 있습니다.",
-    images: ["/images/reviews/1710100010/review-07-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710100010/review-07-1.webp"],
   },
   {
     id: "r-b08",

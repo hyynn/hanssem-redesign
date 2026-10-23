@@ -195,7 +195,7 @@ const reviewItems: Review[] = [
     date: "2025.12.12",
     variant: "서랍형 / 화이트",
     content: "처음엔 일반형과 고민했는데 서랍형을 선택하길 잘한 것 같아요.",
-    images: ["/images/reviews/1111100021/review-09-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1111100021/review-09-1.webp"],
   },
   {
     id: "r-b10",

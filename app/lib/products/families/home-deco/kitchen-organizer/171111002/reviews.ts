@@ -96,7 +96,6 @@ const reviewItems: Review[] = [
     date: "2026.05.20",
     variant: "4종 세트형 / 풀패키지",
     content: "풀패키지로 구매해서 주방 수납장 전체를 정리했어요. 가격은 있지만 그만큼 구성이 알차서 만족합니다.",
-    images: ["/images/reviews/1711110021/review-05-1.webp"],
   },
   {
     id: "r-b05",
@@ -105,6 +104,7 @@ const reviewItems: Review[] = [
     date: "2026.05.02",
     variant: "4종 세트형 / 풀패키지",
     content: "세트로 사니 사이즈별로 부족함 없이 다 갖춰져서 편해요. 선물용으로도 좋을 것 같습니다.",
+    images: ["/images/reviews/1711110021/review-05-1.webp"],
   },
   {
     id: "r-b06",

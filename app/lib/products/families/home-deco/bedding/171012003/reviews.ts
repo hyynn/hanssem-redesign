@@ -9,7 +9,7 @@ const reviewItems: Review[] = [
     date: "2026.07.04",
     variant: "Q",
     content: "양면 컬러가 달라서 뒤집을 때마다 침실 분위기가 바뀌는 게 재미있어요. 텐셀이라 그런지 촉감이 정말 매끄럽습니다.",
-    images: ["/images/reviews/1710120030/review-01-1.webp", "/images/reviews/1710120030/review-01-2.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120030/review-01-1.webp", "/images/reviews/1710120030/review-01-2.webp"],
   },
   {
     id: "r-a02",
@@ -26,7 +26,7 @@ const reviewItems: Review[] = [
     date: "2026.06.19",
     variant: "SS",
     content: "톤이 다른 양면이라 커버 두 개 산 기분이에요. 자취방 침구로 이만한 가성비가 없는 것 같습니다.",
-    images: ["/images/reviews/1710120030/review-03-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120030/review-03-1.webp"],
   },
   {
     id: "r-a04",
@@ -51,7 +51,7 @@ const reviewItems: Review[] = [
     date: "2026.05.26",
     variant: "K",
     content: "신혼 침구로 구매했는데 양가 부모님께도 한 세트씩 보내드렸어요. 호텔 침구 같은 광택과 촉감이 고급스럽습니다.",
-    images: ["/images/reviews/1710120030/review-06-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120030/review-06-1.webp"],
   },
   {
     id: "r-a07",
@@ -84,7 +84,7 @@ const reviewItems: Review[] = [
     date: "2026.04.24",
     variant: "Q",
     content: "환절기용으로 샀는데 두께가 적당해서 초여름까지 계속 쓰고 있어요. 뒤집었을 때 색이 더 마음에 들어서 그 면만 씁니다.",
-    images: ["/images/reviews/1710120030/review-10-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120030/review-10-1.webp"],
   },
   {
     id: "r-a11",

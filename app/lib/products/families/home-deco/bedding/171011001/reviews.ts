@@ -9,7 +9,7 @@ const reviewItems: Review[] = [
     date: "2026.07.07",
     variant: "높은형",
     content: "옆으로 자는 편이라 높은형 골랐는데 어깨가 뜨지 않고 딱 받쳐줘요. 호텔 베개처럼 폭 안기는 느낌이 정말 좋습니다.",
-    images: ["/images/reviews/1710110010/review-01-1.webp", "/images/reviews/1710110010/review-01-2.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710110010/review-01-1.webp", "/images/reviews/1710110010/review-01-2.webp"],
   },
   {
     id: "r-a02",
@@ -34,7 +34,7 @@ const reviewItems: Review[] = [
     date: "2026.06.18",
     variant: "높은형",
     content: "호캉스 때 쓰던 베개가 그리워서 샀는데 그 느낌이 나요. 눌러도 복원이 빨라서 형태가 오래 갈 것 같습니다.",
-    images: ["/images/reviews/1710110010/review-04-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710110010/review-04-1.webp"],
   },
   {
     id: "r-a05",
@@ -67,7 +67,7 @@ const reviewItems: Review[] = [
     date: "2026.05.21",
     variant: "높은형",
     content: "부모님 선물로 두 개 샀는데 두 분 다 푹 잘 주무신대요. 가격 대비 이 정도 볼륨이면 충분히 만족스럽습니다.",
-    images: ["/images/reviews/1710110010/review-08-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710110010/review-08-1.webp"],
   },
   {
     id: "r-a09",
@@ -100,7 +100,7 @@ const reviewItems: Review[] = [
     date: "2026.04.23",
     variant: "높은형",
     content: "게스트룸용으로 샀다가 너무 편해서 제 것도 추가 주문했어요. 손님들이 베개 어디 거냐고 물어봅니다.",
-    images: ["/images/reviews/1710110010/review-12-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710110010/review-12-1.webp"],
   },
   {
     id: "r-a13",

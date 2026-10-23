@@ -9,7 +9,7 @@ const reviewItems: Review[] = [
     date: "2026.07.03",
     variant: "2P",
     content: "아침마다 목이 뻐근했는데 이 베개로 바꾸고 확실히 덜해요. 단차 구조가 처음엔 어색했는데 사흘 만에 적응됐습니다.",
-    images: ["/images/reviews/1710110020/review-01-1.webp", "/images/reviews/1710110020/review-01-2.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710110020/review-01-1.webp", "/images/reviews/1710110020/review-01-2.webp"],
   },
   {
     id: "r-a02",
@@ -34,7 +34,7 @@ const reviewItems: Review[] = [
     date: "2026.06.12",
     variant: "2P",
     content: "메모리폼은 여름에 덥고 냄새가 있었는데 이건 통기성이 좋아서 쾌적해요. 세탁 가능한 것도 큰 장점입니다.",
-    images: ["/images/reviews/1710110020/review-04-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710110020/review-04-1.webp"],
   },
   {
     id: "r-a05",
@@ -67,7 +67,7 @@ const reviewItems: Review[] = [
     date: "2026.05.15",
     variant: "2P",
     content: "부모님 어버이날 선물로 드렸는데 목이 편하다고 전화가 왔어요. 하나는 게스트룸에 두고 잘 쓰고 있습니다.",
-    images: ["/images/reviews/1710110020/review-08-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710110020/review-08-1.webp"],
   },
   {
     id: "r-a09",

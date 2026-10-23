@@ -87,7 +87,8 @@ const reviewItems: Review[] = [
     date: "2026.04.08",
     variant: "4인 오픈형",
     content: "설치팀이 정말 꼼꼼하게 조립해주셨어요. 완성된 소파 보고 너무 만족스러워서 협탁도 같은 라인으로 추가 구매할 예정이에요. 퀄리티가 가격 이상이에요.",
-    images: ["/images/reviews/1110120010/review-10-1.webp", "/images/reviews/1110120010/review-10-2.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1110120010/review-10-1.webp", "/images/reviews/1110120010/review-10-2.webp"],
+    images: ["/images/reviews/1110120010/review-10-1.webp"],
   },
   {
     id: "r-a11",
@@ -217,7 +218,7 @@ const reviewItems: Review[] = [
     date: "2026.06.07",
     variant: "와이드 4인 카우치형",
     content: "4인 가족이 모두 앉기에 딱 좋은 크기예요. 카우치 부분에 아이들이 특히 좋아하네요. 패브릭 소재가 아이들 피부에도 부드럽고 관리가 편해서 마음이 놓여요.",
-    images: ["/images/reviews/1110120012/review-03-1.webp", "/images/reviews/1110120012/review-01-2.webp"],
+    images: ["/images/reviews/1110120012/review-03-1.webp", "/images/reviews/1110120012/review-03-2.webp"],
   },
   {
     id: "r-c04",
@@ -362,7 +363,8 @@ const reviewItems: Review[] = [
     date: "2026.04.13",
     variant: "4인 라운지형",
     content: "인테리어 업체 추천으로 구매했어요. 공간을 효율적으로 활용하면서도 디자인이 멋있어서 선택했는데 결과가 너무 만족스러워요. 패브릭 쿠션이 포근하고 오래 앉아도 편합니다.",
-    images: ["/images/reviews/1110120013/review-10-1.webp", "/images/reviews/1110120013/review-10-2.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1110120013/review-10-1.webp", "/images/reviews/1110120013/review-10-2.webp"],
+    images: ["/images/reviews/1110120013/review-10-1.webp"],
   },
 ];
 

@@ -18,6 +18,7 @@ const reviewItems: Review[] = [
     date: "2026.05.08",
     variant: "오트밀",
     content: "210cm 거실장인데 압박감이 전혀 없어요. 가로로 넓어서 TV 배치에 딱 좋습니다.",
+    images: ["/images/reviews/1111100030/review-02-1.webp"],
   },
   {
     id: "r-a03",

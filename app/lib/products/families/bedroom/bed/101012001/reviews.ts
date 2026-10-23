@@ -454,6 +454,7 @@ const reviewItems: Review[] = [
     date: "2026.05.08",
     variant: "KK 단품",
     content: "혼자 침실 꾸미는 분들한테 적극 추천해요. 설치도 빠르고 마감도 깔끔합니다.",
+    images: ["/images/reviews/1010120011/review-13-1.webp"],
   },
   {
     id: "r-c14",

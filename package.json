@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/check-review-images.mjs",
+    "check:reviews": "node scripts/check-review-images.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

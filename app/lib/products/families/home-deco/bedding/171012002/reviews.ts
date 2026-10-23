@@ -9,7 +9,7 @@ const reviewItems: Review[] = [
     date: "2026.07.05",
     variant: "Q",
     content: "비염이 있어서 알러지케어 침구만 찾는데 촉감까지 좋은 건 처음이에요. 모달 특유의 매끄러움이 실크 이불 느낌입니다.",
-    images: ["/images/reviews/1710120020/review-01-1.webp", "/images/reviews/1710120020/review-01-2.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120020/review-01-1.webp", "/images/reviews/1710120020/review-01-2.webp"],
   },
   {
     id: "r-a02",
@@ -26,7 +26,7 @@ const reviewItems: Review[] = [
     date: "2026.06.24",
     variant: "SS",
     content: "아이가 아토피가 있어서 구매했는데 자극 없이 잘 쓰고 있어요. 세탁해도 기능이 유지된다는 점이 마음에 듭니다.",
-    images: ["/images/reviews/1710120020/review-03-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120020/review-03-1.webp"],
   },
   {
     id: "r-a04",
@@ -43,7 +43,7 @@ const reviewItems: Review[] = [
     date: "2026.06.12",
     variant: "Q",
     content: "먼지가 잘 안 붙고 털어도 날림이 적어요. 진드기 걱정 때문에 바꿨는데 만족스러운 선택이었습니다.",
-    images: ["/images/reviews/1710120020/review-05-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120020/review-05-1.webp"],
   },
   {
     id: "r-a06",
@@ -68,7 +68,7 @@ const reviewItems: Review[] = [
     date: "2026.05.25",
     variant: "Q",
     content: "차렵이불이라 커버 씌우는 번거로움이 없어 좋아요. 통세탁 후에도 충전재 쏠림 없이 형태가 잘 유지됩니다.",
-    images: ["/images/reviews/1710120020/review-08-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120020/review-08-1.webp"],
   },
   {
     id: "r-a09",
@@ -93,7 +93,7 @@ const reviewItems: Review[] = [
     date: "2026.05.07",
     variant: "K",
     content: "호텔 이불처럼 매끈하고 시원한 촉감이에요. 여름에는 서늘하고 봄가을엔 포근해서 사계절 쓰기 좋습니다.",
-    images: ["/images/reviews/1710120020/review-11-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120020/review-11-1.webp"],
   },
   {
     id: "r-a12",
@@ -142,7 +142,7 @@ const reviewItems: Review[] = [
     date: "2026.03.31",
     variant: "Q",
     content: "색감이 은은해서 어떤 침실에도 잘 어울려요. 두께가 적당해서 간절기부터 초여름까지 계속 쓰고 있습니다.",
-    images: ["/images/reviews/1710120020/review-17-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120020/review-17-1.webp"],
   },
   {
     id: "r-a18",

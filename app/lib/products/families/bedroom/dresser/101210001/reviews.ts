@@ -9,7 +9,7 @@ const reviewItems: Review[] = [
     date: "2026.05.01",
     variant: "차콜",
     content: "침대, 서랍, 화장대까지 한샘 호텔모노 차콜로 통일했어요~ 진짜 안방이 호텔분위기가 나고 서랍도 유용하게 칸이 나눠져있어서 좋아요. 메탈 프레임 다리도 깔끔하고 튼튼해서 좋습니다.",
-    images: ["/images/reviews/1012100011/review-01-1.webp"],
+    images: ["/images/reviews/1012100010/review-01-1.webp"],
   },
   {
     id: "r-a02",
@@ -43,7 +43,7 @@ const reviewItems: Review[] = [
     date: "2025.10.15",
     variant: "차콜",
     content: "서랍장과 세트로 구매했어요 서랍이 생각보다 깊어서 수납력 좋아요",
-    images: ["/images/reviews/1012100011/review-05-1.webp"],
+    images: ["/images/reviews/1012100010/review-05-1.webp"],
   },
 ];
 

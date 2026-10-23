@@ -176,7 +176,7 @@ const reviewItems: Review[] = [
     date: "2026.05.15",
     variant: "다릿발형 / 화이트",
     content: "다릿발형을 선택했는데 바닥 청소가 훨씬 편해졌어요. 룩도 한층 세련돼 보입니다.",
-    images: ["/images/reviews/1111100011/review-01-1.webp"],
+    images: ["/images/reviews/1111100011/review-01-1.webp", "/images/reviews/1111100011/review-01-2.webp"],
   },
   {
     id: "r-b02",

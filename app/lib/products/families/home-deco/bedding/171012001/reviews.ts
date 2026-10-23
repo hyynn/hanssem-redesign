@@ -9,7 +9,7 @@ const reviewItems: Review[] = [
     date: "2026.07.06",
     variant: "Q",
     content: "열대야에 냉감면으로 덮고 자는데 확실히 이불 속이 덜 후끈해요. 보들면도 부드러워서 에어컨 켜고 잘 때 딱 좋습니다.",
-    images: ["/images/reviews/1710120010/review-01-1.webp", "/images/reviews/1710120010/review-01-2.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120010/review-01-1.webp", "/images/reviews/1710120010/review-01-2.webp"],
   },
   {
     id: "r-a02",
@@ -18,7 +18,7 @@ const reviewItems: Review[] = [
     date: "2026.07.02",
     variant: "SS",
     content: "자취방 여름 이불로 샀는데 가볍고 세탁기에 그냥 돌려도 돼서 편해요. 냉감 원단이 생각보다 확실히 시원합니다.",
-    images: ["/images/reviews/1710120010/review-02-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120010/review-02-1.webp"],
   },
   {
     id: "r-a03",
@@ -35,7 +35,7 @@ const reviewItems: Review[] = [
     date: "2026.06.21",
     variant: "Q",
     content: "색감이 화면보다 차분하고 고급스러워요. 여름 내내 이거 하나로 버틸 수 있을 것 같아 색 추가 구매 고민 중입니다.",
-    images: ["/images/reviews/1710120010/review-04-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120010/review-04-1.webp"],
   },
   {
     id: "r-a05",
@@ -52,7 +52,7 @@ const reviewItems: Review[] = [
     date: "2026.06.09",
     variant: "Q",
     content: "냉감 이불 처음 써보는데 닿는 순간 서늘한 느낌이 확실히 있어요. 땀이 많은 편인데 아침에 눅눅함이 덜합니다.",
-    images: ["/images/reviews/1710120010/review-06-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120010/review-06-1.webp"],
   },
   {
     id: "r-a07",
@@ -77,7 +77,7 @@ const reviewItems: Review[] = [
     date: "2026.05.21",
     variant: "SS",
     content: "기숙사용으로 SS 샀는데 세트 구성이라 따로 맞출 필요가 없어 편했어요. 이 가격에 양면 냉감이면 가성비 충분합니다.",
-    images: ["/images/reviews/1710120010/review-09-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120010/review-09-1.webp"],
   },
   {
     id: "r-a10",
@@ -118,7 +118,7 @@ const reviewItems: Review[] = [
     date: "2026.04.15",
     variant: "SS",
     content: "세탁 후에도 충전재가 뭉치지 않고 금방 말라요. 여름 이불은 자주 빨게 되는데 관리가 쉬워서 좋습니다.",
-    images: ["/images/reviews/1710120010/review-14-1.webp"],
+    // TODO(review-photo): 사진 파일 추가 후 복원 → images: ["/images/reviews/1710120010/review-14-1.webp"],
   },
   {
     id: "r-a15",

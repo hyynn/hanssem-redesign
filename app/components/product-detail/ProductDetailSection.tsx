@@ -18,7 +18,7 @@ export default function ProductDetailSection({ section }: { section: Section }) 
         if (block.type === "video") {
           return (
             <div key={index} className={styles.videoBlock}>
-              <LazyVideo src={block.src} />
+              <LazyVideo src={block.src} alt={block.alt} width={block.width} height={block.height} />
             </div>
           );
         }

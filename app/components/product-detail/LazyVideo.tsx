@@ -1,9 +1,19 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import styles from "./ProductDetailSection.module.css";
+import styles from "./LazyVideo.module.css";
 
-export default function LazyVideo({ src }: { src: string }) {
+export default function LazyVideo({
+  src,
+  alt,
+  width,
+  height,
+}: {
+  src: string;
+  alt?: string;
+  width?: number;
+  height?: number;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const loadedRef = useRef(false);
 
@@ -36,6 +46,9 @@ export default function LazyVideo({ src }: { src: string }) {
     <video
       ref={videoRef}
       className={styles.video}
+      width={width}
+      height={height}
+      aria-label={alt}
       preload="none"
       muted
       playsInline

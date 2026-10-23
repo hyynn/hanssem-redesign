@@ -1,0 +1,5 @@
+.video {
+  width: 100%;
+  height: auto; /* width/height 속성의 고유 비율로 로드 전 공간 확보 (CLS 방지) — src는 뷰포트 진입 시 할당 */
+  display: block;
+}

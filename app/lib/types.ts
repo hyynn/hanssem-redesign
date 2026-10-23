@@ -88,7 +88,7 @@ export interface CartItem {
 export type DetailBlock =
   | { type: "text"; title: string; body: string }
   | { type: "image"; src: string; alt: string; width?: number; height?: number }
-  | { type: "video"; src: string; alt: string };
+  | { type: "video"; src: string; alt: string; width?: number; height?: number };
 
 export interface ProductDetailSection {
   id: string;

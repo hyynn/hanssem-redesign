@@ -1,6 +1,6 @@
 // 서버 전용 (fs 사용) — 클라이언트 컴포넌트에서 import 금지.
-// public/ 정적 이미지의 고유 크기를 파일 헤더에서 읽어, 상세 섹션처럼
-// 비율이 이미지마다 다른 곳의 <Img width/height> 공간 확보(CLS 방지)에 쓴다.
+// public/ 정적 이미지·영상의 고유 크기를 파일 헤더에서 읽어, 상세 섹션처럼
+// 비율이 파일마다 다른 곳의 <Img>/<video> width/height 공간 확보(CLS 방지)에 쓴다.
 import fs from "fs";
 import path from "path";
 import type { DetailBlock, ProductDetailSection } from "@/app/lib/types";
@@ -42,6 +42,20 @@ function parseGif(buf: Buffer): Dimensions | null {
   return { width: buf.readUInt16LE(6), height: buf.readUInt16LE(8) };
 }
 
+// mp4: 트랙 헤더(tkhd) 박스의 width/height(16.16 고정소수점). 오디오 트랙은 0이라 건너뜀.
+// -movflags +faststart로 moov가 파일 앞쪽에 있다는 전제 (없으면 null → 렌더는 그대로 진행)
+function parseMp4(buf: Buffer): Dimensions | null {
+  for (let i = buf.indexOf("tkhd"); i !== -1; i = buf.indexOf("tkhd", i + 4)) {
+    const p = i + 4;
+    const offset = buf[p] === 1 ? 88 : 76; // version 1은 시간 필드가 64비트
+    if (p + offset + 8 > buf.length) return null;
+    const width = buf.readUInt32BE(p + offset) >>> 16;
+    const height = buf.readUInt32BE(p + offset + 4) >>> 16;
+    if (width && height) return { width, height };
+  }
+  return null;
+}
+
 function parsePng(buf: Buffer): Dimensions | null {
   if (buf.readUInt32BE(0) !== 0x89504e47) return null;
   return { width: buf.readUInt32BE(16), height: buf.readUInt32BE(20) };
@@ -56,16 +70,17 @@ export function getImageDimensions(src: string): Dimensions | undefined {
   try {
     const filePath = path.join(process.cwd(), "public", src);
     const fd = fs.openSync(filePath, "r");
-    const buf = Buffer.alloc(32);
+    const ext = path.extname(src).toLowerCase();
+    const buf = Buffer.alloc(ext === ".mp4" ? 64 * 1024 : 32);
     try {
-      fs.readSync(fd, buf, 0, 32, 0);
+      fs.readSync(fd, buf, 0, buf.length, 0);
     } finally {
       fs.closeSync(fd);
     }
-    const ext = path.extname(src).toLowerCase();
     if (ext === ".webp") result = parseWebp(buf);
     else if (ext === ".gif") result = parseGif(buf);
     else if (ext === ".png") result = parsePng(buf);
+    else if (ext === ".mp4") result = parseMp4(buf);
   } catch {
     result = null;
   }
@@ -73,12 +88,12 @@ export function getImageDimensions(src: string): Dimensions | undefined {
   return result ?? undefined;
 }
 
-/** 상세 섹션의 image 블록에 고유 width/height를 채워 반환 (서버 컴포넌트에서 호출) */
+/** 상세 섹션의 image·video 블록에 고유 width/height를 채워 반환 (서버 컴포넌트에서 호출) */
 export function attachImageDimensions(sections: ProductDetailSection[]): ProductDetailSection[] {
   return sections.map((section) => ({
     ...section,
     blocks: section.blocks.map((block): DetailBlock => {
-      if (block.type !== "image" || (block.width && block.height)) return block;
+      if ((block.type !== "image" && block.type !== "video") || (block.width && block.height)) return block;
       const dims = getImageDimensions(block.src);
       return dims ? { ...block, ...dims } : block;
     }),

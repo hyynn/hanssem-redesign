@@ -32,7 +32,7 @@ export function createSections(basic: { title: string; body: string }): ProductD
       id: "function",
       label: "기능",
       blocks: [
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.gif`, alt: "무드조명" },
+        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.mp4`, alt: "무드조명" },
         {
           type: "text",
           title: "아늑한 공간을 위한 헤드의 무드 조명",

@@ -33,7 +33,7 @@ export function createSections(): ProductDetailSection[] {
           title: "각도 조절로 완성하는 빛의 방향",
           body: "셰이드 헤드가 상하로 회전해 벽을 비추는 간접광부터 책을 비추는 스팟광까지 빛의 방향을 조절합니다. 풋 스위치로 발끝 조작이 가능해 소파에서 일어나지 않아도 됩니다.",
         },
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.gif`, alt: "조이 플로어 램프 각도 조절 기능" },
+        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.mp4`, alt: "조이 플로어 램프 각도 조절 기능" },
       ],
     },
     {

@@ -31,7 +31,13 @@ export function createSections(): ProductDetailSection[] {
           title: "특허받은 자체설계 그라데이션 스프링",
           body: "밸런스 매트리스는 그라데이션 설계가 적용되었으며 이는 유연한 컴포트존과 단단한 서포트존을 하나의 스프링에 설계한 한샘만의 특허받은 기술입니다.",
         },
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.webp`, alt: "밸런스S 유로탑 매트리스 기본정보" },
+        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-01.webp`, alt: "그라데이션 스프링과 일반 스프링 구조 비교" },
+        {
+          type: "text",
+          title: "따로 움직이는 포켓스프링",
+          body: "스프링을 하나씩 개별 포켓에 감싸 서로 독립적으로 움직이게 했습니다. 연결형 스프링과 달리 한쪽의 움직임이 옆으로 잘 전달되지 않아, 함께 누워도 뒤척임에 덜 방해받습니다.",
+        },
+        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-function-02.mp4`, alt: "밸런스 포켓스프링과 일반 연결형 스프링의 진동 전달 비교" },
       ],
     },
     {

@@ -21,7 +21,7 @@ export function createSections(): ProductDetailSection[] {
           title: "가죽 시트로 완성한 높이감 있는 바체어",
           body: "허드 가죽 바체어는 아일랜드 식탁이나 홈바에 어울리는 높이로 제작된 바체어입니다. 인조가죽 시트가 공간에 고급스러운 인상을 더합니다.",
         },
-        { type: "image", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-basic-01.gif`, alt: "허드 가죽 바체어 기본정보" },
+        { type: "video", src: `/images/products/${FAMILY_PATH}/${FAMILY_CODE}-basic-01.mp4`, alt: "허드 가죽 바체어 기본정보" },
       ],
     },
     {

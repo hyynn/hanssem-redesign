@@ -108,11 +108,18 @@
   box-sizing: border-box;
 }
 
-html, body {
+/* 짧은 페이지에서도 footer가 화면 하단에 붙도록: html 높이 100% → body 최소 높이 100% +
+   세로 flex → main(layout.module.css)이 남은 공간을 채움 */
+html {
   height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
   font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   color: var(--color-text-body);
   background-color: var(--color-bg);

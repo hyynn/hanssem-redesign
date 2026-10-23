@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 // 페이지에 실제 쓰인 글자 조각만 받음. 번들링되어 같은 도메인에서 self-host
 import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
+import styles from "./layout.module.css";
 
 export const metadata: Metadata = {
   title: "HANSSEM",
@@ -15,10 +16,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko" className="h-full antialiased">
-      <body className="min-h-full flex flex-col">
+    <html lang="ko">
+      <body>
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className={styles.main}>{children}</main>
         <Footer />
       </body>
     </html>

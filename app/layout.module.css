@@ -1,0 +1,4 @@
+/* body(세로 flex)에서 Header·Footer를 뺀 나머지 높이를 채움 — 짧은 페이지에서 footer를 하단에 고정 */
+.main {
+  flex: 1;
+}

@@ -1,7 +1,7 @@
 .section {
   max-width: var(--detail-content-width);
   margin: 0 auto;
-  padding: 60px 40px;
+  padding: 60px var(--detail-pad);
   border-top: 1px solid var(--color-border-subtle);
 }
 
@@ -37,7 +37,7 @@
 
 /* ── 반응형 ── */
 @media (max-width: 768px) {
-  .section { padding: 40px var(--container-pad); }
+  .section { padding-block: 40px; }
   .textBlock p { font-size: var(--fs-h6);}
 }
 

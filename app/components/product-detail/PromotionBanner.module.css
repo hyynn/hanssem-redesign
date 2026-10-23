@@ -1,7 +1,7 @@
 .wrapper {
   max-width: var(--detail-max-width);
   margin: 0 auto;
-  padding: 0 40px 40px;
+  padding: 0 var(--detail-pad) 40px;
 }
 
 .label {

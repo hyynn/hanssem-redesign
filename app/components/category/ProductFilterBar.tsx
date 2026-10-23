@@ -185,6 +185,8 @@ function AllFiltersPanel({
 }) {
   useEffect(() => {
     const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const prevOverflow = document.body.style.overflow;
+    const prevPaddingRight = document.body.style.paddingRight;
     document.body.style.overflow = "hidden";
     document.body.style.paddingRight = `${scrollbarWidth}px`;
     function handleKey(e: KeyboardEvent) {
@@ -192,8 +194,8 @@ function AllFiltersPanel({
     }
     document.addEventListener("keydown", handleKey);
     return () => {
-      document.body.style.overflow = "";
-      document.body.style.paddingRight = "";
+      document.body.style.overflow = prevOverflow;
+      document.body.style.paddingRight = prevPaddingRight;
       document.removeEventListener("keydown", handleKey);
     };
   }, [onClose]);

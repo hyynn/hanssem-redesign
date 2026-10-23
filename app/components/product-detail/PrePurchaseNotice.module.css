@@ -1,7 +1,7 @@
 .wrapper {
   max-width: var(--detail-content-width);
   margin: 40px auto;
-  padding: 0 40px;
+  padding: 0 var(--detail-pad);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -30,7 +30,3 @@
   color: var(--color-text-muted);
 }
 
-/* ── 반응형 ── */
-@media (max-width: 768px) {
-  .wrapper { padding: 0 var(--container-pad); }
-}

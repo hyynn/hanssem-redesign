@@ -10,8 +10,8 @@
   border-bottom: 1px solid var(--color-border-subtle);
   max-width: var(--detail-max-width);
   margin: 0 auto;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: var(--detail-pad);
+  padding-right: var(--detail-pad);
   justify-content: center;
 }
 
@@ -42,8 +42,6 @@
 @media (max-width: 768px) {
   .tabs {
     justify-content: flex-start;
-    padding-left: var(--container-pad);
-    padding-right: var(--container-pad);
     scrollbar-width: none;
   }
   .tabs::-webkit-scrollbar { display: none; }

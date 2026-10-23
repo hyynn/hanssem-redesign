@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { useCartStore } from "@/app/store/cartStore";
 import { ArrowIcon } from "@/app/components/Icon";
+import Img from "@/app/components/Img";
 import { formatPrice } from "@/lib/format";
 import styles from "./page.module.css";
 
@@ -79,7 +79,7 @@ export default function CartPage() {
                     <li key={key} className={styles.item}>
                       {/* 썸네일 */}
                       <Link href={`/products/${item.productId}`} className={styles.itemThumb}>
-                        <Image
+                        <Img
                           src={item.thumbnail}
                           alt={item.name}
                           width={100}

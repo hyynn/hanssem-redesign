@@ -2,9 +2,9 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import type { CartItem } from "@/app/lib/types";
 import { ArrowIcon } from "@/app/components/Icon";
+import Img from "@/app/components/Img";
 import { formatPrice } from "@/lib/format";
 import styles from "./page.module.css";
 
@@ -212,7 +212,7 @@ export default function CheckoutPage() {
                     return (
                       <li key={key} className={styles.orderItem}>
                         <div className={styles.orderThumb}>
-                          <Image src={item.thumbnail} alt={item.name} width={72} height={72} className={styles.orderThumbImg} />
+                          <Img src={item.thumbnail} alt={item.name} width={72} height={72} className={styles.orderThumbImg} />
                         </div>
                         <div className={styles.orderInfo}>
                           <span className={styles.orderName}>{item.name}</span>

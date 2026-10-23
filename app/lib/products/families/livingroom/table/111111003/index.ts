@@ -63,7 +63,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.7,
     reviewCount: 23,
     salesCount: 1050,
-    badge: { text: "소파테이블 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "소파테이블 판매 1위" },
     category: ["거실", "거실장·테이블", "테이블"],
     colors: ["화이트", "머드베이지"],
     filterAttributes: { feature: ["리프트업", "플랩도어"] },

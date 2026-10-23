@@ -8,7 +8,19 @@
   --color-text-muted: #505050;
   --color-gray-light: #d0d0d0;
   --color-accent: #1a1a1a;
-  --color-sale: #ff4d4f;
+  --color-sale: #d92d2f; /* 기존 #ff4d4f(흰 배경 3.27:1)는 소형 텍스트 AA 미달 → 같은 hue에서 명도만 낮춰 흰 배경 4.81:1 / bg-secondary 4.53:1 확보 */
+  --color-border-subtle: #e5e5e5; /* 구분선·정보 박스 외곽선·옅은 면 (컨트롤 테두리는 --color-gray-light) */
+  --color-bg-inverse: #1a1a1a;    /* 어두운 면 — 이미지 로딩 전 배경 등 */
+  --color-text-inverse: #ffffff;                    /* 어두운 면·이미지·컬러 배지 위 텍스트/아이콘 */
+  --color-on-image-muted: rgba(255, 255, 255, 0.6); /* 이미지·어두운 면 위 보조 요소 (고스트 버튼 보더, placeholder, 비활성 dot) */
+  --color-on-image-subtle: rgba(255, 255, 255, 0.15); /* 이미지·어두운 면 위 hover 면, 반투명 입력 면, 구분선 */
+  --color-backdrop: rgba(0, 0, 0, 0.4);             /* 드로어·필터 패널·모달 backdrop */
+  --color-backdrop-strong: rgba(0, 0, 0, 0.55);     /* 사진 뷰어 — 사진에 시선 집중 */
+  --color-shadow: rgba(0, 0, 0, 0.08);              /* 헤더 hairline, 드롭다운 그림자 */
+  --color-swatch-outline: rgba(0, 0, 0, 0.1);       /* 컬러칩 외곽선 — 흰색 계열 칩의 경계 */
+  /* 텍스트가 좌측에 놓이는 배너용 스크림 — 라이트(밝은 이미지 + 어두운 글자) / 다크 한 쌍, 스톱 위치 공유 */
+  --scrim-light-left: linear-gradient(to right, rgba(255, 255, 255, 0.82) 0%, rgba(255, 255, 255, 0.55) 35%, rgba(255, 255, 255, 0.15) 62%, transparent 82%);
+  --scrim-dark-left: linear-gradient(to right, rgba(0, 0, 0, 0.68) 0%, rgba(0, 0, 0, 0.45) 35%, rgba(0, 0, 0, 0.12) 62%, transparent 82%);
   --max-width: 1440px;
   --container-pad: 60px;
   /* 풀블리드 요소의 수평 패딩(또는 absolute left)에 사용 — 내부 콘텐츠를

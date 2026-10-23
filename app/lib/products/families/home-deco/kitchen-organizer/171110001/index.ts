@@ -96,7 +96,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.6,
     reviewCount: 23,
     salesCount: 260,
-    badge: { text: "수납용품 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "수납용품 판매 1위" },
     category: ["소품", "주방수납", "수납용품"],
     categoryTags: ["주방정리"],
     colors: ["화이트", "베이지"],

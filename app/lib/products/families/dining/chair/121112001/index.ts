@@ -99,7 +99,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.9,
     reviewCount: 41,
     salesCount: 180,
-    badge: { text: "벤치의자 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "벤치의자 판매 1위" },
     category: ["다이닝", "의자", "벤치·스툴의자"],
     filterAttributes: { size: ["900"] },
   },

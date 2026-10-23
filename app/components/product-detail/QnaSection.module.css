@@ -2,7 +2,7 @@
   max-width: var(--detail-content-width);
   margin: 0 auto;
   padding: 60px 40px;
-  border-top: 1px solid #efefef;
+  border-top: 1px solid var(--color-border-subtle);
 }
 
 .heading {
@@ -25,17 +25,17 @@
 
 .filterBtn {
   padding: 7px 18px;
-  border: 1px solid #e2e2e2;
+  border: 1px solid var(--color-gray-light);
   font-size: var(--fs-body);
   color: var(--color-text-muted);
-  background: #fff;
+  background: var(--color-bg);
   cursor: pointer;
   transition: color 0.15s, border-color 0.15s;
 }
 
 .filterBtn:hover {
   color: var(--color-text-body);
-  border-color: #aaa;
+  border-color: var(--color-text-muted);
 }
 
 .filterActive {
@@ -51,13 +51,13 @@
 }
 
 .item {
-  border-top: 1px solid #efefef;
+  border-top: 1px solid var(--color-border-subtle);
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .item:last-child {
-  border-bottom: 1px solid #efefef;
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
 /* Question Button */
@@ -96,11 +96,11 @@
 
 .badgeAnswered {
   background: var(--color-text-heading);
-  color: #fff;
+  color: var(--color-text-inverse);
 }
 
 .badgePending {
-  background: #f0f0f0;
+  background: var(--color-border-subtle);
   color: var(--color-text-muted);
 }
 

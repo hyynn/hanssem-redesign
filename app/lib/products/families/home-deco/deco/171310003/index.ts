@@ -61,7 +61,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 31,
     salesCount: 280,
-    badge: { text: "플로어램프 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "플로어램프 판매 1위" },
     category: ["소품", "인테리어소품", "조명"],
     colors: ["블랙", "화이트", "베이지"],
   },

@@ -91,7 +91,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.9,
     reviewCount: 41,
     salesCount: 1620,
-    badge: { text: "가죽소파 판매 2위", bgColor: "#FE5A5D" },
+    badge: { text: "가죽소파 판매 2위" },
     category: ["거실", "소파", "가죽소파"],
     categoryTags: ["4인소파"],
     colors: ["크림화이트", "페더화이트"],

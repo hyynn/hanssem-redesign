@@ -98,7 +98,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 11,
     salesCount: 870,
-    badge: { text: "식탁 판매 2위", bgColor: "#FE5A5D" },
+    badge: { text: "식탁 판매 2위" },
     category: ["다이닝", "식탁", "6인용식탁이상"],
     categoryTags: ["원목식탁"],
     colors: ["화이트", "베이지"],

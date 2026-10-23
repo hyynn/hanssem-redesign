@@ -65,7 +65,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 14,
     salesCount: 320,
-    badge: { text: "밀폐용기 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "밀폐용기 판매 1위" },
     category: ["소품", "주방수납", "밀폐·보관용기"],
     priceOptionGroups: [
       {

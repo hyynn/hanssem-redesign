@@ -60,7 +60,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.9,
     reviewCount: 14,
     salesCount: 290,
-    badge: { text: "러그 판매 2위", bgColor: "#FE5A5D" },
+    badge: { text: "러그 판매 2위" },
     category: ["소품", "인테리어소품", "러그·카페트"],
     colors: ["아이보리", "애쉬그레이", "웜그레이"],
     filterAttributes: { feature: ["워셔블"] },

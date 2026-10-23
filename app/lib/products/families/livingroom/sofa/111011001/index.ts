@@ -116,7 +116,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 36,
     salesCount: 1980,
-    badge: { text: "리클라이너 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "리클라이너 판매 1위" },
     category: ["거실", "소파", "리클라이너"],
     categoryTags: ["4인소파", "가죽소파"],
     colors: ["페더화이트", "미드그레이"],

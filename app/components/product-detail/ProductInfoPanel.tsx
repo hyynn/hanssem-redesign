@@ -10,7 +10,7 @@ interface ProductInfoPanelProps {
   price: number;
   originalPrice: number;
   discountRate: number;
-  badge?: { text: string; bgColor: string };
+  badge?: { text: string };
 }
 
 export default function ProductInfoPanel({
@@ -48,7 +48,7 @@ export default function ProductInfoPanel({
 
       <div className={styles.badgeRow}>
         {badge && (
-          <span className={styles.badge} style={{ backgroundColor: badge.bgColor }}>
+          <span className={styles.badge}>
             {badge.text}
           </span>
         )}

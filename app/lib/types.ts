@@ -12,7 +12,7 @@ export interface ProductSummary {
   rating: number;
   reviewCount: number;
   salesCount: number;      // 월간 판매량 (이달의 베스트셀러 정렬 기준, DB 부재로 수기 입력)
-  badge?: { text: string; bgColor: string };
+  badge?: { text: string };
   category: string[];      // for filtering: ["침실", "침대", "호텔침대"]
   categoryTags?: string[]; // extra subcategory memberships: ["수납침대", "Q/K침대"]
   colors?: ColorOption[];  // optional color swatches — 원재료 차이로 가격이 다르면 객체 형태 사용

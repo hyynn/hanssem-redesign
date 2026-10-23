@@ -87,7 +87,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.7,
     reviewCount: 21,
     salesCount: 290,
-    badge: { text: "커튼 판매 2위", bgColor: "#FE5A5D" },
+    badge: { text: "커튼 판매 2위" },
     category: ["소품", "커튼·블라인드", "커튼"],
     categoryTags: ["블라인드"],
     filterAttributes: { config: ["거실+방3개"], feature: ["블라인드형", "커튼형"] },

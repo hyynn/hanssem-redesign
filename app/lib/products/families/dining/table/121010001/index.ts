@@ -63,7 +63,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.9,
     reviewCount: 21,
     salesCount: 180,
-    badge: { text: "2인용 식탁 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "2인용 식탁 판매 1위" },
     category: ["다이닝", "식탁", "2인용식탁"],
     filterAttributes: { size: ["2인용"] },
   },

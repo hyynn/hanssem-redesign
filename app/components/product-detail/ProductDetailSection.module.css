@@ -2,7 +2,7 @@
   max-width: var(--detail-content-width);
   margin: 0 auto;
   padding: 60px 40px;
-  border-top: 1px solid #efefef;
+  border-top: 1px solid var(--color-border-subtle);
 }
 
 .textBlock {

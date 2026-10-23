@@ -33,7 +33,8 @@
   left: 12px;
   font-size: var(--fs-meta);
   font-weight: var(--fw-medium);
-  color: #fff;
+  color: var(--color-text-inverse);
+  background: var(--color-sale);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
 }
@@ -69,4 +70,4 @@
 .price { font-weight: var(--fw-bold); font-size: var(--fs-body-lg); }
 
 .colorChips { display: flex; gap: 6px; }
-.colorChip { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
+.colorChip { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--color-swatch-outline); }

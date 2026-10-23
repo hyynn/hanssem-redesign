@@ -61,7 +61,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 13,
     salesCount: 330,
-    badge: { text: "암막커튼 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "암막커튼 판매 1위" },
     category: ["소품", "커튼·블라인드", "커튼"],
     colors: ["화이트", "차콜"],
     filterAttributes: { feature: ["암막"] },

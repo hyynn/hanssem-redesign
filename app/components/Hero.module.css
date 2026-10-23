@@ -4,7 +4,7 @@
   height: 100vh;
   height: 100svh; /* 모바일 브라우저 UI 바 제외한 실제 가시 영역 (미지원 시 위 100vh 폴백) */
   overflow: hidden;
-  background: #111;
+  background: var(--color-bg-inverse);
 }
 
 .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease; }
@@ -21,7 +21,7 @@
   position: absolute;
   left: var(--align-inset);
   bottom: 80px;
-  color: #fff;
+  color: var(--color-text-inverse);
   max-width: 600px;
 }
 
@@ -68,8 +68,8 @@
 .clickZoneRight { right: 0; }
 
 .dots { position: absolute; bottom: 30px; left: var(--align-inset); display: flex; gap: 8px; z-index: 10; }
-.dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); transition: background 0.3s, width 0.3s; }
-.dotActive { background: #fff; width: 38px; border-radius: var(--radius-sm); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--color-on-image-muted); transition: background 0.3s, width 0.3s; }
+.dotActive { background: var(--color-text-inverse); width: 38px; border-radius: var(--radius-sm); }
 
 /* 1280: 로컬 브레이크포인트 — brand/subTitle의 margin-left는 대형 타이틀
    글리프 사이드 베어링에 대한 시각 보정이라, 타이틀이 작아지는 지점에 맞춰

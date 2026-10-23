@@ -25,10 +25,7 @@ export default function ProductCard({ product }: { product: ProductSummary }) {
         )}
 
         {product.badge && (
-          <span
-            className={styles.badge}
-            style={{ backgroundColor: product.badge.bgColor }}
-          >
+          <span className={styles.badge}>
             {product.badge.text}
           </span>
         )}

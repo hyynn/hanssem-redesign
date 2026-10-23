@@ -36,7 +36,7 @@ function ColorSwatch({ name, size = 14 }: { name: string; size?: number }) {
         background: hex,
         width: size,
         height: size,
-        boxShadow: needsBorder ? "inset 0 0 0 1px #d0d0d0" : undefined,
+        boxShadow: needsBorder ? "inset 0 0 0 1px var(--color-gray-light)" : undefined,
       }}
       aria-hidden="true"
     />

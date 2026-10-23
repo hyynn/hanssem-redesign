@@ -60,7 +60,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 26,
     salesCount: 380,
-    badge: { text: "디퓨저 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "디퓨저 판매 1위" },
     category: ["소품", "인테리어소품", "데코소품"],
     priceOptionGroups: [
       {

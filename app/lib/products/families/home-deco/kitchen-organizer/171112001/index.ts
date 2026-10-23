@@ -63,7 +63,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.6,
     reviewCount: 12,
     salesCount: 150,
-    badge: { text: "식기건조대 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "식기건조대 판매 1위" },
     category: ["소품", "주방수납", "주방정리"],
     filterAttributes: { config: ["2단"] },
   },

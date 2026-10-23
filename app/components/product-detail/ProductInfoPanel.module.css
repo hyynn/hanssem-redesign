@@ -73,7 +73,8 @@
 .badge {
   display: inline-block;
   font-size: var(--fs-meta);
-  color: #fff;
+  color: var(--color-text-inverse);
+  background: var(--color-sale);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
 }

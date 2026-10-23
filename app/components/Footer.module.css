@@ -1,6 +1,6 @@
 .footer {
   background-color: var(--color-bg-secondary);
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border-subtle);
 }
 
 .topBar {
@@ -8,7 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
 .topLinks {
@@ -43,7 +43,7 @@
   align-items: center;
   gap:12px;
   font-size: var(--fs-caption);
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-gray-light);
   padding: 6px 14px;
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -71,8 +71,8 @@
   position: absolute;
   top: calc(100% + 6px);
   right: 0;
-  background: #fff;
-  border: 1px solid #ddd;
+  background: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
   border-radius: var(--radius-sm);
   width: 100%;
   z-index: 50;
@@ -80,7 +80,7 @@
 }
 
 .familySiteMenu li {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--color-border-subtle);
 }
 
 .familySiteMenu li:last-child {
@@ -154,9 +154,9 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  color: rgb(18, 18, 18);
-  background-color: rgb(255, 255, 255);
-  border: 1px solid rgb(226, 226, 226);
+  color: var(--color-text-heading);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-gray-light);
   padding: 10px 16px;
   gap: 4px;
 }
@@ -196,7 +196,7 @@
 .divider {
   width: 1px;
   height: 12px;
-  background-color: #e2e2e2;
+  background-color: var(--color-border-subtle);
 }
 
 .legalLink {
@@ -211,7 +211,7 @@
 }
 
 .disclaimerBar {
-  background-color: #f0f0f0;
+  background-color: var(--color-bg-secondary);
   padding: 16px var(--align-inset);
   font-size: var(--fs-meta);
   color: var(--color-text-muted);

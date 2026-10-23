@@ -2,10 +2,10 @@
   display: flex;
   max-width: var(--max-width);
   margin: 0 auto;
-  border-bottom: 2px solid #121212;
+  border-bottom: 2px solid var(--color-accent);
   position: sticky;
   top: 0;
-  background: #fff;
+  background: var(--color-bg);
   z-index: 10;
 }
 

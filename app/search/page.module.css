@@ -94,7 +94,7 @@
 .emptyBtn {
   font-size: var(--fs-body);
   font-weight: var(--fw-semibold);
-  color: #fff;
+  color: var(--color-text-inverse);
   background: var(--color-accent);
   padding: 14px 32px;
   text-decoration: none;

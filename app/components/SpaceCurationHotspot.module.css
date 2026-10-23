@@ -106,7 +106,7 @@
 
 .pinBtnActive {
   background: var(--color-text-heading);
-  color: #fff;
+  color: var(--color-text-inverse);
 }
 
 /* ── Card wrapper (positioning only — appearance is in HotspotMiniCard.module.css) ── */
@@ -130,7 +130,7 @@
   left: var(--container-pad);
   font-size: var(--fs-h3);
   font-weight: var(--fw-medium);
-  color: #fff;
+  color: var(--color-text-inverse);
   letter-spacing: -0.025em;
   line-height: 1.2;
   pointer-events: none;

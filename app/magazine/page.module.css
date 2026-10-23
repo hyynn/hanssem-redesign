@@ -80,7 +80,7 @@
   left: var(--align-inset);
   right: var(--align-inset);
   bottom: 56px;
-  color: #fff;
+  color: var(--color-text-inverse);
   max-width: 640px;
 }
 

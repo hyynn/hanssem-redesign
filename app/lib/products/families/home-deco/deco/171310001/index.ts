@@ -63,7 +63,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.9,
     reviewCount: 21,
     salesCount: 300,
-    badge: { text: "램프 세트 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "램프 세트 판매 1위" },
     category: ["소품", "인테리어소품", "조명"],
     filterAttributes: { config: ["세트"] },
   },

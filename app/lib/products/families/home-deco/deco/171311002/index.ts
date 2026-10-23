@@ -59,7 +59,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.9,
     reviewCount: 23,
     salesCount: 320,
-    badge: { text: "원형러그 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "원형러그 판매 1위" },
     category: ["소품", "인테리어소품", "러그·카페트"],
     filterAttributes: { config: ["러그 겸 토퍼"] },
   },

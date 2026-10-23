@@ -145,7 +145,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 42,
     salesCount: 2350,
-    badge: { text: "패브릭소파 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "패브릭소파 판매 1위" },
     category: ["거실", "소파", "패브릭소파"],
     categoryTags: ["모듈형소파", "4인소파", "카우치소파"],
     filterAttributes: { config: ["라운지형"], size: ["4인"] },

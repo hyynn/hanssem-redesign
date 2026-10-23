@@ -63,7 +63,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.9,
     reviewCount: 22,
     salesCount: 290,
-    badge: { text: "식탁의자 판매 1위", bgColor: "#FE5A5D" },
+    badge: { text: "식탁의자 판매 1위" },
     category: ["다이닝", "의자", "식탁의자"],
     colors: ["부클아이보리", "코튼화이트"],
     filterAttributes: { config: ["세트"] },

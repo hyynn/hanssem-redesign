@@ -108,9 +108,31 @@
   - --color-text-heading: #1a1a1a (제목, 강조 텍스트)
   - --color-text-body: #333333 (본문 텍스트, 기본 텍스트 컬러)
   - --color-text-muted: #505050 (보조 텍스트, 레이블)
-  - --color-gray-light: #d0d0d0 (subtle 보더, 구분선)
+  - --color-gray-light: #d0d0d0 (클릭 가능한 컨트롤 테두리 — 필터 버튼·탭·드롭다운·셀렉트, 빈 별점)
+  - --color-border-subtle: #e5e5e5 (구분선·정보 박스 외곽선·옅은 면 — 별점 막대 트랙 등).
+    #efefef는 --color-bg-secondary 위에서 1.08:1로 사라져 채택 안 함. "정보 구분선 < 조작 경계" 위계 유지
   - --color-accent: #1a1a1a (버튼 보더, 버튼 배경, 인터랙티브 요소 강조색)
-  - --color-sale: #ff4d4f (할인율, 판매가 강조 — 이 색만 사용)
+  - --color-sale: #d92d2f (할인율, 판매가, 상품 배지 — 빨강은 이 색만 사용).
+    이전 #ff4d4f는 흰 배경 3.27:1로 소형 텍스트 AA 미달 → 같은 hue에서 명도만 낮춰 흰 배경 4.81:1 / bg-secondary 4.53:1
+  - --color-bg-inverse: #1a1a1a (어두운 면 — Hero·CategoryHero·사례 이미지의 로딩 전 배경)
+  - --color-text-inverse: #ffffff (어두운 면·이미지·컬러 배지 위 텍스트/아이콘.
+    흰 배경은 --color-bg — 같은 #fff라도 "면"과 "그 위 글자"는 역할이 달라 분리)
+  - --color-on-image-muted / --color-on-image-subtle: 이미지·어두운 면 위 반투명 흰색 2단계
+    (0.6: 고스트 버튼 보더·placeholder·비활성 dot / 0.15: hover 면·반투명 입력 면·구분선).
+    이미지 위 고스트 버튼은 CategoryHero .cta 규격(텍스트 inverse + 보더 muted → hover 시 면 subtle + 보더 inverse)으로 통일
+  - --color-backdrop(0.4, 드로어·패널·모달) / --color-backdrop-strong(0.55, 사진 뷰어)
+  - --color-shadow(0.08, 헤더 hairline·드롭다운 그림자) / --color-swatch-outline(0.1, 컬러칩 외곽선)
+  - --scrim-light-left / --scrim-dark-left: 좌측 텍스트 배너용 그라데이션 한 쌍
+    (EventBanner·SubcategoryBanner는 light, CategoryHero는 dark)
+  - **토큰화 예외 (이미지별 튜닝 값)**: Hero·매거진 피처드·SpaceCurationHotspot·Renovation 사례 카드의
+    오버레이 그라데이션, 핫스팟 핀 배경(0.92)은 특정 이미지의 밝기에 맞춘 값이라 로컬 유지.
+    Footer 인증 마크 SVG의 브랜드 색, 필터 색상 스와치(COLOR_GROUP_HEX 데이터)도 예외
+- SVG 아이콘 색: presentation attribute(`fill="var(...)"`)는 var() 지원이 불안정하므로
+  `style={{ fill: "var(--토큰)" }}` 또는 `currentColor` 사용
+- 별점: 흑백 (채움 --color-text-heading / 빈 별 --color-gray-light). 노랑(#f5a623)은 흰 배경 2.03:1로
+  의미 그래픽 기준(3:1, WCAG 1.4.11) 미달 + 세 번째 포인트 컬러가 되어 제외
+- 상품 배지(`badge`): 데이터는 `{ text }`만 — 색은 CSS에서 --color-sale. 데이터에 hex를 넣던 구조에서
+  한 상품만 다른 색이 섞이는 불일치가 생겨 색 필드 자체를 제거함
   - --max-width: 1440px (전 페이지 공통 텍스트 정렬선의 기준 폭)
   - --container-pad: 60px (정렬선 좌우 패딩)
   - --align-inset: 풀블리드 요소용 수평 inset 계산값 (아래 "레이아웃 정렬 규칙" 참조)

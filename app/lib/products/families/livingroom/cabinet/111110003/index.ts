@@ -64,7 +64,7 @@ export const summaries: ProductSummary[] = [
     rating: sharedReviews.rating,
     reviewCount: sharedReviews.count,
     salesCount: 640,
-    badge: { text: "거실수납 3위", bgColor: "#3a3a3a" },
+    badge: { text: "거실수납 3위" },
     category: ["거실", "거실장"],
   },
 ];

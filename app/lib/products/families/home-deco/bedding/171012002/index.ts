@@ -61,7 +61,7 @@ export const summaries: ProductSummary[] = [
     rating: 4.8,
     reviewCount: 21,
     salesCount: 280,
-    badge: { text: "침구세트 판매 2위", bgColor: "#FE5A5D" },
+    badge: { text: "침구세트 판매 2위" },
     category: ["소품", "침구", "침구세트"],
     categoryTags: ["이불솜·이불커버"],
     filterAttributes: { size: ["SS", "Q", "K"] },

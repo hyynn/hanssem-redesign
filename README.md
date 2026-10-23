@@ -16,8 +16,8 @@
 - **Framework**: Next.js (App Router)
 - **Language**: TypeScript
 - **State**: zustand (장바구니 상태 관리)
-- **Styling**: CSS Modules (+ 일부 Tailwind 유틸리티 클래스 혼용)
-- **Font**: Pretendard (`@font-face`로 직접 정의)
+- **Styling**: CSS Modules
+- **Font**: Pretendard Variable 다이나믹 서브셋 (`pretendard` npm 패키지, self-host)
 - **배포**: Vercel (GitHub 연동, push 시 자동 배포)
 
 ---

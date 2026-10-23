@@ -11,7 +11,11 @@
 ## 기술 스택
 - Next.js 16 App Router (Pages Router 아님) + React 19 + TypeScript
 - 상태 관리: zustand 5 (장바구니 — app/store/cartStore.ts)
-- 스타일링: CSS Modules (Tailwind 유틸리티 클래스도 일부 혼용 중 - layout.tsx의 h-full, flex 등)
+- 스타일링: CSS Modules 단일. Tailwind는 제거됨 — globals.css에 `@import "tailwindcss"`가 빠진 뒤로
+  layout.tsx의 유틸리티 클래스가 아무 효과 없이 남아 있었음. 레이아웃 의도(html 높이 100%, body 최소 높이 +
+  세로 flex, main flex:1로 footer 하단 고정, 폰트 antialiased)는 globals.css(html/body)와
+  app/layout.module.css(.main)로 옮김. 유틸리티 클래스·Tailwind 패키지 재도입 금지
+- `<main>`은 app/layout.tsx의 것 하나뿐 — 페이지 컴포넌트에서 `<main>` 사용 금지(중첩 main 방지)
 - 폰트: Pretendard Variable 다이나믹 서브셋 — `pretendard` npm 패키지의
   `pretendardvariable-dynamic-subset.css`를 app/layout.tsx에서 import (번들링되어 self-host)
   - 이전 방식(CDN에서 굵기 5종 전체 글리프 woff2)은 폰트만 약 3.8MB → 모바일 LCP 지연 원인이었음.
@@ -48,6 +52,13 @@
   - useEffect / 브라우저 API (window, document) 사용
   - 이벤트 핸들러(onClick 등)가 인라인이 아닌 함수로 분리된 경우
 - 정적 데이터 렌더링만 하는 컴포넌트에는 "use client" 추가 금지
+- "use client" 파일이 import한 컴포넌트는 지시어가 없어도 클라이언트 번들에 들어감 — 그래서
+  state는 그 state를 쓰는 leaf 안에 두고(예: 갤러리 선택 인덱스는 ProductGallery 내부),
+  여러 패널을 바꿔 끼우는 셸이 클라이언트여야 하면 패널은 서버(page)에서 렌더링해 props(slot)로 넘김
+  - 상세 페이지 기준: ProductTabLayout(클라이언트)은 `panels={{ info, review, qna, delivery }}`만 받아
+    탭 전환을 담당. ProductOverview·ProductInfoPanel·DeliveryInfoBox·ProductDetailSection·
+    PrePurchaseNotice·DeliverySection은 서버 컴포넌트
+  - 클라이언트로 넘기는 props는 필요한 필드만 (예: ProductDetailTabs는 섹션 `{ id, label }`만 — blocks 직렬화 금지)
 
 ## 상태 초기화 패턴 (react-hooks/set-state-in-effect 방지)
 - 브라우저 전용 초기값(localStorage/sessionStorage 등)은 마운트 effect에서 읽어
@@ -112,7 +123,8 @@
   - --color-border-subtle: #e5e5e5 (구분선·정보 박스 외곽선·옅은 면 — 별점 막대 트랙 등).
     #efefef는 --color-bg-secondary 위에서 1.08:1로 사라져 채택 안 함. "정보 구분선 < 조작 경계" 위계 유지
   - --color-accent: #1a1a1a (버튼 보더, 버튼 배경, 인터랙티브 요소 강조색)
-  - --color-sale: #d92d2f (할인율, 판매가, 상품 배지 — 빨강은 이 색만 사용).
+  - --color-sale: #d92d2f (빨강은 이 색만 사용). 실제 쓰임: 할인율·할인 금액, 상품 배지 배경,
+    헤더 장바구니 개수 뱃지, 입력 오류·필수 표시(주문서), 위시리스트 하트. **판매가는 빨강이 아님**(bold만).
     이전 #ff4d4f는 흰 배경 3.27:1로 소형 텍스트 AA 미달 → 같은 hue에서 명도만 낮춰 흰 배경 4.81:1 / bg-secondary 4.53:1
   - --color-bg-inverse: #1a1a1a (어두운 면 — Hero·CategoryHero·사례 이미지의 로딩 전 배경)
   - --color-text-inverse: #ffffff (어두운 면·이미지·컬러 배지 위 텍스트/아이콘.
@@ -138,6 +150,8 @@
   - --align-inset: 풀블리드 요소용 수평 inset 계산값 (아래 "레이아웃 정렬 규칙" 참조)
   - --detail-max-width: 1260px
   - --detail-content-width: 900px
+  - --detail-pad: min(40px, var(--container-pad)) (상세 좁은 컨테이너의 수평 여백 — 데스크톱 40, ≤768 24, ≤480 16.
+    ProductOverview·PromotionBanner·상세 하단 섹션 6곳 공통. 40px 직접 하드코딩 금지)
   - --header-height: 80px
   - --product-tab-height: 50px
 - 타이포그래피 토큰 (globals.css :root — 컴포넌트에서 font-size/weight px 직접 하드코딩 금지):
@@ -166,8 +180,10 @@
 - 반응형: desktop-first(max-width 쿼리), 전역 브레이크포인트는 **1024 / 768 / 480px** 3개
   (globals.css에 정의. 1440은 브레이크포인트가 아니라 --max-width 컨테이너 캡)
   - 각 지점에서 :root의 --container-pad만 재정의(60→40→24→16px) — 정렬선 시스템 전체가 연동됨
-  - 컴포넌트 로컬 브레이크포인트(예: Header의 1440/580)는 콘텐츠 충돌 지점에만 예외적으로 허용,
-    해당 module.css에 근거 주석 필수. 전역 체계에 새 지점 추가 금지
+  - 컴포넌트 로컬 브레이크포인트는 콘텐츠 충돌 지점에만 예외적으로 허용,
+    해당 module.css에 근거 주석 필수(가능하면 실측값). 전역 체계에 새 지점 추가 금지.
+    현재: Header 1440/580, Hero 1280, Footer 1280(규칙 없으면 1260px부터 문의 칸 줄바꿈·버튼 어긋남),
+    SpaceCurationHotspot·HotspotMiniCard 580(이미지 높이 ~300px 이하에서 그라데이션·미니카드 축약)
   - 각 module.css의 미디어 쿼리는 파일 맨 아래 `/* ── 반응형 ── */` 블록에 모아서 작성
   - 상품 카드 그리드는 4→3(≤1024)→2(≤768)열 grid 명시 컬럼 방식 (auto-fill/flex wrap 금지)
 
@@ -180,8 +196,9 @@
 - **풀블리드 블록** (배경·보더·이미지가 화면을 가득 채우는 섹션):
   수평 패딩(또는 absolute 오버레이의 left)에 `var(--align-inset)` 사용.
   --align-inset은 % 기반이라 containing block이 뷰포트 폭인 요소에서만 동작함
-- **예외**: containing block이 뷰포트가 아닌 경우(예: CategoryBrandStory의 좌측
-  절반 컬럼)는 100vw 기반 calc로 직접 계산 (스크롤바 폭 오차 허용)
+- **예외**: containing block이 뷰포트가 아닌 경우(예: 좌우 분할 레이아웃의 절반 컬럼 —
+  현재 사용처 없음, 미사용으로 삭제한 CategoryBrandStory가 유일한 사례였음)는 100vw 기반 calc로
+  직접 계산 (스크롤바 폭 오차 허용)
 - 수평 오프셋에 40px/60px/80px 등 하드코딩 금지 — 반드시 위 두 패턴 중 하나 사용.
   반응형 진입 시 :root에서 --container-pad만 재정의하면 전 섹션이 함께 조정됨
 - 예외적으로 좁은 읽기 폭이 필요한 곳(상품 상세 본문)은 --detail-max-width /
@@ -199,7 +216,24 @@
   상태별로 다른 SVG path를 조건부 렌더링으로 처리할 것 (예: 토글 화살표 ▲/▼)
 - 영상(LazyVideo): 뷰포트 진입 시 lazy load 후 재생, 벗어나면 일시정지,
   다시 진입하면 이어서 재생. 뷰포트 안에 머무는 동안은 loop.
-  (사용자 의도 없는 반복 재생 방지를 위한 IntersectionObserver 기반 제어)
+  (사용자 의도 없는 반복 재생 방지를 위한 IntersectionObserver 기반 제어, threshold 0.5)
+  - src가 진입 전까지 없으므로 width/height 속성으로 자리를 잡음 — 상세 섹션 video 블록은
+    page에서 `attachImageDimensions()`가 mp4 헤더(tkhd)로 크기를 채움. alt는 aria-label로 전달
+
+## 드롭다운·키보드 접근성 패턴
+- 드롭다운(필터·정렬·주문서 메모·상세 옵션)은 **디스클로저 + 버튼** 패턴으로 통일:
+  - 트리거 `<button type="button" aria-expanded aria-controls={useId()}>`
+  - 목록은 role 없는 `<ul id>`, 옵션은 `<li><button type="button" aria-pressed={선택여부}>`
+  - `role="listbox"/"option"` 금지 — 화살표 키 이동을 구현하지 않는 목록에 붙이면 지키지 않는 동작을 약속하게 됨.
+    `role="option"` 안에 button을 넣는 것도 금지(nested-interactive)
+  - 닫기: Esc + 바깥 mousedown (열렸을 때만 리스너 등록, cleanup에서 둘 다 제거)
+- 예외 — 헤더 검색 자동완성만 **combobox** 패턴: 포커스는 입력창(`role="combobox"`, aria-expanded,
+  aria-controls, aria-activedescendant)에 두고 화살표 키로 이동, 옵션(`role="option"`)은 tabIndex -1
+- 단일 선택 칩(카테고리 소분류)은 `<button aria-pressed>` + `role="group" aria-label`.
+  중분류 탭은 `role="tab"` + aria-selected
+- 열림 상태가 있는 아이콘 버튼(검색 열기, 햄버거)은 aria-expanded 필수
+- 미적용으로 남은 곳: 헤더 메가메뉴(hover로만 열림, 키보드 진입 없음 — 각 nav 링크는 카테고리로 바로 이동),
+  Footer 패밀리사이트(네이티브 `<details>` — 열림 상태는 브라우저가 전달, Esc 미지원)
 
 ## 상품코드 체계 (10자리) & 카테고리 코드
 - 코드 구조: [대분류 2자리][중분류 2자리][소분류 2자리][일련번호 3자리][옵션 1자리]
@@ -434,18 +468,20 @@
 - 렌더링: `next/image` 대신 일반 `<img>` 태그 사용 (프로젝트 전체 통일).
   이미 .webp로 수동 최적화된 정적 에셋이라 변환 이점이 적고, CSS Modules 기반
   레이아웃 제어를 우선하기 위한 선택 — 임의로 next/image로 교체하지 말 것
-- **원시 `<img>` 직접 사용 금지 (ESLint로 강제)** — 항상 공용 컴포넌트
+- **원시 `<img>`·`next/image` 직접 사용 금지 (ESLint `no-restricted-syntax`/`no-restricted-imports`로 강제)** — 항상 공용 컴포넌트
   `app/components/Img.tsx`의 `<Img>` 사용:
   - 기본 동작: `loading="lazy"` 자동 적용 → React 19 SSR의 `<img>` 자동
     `<link rel="preload">` 주입("preloaded but not used" 경고의 원인)을 구조적으로 차단
   - 첫 화면(LCP) 이미지만 `<Img priority />` — eager + `fetchPriority="high"`.
-    현재 3곳뿐: Hero 첫 슬라이드, CategoryHero, 상세 갤러리 메인
+    현재 4곳: Hero 첫 슬라이드, CategoryHero, 상세 갤러리 메인, 매거진 피처드
   - 새 페이지/컴포넌트에 이미지 추가 시 그냥 `<Img>`만 쓰면 됨 (별도 판단 불필요),
     첫 화면 이미지일 때만 priority를 의도적으로 선언
 - 기본: `.webp` (정적 이미지 전반)
 - 움직임이 필요한 구간(소재 질감, 기능 시연 등): `.mp4`가 기본 선택
-- `.gif`: 압축 효율이 낮아 용량이 크게 늘어나므로(예: 4.5MB) 원칙적으로 mp4로 변환.
-  꼭 필요한 경우에만 예외적으로 유지.
+- `.gif`: 압축 효율이 낮아 용량이 크게 늘어나므로 원칙적으로 mp4로 변환하고 데이터는 `type: "video"` 블록으로.
+  변환: `ffmpeg -i x.gif -c:v libx264 -preset slow -crf 23 -pix_fmt yuv420p -movflags +faststart -an
+  -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2" x.mp4` (faststart 필수 — 크기 파싱이 moov를 앞에서 읽음).
+  3MB 이상 4개를 변환한 결과 77~90% 감소(예: 4,360KB → 1,006KB). 남은 gif는 개별 판단 후 변환
 
 ## 가로 스크롤 버튼 공통 패턴
 - `canScroll: boolean | null`로 초기화, ResizeObserver로 스크롤 가능 여부 측정 후 갱신
@@ -460,7 +496,9 @@
   (부모 요소의 `transform`이 `position: fixed` 자식의 containing block이 되는 문제 방지)
 - z-index는 Header(100)보다 항상 높게 설정 (현재 모달 backdrop: 200)
 - 스크롤 잠금 순서: `overflow: hidden` 적용 *전*에 `scrollbarWidth` 계산 →
-  `body.paddingRight`로 보정 → cleanup에서 `overflow` / `paddingRight` 둘 다 복원
+  `body.paddingRight`로 보정 → cleanup에서 `overflow` / `paddingRight`를 **적용 전에 저장해 둔 값으로** 복원
+  (빈 문자열로 초기화하지 말 것 — 모달이 겹칠 때 바깥 모달의 잠금이 풀림).
+  적용: AddToCartModal, ReviewPhotoModal, ProductFilterBar 전체 필터 패널, HeaderDrawer
 - Esc 키로 닫기 지원 (keydown 이벤트, cleanup에서 removeEventListener)
 
 ## 알려진 이슈 / 주의사항
